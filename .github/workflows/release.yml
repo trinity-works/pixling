@@ -54,14 +54,14 @@ jobs:
     needs: pypi
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
+    environment: main            # npm trusted publishing (OIDC): no token stored; provenance is automatic
     permissions:
-      id-token: write            # npm provenance
+      id-token: write
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"     # npm 11.5.1+ for trusted publishing
           registry-url: "https://registry.npmjs.org"
-      - run: npm publish ./npm --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: npm publish ./npm --access public

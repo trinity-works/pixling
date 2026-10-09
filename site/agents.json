@@ -1,6 +1,6 @@
 {
   "name": "pixling",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "status": "experimental",
   "summary": "Art know-how and tools for coding agents: pipelines, styles (with how they were made) and taste for making game sprites with code.",
   "source": "https://github.com/trinity-works/pixling",

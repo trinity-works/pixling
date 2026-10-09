@@ -1,6 +1,6 @@
 {
   "name": "pixling",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The pixel artist for your coding agent: 8-direction sprites, VFX and living maps from JSON specs",
   "bin": { "pixling": "bin/pixling.js" },
   "files": ["bin/", "README.md"],

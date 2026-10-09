@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pixling"
-version = "0.1.0"
+version = "0.1.1"
 description = "The pixel artist for your coding agent: pipelines, styles and taste for making game sprites with code"
 readme = "README.md"
 license = {text = "MIT"}
