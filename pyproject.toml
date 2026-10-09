@@ -28,7 +28,7 @@ Repository = "https://github.com/trinity-works/pixling"
 
 [tool.hatch.build.targets.wheel]
 packages = ["pp", "reel", "painted"]
-exclude = ["reel/chars", "**/__pycache__", "**/.DS_Store"]
+exclude = ["reel/chars/[!_]*", "**/__pycache__", "**/.DS_Store"]
 
 # The data pixling reads at runtime, copied into pp/data/ in the wheel (pp/paths.py finds it there when installed;
 # a checkout reads the repo directly). The style kits (tools/tactics, flat, vista), the palette generator and our own
@@ -50,7 +50,6 @@ exclude = ["reel/chars", "**/__pycache__", "**/.DS_Store"]
 "reel/chars/_template/char.json" = "pp/data/reel/chars/_template/char.json"
 "tools/tactics" = "pp/data/tools/tactics"
 "tools/flat" = "pp/data/tools/flat"
-"tools/board" = "pp/data/tools/board"
 "tools/vista/aerial.py" = "pp/data/tools/vista/aerial.py"
 "tools/vista/build.py" = "pp/data/tools/vista/build.py"
 "tools/vista/layout_hub.py" = "pp/data/tools/vista/layout_hub.py"
@@ -78,4 +77,4 @@ exclude = ["reel/chars", "**/__pycache__", "**/.DS_Store"]
 include = ["pp", "reel", "painted", "styles", "specs", "docs/brand", "docs/ENVIRONMENTS.md", "docs/STYLES.md", "docs/ARTIST.md", "docs/WORKFLOW.md",
            "docs/PIPELINES.md", "tools/tactics", "tools/flat", "tools/vista/aerial.py", "tools/vista/build.py", "tools/vista/layout_hub.py", "tools/vista/layout_streets.py", "tools/vista/layout_town.py", "tools/vista/layout_vale.py", "tools/vista/slib.py", "tools/vista/streets.py", "tools/vista/vlib.py", "tools/vista/world.py", "tools/make_styles.py", "research/styles/*.md",
            "research/motion/NOTES.md", "reel/chars/_template", ".claude/skills/pixling", "README.md", "pyproject.toml"]
-exclude = ["reel/chars", "**/__pycache__", "**/.DS_Store"]
+exclude = ["reel/chars/[!_]*", "**/__pycache__", "**/.DS_Store"]

@@ -1,6 +1,7 @@
 # Styles: how we make an art style
 
-pp makes environments, buildings and animals. Characters are out of scope for the launch styles.
+pp makes environments, buildings and animals. Full-size characters are out of scope for the launch styles; small
+iso board pieces (units, creatures) are block tokens in the scene's own hand (`pixling pipelines blocks`).
 `pixling styles NAME --how` prints a style's section below with its code and lab notes; `pixling pipelines style`
 is the recipe for a new one.
 

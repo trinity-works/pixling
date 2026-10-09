@@ -47,6 +47,12 @@ Use `--out DIR` on build to write into your own project. `pixling inspect SPEC` 
 `pixling world tactics|flat [--only SCENE]` builds a style's scenes and animal sheets with its kit. For new scenes,
 copy `tools/<style>/scenes.py` (path from `pixling code tactics.scenes`) and render with `pp.iso`; `pixling pipelines iso`.
 
+## Board pieces (units, creatures on an iso board)
+`pixling pipelines blocks`. Build them as block tokens (`pixling blocks`): a few chunky voxels (3 x 3 footprint, 2-4
+layers, ~12 px: a third of a tile) in the board's exact iso, face light and cast shadow, facings by rotation. Not
+side-view sprites, not 3D-rendered animals. Keep them small and pull the camera back rather than growing them. Judge
+them standing in the real scene (`--on SCREENSHOT_1x.png`), and never restyle the environment to fix the pieces.
+
 ## Maps, states, light, VFX, packs
 `pixling guide environments` and `pixling guide artist "Maps (pp.map)"`. Commands: `pixling map MAP.json --still`,
 `pixling states SPEC`, `pixling light MAP.json --gif`, `pixling fx KIND --style S`, `pixling pack NAME DIRS --style S`.

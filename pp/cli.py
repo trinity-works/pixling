@@ -76,7 +76,7 @@ pixling — art know-how and tools for your coding agent (the Pixel Perfect forg
 Pipelines, styles and taste for making game sprites with code: run them, read how they were made, take what helps.
 
 Know-how (start here)
-  pixling pipelines [NAME]              spec, iso, map, fx, video, painted, style: what each makes, steps, code, lessons
+  pixling pipelines [NAME]              spec, blocks, iso, map, fx, video, painted, style: what each makes, steps, code, lessons
   pixling styles [NAME] [--how]         styles and their ramps; --how: the hand, the kit, the code, the lab notes
   pixling guide [TOPIC] [SECTION]       the docs and research notes; --grep WORD searches them all
   pixling code [MODULE]                 engine and kit modules, with docstrings (`pixling code tactics.kit`)
@@ -91,6 +91,10 @@ Pipeline: spec -> sprites (the loop: new -> build -> review -> fix -> scene -> l
   pixling inspect SPEC | variants SPEC --vary k=a,b | silhouettes | sizes
   pixling pixcheck PNG [--mark OUT]                pixel cleanliness of a 1x render (orphans, whiskers, stairs)
   pixling pack NAME DIRS --style S | aseprite out/<name>
+
+Pipeline: block tokens (small units and creatures for an iso board; `pixling pipelines blocks`)
+  pixling blocks SPEC [SPEC ...] [--lineup PNG] [--on SCENE.png --at X,Y] [--ink HEX]   voxel layers -> exact 2:1
+                                        iso clips in 4 rotated facings, cast shadows, hit/cast events
 
 Pipeline: iso scenes (Crisp Tactics, Flat Minimal)
   pixling world tactics|flat [--only SCENE]    a style's scenes + animal sheets, built by its kit
@@ -397,6 +401,9 @@ def cmd_new(a):
         raise SystemExit("%s exists (use --force)" % dest)
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(json.dumps(spec, indent=1) + "\n")
+    if "layers" in spec:  # an iso block token (pp.blocks), not an SDF spec
+        print("%s  (from %s, a block token)\nnext: pixling blocks %s --on YOUR_SCENE.png" % (dest, hits[0].stem, dest))
+        return 0
     print("%s  (from %s, style %s)\nnext: pixling build %s --clips idle --dirs S,E" % (
         dest, hits[0].stem, spec.get("style"), dest))
     return 0
@@ -684,6 +691,9 @@ def main(argv=None) -> int:
     if head == "map":
         from .map import main as map_main
         return map_main(rest) or 0
+    if head == "blocks":
+        from .blocks import main as blocks_main
+        return blocks_main(rest) or 0
     if head == "reel":
         sys.path.insert(0, str(REPO))
         from reel.__main__ import main as reel_main

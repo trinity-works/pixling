@@ -23,4 +23,6 @@
 - Announce before rebuilding packs/, viewer/ or shared out/ dirs, and say when you're done; test builds go to /tmp.
 - Before editing a shared engine file, message the sessions working in it (ListAgents) and agree who owns which function.
 - Internal material (notes, pitches, research, refs) goes in `private/`; it never ships. Secrets are never committed.
-  Public releases only through `python3 private/publish.py` (skill: public-release); never push to the public repo by hand.
+  Work lands on `dev`, committed from your own worktree or branch (never from a checkout holding another session's
+  edits). `main` is what is public: it moves only when the user merges a dev -> main PR, and CI publishes it
+  (skill: public-release). Never push to the public repo by hand.

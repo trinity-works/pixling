@@ -1,0 +1,42 @@
+{
+ "name": "bibi",
+ "vox": 2,
+ "ink": "#0b1d22",
+ "palette": {
+  "a": [
+   "#a8e4f0",
+   "#5fb4d4",
+   "#2a6a8a"
+  ],
+  "y": [
+   "#a8e4f0",
+   "#0b1d22",
+   "#0b1d22"
+  ],
+  "c": [
+   "#eafcff",
+   "#a8e4f0",
+   "#5fb4d4"
+  ],
+  "E": "#eafcff"
+ },
+ "layers": [
+  [
+   "aaa",
+   "aac",
+   "aaa"
+  ],
+  [
+   "aay",
+   "a..",
+   "aay"
+  ]
+ ],
+ "glow": {
+  "c": "E"
+ },
+ "cast": true,
+ "parts": {
+  "top": 1
+ }
+}

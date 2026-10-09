@@ -17,7 +17,7 @@ pixling agent install .          # run in the user's repo: adds the pixling skil
 
 ## Know-how first
 pixling                          # the command map
-pixling pipelines                # spec, iso, map, fx, video, painted, style: what each makes
+pixling pipelines                # spec, blocks, iso, map, fx, video, painted, style: what each makes
 pixling pipelines NAME           # when to pick it, the steps, the code, what we learned
 pixling styles                   # launch styles: vista, tactics (Crisp Tactics), flat (Flat Minimal)
                                  # also: sunmeadow, duskborne, vermilion (SDF sprites), painted_cards (painted)

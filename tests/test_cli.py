@@ -107,7 +107,7 @@ class TestViews(unittest.TestCase):
     def test_catalogue(self):
         # pipelines, the making-of per launch style, iso styles and the kits as readable code
         names = [r["pipeline"] for r in json.loads(run("pipelines", "--json")[1])]
-        self.assertEqual(names, ["spec", "iso", "map", "fx", "video", "painted", "style"])
+        self.assertEqual(names, ["spec", "blocks", "iso", "map", "fx", "video", "painted", "style"])
         self.assertIn("**Steps**", json.loads(run("pipelines", "video", "--json")[1])["text"])
         for style in ("vista", "tactics", "flat", "flat_dunes"):
             how = json.loads(run("styles", style, "--how", "--json")[1])

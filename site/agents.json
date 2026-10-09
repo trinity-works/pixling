@@ -50,6 +50,12 @@
         "entry": "pixling new EXAMPLE NAME; pixling build SPEC"
       },
       {
+        "name": "blocks",
+        "makes": "small iso units and creatures from a few voxel layers, 4 rotated facings, cast shadows",
+        "engine": "pp.blocks",
+        "entry": "pixling blocks SPEC --lineup PNG --on SCENE.png"
+      },
+      {
         "name": "iso",
         "makes": "exact 2:1 isometric scenes and animal sheets from a Python kit",
         "engine": "pp.iso",

@@ -10,6 +10,7 @@ steps, the code that does it and what we learned the hard way.
 | Pipeline | Makes | Engine | Needs |
 |---|---|---|---|
 | spec | 8-direction sprites, props, buildings from a JSON spec | `pp` (SDF forge) | Python |
+| blocks | small iso units and creatures from a few voxel layers, in a board's projection, light and shadow | `pp.blocks` | Python |
 | iso | exact 2:1 isometric scenes and animal sheets, built in Python | `pp.iso` | Python |
 | map | living maps: building states, hour light, a meaning layer | `pp.map` | Python |
 | fx | VFX sheets in a style's ramp | `pp.vfx` | Python |
@@ -48,6 +49,39 @@ part overlaps, contact shadows, despeckle. Motion uses one 75 ms frame and holds
 - Don't transcribe a concept sheet detail by detail; small sprites need a few big readable shapes, not chibi.
 - If the engine can't do something, ask for the feature. Don't fake it with forty micro-parts.
 - 8 frames at 75 ms reads as running; walks want 16 frames and folded knees.
+
+## blocks
+A few voxel layers + the scene's ramps -> small iso board pieces: clips in 4 rotated facings, cast shadows, events.
+
+**Pick it for** tactics and strategy units, creatures and heroes on an iso board seen from far away: anything a
+player reads as a token. Below ~20 px, pieces rendered from detailed 3D smear their features and side-view sprites
+read as stickers on an iso tile; a handful of chunky voxels in the board's own projection does neither.
+
+**Steps**
+```
+pixling specs blocks ; pixling new blocks/pip.json my_hero                  # start from an example piece
+pixling blocks specs/my_hero.json --lineup out/roster.png --ink "#0b1d22"  # every piece on an iso tile + value strip
+pixling blocks specs/*.json --on SCREENSHOT_1x.png --at X,Y --step 16,8 --ink "#0b1d22"   # judge it IN the scene
+```
+**How it works.** A spec is `layers` (bottom to top) of rows (y) of role letters (x; the piece faces +x, `.` empty),
+`"vox": 2` lattice units per voxel (a 4 px cube), and per role its `[top, right, left]` face tones (one hex = flat on
+every face). Every pixel centre shoots the iso view ray and takes the face of the first voxel it hits, so edges are
+exact 2:1 lines. A role whose top is the body tone and whose sides are ink puts eyes on the front face only. Facings
+E, S, W, N (screen SE, SW, NW, NE) are true rotations. Clips: idle breath, hop, lunge (`hit` event), flash and knock
+back, rise and glow (`cast` event, with `"cast": true`); `"lift"` floats a flyer; `shadow(facing)` is the long flat
+cast shadow in the sprite's own frame.
+
+**Code:** `pp/blocks.py`; examples in `specs/blocks/`.
+
+**Learned**
+- Characters rendered from detailed 3D at ~20 px were mush; outlines and saturation passes never fixed it.
+- Fixing the characters is not a licence to restyle the environment: an invented flat tileset lost all the board's
+  charm and was rolled back. Put the before beside the after and ask which is more charming, not only more readable.
+- Side-view pixel tokens on an iso board read as flat stickers, and pieces nearly a tile wide swamp the map. Block
+  tokens a third of a tile wide (3 x 3 footprint, 2-4 layers) in the board's iso read as pieces on a board.
+- Zoom out with the camera, not by growing the pieces: one camera distance for every map, the world continuing past
+  the battlefield in the palette's shadow tones so the lit board reads at once.
+- Judge pieces standing in the real scene (`--on`), never only on a swatch.
 
 ## iso
 Python kit + scene layout -> an exact 2:1 isometric scene (still, ambient loop, night) and animal walk sheets.

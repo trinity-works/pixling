@@ -31,4 +31,6 @@ Claude Code reads CLAUDE.md, which has the same rules plus notes on running seve
   SCENARIO_API_SECRET for CI). Video takes use MiniMax H3 only. Get the cost and ask before spending.
 - Stage only the files you changed (`git add <paths>`).
 - Internal material (notes, pitches, research, refs) goes in `private/`; it never ships. Secrets are never committed.
-  Public releases only through `python3 private/publish.py`; never push to the public repo by hand.
+  Work lands on `dev`, committed from your own worktree or branch (never from a checkout holding another session's
+  edits). `main` is what is public: it moves only when the user merges a dev -> main PR, and CI publishes it
+  (skill: public-release). Never push to the public repo by hand.

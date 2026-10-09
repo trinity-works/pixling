@@ -40,8 +40,8 @@ pixling                          # every command; each takes -h, the ones agents
 | Pipeline | Makes |
 |---|---|
 | **spec** | 8-direction sprites, props and buildings from a JSON spec, byte-for-byte reproducible |
+| **blocks** | small iso units and creatures from a few voxel layers, in your board's projection, light and shadow |
 | **iso** | exact 2:1 isometric scenes and animal sheets from a Python kit |
-| **board** | zoomed-out tactics boards: square 3/4 tilesets and tiny hand-placed pieces (8-16 px units and creatures) |
 | **map** | living maps: building states, hour-of-day lighting, a meaning layer, engine layers |
 | **fx** | VFX sheets posterised to a style's palette |
 | **video** | sprites cut from AI video into 8-direction sheets (via [Scenario](https://scenario.com), optional) |
@@ -52,16 +52,16 @@ pixling                          # every command; each takes -h, the ones agents
 `.aseprite` files, and for maps collision, depth and light layers.
 
 ## Styles
-Four launch styles, each with its own hand (camera, shading, line, shadows) and kit. `pixling styles NAME --how`
+Three launch styles, each with its own hand (camera, shading, line, shadows) and kit. `pixling styles NAME --how`
 shows how each was made.
 
-| **Vista** | **Crisp Tactics** | **Flat Minimal** | **8-bit Board** |
-|---|---|---|---|
-| <img src="docs/img/highgate_town.gif" alt="Vista town" width="260"> | <img src="docs/img/tactics_valley.gif" alt="Crisp Tactics valley" width="260"> | <img src="docs/img/flat_dunes.png" alt="Flat Minimal island" width="260"> | <img src="docs/img/board_meadow.png" alt="8-bit Board meadow" width="260"> |
-| painted aerial towns and world maps | exact isometric, flat faces, soft line | exact isometric, two hues, long flat shadows | square top-down tiles, tiny outlined pieces |
+| **Vista** | **Crisp Tactics** | **Flat Minimal** |
+|---|---|---|
+| <img src="docs/img/highgate_town.gif" alt="Vista town" width="260"> | <img src="docs/img/tactics_valley.gif" alt="Crisp Tactics valley" width="260"> | <img src="docs/img/flat_dunes.png" alt="Flat Minimal island" width="260"> |
+| painted aerial towns and world maps | exact isometric, flat faces, soft line | exact isometric, two hues, long flat shadows |
 
-Everything above is rendered by the engine. The 8-bit Board's pieces are pixel grids in their spec (below ~20 px
-the artist places pixels); their outline, animation, facings and variants are generated.
+Everything above is rendered by the engine. Units and creatures for these boards are block tokens
+(`pixling blocks`): a few voxels in the board's own iso, light and shadow.
 
 ## Docs
 - [docs/PIPELINES.md](docs/PIPELINES.md): every pipeline, step by step
