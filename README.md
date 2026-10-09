@@ -7,7 +7,8 @@
 
 <p align="center">
   <b>The pixel artist for your coding agent.</b><br>
-  Pipelines, styles and taste for making game sprites with code. Works with Claude Code, Codex and Cursor.
+  Pipelines, styles and taste for making game sprites with code. Works with Claude Code, Codex and Cursor.<br>
+  <a href="https://pixling.dev">pixling.dev</a>
 </p>
 
 <p align="center">

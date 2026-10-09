@@ -634,7 +634,7 @@ def _blend(d: np.ndarray, s: np.ndarray, op: float, mode: int):
 
 # --------------------------------------------------------------------------- utils
 def _inflate(buf: bytes) -> bytes:
-    """zlib inflate tolerant of missing trailer (some exporters e.g. Pixquare omit it)."""
+    """zlib inflate tolerant of missing trailer (some exporters omit it)."""
     try:
         return zlib.decompress(buf)
     except zlib.error:

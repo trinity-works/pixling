@@ -30,3 +30,5 @@ Claude Code reads CLAUDE.md, which has the same rules plus notes on running seve
 - Scenario (AI generation) goes through `pixling scenario` (OAuth via `pixling scenario login`, or SCENARIO_API_KEY +
   SCENARIO_API_SECRET for CI). Video takes use MiniMax H3 only. Get the cost and ask before spending.
 - Stage only the files you changed (`git add <paths>`).
+- Internal material (notes, pitches, research, refs) goes in `private/`; it never ships. Secrets are never committed.
+  Public releases only through `python3 private/publish.py`; never push to the public repo by hand.

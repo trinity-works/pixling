@@ -23,3 +23,6 @@ references/
 *.egg-info/
 dist/
 build/
+
+# private/: secrets never get committed (keep them in a password manager)
+private/secrets/

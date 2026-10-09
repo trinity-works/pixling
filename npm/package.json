@@ -7,6 +7,6 @@
   "license": "MIT",
   "engines": { "node": ">=18" },
   "keywords": ["pixel-art", "sprites", "gamedev", "agents", "claude-code", "codex", "cli"],
-  "homepage": "https://github.com/trinity-works/pixling",
+  "homepage": "https://pixling.dev",
   "repository": { "type": "git", "url": "git+https://github.com/trinity-works/pixling.git", "directory": "npm" }
 }

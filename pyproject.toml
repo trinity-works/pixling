@@ -23,7 +23,8 @@ classifiers = [
 pixling = "pp.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/trinity-works/pixling"
+Homepage = "https://pixling.dev"
+Repository = "https://github.com/trinity-works/pixling"
 
 [tool.hatch.build.targets.wheel]
 packages = ["pp", "reel", "painted"]

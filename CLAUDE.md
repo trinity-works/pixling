@@ -22,3 +22,5 @@
 - Stage only files you changed (`git add <paths>`, never `git add -A`); never delete or revert another session's files.
 - Announce before rebuilding packs/, viewer/ or shared out/ dirs, and say when you're done; test builds go to /tmp.
 - Before editing a shared engine file, message the sessions working in it (ListAgents) and agree who owns which function.
+- Internal material (notes, pitches, research, refs) goes in `private/`; it never ships. Secrets are never committed.
+  Public releases only through `python3 private/publish.py` (skill: public-release); never push to the public repo by hand.
