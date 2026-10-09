@@ -1,0 +1,149 @@
+{
+ "name": "tactics_autumn",
+ "about": "Crisp Tactics (autumn): authored isometric. Three flat face tones, a soft selout line, cube canopies and slab stone with masonry, sage / pink stone / cream, one orange accent.",
+ "family": "tactics",
+ "biome": "autumn",
+ "camera": "iso_exact",
+ "light": [
+  -1.0,
+  0.22,
+  0.95
+ ],
+ "accent": {
+  "ramp": "accent",
+  "owner": "sails and mill blades (the orange canopies would compete with awnings)"
+ },
+ "ramps": {
+  "ink": [
+   "#0c131a",
+   "#15242e",
+   "#24363f"
+  ],
+  "stone": [
+   "#996362",
+   "#cea499",
+   "#f3ecca"
+  ],
+  "stone_b": [
+   "#7d5f60",
+   "#b5938f",
+   "#e2d2b8"
+  ],
+  "wood": [
+   "#4a3e2c",
+   "#867257",
+   "#a99e80"
+  ],
+  "trunk": [
+   "#3a3a24",
+   "#5b5a38",
+   "#7b774d"
+  ],
+  "water": [
+   "#0d3a40",
+   "#16525a",
+   "#23707a",
+   "#3a8a8e",
+   "#6aaea6"
+  ],
+  "path": [
+   "#a99e80",
+   "#cfc6a0",
+   "#e2dcb4",
+   "#ece3ba"
+  ],
+  "accent": [
+   "#a8502a",
+   "#e17f41",
+   "#f2a868"
+  ],
+  "cloth": [
+   "#a99e80",
+   "#e8e2c4",
+   "#f6f1dc"
+  ],
+  "roof": [
+   "#14494f",
+   "#2f6e68",
+   "#4f8f82"
+  ],
+  "pane": [
+   "#24363f"
+  ],
+  "glow_fire": [
+   "#a8502a",
+   "#e17f41",
+   "#f6d890"
+  ],
+  "fur_brown": [
+   "#3a2a22",
+   "#5a4030",
+   "#7a5a40"
+  ],
+  "fur_grey": [
+   "#4a5a5a",
+   "#7a8a86",
+   "#a3b0a4"
+  ],
+  "fur_tan": [
+   "#8a4422",
+   "#c2602a",
+   "#e48c4c"
+  ],
+  "fur_orange": [
+   "#7a3a1e",
+   "#c2602a",
+   "#e48c4c"
+  ],
+  "fur_white": [
+   "#a3a686",
+   "#e4dfc0",
+   "#f6f1dc"
+  ],
+  "fur_dark": [
+   "#2a2422",
+   "#3a2a22",
+   "#5a4030"
+  ],
+  "wool": [
+   "#a3a686",
+   "#e4dfc0",
+   "#f6f1dc"
+  ],
+  "goods": [
+   "#7b3a2a",
+   "#c2602a",
+   "#e9c46a"
+  ],
+  "grass": [
+   "#3d4a2c",
+   "#a39a58",
+   "#b5aa66",
+   "#c4b878"
+  ],
+  "leaf": [
+   "#6a2e22",
+   "#b0582e",
+   "#d98a46"
+  ],
+  "leaf_b": [
+   "#5a4a1e",
+   "#a8842e",
+   "#d6b24a"
+  ],
+  "moss": [
+   "#5a5a2a",
+   "#8a8440"
+  ],
+  "plaster": [
+   "#a99e80",
+   "#e8e2c4",
+   "#f6f1dc"
+  ],
+  "awn": [
+   "#14494f",
+   "#2f6e68",
+   "#4f8f82"
+  ]
+ }
+}

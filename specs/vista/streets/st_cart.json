@@ -1,0 +1,198 @@
+{
+ "name": "st_cart",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Hand cart loaded with sacks and a crate.",
+ "frame": [
+  24,
+  20
+ ],
+ "anchor": [
+  11,
+  15
+ ],
+ "view": {
+  "yaw": {
+   "S": -24
+  }
+ },
+ "materials": {
+  "roof_t": {
+   "ramp": "roof",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "plum_t": {
+   "ramp": "roof_plum",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "wall_s": {
+   "ramp": "stone",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.62,
+    0.86
+   ],
+   "detail": {
+    "kind": "stone",
+    "scale": 1.4,
+    "amount": 0.5
+   }
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {}
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "bed",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      3
+     ],
+     "half": [
+      4.5,
+      2.6,
+      0.8
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "cylinder",
+     "at": [
+      -2,
+      -2.9,
+      2
+     ],
+     "r": 2,
+     "h": 0.4,
+     "rot": [
+      90,
+      0,
+      0
+     ],
+     "mat": "wood"
+    }
+   ]
+  },
+  {
+   "name": "load",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "sphere",
+     "at": [
+      -1.8,
+      0,
+      5
+     ],
+     "r": 1.9,
+     "mat": "sand"
+    },
+    {
+     "shape": "sphere",
+     "at": [
+      1,
+      0.5,
+      5
+     ],
+     "r": 1.7,
+     "mat": "sand"
+    },
+    {
+     "shape": "box",
+     "at": [
+      2.8,
+      -0.4,
+      5
+     ],
+     "half": [
+      1.4,
+      1.4,
+      1.4
+     ],
+     "mat": "wood"
+    }
+   ]
+  },
+  {
+   "name": "handle",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      6.5,
+      0,
+      3.4
+     ],
+     "half": [
+      2.4,
+      0.3,
+      0.3
+     ],
+     "mat": "wood"
+    }
+   ]
+  }
+ ]
+}

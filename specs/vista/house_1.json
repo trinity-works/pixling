@@ -1,0 +1,167 @@
+{
+ "name": "house_1",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Aerial town house 13x10x8, 1 floor(s), roof hip roof.",
+ "frame": [
+  36,
+  39
+ ],
+ "anchor": [
+  18,
+  31
+ ],
+ "view": {
+  "yaw": {
+   "S": -24
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {}
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "walls",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      4.0
+     ],
+     "half": [
+      6.5,
+      5.0,
+      4.0
+     ],
+     "mat": "plaster"
+    },
+    {
+     "shape": "stamp_row",
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "at": [
+      0,
+      0,
+      1
+     ],
+     "count": 1,
+     "rows": [
+      "a",
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp_row",
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "at": [
+      0,
+      0,
+      3.6
+     ],
+     "count": 4,
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp_row",
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "at": [
+      0,
+      0,
+      3.6
+     ],
+     "count": 3,
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "roof",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "roof",
+     "at": [
+      0,
+      0,
+      8
+     ],
+     "half": [
+      7.2,
+      5.7
+     ],
+     "h": 6.2,
+     "mat": "roof",
+     "gable": false
+    }
+   ]
+  },
+  {
+   "name": "chimney",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      2.6,
+      1.3,
+      12.34
+     ],
+     "half": [
+      0.8,
+      0.8,
+      2.77
+     ],
+     "mat": "plaster"
+    }
+   ]
+  }
+ ]
+}

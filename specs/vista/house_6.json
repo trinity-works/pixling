@@ -1,0 +1,188 @@
+{
+ "name": "house_6",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Aerial town house 12x16x13, 2 floor(s), roof gable roof.",
+ "frame": [
+  41,
+  48
+ ],
+ "anchor": [
+  20,
+  40
+ ],
+ "view": {
+  "yaw": {
+   "S": -24
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {}
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "walls",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      6.5
+     ],
+     "half": [
+      6.0,
+      8.0,
+      6.5
+     ],
+     "mat": "plaster"
+    },
+    {
+     "shape": "stamp_row",
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "at": [
+      0,
+      0,
+      1
+     ],
+     "count": 1,
+     "rows": [
+      "a",
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp_row",
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "at": [
+      0,
+      0,
+      2.93
+     ],
+     "count": 4,
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp_row",
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "at": [
+      0,
+      0,
+      2.93
+     ],
+     "count": 5,
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp_row",
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "at": [
+      0,
+      0,
+      9.42
+     ],
+     "count": 4,
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp_row",
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "at": [
+      0,
+      0,
+      9.42
+     ],
+     "count": 5,
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "roof",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "roof",
+     "at": [
+      0,
+      0,
+      13
+     ],
+     "half": [
+      6.7,
+      8.7
+     ],
+     "h": 7.4399999999999995,
+     "mat": "roof",
+     "gable": true
+    }
+   ]
+  }
+ ]
+}

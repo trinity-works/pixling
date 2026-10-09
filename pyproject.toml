@@ -1,0 +1,80 @@
+[build-system]
+requires = ["hatchling>=1.21"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pixling"
+version = "0.1.0"
+description = "The pixel artist for your coding agent: pipelines, styles and taste for making game sprites with code"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+dependencies = ["numpy>=1.24", "Pillow>=10.0", "scipy>=1.10"]
+keywords = ["pixel-art", "sprites", "gamedev", "agents", "claude-code", "codex", "cli", "procedural"]
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Games/Entertainment",
+  "Topic :: Multimedia :: Graphics",
+  "Environment :: Console",
+]
+
+[project.scripts]
+pixling = "pp.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/trinity-works/pixling"
+
+[tool.hatch.build.targets.wheel]
+packages = ["pp", "reel", "painted"]
+exclude = ["reel/chars", "**/__pycache__", "**/.DS_Store"]
+
+# The data pixling reads at runtime, copied into pp/data/ in the wheel (pp/paths.py finds it there when installed;
+# a checkout reads the repo directly). The style kits (tools/tactics, flat, vista), the palette generator and our own
+# style lab notes ship so agents can read and reuse how the styles were made. reel/chars/ (except the template) stays out.
+[tool.hatch.build.targets.wheel.force-include]
+"styles" = "pp/data/styles"
+"specs" = "pp/data/specs"
+"docs/ARTIST.md" = "pp/data/docs/ARTIST.md"
+"docs/WORKFLOW.md" = "pp/data/docs/WORKFLOW.md"
+"docs/STYLES.md" = "pp/data/docs/STYLES.md"
+"docs/PIPELINES.md" = "pp/data/docs/PIPELINES.md"
+"docs/ENVIRONMENTS.md" = "pp/data/docs/ENVIRONMENTS.md"
+"docs/brand/README.md" = "pp/data/docs/brand/README.md"
+"docs/brand/pixling-mark-1x.png" = "pp/data/docs/brand/pixling-mark-1x.png"
+"docs/brand/pixling-sprite.png" = "pp/data/docs/brand/pixling-sprite.png"
+"reel/README.md" = "pp/data/reel/README.md"
+"reel/WORKFLOW.md" = "pp/data/reel/WORKFLOW.md"
+"painted/README.md" = "pp/data/painted/README.md"
+"reel/chars/_template/char.json" = "pp/data/reel/chars/_template/char.json"
+"tools/tactics" = "pp/data/tools/tactics"
+"tools/flat" = "pp/data/tools/flat"
+"tools/board" = "pp/data/tools/board"
+"tools/vista/aerial.py" = "pp/data/tools/vista/aerial.py"
+"tools/vista/build.py" = "pp/data/tools/vista/build.py"
+"tools/vista/layout_hub.py" = "pp/data/tools/vista/layout_hub.py"
+"tools/vista/layout_streets.py" = "pp/data/tools/vista/layout_streets.py"
+"tools/vista/layout_town.py" = "pp/data/tools/vista/layout_town.py"
+"tools/vista/layout_vale.py" = "pp/data/tools/vista/layout_vale.py"
+"tools/vista/slib.py" = "pp/data/tools/vista/slib.py"
+"tools/vista/streets.py" = "pp/data/tools/vista/streets.py"
+"tools/vista/vlib.py" = "pp/data/tools/vista/vlib.py"
+"tools/vista/world.py" = "pp/data/tools/vista/world.py"
+"tools/make_styles.py" = "pp/data/tools/make_styles.py"
+"research/styles/README.md" = "pp/data/research/styles/README.md"
+"research/styles/round1_FINDINGS.md" = "pp/data/research/styles/round1_FINDINGS.md"
+"research/styles/round2_DNA.md" = "pp/data/research/styles/round2_DNA.md"
+"research/styles/SHARED_LAYER.md" = "pp/data/research/styles/SHARED_LAYER.md"
+"research/styles/proto_tactics_v2.md" = "pp/data/research/styles/proto_tactics_v2.md"
+"research/styles/proto_flat_v2.md" = "pp/data/research/styles/proto_flat_v2.md"
+"research/styles/proto_frost_flat_v1.md" = "pp/data/research/styles/proto_frost_flat_v1.md"
+"research/styles/proto_saffron.md" = "pp/data/research/styles/proto_saffron.md"
+"research/styles/proto_marsh.md" = "pp/data/research/styles/proto_marsh.md"
+"research/motion/NOTES.md" = "pp/data/research/motion/NOTES.md"
+".claude/skills/pixling/SKILL.md" = "pp/data/.claude/skills/pixling/SKILL.md"
+
+[tool.hatch.build.targets.sdist]
+include = ["pp", "reel", "painted", "styles", "specs", "docs/brand", "docs/ENVIRONMENTS.md", "docs/STYLES.md", "docs/ARTIST.md", "docs/WORKFLOW.md",
+           "docs/PIPELINES.md", "tools/tactics", "tools/flat", "tools/vista/aerial.py", "tools/vista/build.py", "tools/vista/layout_hub.py", "tools/vista/layout_streets.py", "tools/vista/layout_town.py", "tools/vista/layout_vale.py", "tools/vista/slib.py", "tools/vista/streets.py", "tools/vista/vlib.py", "tools/vista/world.py", "tools/make_styles.py", "research/styles/*.md",
+           "research/motion/NOTES.md", "reel/chars/_template", ".claude/skills/pixling", "README.md", "pyproject.toml"]
+exclude = ["reel/chars", "**/__pycache__", "**/.DS_Store"]

@@ -1,0 +1,109 @@
+{
+ "name": "fountain_small",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Small round plaza fountain.",
+ "frame": [
+  20,
+  20
+ ],
+ "anchor": [
+  10,
+  15
+ ],
+ "view": {
+  "yaw": {
+   "S": 0
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {}
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "basin",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "cylinder",
+     "at": [
+      0,
+      0,
+      1
+     ],
+     "r": 4,
+     "h": 1,
+     "mat": "stone"
+    },
+    {
+     "shape": "cylinder",
+     "at": [
+      0,
+      0,
+      1.6
+     ],
+     "r": 3.2,
+     "h": 0.9,
+     "mat": "sea",
+     "subtract": false
+    }
+   ]
+  },
+  {
+   "name": "pillar",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "cylinder",
+     "at": [
+      0,
+      0,
+      3.5
+     ],
+     "r": 0.9,
+     "h": 2,
+     "mat": "stone"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      0,
+      6.2
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "sea:5"
+     },
+     "min_facing": 0.05,
+     "overhang": true,
+     "depth_tol": 20
+    }
+   ]
+  }
+ ]
+}

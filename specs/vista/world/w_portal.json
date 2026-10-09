@@ -1,0 +1,289 @@
+{
+ "name": "w_portal",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Realm gate: ring of pale stone standing upright, swirling arcane core, four standing stones.",
+ "frame": [
+  32,
+  36
+ ],
+ "anchor": [
+  16,
+  28
+ ],
+ "view": {
+  "yaw": {
+   "S": 0
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {},
+     "hide": [
+      "sw1"
+     ],
+     "hold": 6
+    },
+    {
+     "pose": {},
+     "hide": [
+      "sw0"
+     ],
+     "hold": 6
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "ring",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "torus",
+     "at": [
+      0,
+      0,
+      8
+     ],
+     "R": 6.4,
+     "r": 1.4,
+     "rot": [
+      90,
+      0,
+      0
+     ],
+     "mat": "stone"
+    }
+   ]
+  },
+  {
+   "name": "core",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "cylinder",
+     "at": [
+      0,
+      0,
+      8
+     ],
+     "r": 5,
+     "h": 0.4,
+     "rot": [
+      90,
+      0,
+      0
+     ],
+     "mat": "arcane"
+    }
+   ]
+  },
+  {
+   "name": "sw0",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -0.2,
+      8
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      ".aba.",
+      "ab.ba",
+      "b.c.b",
+      "ab.ba",
+      ".aba."
+     ],
+     "key": {
+      "a": "arcane:3",
+      "b": "arcane:1",
+      "c": "arcane:2"
+     },
+     "min_facing": 0.05,
+     "overhang": true,
+     "depth_tol": 30
+    }
+   ]
+  },
+  {
+   "name": "sw1",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -0.2,
+      8
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      ".bab.",
+      "ba.ab",
+      "a.c.a",
+      "ba.ab",
+      ".bab."
+     ],
+     "key": {
+      "a": "arcane:3",
+      "b": "arcane:1",
+      "c": "arcane:2"
+     },
+     "min_facing": 0.05,
+     "overhang": true,
+     "depth_tol": 30
+    }
+   ]
+  },
+  {
+   "name": "stones",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -10,
+      -4,
+      2.2
+     ],
+     "half": [
+      1,
+      1,
+      2.2
+     ],
+     "mat": "stone"
+    },
+    {
+     "shape": "box",
+     "at": [
+      10,
+      -4,
+      2.2
+     ],
+     "half": [
+      1,
+      1,
+      2.2
+     ],
+     "mat": "stone"
+    },
+    {
+     "shape": "box",
+     "at": [
+      -8,
+      6,
+      2.2
+     ],
+     "half": [
+      1,
+      1,
+      2.2
+     ],
+     "mat": "stone"
+    },
+    {
+     "shape": "box",
+     "at": [
+      8,
+      6,
+      2.2
+     ],
+     "half": [
+      1,
+      1,
+      2.2
+     ],
+     "mat": "stone"
+    }
+   ]
+  },
+  {
+   "name": "dais",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "cylinder",
+     "at": [
+      0,
+      0,
+      0.4
+     ],
+     "r": 9,
+     "h": 0.4,
+     "mat": "stone"
+    }
+   ]
+  }
+ ],
+ "materials": {
+  "rock_d": {
+   "ramp": "rock",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.85
+   ],
+   "detail": {
+    "kind": "stone",
+    "scale": 1.6,
+    "amount": 0.5
+   }
+  },
+  "snow": {
+   "ramp": "plaster",
+   "shades": [
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.5,
+    0.8
+   ],
+   "sky": 0.3
+  },
+  "spire": {
+   "ramp": "ink",
+   "shades": [
+    0,
+    1,
+    2
+   ],
+   "thresholds": [
+    0.45,
+    0.8
+   ]
+  }
+ }
+}

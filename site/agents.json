@@ -1,0 +1,285 @@
+{
+  "name": "pixling",
+  "version": "0.1.0",
+  "status": "experimental",
+  "summary": "Art know-how and tools for coding agents: pipelines, styles (with how they were made) and taste for making game sprites with code.",
+  "source": "https://github.com/trinity-works/pixling",
+  "requires": {
+    "python": ">=3.9",
+    "packages": [
+      "numpy",
+      "Pillow",
+      "scipy"
+    ],
+    "optional": [
+      "ffmpeg (video pipeline)",
+      "Blender 4.2+ (painted pipeline)",
+      "Scenario sign-in (video pipeline, AI images)"
+    ]
+  },
+  "install": [
+    {
+      "via": "uv",
+      "cmd": "uv tool install pixling"
+    },
+    {
+      "via": "pipx",
+      "cmd": "pipx install pixling"
+    },
+    {
+      "via": "npx",
+      "cmd": "npx pixling"
+    },
+    {
+      "via": "source",
+      "cmd": "git clone https://github.com/trinity-works/pixling && cd pixling && pip install -e ."
+    }
+  ],
+  "setup": [
+    "pixling doctor",
+    "pixling agent install ."
+  ],
+  "pipelines": {
+    "list": "pixling pipelines",
+    "one": "pixling pipelines NAME  (steps, code, lessons)",
+    "items": [
+      {
+        "name": "spec",
+        "makes": "8-direction pixel sprites, props, buildings from a JSON spec",
+        "engine": "pp",
+        "entry": "pixling new EXAMPLE NAME; pixling build SPEC"
+      },
+      {
+        "name": "iso",
+        "makes": "exact 2:1 isometric scenes and animal sheets from a Python kit",
+        "engine": "pp.iso",
+        "entry": "pixling world tactics|flat"
+      },
+      {
+        "name": "map",
+        "makes": "living maps: building states, hour light, meaning layer, engine layers",
+        "engine": "pp.map",
+        "entry": "pixling map MAP.json --layers"
+      },
+      {
+        "name": "fx",
+        "makes": "VFX sheets posterised to a style ramp",
+        "engine": "pp.vfx",
+        "entry": "pixling fx KIND --style S"
+      },
+      {
+        "name": "video",
+        "makes": "sprites cut from AI video: start sheet -> MiniMax H3 takes -> keyed 8-direction sheets",
+        "engine": "reel + Scenario",
+        "needs": [
+          "ffmpeg",
+          "pixling scenario login"
+        ],
+        "entry": "pixling reel gambit char.json"
+      },
+      {
+        "name": "painted",
+        "makes": "painterly (non-pixel) sprites, a composed scene and a walkable web scene",
+        "engine": "painted (Blender)",
+        "needs": [
+          "Blender 4.2+"
+        ],
+        "entry": "pixling painted kit; pixling painted compose"
+      },
+      {
+        "name": "style",
+        "makes": "a new art style: refs -> DNA -> hand -> kit -> brief -> review card -> walk -> vote",
+        "engine": "all",
+        "entry": "pixling pipelines style"
+      }
+    ]
+  },
+  "styles": {
+    "launch": [
+      "vista",
+      "tactics",
+      "flat"
+    ],
+    "also": [
+      "sunmeadow",
+      "duskborne",
+      "vermilion",
+      "painted_cards"
+    ],
+    "iso_build": {
+      "tactics": "pixling world tactics [--only SCENE]",
+      "flat": "pixling world flat [--only SCENE]",
+      "rerender": "python3 -m pp.iso SCENE.json --out DIR"
+    },
+    "making_of": "pixling styles NAME --how"
+  },
+  "loop": [
+    "pixling new EXAMPLE NAME",
+    "pixling build SPEC --clips idle --dirs S,E",
+    "pixling review out/NAME",
+    "edit the spec and repeat until it reads well at 1x",
+    "pixling build SPEC --out DIR",
+    "pixling scene out/NAME out/oak --style STYLE",
+    "pixling lint out/NAME"
+  ],
+  "commands": [
+    {
+      "cmd": "pixling pipelines [name]",
+      "does": "the pipelines: what each makes, when to pick it, steps, code, lessons",
+      "json": true
+    },
+    {
+      "cmd": "pixling styles NAME --how",
+      "does": "how a launch style was made: hand, kit code, lab notes, build command",
+      "json": true
+    },
+    {
+      "cmd": "pixling world tactics|flat [--only SCENE] [--frames N] [--out DIR]",
+      "does": "build a style's scenes and animal sheets with its kit"
+    },
+    {
+      "cmd": "pixling guide [topic] [section]",
+      "does": "docs and research notes by topic and section; --grep WORD searches them",
+      "json": false
+    },
+    {
+      "cmd": "pixling styles [name]",
+      "does": "styles, materials and ramps",
+      "json": true
+    },
+    {
+      "cmd": "pixling specs [style]",
+      "does": "example specs to copy",
+      "json": true
+    },
+    {
+      "cmd": "pixling code [module]",
+      "does": "engine and style-kit modules with docstrings and file paths (pixling code tactics.kit)",
+      "json": true
+    },
+    {
+      "cmd": "pixling new EXAMPLE NAME [--out DIR]",
+      "does": "copy an example spec"
+    },
+    {
+      "cmd": "pixling build SPEC [--clips C] [--dirs D] [--out DIR]",
+      "does": "render sheets, GIFs and JSON"
+    },
+    {
+      "cmd": "pixling review DIR",
+      "does": "zoomed review sheet (PNG) to look at"
+    },
+    {
+      "cmd": "pixling scene DIRS --style S",
+      "does": "assets side by side at game scale"
+    },
+    {
+      "cmd": "pixling lint DIRS",
+      "does": "numeric hints"
+    },
+    {
+      "cmd": "pixling pixcheck PNG [--mark OUT]",
+      "does": "pixel cleanliness of a 1x render: orphans, whiskers, broken stairs"
+    },
+    {
+      "cmd": "pixling inspect SPEC",
+      "does": "bone and material maps"
+    },
+    {
+      "cmd": "pixling variants SPEC --vary k=a,b [--apply N]",
+      "does": "versions side by side"
+    },
+    {
+      "cmd": "pixling fx KIND --style S [--ramp R] [--param k=v]",
+      "does": "standalone VFX sheet",
+      "kinds": [
+        "slash",
+        "hit_spark",
+        "burst",
+        "eruption",
+        "aura",
+        "dust",
+        "projectile",
+        "lightning",
+        "sparkle",
+        "leaves",
+        "shockwave"
+      ]
+    },
+    {
+      "cmd": "pixling map MAP.json [--still] [--layers] [--meaning]",
+      "does": "compose a map; layers and meaning for engines"
+    },
+    {
+      "cmd": "pixling states SPEC",
+      "does": "building states",
+      "states": [
+        "ruin",
+        "build25",
+        "build50",
+        "build75",
+        "build90",
+        "built"
+      ]
+    },
+    {
+      "cmd": "pixling light MAP.json [--gif] [--hours H]",
+      "does": "map at every hour plus light.json",
+      "hours": [
+        "day",
+        "golden",
+        "sunset",
+        "dusk",
+        "night"
+      ]
+    },
+    {
+      "cmd": "pixling pack NAME DIRS --style S",
+      "does": "itch.io-ready pack"
+    },
+    {
+      "cmd": "pixling aseprite DIR",
+      "does": "editable .aseprite file"
+    },
+    {
+      "cmd": "pixling doctor",
+      "does": "setup checks"
+    },
+    {
+      "cmd": "pixling agent install DIR",
+      "does": "skill + AGENTS.md block for a project"
+    },
+    {
+      "cmd": "pixling scenario login|status|tools|call|cost|run|upload|download",
+      "does": "AI images/video/3D/audio via Scenario (the video pipeline); login must be run by the user"
+    },
+    {
+      "cmd": "pixling painted kit|compose|game|doctor",
+      "does": "painterly non-pixel pipeline via Blender (experimental)"
+    },
+    {
+      "cmd": "pixling reel split|contact|key|gambit|page|demo|fx",
+      "does": "video pipeline: start frames, take checks, chroma key, cut to sheets, review page, demo, additive spell sheets"
+    }
+  ],
+  "outputs": {
+    "sheet": "PNG, rows = directions S, SE, E, NE, N, NW, W, SW; cols = frames",
+    "json": "anchor, frame size, per-frame ms and events",
+    "gif": "previews per clip",
+    "layers": "base loop, occluders, movers, fog, places",
+    "meaning": "meaning.png (R material, G collision, B water depth px), depth.png, objects.png, meaning.json",
+    "light": "light.json grades per hour level"
+  },
+  "rules": [
+    "Never paint pixels; drive a pipeline with code.",
+    "Read the pipeline (pixling pipelines NAME) before running it; its lessons save rerolls.",
+    "Judge by looking at the review images.",
+    "Use the style's materials; never invent colours.",
+    "Prototype one asset and get sign-off before making a family.",
+    "Do not mix formats or painters for one material in a scene.",
+    "Ask the user before spending Scenario credits."
+  ],
+  "env": {
+    "PIXLING_OUT": "output root override"
+  }
+}

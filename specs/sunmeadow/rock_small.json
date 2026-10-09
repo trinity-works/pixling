@@ -1,0 +1,107 @@
+{
+ "name": "rock_small",
+ "style": "sunmeadow",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Small faceted stone with a pebble.",
+ "frame": [
+  22,
+  18
+ ],
+ "anchor": [
+  11,
+  14
+ ],
+ "shadow": {
+  "w": 10,
+  "h": 2
+ },
+ "materials": {
+  "rk": {
+   "ramp": "stone",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "sky": 0.45,
+   "detail": {
+    "kind": "stone"
+   }
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {}
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "main",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -0.8,
+      0,
+      2.8
+     ],
+     "half": [
+      3.6,
+      3.0,
+      2.8
+     ],
+     "round": 1.0,
+     "rot": [
+      0,
+      8,
+      20
+     ],
+     "mat": "rk"
+    }
+   ]
+  },
+  {
+   "name": "pebble",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      4.0,
+      -1.8,
+      1.0
+     ],
+     "half": [
+      1.4,
+      1.2,
+      1.0
+     ],
+     "round": 0.5,
+     "rot": [
+      0,
+      0,
+      -25
+     ],
+     "mat": "rk"
+    }
+   ]
+  }
+ ]
+}

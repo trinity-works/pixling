@@ -1,0 +1,96 @@
+{
+ "name": "<name>",
+ "concept": "Template (from Thornbloom, the last kept character). Design -> 5-facing start sheet (ref/sheet.png) -> reel split; every take MiniMax H3 768P 5 s, first = last = start frame (never Kling). Copy to reel/chars/<name>/char.json and edit.",
+ "key": {
+  "color": "auto",
+  "min_part": 0.01
+ },
+ "finish": {
+  "palette": 96,
+  "reoutline": {
+   "width": 2,
+   "strip": 1
+  },
+  "alpha": "soft",
+  "sharpen": 0.3,
+  "grade": {
+   "brightness": 1.18,
+   "saturation": 1.35,
+   "contrast": 1.12
+  },
+  "note": "painterly source: graded brighter/more saturated and the cast's 2 px outline, or she melts into the board at sprite size"
+ },
+ "gambit": {
+  "cell": 256,
+  "rows": 8,
+  "scale_from": "takes/idle_se_a.mp4",
+  "clips": {
+   "idle": {
+    "takes": {
+     "s": "takes/idle_s_b.mp4",
+     "se": "takes/idle_se_a.mp4",
+     "e": "takes/idle_e_b.mp4",
+     "ne": "takes/idle_ne_a.mp4",
+     "n": "takes/idle_n_a.mp4"
+    },
+    "range": [
+     0,
+     120
+    ]
+   },
+   "walk": {
+    "takes": {
+     "s": "takes/walk_s_a.mp4",
+     "se": "takes/walk_se_c.mp4",
+     "e": "takes/walk_e_a.mp4",
+     "ne": "takes/walk_ne_a.mp4",
+     "n": "takes/walk_n_a.mp4"
+    },
+    "cycle": {
+     "from": 16,
+     "to": 104,
+     "min": 22,
+     "max": 44
+    },
+    "walk_keys": "uniform",
+    "anchor": "torso"
+   },
+   "attack": {
+    "takes": {
+     "s": "takes/attack_s_a.mp4",
+     "se": "takes/attack_se_b.mp4",
+     "e": "takes/attack_e_a.mp4",
+     "ne": "takes/attack_ne_a.mp4",
+     "n": "takes/attack_ne_a.mp4"
+    },
+    "contact": {
+     "s": 57,
+     "se": 48,
+     "e": 57,
+     "ne": 102,
+     "n": 102
+    },
+    "attack_keys": "time",
+    "contact_note": "end of the cleave, picked by eye from 8 fps contact sheets; NE holds a long wind-up and strikes late",
+    "n_note": "STOPGAP: the N row borrows the NE attack; 4 of 5 N takes drifted (attack_n_a/c/d) and n_b swings the blade at the camera"
+   }
+  },
+  "normalize_facings": true,
+  "display_scale": 1.2
+ },
+ "rejected": {
+  "backdrop drift (keys out her crimson/gold/emerald)": [
+   "idle_s_a",
+   "idle_e_a",
+   "walk_se_a",
+   "walk_se_b",
+   "attack_se_a",
+   "attack_n_a",
+   "attack_n_c",
+   "attack_n_d"
+  ],
+  "blade swings at the camera": [
+   "attack_n_b"
+  ]
+ }
+}

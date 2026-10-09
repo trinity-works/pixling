@@ -1,0 +1,284 @@
+{
+ "name": "w_wolf_den",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Enemy spot: wolf den, a rocky mound with a dark cave mouth, scattered bones and eyes blinking in the dark.",
+ "frame": [
+  32,
+  26
+ ],
+ "anchor": [
+  16,
+  20
+ ],
+ "view": {
+  "yaw": {
+   "S": 0
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {},
+     "hide": [
+      "g1"
+     ],
+     "hold": 20
+    },
+    {
+     "pose": {},
+     "hide": [
+      "g0"
+     ],
+     "hold": 2
+    },
+    {
+     "pose": {},
+     "hide": [
+      "g1"
+     ],
+     "hold": 14
+    },
+    {
+     "pose": {},
+     "hide": [
+      "g0"
+     ],
+     "hold": 2
+    },
+    {
+     "pose": {},
+     "hide": [
+      "g1"
+     ],
+     "hold": 2
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "mound",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      2,
+      0.5
+     ],
+     "r": [
+      10,
+      7,
+      6.5
+     ],
+     "mat": "rock_d"
+    },
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      -8
+     ],
+     "half": [
+      16,
+      16,
+      8
+     ],
+     "mat": "rock_d",
+     "subtract": true
+    }
+   ]
+  },
+  {
+   "name": "mouth",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -5.4,
+      2
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      ".aaa.",
+      "aaaaa",
+      "aaaaa"
+     ],
+     "key": {
+      "a": "dark:0"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "bones",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "stamp",
+     "at": [
+      -5,
+      -8,
+      0.2
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "ab"
+     ],
+     "key": {
+      "a": "plaster:3",
+      "b": "plaster:2"
+     },
+     "min_facing": 0.05,
+     "overhang": true
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      3,
+      -8,
+      0.2
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "ab"
+     ],
+     "key": {
+      "a": "plaster:3",
+      "b": "plaster:2"
+     },
+     "min_facing": 0.05,
+     "overhang": true
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      6,
+      -8,
+      0.2
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "ab"
+     ],
+     "key": {
+      "a": "plaster:3",
+      "b": "plaster:2"
+     },
+     "min_facing": 0.05,
+     "overhang": true
+    }
+   ]
+  },
+  {
+   "name": "g0",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -5.8,
+      2.2
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a.a"
+     ],
+     "key": {
+      "a": "torch:2"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "g1",
+   "parent": "root",
+   "parts": []
+  }
+ ],
+ "materials": {
+  "rock_d": {
+   "ramp": "rock",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.85
+   ],
+   "detail": {
+    "kind": "stone",
+    "scale": 1.6,
+    "amount": 0.5
+   }
+  },
+  "snow": {
+   "ramp": "plaster",
+   "shades": [
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.5,
+    0.8
+   ],
+   "sky": 0.3
+  },
+  "spire": {
+   "ramp": "ink",
+   "shades": [
+    0,
+    1,
+    2
+   ],
+   "thresholds": [
+    0.45,
+    0.8
+   ]
+  }
+ }
+}

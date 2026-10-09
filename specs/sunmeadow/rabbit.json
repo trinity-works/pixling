@@ -1,0 +1,403 @@
+{
+ "name": "rabbit",
+ "style": "sunmeadow",
+ "rig": "quadruped",
+ "concept": "Round grey-and-cream bunny, tiny and quick: huge upright ears with pink insides (defining feature), white muzzle, belly and cotton tail.",
+ "frame": [
+  36,
+  32
+ ],
+ "anchor": [
+  18,
+  25
+ ],
+ "shadow": {
+  "w": 8,
+  "h": 2
+ },
+ "anim": {
+  "stride_px": 8,
+  "leap_px": 6,
+  "walk_leg": 30,
+  "gait": "hop"
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "body",
+   "parent": "root",
+   "at": [
+    0,
+    0,
+    3.6
+   ],
+   "blend": 1.2,
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      0.6,
+      0.2
+     ],
+     "r": [
+      3.7,
+      3.8,
+      3.2
+     ],
+     "mat": "coat"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -1.2,
+      -0.8
+     ],
+     "r": [
+      2.6,
+      2.4,
+      2.2
+     ],
+     "mat": "fur_white"
+    }
+   ]
+  },
+  {
+   "name": "head",
+   "parent": "body",
+   "at": [
+    0,
+    -2.6,
+    2.2
+   ],
+   "blend": 0.8,
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -0.6,
+      0.8
+     ],
+     "r": [
+      3.3,
+      2.8,
+      2.7
+     ],
+     "mat": "coat"
+    },
+    {
+     "shape": "sphere",
+     "at": [
+      0,
+      -3.1,
+      0.4
+     ],
+     "r": 0.7,
+     "mat": "pink"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -1.4,
+      -2.4,
+      1.4
+     ],
+     "normal": [
+      -0.7,
+      -1,
+      0.1
+     ],
+     "rows": [
+      "b",
+      "a"
+     ],
+     "key": {
+      "a": "pupil",
+      "b": "eye_white"
+     }
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      1.4,
+      -2.4,
+      1.4
+     ],
+     "normal": [
+      0.7,
+      -1,
+      0.1
+     ],
+     "rows": [
+      "b",
+      "a"
+     ],
+     "key": {
+      "a": "pupil",
+      "b": "eye_white"
+     }
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -2.4,
+      -0.2
+     ],
+     "r": [
+      2.0,
+      1.2,
+      1.2
+     ],
+     "mat": "fur_white"
+    }
+   ]
+  },
+  {
+   "name": "ears",
+   "parent": "head",
+   "at": [
+    0,
+    0.2,
+    2.8
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "a": [
+      -1.0,
+      0,
+      0
+     ],
+     "b": [
+      -2.4,
+      1.2,
+      5.0
+     ],
+     "r1": 1.2,
+     "r2": 1.4,
+     "mat": "coat"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      1.0,
+      0,
+      0
+     ],
+     "b": [
+      2.4,
+      1.2,
+      5.0
+     ],
+     "r1": 1.2,
+     "r2": 1.4,
+     "mat": "coat"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      -1.2,
+      -0.7,
+      1.4
+     ],
+     "b": [
+      -2.2,
+      0.1,
+      4.2
+     ],
+     "r1": 0.6,
+     "r2": 0.7,
+     "mat": "pink"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      1.2,
+      -0.7,
+      1.4
+     ],
+     "b": [
+      2.2,
+      0.1,
+      4.2
+     ],
+     "r1": 0.6,
+     "r2": 0.7,
+     "mat": "pink"
+    }
+   ]
+  },
+  {
+   "name": "jaw",
+   "parent": "head",
+   "at": [
+    0,
+    -2.0,
+    -0.6
+   ],
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "r": [
+      1.2,
+      0.8,
+      0.6
+     ],
+     "mat": "fur_white"
+    }
+   ]
+  },
+  {
+   "name": "tail",
+   "parent": "body",
+   "at": [
+    0,
+    4.0,
+    1.0
+   ],
+   "parts": [
+    {
+     "shape": "sphere",
+     "r": 1.5,
+     "mat": "fur_white"
+    }
+   ]
+  },
+  {
+   "name": "legFL",
+   "parent": "body",
+   "at": [
+    -1.3,
+    -1.8,
+    -1.4
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "b": [
+      0,
+      -0.4,
+      -1.8
+     ],
+     "r1": 1.0,
+     "r2": 1.0,
+     "mat": "fur_white"
+    }
+   ]
+  },
+  {
+   "name": "legFR",
+   "parent": "body",
+   "at": [
+    1.3,
+    -1.8,
+    -1.4
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "b": [
+      0,
+      -0.4,
+      -1.8
+     ],
+     "r1": 1.0,
+     "r2": 1.0,
+     "mat": "fur_white"
+    }
+   ]
+  },
+  {
+   "name": "legHL",
+   "parent": "body",
+   "at": [
+    -2.0,
+    2.0,
+    -1.2
+   ],
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -0.4,
+      -1.6
+     ],
+     "r": [
+      1.3,
+      2.4,
+      1.0
+     ],
+     "mat": "coat"
+    }
+   ]
+  },
+  {
+   "name": "legHR",
+   "parent": "body",
+   "at": [
+    2.0,
+    2.0,
+    -1.2
+   ],
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -0.4,
+      -1.6
+     ],
+     "r": [
+      1.3,
+      2.4,
+      1.0
+     ],
+     "mat": "coat"
+    }
+   ]
+  }
+ ],
+ "view": {
+  "yaw": {
+   "S": 18,
+   "N": 18
+  },
+  "widen": {
+   "S": 1.15,
+   "N": 1.15
+  }
+ },
+ "clips": [
+  "idle",
+  "walk",
+  "run",
+  "attack",
+  "hit",
+  "death"
+ ],
+ "materials": {
+  "coat": {
+   "ramp": "fur_grey",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "sky_obj": 0.3,
+   "detail": {
+    "kind": "fur"
+   },
+   "edge": {
+    "kind": "fur",
+    "amount": 0.25
+   }
+  }
+ }
+}

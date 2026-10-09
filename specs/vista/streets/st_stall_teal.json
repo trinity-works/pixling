@@ -1,0 +1,284 @@
+{
+ "name": "st_stall_teal",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Market stall with a sea striped awning.",
+ "frame": [
+  24,
+  24
+ ],
+ "anchor": [
+  12,
+  19
+ ],
+ "view": {
+  "yaw": {
+   "S": -24
+  }
+ },
+ "materials": {
+  "roof_t": {
+   "ramp": "roof",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "plum_t": {
+   "ramp": "roof_plum",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "wall_s": {
+   "ramp": "stone",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.62,
+    0.86
+   ],
+   "detail": {
+    "kind": "stone",
+    "scale": 1.4,
+    "amount": 0.5
+   }
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {}
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "counter",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      2
+     ],
+     "half": [
+      5.5,
+      3,
+      2
+     ],
+     "mat": "wood"
+    }
+   ]
+  },
+  {
+   "name": "goods",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "sphere",
+     "at": [
+      -3.5,
+      -1,
+      4.4
+     ],
+     "r": 1.1,
+     "mat": "leaf_gold"
+    },
+    {
+     "shape": "sphere",
+     "at": [
+      -1.2,
+      -1,
+      4.4
+     ],
+     "r": 1.1,
+     "mat": "leaf_gold"
+    },
+    {
+     "shape": "sphere",
+     "at": [
+      1.2,
+      -1,
+      4.4
+     ],
+     "r": 1.1,
+     "mat": "leaf_gold"
+    },
+    {
+     "shape": "sphere",
+     "at": [
+      3.5,
+      -1,
+      4.4
+     ],
+     "r": 1.1,
+     "mat": "leaf_gold"
+    }
+   ]
+  },
+  {
+   "name": "posts",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -5,
+      2.4,
+      4
+     ],
+     "half": [
+      0.5,
+      0.5,
+      4
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "box",
+     "at": [
+      5,
+      2.4,
+      4
+     ],
+     "half": [
+      0.5,
+      0.5,
+      4
+     ],
+     "mat": "wood"
+    }
+   ]
+  },
+  {
+   "name": "awning",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "roof",
+     "at": [
+      0,
+      0.4,
+      8
+     ],
+     "half": [
+      6.6,
+      4.2
+     ],
+     "h": 2.6,
+     "mat": "sea",
+     "gable": true
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -4,
+      -4.2,
+      8.4
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -4.2,
+      8.4
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      4,
+      -4.2,
+      8.4
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "plaster:3"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  }
+ ]
+}

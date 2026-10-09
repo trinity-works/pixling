@@ -1,0 +1,185 @@
+{
+ "name": "st_well",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Stone well with a little tiled roof.",
+ "frame": [
+  20,
+  24
+ ],
+ "anchor": [
+  10,
+  19
+ ],
+ "view": {
+  "yaw": {
+   "S": -24
+  }
+ },
+ "materials": {
+  "roof_t": {
+   "ramp": "roof",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "plum_t": {
+   "ramp": "roof_plum",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "wall_s": {
+   "ramp": "stone",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.62,
+    0.86
+   ],
+   "detail": {
+    "kind": "stone",
+    "scale": 1.4,
+    "amount": 0.5
+   }
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {}
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "ring",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "cylinder",
+     "at": [
+      0,
+      0,
+      1.8
+     ],
+     "r": 3.6,
+     "h": 1.8,
+     "mat": "wall_s"
+    },
+    {
+     "shape": "cylinder",
+     "at": [
+      0,
+      0,
+      3.4
+     ],
+     "r": 2.6,
+     "h": 0.2,
+     "mat": "dark"
+    }
+   ]
+  },
+  {
+   "name": "posts",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -3.2,
+      0,
+      5
+     ],
+     "half": [
+      0.5,
+      0.5,
+      3.4
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "box",
+     "at": [
+      3.2,
+      0,
+      5
+     ],
+     "half": [
+      0.5,
+      0.5,
+      3.4
+     ],
+     "mat": "wood"
+    }
+   ]
+  },
+  {
+   "name": "roof",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "roof",
+     "at": [
+      0,
+      0,
+      8.2
+     ],
+     "half": [
+      4.6,
+      3.2
+     ],
+     "h": 2.6,
+     "mat": "roof_t",
+     "gable": true
+    }
+   ]
+  }
+ ]
+}

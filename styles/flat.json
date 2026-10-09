@@ -1,0 +1,94 @@
+{
+ "name": "flat",
+ "about": "Flat Minimal (forest): two world hues, one warm window accent, chunky pixels, flat faces and flat long shadows, two or three tones per material.",
+ "family": "flat",
+ "biome": "forest",
+ "camera": "iso_exact",
+ "light": [
+  0,
+  -1,
+  1
+ ],
+ "accent": {
+  "ramp": "glow_fire",
+  "owner": "windows"
+ },
+ "night": {
+  "ramp": [
+   "#04141a",
+   "#082228",
+   "#0e3238",
+   "#16474a",
+   "#24605c"
+  ],
+  "glow": [
+   "#a8602a",
+   "#f2c544",
+   "#fbe58a"
+  ]
+ },
+ "ramps": {
+  "ink": [
+   "#0b1d22",
+   "#123036"
+  ],
+  "glow_fire": [
+   "#c27a1e",
+   "#f2c544",
+   "#fbe58a"
+  ],
+  "bg": [
+   "#0f3a3d",
+   "#134446",
+   "#18504f"
+  ],
+  "land": [
+   "#2c8a7b",
+   "#36a08e",
+   "#4ab29c"
+  ],
+  "tree": [
+   "#0c2a2e",
+   "#163b40",
+   "#235650"
+  ],
+  "wall": [
+   "#5a2a25",
+   "#7e3f33"
+  ],
+  "roof": [
+   "#3c7f8c",
+   "#69b3b0",
+   "#a6e0d0"
+  ],
+  "cliff": [
+   "#123a3c",
+   "#1a4a4a"
+  ],
+  "path": [
+   "#2a8a7c",
+   "#4aa592",
+   "#6cbba3"
+  ],
+  "stone": [
+   "#2a5a5e",
+   "#4a8a88"
+  ],
+  "trunk": [
+   "#5a2a25",
+   "#7e3f33"
+  ],
+  "fur_brown": [
+   "#5a2e22",
+   "#7e4630"
+  ],
+  "fur_tan": [
+   "#7e4630",
+   "#a0623e"
+  ],
+  "fur_white": [
+   "#9fd8c8",
+   "#d8f2e6"
+  ]
+ }
+}

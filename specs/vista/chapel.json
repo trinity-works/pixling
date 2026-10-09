@@ -1,0 +1,206 @@
+{
+ "name": "chapel",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Chapel: long gabled nave, square bell tower with a pyramid roof and an open belfry.",
+ "frame": [
+  48,
+  64
+ ],
+ "anchor": [
+  24,
+  56
+ ],
+ "view": {
+  "yaw": {
+   "S": -24
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {}
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "nave",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      2,
+      5
+     ],
+     "half": [
+      5,
+      8,
+      5
+     ],
+     "mat": "plaster"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      5.3,
+      2,
+      5
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "a.a.a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -6.3,
+      3
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a",
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "nave_roof",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "roof",
+     "at": [
+      0,
+      2,
+      10
+     ],
+     "half": [
+      5.7,
+      8.7
+     ],
+     "h": 5,
+     "mat": "roof",
+     "gable": true
+    }
+   ]
+  },
+  {
+   "name": "tower",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      -8,
+      10
+     ],
+     "half": [
+      3.2,
+      3.2,
+      10
+     ],
+     "mat": "plaster"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -11.5,
+      16
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a.a",
+      "a.a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      3.5,
+      -8,
+      16
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "tower_roof",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "roof",
+     "at": [
+      0,
+      -8,
+      20
+     ],
+     "half": [
+      3.9,
+      3.9
+     ],
+     "h": 5,
+     "mat": "roof_plum"
+    }
+   ]
+  }
+ ]
+}

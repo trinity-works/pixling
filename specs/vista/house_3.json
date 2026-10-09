@@ -1,0 +1,230 @@
+{
+ "name": "house_3",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Aerial town house 10x10x16, 3 floor(s), roof_plum hip roof.",
+ "frame": [
+  32,
+  47
+ ],
+ "anchor": [
+  16,
+  39
+ ],
+ "view": {
+  "yaw": {
+   "S": -24
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {}
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "walls",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      8.0
+     ],
+     "half": [
+      5.0,
+      5.0,
+      8.0
+     ],
+     "mat": "plaster"
+    },
+    {
+     "shape": "stamp_row",
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "at": [
+      0,
+      0,
+      1
+     ],
+     "count": 1,
+     "rows": [
+      "a",
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp_row",
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "at": [
+      0,
+      0,
+      2.4
+     ],
+     "count": 3,
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp_row",
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "at": [
+      0,
+      0,
+      2.4
+     ],
+     "count": 3,
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp_row",
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "at": [
+      0,
+      0,
+      7.73
+     ],
+     "count": 3,
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp_row",
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "at": [
+      0,
+      0,
+      7.73
+     ],
+     "count": 3,
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp_row",
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "at": [
+      0,
+      0,
+      13.07
+     ],
+     "count": 3,
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp_row",
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "at": [
+      0,
+      0,
+      13.07
+     ],
+     "count": 3,
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "roof",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "roof",
+     "at": [
+      0,
+      0,
+      16
+     ],
+     "half": [
+      5.7,
+      5.7
+     ],
+     "h": 6.2,
+     "mat": "roof_plum",
+     "gable": false
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,509 @@
+{
+ "name": "st_house_f",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Street-level townhouse 31x23x21, 2 floors, sea shop awning",
+ "frame": [
+  67,
+  69
+ ],
+ "anchor": [
+  33,
+  61
+ ],
+ "view": {
+  "yaw": {
+   "S": -24
+  }
+ },
+ "materials": {
+  "roof_t": {
+   "ramp": "roof",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "plum_t": {
+   "ramp": "roof_plum",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "wall_s": {
+   "ramp": "stone",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.62,
+    0.86
+   ],
+   "detail": {
+    "kind": "stone",
+    "scale": 1.4,
+    "amount": 0.5
+   }
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {}
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "walls",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      10.5
+     ],
+     "half": [
+      15.5,
+      11.5,
+      10.5
+     ],
+     "mat": "plaster"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      15.8,
+      -6.0,
+      5.775
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      15.8,
+      0.0,
+      5.775
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      15.8,
+      6.0,
+      5.775
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -9.0,
+      -11.8,
+      16.275
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -3.0,
+      -11.8,
+      16.275
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      3.0,
+      -11.8,
+      16.275
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      9.0,
+      -11.8,
+      16.275
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      15.8,
+      -6.0,
+      16.275
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      15.8,
+      0.0,
+      16.275
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      15.8,
+      6.0,
+      16.275
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      6.5,
+      -11.8,
+      2.5
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      ".aaa.",
+      "abbba",
+      "abbba",
+      "abcba",
+      "abbba"
+     ],
+     "key": {
+      "a": "wood:0",
+      "b": "wood:1",
+      "c": "gold"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "base",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      1.1
+     ],
+     "half": [
+      15.9,
+      11.9,
+      1.1
+     ],
+     "mat": "wall_s"
+    }
+   ]
+  },
+  {
+   "name": "roof",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "roof",
+     "at": [
+      0,
+      0,
+      21
+     ],
+     "half": [
+      16.7,
+      12.7
+     ],
+     "h": 12.65,
+     "mat": "roof_t",
+     "gable": false
+    }
+   ]
+  },
+  {
+   "name": "chimney",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -6.5,
+      3.9000000000000004,
+      30.4875
+     ],
+     "half": [
+      1.6,
+      1.6,
+      6.8925
+     ],
+     "mat": "plaster"
+    },
+    {
+     "shape": "box",
+     "at": [
+      -6.5,
+      3.9000000000000004,
+      37.58
+     ],
+     "half": [
+      2,
+      2,
+      0.5
+     ],
+     "mat": "stone"
+    }
+   ]
+  },
+  {
+   "name": "shop",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "stamp",
+     "at": [
+      -1.5,
+      -11.8,
+      3
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aaaaaa",
+      "abbbba",
+      "abbbba"
+     ],
+     "key": {
+      "a": "wood:0",
+      "b": "window"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "awning",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      -14.5,
+      8.9
+     ],
+     "half": [
+      14.0,
+      3.4,
+      0.8
+     ],
+     "mat": "sea",
+     "rot": [
+      -32,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

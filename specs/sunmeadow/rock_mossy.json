@@ -1,0 +1,106 @@
+{
+ "name": "rock_mossy",
+ "style": "sunmeadow",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Chunky boulder with a moss cap.",
+ "frame": [
+  32,
+  26
+ ],
+ "anchor": [
+  16,
+  21
+ ],
+ "shadow": {
+  "w": 19,
+  "h": 4
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {}
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "stone",
+   "parent": "root",
+   "blend": 1.0,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0.0,
+      0.0,
+      4.5
+     ],
+     "half": [
+      7.25,
+      5.5,
+      4.5
+     ],
+     "round": 3.25,
+     "rot": [
+      0,
+      4,
+      -12
+     ],
+     "mat": "stone"
+    },
+    {
+     "shape": "box",
+     "at": [
+      5.5,
+      -1.5,
+      2.5
+     ],
+     "half": [
+      3.5,
+      3.0,
+      2.5
+     ],
+     "round": 1.75,
+     "rot": [
+      0,
+      0,
+      20
+     ],
+     "mat": "stone"
+    }
+   ]
+  },
+  {
+   "name": "moss",
+   "parent": "stone",
+   "at": [
+    -1.0,
+    0.5,
+    8.0
+   ],
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "r": [
+      5.75,
+      4.75,
+      1.75
+     ],
+     "mat": "leaf"
+    }
+   ]
+  }
+ ]
+}

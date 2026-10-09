@@ -1,0 +1,180 @@
+{
+ "name": "lighthouse",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Harbour lighthouse on a rock: tapered white tower, red band and cap, a lamp that pulses.",
+ "frame": [
+  32,
+  56
+ ],
+ "anchor": [
+  16,
+  48
+ ],
+ "view": {
+  "yaw": {
+   "S": 0
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {},
+     "hide": [
+      "lamp1"
+     ],
+     "hold": 12
+    },
+    {
+     "pose": {},
+     "hide": [
+      "lamp0"
+     ],
+     "hold": 8
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "rock",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      0,
+      0.5
+     ],
+     "r": [
+      6,
+      5,
+      2.4
+     ],
+     "mat": "rock"
+    }
+   ]
+  },
+  {
+   "name": "tower",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      0,
+      1
+     ],
+     "r": 3.6,
+     "r_top": 2.2,
+     "h": 20,
+     "mat": "plaster",
+     "flat": true
+    },
+    {
+     "shape": "cylinder",
+     "at": [
+      0,
+      0,
+      12
+     ],
+     "r": 3.3,
+     "h": 1.4,
+     "mat": "banner"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -3.2,
+      8
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "lamp0",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      22
+     ],
+     "half": [
+      1.6,
+      1.6,
+      1.4
+     ],
+     "mat": "gold"
+    }
+   ]
+  },
+  {
+   "name": "lamp1",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      22
+     ],
+     "half": [
+      1.6,
+      1.6,
+      1.4
+     ],
+     "mat": "glass"
+    }
+   ]
+  },
+  {
+   "name": "cap",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      0,
+      23.4
+     ],
+     "r": 2.8,
+     "h": 3.4,
+     "mat": "banner"
+    }
+   ]
+  }
+ ]
+}

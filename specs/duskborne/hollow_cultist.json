@@ -1,0 +1,1559 @@
+{
+ "name": "hollow_cultist",
+ "style": "duskborne",
+ "rig": "humanoid",
+ "concept": "Court caster: a gaunt robed cultist whose face is only darkness and two pink embers. Defining feature: a towering, crooked pointed hood; casts pink hexes from cupped hands.",
+ "frame": [
+  56,
+  56
+ ],
+ "anchor": [
+  28,
+  44
+ ],
+ "shadow": {
+  "w": 11,
+  "h": 3
+ },
+ "fx": {
+  "ramp": "glow_pink",
+  "hand_h": 13,
+  "reach": 6,
+  "head_h": 30
+ },
+ "materials": {
+  "robe": {
+   "ramp": "cloth_blue",
+   "shades": [
+    0,
+    1,
+    2
+   ],
+   "bias": -0.08,
+   "sky": 0.3,
+   "detail": {
+    "kind": "cloth"
+   }
+  },
+  "void": {
+   "ramp": "ink",
+   "shades": [
+    0
+   ]
+  },
+  "sleeve": {
+   "ramp": "cloth_blue",
+   "shades": [
+    1,
+    2,
+    3
+   ],
+   "detail": {
+    "kind": "cloth"
+   }
+  },
+  "robe_d": {
+   "ramp": "cloth_blue",
+   "shades": [
+    0,
+    1
+   ],
+   "detail": {
+    "kind": "cloth"
+   }
+  }
+ },
+ "clips": [
+  "idle",
+  "walk",
+  "run",
+  "cast",
+  "hit",
+  "death"
+ ],
+ "anim": {
+  "props": [
+   "hood_tip",
+   "robe_tail",
+   "hem"
+  ],
+  "prop_swing": 5,
+  "idle_bob": 1,
+  "idle_arm": 2,
+  "walk_leg": 14,
+  "walk_arm": 16,
+  "run_leg": 24,
+  "run_arm": 14,
+  "run_lean": 8,
+  "run_bounce": 0.4,
+  "walk_bob": 1,
+  "gait": "glide"
+ },
+ "custom_clips": {
+  "cast": {
+   "loop": false,
+   "frames": [
+    {
+     "pose": {
+      "hips": {
+       "at": [
+        0.0,
+        0.0,
+        -0.7
+       ]
+      },
+      "armR": {
+       "rot": [
+        -38.7,
+        0.0,
+        -24.63
+       ]
+      },
+      "head": {
+       "rot": [
+        4.22,
+        0.0,
+        0.0
+       ]
+      },
+      "armL": {
+       "rot": [
+        -38.7,
+        0.0,
+        24.63
+       ]
+      },
+      "torso": {
+       "rot": [
+        4.22,
+        0.0,
+        0.0
+       ]
+      }
+     },
+     "squash": [
+      1.018,
+      0.965
+     ],
+     "fx": [
+      {
+       "kind": "vfx",
+       "effect": "aura",
+       "frame": 0,
+       "at": "feet",
+       "behind": true,
+       "pivot_y": 0.86,
+       "ramp": "glow_pink",
+       "params": {
+        "sustain": 4
+       }
+      },
+      {
+       "kind": "vfx",
+       "effect": "sparkle",
+       "frame": 0,
+       "at": "hand",
+       "ramp": "glow_pink",
+       "pivot_y": 0.5,
+       "params": {
+        "stars": 5,
+        "size": [
+         24,
+         24
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "pose": {
+      "hips": {
+       "at": [
+        0.0,
+        0.0,
+        -0.96
+       ]
+      },
+      "armR": {
+       "rot": [
+        -52.96,
+        0.0,
+        -33.7
+       ]
+      },
+      "head": {
+       "rot": [
+        5.78,
+        0.0,
+        0.0
+       ]
+      },
+      "armL": {
+       "rot": [
+        -52.96,
+        0.0,
+        33.7
+       ]
+      },
+      "torso": {
+       "rot": [
+        5.78,
+        0.0,
+        0.0
+       ]
+      }
+     },
+     "squash": [
+      1.025,
+      0.952
+     ],
+     "fx": [
+      {
+       "kind": "vfx",
+       "effect": "aura",
+       "frame": 1,
+       "at": "feet",
+       "behind": true,
+       "pivot_y": 0.86,
+       "ramp": "glow_pink",
+       "params": {
+        "sustain": 4
+       }
+      },
+      {
+       "kind": "vfx",
+       "effect": "sparkle",
+       "frame": 2,
+       "at": "hand",
+       "ramp": "glow_pink",
+       "pivot_y": 0.5,
+       "params": {
+        "stars": 5,
+        "size": [
+         24,
+         24
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "pose": {
+      "hips": {
+       "at": [
+        0.0,
+        0.0,
+        -1.0
+       ]
+      },
+      "armR": {
+       "rot": [
+        -55.0,
+        0.0,
+        -35.0
+       ]
+      },
+      "head": {
+       "rot": [
+        6.0,
+        0.0,
+        0.0
+       ]
+      },
+      "armL": {
+       "rot": [
+        -55.0,
+        0.0,
+        35.0
+       ]
+      },
+      "torso": {
+       "rot": [
+        6.0,
+        0.0,
+        0.0
+       ]
+      }
+     },
+     "squash": [
+      1.026,
+      0.95
+     ],
+     "fx": [
+      {
+       "kind": "vfx",
+       "effect": "aura",
+       "frame": 2,
+       "at": "feet",
+       "behind": true,
+       "pivot_y": 0.86,
+       "ramp": "glow_pink",
+       "params": {
+        "sustain": 4
+       }
+      },
+      {
+       "kind": "vfx",
+       "effect": "sparkle",
+       "frame": 4,
+       "at": "hand",
+       "ramp": "glow_pink",
+       "pivot_y": 0.5,
+       "params": {
+        "stars": 5,
+        "size": [
+         24,
+         24
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "pose": {
+      "hips": {
+       "at": [
+        0.0,
+        0.0,
+        -0.74
+       ]
+      },
+      "hood_tip": {
+       "rot": [
+        4.15,
+        0.0,
+        0.0
+       ]
+      },
+      "head": {
+       "rot": [
+        1.33,
+        0.0,
+        0.0
+       ]
+      },
+      "armR": {
+       "rot": [
+        -79.63,
+        0.0,
+        -32.41
+       ]
+      },
+      "armL": {
+       "rot": [
+        -79.63,
+        0.0,
+        32.41
+       ]
+      },
+      "torso": {
+       "rot": [
+        1.85,
+        0.0,
+        0.0
+       ]
+      }
+     },
+     "squash": [
+      1.0,
+      0.999
+     ],
+     "fx": [
+      {
+       "kind": "vfx",
+       "effect": "aura",
+       "frame": 3,
+       "at": "feet",
+       "behind": true,
+       "pivot_y": 0.86,
+       "ramp": "glow_pink",
+       "params": {
+        "sustain": 4
+       }
+      },
+      {
+       "kind": "vfx",
+       "effect": "sparkle",
+       "frame": 6,
+       "at": "above",
+       "ramp": "glow_pink",
+       "pivot_y": 0.5,
+       "params": {
+        "stars": 5,
+        "size": [
+         24,
+         24
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "pose": {
+      "hips": {
+       "at": [
+        0.0,
+        0.0,
+        -0.26
+       ]
+      },
+      "hood_tip": {
+       "rot": [
+        11.85,
+        0.0,
+        0.0
+       ]
+      },
+      "head": {
+       "rot": [
+        -7.33,
+        0.0,
+        0.0
+       ]
+      },
+      "armR": {
+       "rot": [
+        -125.37,
+        0.0,
+        -27.59
+       ]
+      },
+      "armL": {
+       "rot": [
+        -125.37,
+        0.0,
+        27.59
+       ]
+      },
+      "torso": {
+       "rot": [
+        -5.85,
+        0.0,
+        0.0
+       ]
+      }
+     },
+     "squash": [
+      0.958,
+      1.091
+     ],
+     "fx": [
+      {
+       "kind": "vfx",
+       "effect": "aura",
+       "frame": 4,
+       "at": "feet",
+       "behind": true,
+       "pivot_y": 0.86,
+       "ramp": "glow_pink",
+       "params": {
+        "sustain": 4
+       }
+      },
+      {
+       "kind": "vfx",
+       "effect": "sparkle",
+       "frame": 8,
+       "at": "above",
+       "ramp": "glow_pink",
+       "pivot_y": 0.5,
+       "params": {
+        "stars": 5,
+        "size": [
+         24,
+         24
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "pose": {
+      "hips": {
+       "at": [
+        0.0,
+        0.0,
+        0.0
+       ]
+      },
+      "hood_tip": {
+       "rot": [
+        16.0,
+        0.0,
+        0.0
+       ]
+      },
+      "head": {
+       "rot": [
+        -12.0,
+        0.0,
+        0.0
+       ]
+      },
+      "armR": {
+       "rot": [
+        -150.0,
+        0.0,
+        -25.0
+       ]
+      },
+      "armL": {
+       "rot": [
+        -150.0,
+        0.0,
+        25.0
+       ]
+      },
+      "torso": {
+       "rot": [
+        -10.0,
+        0.0,
+        0.0
+       ]
+      }
+     },
+     "squash": [
+      0.937,
+      1.14
+     ],
+     "fx": [
+      {
+       "kind": "vfx",
+       "effect": "aura",
+       "frame": 5,
+       "at": "feet",
+       "behind": true,
+       "pivot_y": 0.86,
+       "ramp": "glow_pink",
+       "params": {
+        "sustain": 4
+       }
+      },
+      {
+       "kind": "vfx",
+       "effect": "sparkle",
+       "frame": 10,
+       "at": "above",
+       "ramp": "glow_pink",
+       "pivot_y": 0.5,
+       "params": {
+        "stars": 5,
+        "size": [
+         24,
+         24
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "pose": {
+      "armL": {
+       "rot": [
+        -85,
+        0,
+        12
+       ]
+      },
+      "armR": {
+       "rot": [
+        -85,
+        0,
+        -12
+       ]
+      },
+      "torso": {
+       "rot": [
+        -14,
+        0,
+        0
+       ]
+      },
+      "hips": {
+       "at": [
+        0,
+        0,
+        -1
+       ]
+      },
+      "hood_tip": {
+       "rot": [
+        -12,
+        0,
+        0
+       ]
+      }
+     },
+     "squash": [
+      1.078,
+      0.86
+     ],
+     "event": "cast",
+     "fx": [
+      {
+       "kind": "vfx",
+       "effect": "aura",
+       "frame": 9,
+       "at": "feet",
+       "behind": true,
+       "pivot_y": 0.86,
+       "ramp": "glow_pink",
+       "params": {
+        "sustain": 4
+       }
+      },
+      {
+       "kind": "vfx",
+       "effect": "burst",
+       "frame": 0,
+       "at": "hand",
+       "ramp": "glow_pink",
+       "pivot_y": 0.55,
+       "params": {
+        "radius": 8,
+        "puffs": 8,
+        "decay": 7,
+        "size": [
+         36,
+         36
+        ]
+       },
+       "offset": [
+        0,
+        -2
+       ]
+      }
+     ]
+    },
+    {
+     "pose": {
+      "armL": {
+       "rot": [
+        -85,
+        0,
+        12
+       ]
+      },
+      "armR": {
+       "rot": [
+        -85,
+        0,
+        -12
+       ]
+      },
+      "torso": {
+       "rot": [
+        -14,
+        0,
+        0
+       ]
+      },
+      "hips": {
+       "at": [
+        0,
+        0,
+        -1
+       ]
+      },
+      "hood_tip": {
+       "rot": [
+        -12,
+        0,
+        0
+       ]
+      }
+     },
+     "squash": [
+      1.037,
+      0.93
+     ],
+     "fx": [
+      {
+       "kind": "vfx",
+       "effect": "aura",
+       "frame": 10,
+       "at": "feet",
+       "behind": true,
+       "pivot_y": 0.86,
+       "ramp": "glow_pink",
+       "params": {
+        "sustain": 4
+       }
+      },
+      {
+       "kind": "vfx",
+       "effect": "burst",
+       "frame": 2,
+       "at": "hand",
+       "ramp": "glow_pink",
+       "pivot_y": 0.55,
+       "params": {
+        "radius": 8,
+        "puffs": 8,
+        "decay": 7,
+        "size": [
+         36,
+         36
+        ]
+       },
+       "offset": [
+        0,
+        -2
+       ]
+      }
+     ]
+    },
+    {
+     "pose": {
+      "hips": {
+       "at": [
+        0.0,
+        0.0,
+        -0.9
+       ]
+      },
+      "armR": {
+       "rot": [
+        -76.16,
+        0.0,
+        -10.75
+       ]
+      },
+      "hood_tip": {
+       "rot": [
+        -10.75,
+        0.0,
+        0.0
+       ]
+      },
+      "armL": {
+       "rot": [
+        -76.16,
+        0.0,
+        10.75
+       ]
+      },
+      "torso": {
+       "rot": [
+        -12.54,
+        0.0,
+        0.0
+       ]
+      }
+     },
+     "fx": [
+      {
+       "kind": "vfx",
+       "effect": "aura",
+       "frame": 12,
+       "at": "feet",
+       "behind": true,
+       "pivot_y": 0.86,
+       "ramp": "glow_pink",
+       "params": {
+        "sustain": 4
+       }
+      },
+      {
+       "kind": "vfx",
+       "effect": "burst",
+       "frame": 3,
+       "at": "hand",
+       "ramp": "glow_pink",
+       "pivot_y": 0.55,
+       "params": {
+        "radius": 8,
+        "puffs": 8,
+        "decay": 7,
+        "size": [
+         36,
+         36
+        ]
+       },
+       "offset": [
+        0,
+        -2
+       ]
+      }
+     ]
+    },
+    {
+     "pose": {
+      "hips": {
+       "at": [
+        0.0,
+        0.0,
+        -0.5
+       ]
+      },
+      "armR": {
+       "rot": [
+        -42.5,
+        0.0,
+        -6.0
+       ]
+      },
+      "hood_tip": {
+       "rot": [
+        -6.0,
+        0.0,
+        0.0
+       ]
+      },
+      "armL": {
+       "rot": [
+        -42.5,
+        0.0,
+        6.0
+       ]
+      },
+      "torso": {
+       "rot": [
+        -7.0,
+        0.0,
+        0.0
+       ]
+      }
+     },
+     "fx": [
+      {
+       "kind": "vfx",
+       "effect": "aura",
+       "frame": 14,
+       "at": "feet",
+       "behind": true,
+       "pivot_y": 0.86,
+       "ramp": "glow_pink",
+       "params": {
+        "sustain": 4
+       }
+      },
+      {
+       "kind": "vfx",
+       "effect": "burst",
+       "frame": 4,
+       "at": "hand",
+       "ramp": "glow_pink",
+       "pivot_y": 0.55,
+       "params": {
+        "radius": 8,
+        "puffs": 8,
+        "decay": 7,
+        "size": [
+         36,
+         36
+        ]
+       },
+       "offset": [
+        0,
+        -2
+       ]
+      }
+     ]
+    },
+    {
+     "pose": {
+      "hips": {
+       "at": [
+        0.0,
+        0.0,
+        -0.1
+       ]
+      },
+      "armR": {
+       "rot": [
+        -8.84,
+        0.0,
+        -1.25
+       ]
+      },
+      "hood_tip": {
+       "rot": [
+        -1.25,
+        0.0,
+        0.0
+       ]
+      },
+      "armL": {
+       "rot": [
+        -8.84,
+        0.0,
+        1.25
+       ]
+      },
+      "torso": {
+       "rot": [
+        -1.46,
+        0.0,
+        0.0
+       ]
+      }
+     },
+     "fx": [
+      {
+       "kind": "vfx",
+       "effect": "aura",
+       "frame": 16,
+       "at": "feet",
+       "behind": true,
+       "pivot_y": 0.86,
+       "ramp": "glow_pink",
+       "params": {
+        "sustain": 4
+       }
+      },
+      {
+       "kind": "vfx",
+       "effect": "burst",
+       "frame": 6,
+       "at": "hand",
+       "ramp": "glow_pink",
+       "pivot_y": 0.55,
+       "params": {
+        "radius": 8,
+        "puffs": 8,
+        "decay": 7,
+        "size": [
+         36,
+         36
+        ]
+       },
+       "offset": [
+        0,
+        -2
+       ]
+      }
+     ]
+    },
+    {
+     "pose": {
+      "hips": {
+       "at": [
+        0.0,
+        0.0,
+        0.0
+       ]
+      },
+      "armR": {
+       "rot": [
+        0.0,
+        0.0,
+        0.0
+       ]
+      },
+      "hood_tip": {
+       "rot": [
+        0.0,
+        0.0,
+        0.0
+       ]
+      },
+      "armL": {
+       "rot": [
+        0.0,
+        0.0,
+        0.0
+       ]
+      },
+      "torso": {
+       "rot": [
+        0.0,
+        0.0,
+        0.0
+       ]
+      }
+     },
+     "fx": [
+      {
+       "kind": "vfx",
+       "effect": "aura",
+       "frame": 18,
+       "at": "feet",
+       "behind": true,
+       "pivot_y": 0.86,
+       "ramp": "glow_pink",
+       "params": {
+        "sustain": 4
+       }
+      },
+      {
+       "kind": "vfx",
+       "effect": "burst",
+       "frame": 8,
+       "at": "hand",
+       "ramp": "glow_pink",
+       "pivot_y": 0.55,
+       "params": {
+        "radius": 8,
+        "puffs": 8,
+        "decay": 7,
+        "size": [
+         36,
+         36
+        ]
+       },
+       "offset": [
+        0,
+        -2
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "hips",
+   "parent": "root",
+   "at": [
+    0,
+    0,
+    6
+   ],
+   "parts": [
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      0,
+      -4.6
+     ],
+     "r": 5.3,
+     "h": 13.6,
+     "flat": true,
+     "mat": "robe"
+    },
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      -11.0
+     ],
+     "half": [
+      9,
+      9,
+      5.0
+     ],
+     "subtract": true,
+     "mat": "robe"
+    },
+    {
+     "shape": "box",
+     "at": [
+      -1.5,
+      -3.7,
+      -1.0
+     ],
+     "half": [
+      0.85,
+      0.6,
+      3.4
+     ],
+     "rot": [
+      -18,
+      0,
+      0
+     ],
+     "mat": "cloth_red"
+    },
+    {
+     "shape": "box",
+     "at": [
+      1.5,
+      -3.7,
+      -1.0
+     ],
+     "half": [
+      0.85,
+      0.6,
+      3.4
+     ],
+     "rot": [
+      -18,
+      0,
+      0
+     ],
+     "mat": "cloth_red"
+    }
+   ]
+  },
+  {
+   "name": "hem",
+   "parent": "hips",
+   "at": [
+    0,
+    0,
+    -4.6
+   ],
+   "seam": true,
+   "parts": [
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      0,
+      -1.4
+     ],
+     "r": 6.0,
+     "r_top": 5.2,
+     "h": 1.8,
+     "flat": true,
+     "mat": "robe_d"
+    },
+    {
+     "shape": "box",
+     "at": [
+      -3.6,
+      -4.6,
+      -1.0
+     ],
+     "half": [
+      0.9,
+      2,
+      1.2
+     ],
+     "rot": [
+      0,
+      0,
+      -30
+     ],
+     "subtract": true,
+     "mat": "robe_d"
+    },
+    {
+     "shape": "box",
+     "at": [
+      2.6,
+      -5.2,
+      -1.0
+     ],
+     "half": [
+      0.8,
+      2,
+      1.2
+     ],
+     "rot": [
+      0,
+      0,
+      25
+     ],
+     "subtract": true,
+     "mat": "robe_d"
+    },
+    {
+     "shape": "box",
+     "at": [
+      5.4,
+      1.0,
+      -1.0
+     ],
+     "half": [
+      2,
+      0.8,
+      1.2
+     ],
+     "subtract": true,
+     "mat": "robe_d"
+    },
+    {
+     "shape": "box",
+     "at": [
+      -4.6,
+      2.6,
+      -1.0
+     ],
+     "half": [
+      2,
+      0.8,
+      1.2
+     ],
+     "rot": [
+      0,
+      0,
+      40
+     ],
+     "subtract": true,
+     "mat": "robe_d"
+    }
+   ]
+  },
+  {
+   "name": "robe_tail",
+   "parent": "hips",
+   "at": [
+    0,
+    2.2,
+    -2.0
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      0
+     ],
+     "b": [
+      0,
+      2.4,
+      -3.2
+     ],
+     "r1": 2.4,
+     "r2": 1.8,
+     "mat": "robe"
+    }
+   ]
+  },
+  {
+   "name": "torso",
+   "parent": "hips",
+   "at": [
+    0,
+    0,
+    1.2
+   ],
+   "rot": [
+    8,
+    0,
+    0
+   ],
+   "blend": 0.8,
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      0,
+      3.0
+     ],
+     "r": [
+      3.7,
+      2.9,
+      3.5
+     ],
+     "mat": "robe"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -3.2,
+      2.4
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      ".a.",
+      "aba",
+      ".a."
+     ],
+     "key": {
+      "a": "cloth_red:1",
+      "b": "eye_pink"
+     }
+    }
+   ]
+  },
+  {
+   "name": "head",
+   "parent": "torso",
+   "at": [
+    0,
+    -0.6,
+    5.8
+   ],
+   "blend": 0.6,
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      0,
+      2.8
+     ],
+     "r": [
+      4.3,
+      4.0,
+      4.0
+     ],
+     "mat": "robe"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      0.8,
+      4.0
+     ],
+     "rot": [
+      -16,
+      0,
+      0
+     ],
+     "r": 3.9,
+     "h": 6.4,
+     "mat": "robe"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -3.4,
+      2.4
+     ],
+     "r": [
+      2.5,
+      1.4,
+      2.6
+     ],
+     "mat": "void"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -1.1,
+      -4.6,
+      2.8
+     ],
+     "normal": [
+      -0.4,
+      -1,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "eye_pink"
+     }
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      1.1,
+      -4.6,
+      2.8
+     ],
+     "normal": [
+      0.4,
+      -1,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "eye_pink"
+     }
+    }
+   ]
+  },
+  {
+   "name": "hood_tip",
+   "parent": "head",
+   "at": [
+    0,
+    2.6,
+    9.4
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      -0.6
+     ],
+     "b": [
+      0,
+      2.2,
+      2.2
+     ],
+     "r1": 1.9,
+     "r2": 1.4,
+     "mat": "robe"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      2.2,
+      2.2
+     ],
+     "b": [
+      0,
+      4.6,
+      1.4
+     ],
+     "r1": 1.4,
+     "r2": 1.2,
+     "mat": "robe"
+    }
+   ]
+  },
+  {
+   "name": "armL",
+   "parent": "torso",
+   "at": [
+    -4.0,
+    -0.4,
+    4.4
+   ],
+   "rot": [
+    -28,
+    0,
+    -18
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      0
+     ],
+     "b": [
+      0.4,
+      0,
+      -4.2
+     ],
+     "r1": 1.6,
+     "r2": 2.1,
+     "mat": "sleeve"
+    },
+    {
+     "shape": "cylinder",
+     "at": [
+      0.45,
+      0,
+      -4.6
+     ],
+     "r": 2.2,
+     "h": 0.6,
+     "mat": "cloth_red"
+    },
+    {
+     "shape": "sphere",
+     "at": [
+      0.5,
+      0,
+      -5.8
+     ],
+     "r": 1.35,
+     "mat": "bone"
+    }
+   ]
+  },
+  {
+   "name": "armR",
+   "parent": "torso",
+   "at": [
+    4.0,
+    -0.4,
+    4.4
+   ],
+   "rot": [
+    -28,
+    0,
+    18
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      0
+     ],
+     "b": [
+      -0.4,
+      0,
+      -4.2
+     ],
+     "r1": 1.6,
+     "r2": 2.1,
+     "mat": "sleeve"
+    },
+    {
+     "shape": "cylinder",
+     "at": [
+      -0.45,
+      0,
+      -4.6
+     ],
+     "r": 2.2,
+     "h": 0.6,
+     "mat": "cloth_red"
+    },
+    {
+     "shape": "sphere",
+     "at": [
+      -0.5,
+      0,
+      -5.8
+     ],
+     "r": 1.35,
+     "mat": "bone"
+    }
+   ]
+  },
+  {
+   "name": "legL",
+   "parent": "hips",
+   "at": [
+    -1.6,
+    0,
+    -3.0
+   ],
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -1.2,
+      -2.4
+     ],
+     "r": [
+      1.4,
+      1.9,
+      0.9
+     ],
+     "mat": "dark"
+    }
+   ]
+  },
+  {
+   "name": "legR",
+   "parent": "hips",
+   "at": [
+    1.6,
+    0,
+    -3.0
+   ],
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -1.2,
+      -2.4
+     ],
+     "r": [
+      1.4,
+      1.9,
+      0.9
+     ],
+     "mat": "dark"
+    }
+   ]
+  }
+ ]
+}

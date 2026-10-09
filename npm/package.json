@@ -1,0 +1,12 @@
+{
+  "name": "pixling",
+  "version": "0.1.0",
+  "description": "The pixel artist for your coding agent: 8-direction sprites, VFX and living maps from JSON specs",
+  "bin": { "pixling": "bin/pixling.js" },
+  "files": ["bin/", "README.md"],
+  "license": "MIT",
+  "engines": { "node": ">=18" },
+  "keywords": ["pixel-art", "sprites", "gamedev", "agents", "claude-code", "codex", "cli"],
+  "homepage": "https://github.com/trinity-works/pixling",
+  "repository": { "type": "git", "url": "git+https://github.com/trinity-works/pixling.git", "directory": "npm" }
+}

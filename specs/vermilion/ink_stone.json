@@ -1,0 +1,10 @@
+{
+ "name": "ink_stone",
+ "style": "vermilion",
+ "concept": "Standing stone: a black lump of a rock, the spirits' waymark.",
+ "generator": "rock",
+ "params": {"seed": 5, "size": 9, "mat": "ink"},
+ "frame": [32, 28],
+ "anchor": [16, 24],
+ "shadow": {"w": 14, "h": 3}
+}

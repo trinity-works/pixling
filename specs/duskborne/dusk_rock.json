@@ -1,0 +1,200 @@
+{
+ "name": "dusk_rock",
+ "style": "duskborne",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Broken grave-stone boulder: chipped top corner, leaning shard, rubble and a half-buried skull.",
+ "frame": [
+  32,
+  24
+ ],
+ "anchor": [
+  16,
+  20
+ ],
+ "shadow": {
+  "w": 17,
+  "h": 3
+ },
+ "materials": {
+  "rk": {
+   "ramp": "stone",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "sky": 0.45,
+   "detail": {
+    "kind": "stone"
+   }
+  },
+  "sock": {
+   "ramp": "ink",
+   "shades": [
+    0
+   ]
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {}
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "main",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -1,
+      0.5,
+      4.2
+     ],
+     "half": [
+      4.4,
+      3.8,
+      4.2
+     ],
+     "round": 1.0,
+     "rot": [
+      0,
+      10,
+      -14
+     ],
+     "mat": "rk"
+    },
+    {
+     "shape": "box",
+     "at": [
+      3.4,
+      0,
+      8.6
+     ],
+     "half": [
+      1.6,
+      1.6,
+      1.4
+     ],
+     "round": 0.5,
+     "rot": [
+      0,
+      0,
+      -14
+     ],
+     "subtract": true,
+     "mat": "rk"
+    }
+   ]
+  },
+  {
+   "name": "shard",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      5.0,
+      -1.2,
+      3.2
+     ],
+     "half": [
+      1.8,
+      1.8,
+      3.2
+     ],
+     "round": 0.7,
+     "rot": [
+      0,
+      -18,
+      30
+     ],
+     "mat": "rk"
+    }
+   ]
+  },
+  {
+   "name": "rubble",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -6.2,
+      -2.4,
+      0.9
+     ],
+     "half": [
+      1.5,
+      1.2,
+      0.9
+     ],
+     "round": 0.4,
+     "rot": [
+      0,
+      0,
+      35
+     ],
+     "mat": "rk"
+    }
+   ]
+  },
+  {
+   "name": "skull",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      -4.0,
+      -5.0,
+      1.6
+     ],
+     "r": [
+      2.0,
+      1.8,
+      1.8
+     ],
+     "mat": "bone"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -4.0,
+      -6.9,
+      1.6
+     ],
+     "normal": [
+      0,
+      -1,
+      0.3
+     ],
+     "rows": [
+      "a.a"
+     ],
+     "key": {
+      "a": "sock"
+     }
+    }
+   ]
+  }
+ ]
+}

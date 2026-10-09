@@ -1,0 +1,225 @@
+{
+ "name": "w_banner",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Your banner: pole with a gold-trimmed red pennant, fluttering.",
+ "frame": [
+  16,
+  18
+ ],
+ "anchor": [
+  5,
+  15
+ ],
+ "view": {
+  "yaw": {
+   "S": 0
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {
+      "flag": {
+       "rot": [
+        0,
+        0,
+        0
+       ]
+      }
+     },
+     "hold": 1
+    },
+    {
+     "pose": {
+      "flag": {
+       "rot": [
+        0,
+        0,
+        18
+       ]
+      }
+     },
+     "hold": 1
+    },
+    {
+     "pose": {
+      "flag": {
+       "rot": [
+        0,
+        0,
+        30
+       ]
+      }
+     },
+     "hold": 1
+    },
+    {
+     "pose": {
+      "flag": {
+       "rot": [
+        0,
+        0,
+        18
+       ]
+      }
+     },
+     "hold": 1
+    },
+    {
+     "pose": {
+      "flag": {
+       "rot": [
+        0,
+        0,
+        0
+       ]
+      }
+     },
+     "hold": 1
+    },
+    {
+     "pose": {
+      "flag": {
+       "rot": [
+        0,
+        0,
+        -16
+       ]
+      }
+     },
+     "hold": 1
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "pole",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      5
+     ],
+     "half": [
+      0.4,
+      0.4,
+      5
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "sphere",
+     "at": [
+      0,
+      0,
+      10.4
+     ],
+     "r": 0.6,
+     "mat": "gold"
+    }
+   ]
+  },
+  {
+   "name": "flag",
+   "parent": "root",
+   "at": [
+    0.4,
+    0,
+    9.4
+   ],
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      2.2,
+      0,
+      -1.5
+     ],
+     "half": [
+      2,
+      0.3,
+      1.6
+     ],
+     "mat": "banner"
+    },
+    {
+     "shape": "box",
+     "at": [
+      2.2,
+      -0.4,
+      -2.9
+     ],
+     "half": [
+      2,
+      0.3,
+      0.3
+     ],
+     "mat": "gold"
+    }
+   ]
+  }
+ ],
+ "materials": {
+  "rock_d": {
+   "ramp": "rock",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.85
+   ],
+   "detail": {
+    "kind": "stone",
+    "scale": 1.6,
+    "amount": 0.5
+   }
+  },
+  "snow": {
+   "ramp": "plaster",
+   "shades": [
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.5,
+    0.8
+   ],
+   "sky": 0.3
+  },
+  "spire": {
+   "ramp": "ink",
+   "shades": [
+    0,
+    1,
+    2
+   ],
+   "thresholds": [
+    0.45,
+    0.8
+   ]
+  }
+ }
+}

@@ -1,0 +1,310 @@
+<title>Hollow Brook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Alegreya+Sans:wght@400;500&display=swap">
+<style>
+  /* one full-bleed painted world; the only chrome is a name plate and a fading hint */
+  :root {
+    --ground: #1d3a2c;      /* deep turf, behind the canvas while loading */
+    --plate: #f4ecd2;       /* plaster cream, the cottage walls */
+    --ink: #22325a;         /* the hero's cape */
+    --veil: rgba(20, 38, 30, .52);
+    --display: "IM Fell English SC", "Iowan Old Style", Georgia, serif;
+    --body: "Alegreya Sans", "Gill Sans", "Trebuchet MS", sans-serif;
+    color-scheme: dark;
+  }
+  html, body { height: 100%; }
+  body { margin: 0; background: var(--ground); color: var(--plate); overflow: hidden; font-family: var(--body); }
+  #stage { position: fixed; inset: 0; display: block; width: 100%; height: 100%; max-width: none; touch-action: none; cursor: pointer; }
+  .plate { position: fixed; left: 16px; top: calc(14px + env(safe-area-inset-top, 0px)); pointer-events: none;
+           font-family: var(--display); font-size: clamp(20px, 3.2vw, 30px); letter-spacing: .04em;
+           text-shadow: 0 1px 0 rgba(0,0,0,.35), 0 0 14px rgba(20,38,30,.55); }
+  .plate small { display: block; font-family: var(--body); font-size: 13px; letter-spacing: .08em; opacity: .85; text-transform: uppercase; }
+  .hint { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%);
+          background: var(--veil); padding: 8px 14px; border-radius: 999px; font-size: 14px; white-space: nowrap;
+          max-width: calc(100% - 32px); overflow: hidden; text-overflow: ellipsis; pointer-events: none; transition: opacity 1.2s ease; }
+  .hint.gone { opacity: 0; }
+  .loading { position: fixed; inset: 0; display: grid; place-items: center; font-family: var(--display); font-size: 22px; }
+  .loading[hidden] { display: none; }
+  .switch { position: fixed; right: 16px; top: calc(14px + env(safe-area-inset-top, 0px)); font: 500 14px var(--body);
+            color: var(--plate); background: var(--veil); border: 1px solid rgba(244, 236, 210, .35); border-radius: 999px;
+            padding: 8px 14px; cursor: pointer; }
+  .switch:hover { background: rgba(20, 38, 30, .72); }
+  .switch:focus-visible { outline: 2px solid var(--plate); outline-offset: 2px; }
+  .switch[hidden] { display: none; }
+  @media (prefers-reduced-motion: reduce) { .hint { transition: none; } }
+</style>
+
+<canvas id="stage" aria-label="A painted village. Walk the wanderer with the arrow keys or WASD, or tap where to go." tabindex="0"></canvas>
+<div class="plate">Hollow Brook<small>a painted-cards scene</small></div>
+<div class="hint" id="hint">Walk with WASD or the arrow keys, or tap where to go. Tab switches character</div>
+<button class="switch" id="switch" type="button" hidden>Switch character</button>
+<div class="loading" id="loading">Unrolling the map…</div>
+
+<script>
+(async function () {
+  const D = await (await fetch('data.json')).json();
+  const load = src => new Promise((ok, no) => { const i = new Image(); i.onload = () => ok(i); i.onerror = no; i.src = src; });
+  const IMG = {};
+  const srcs = [D.ground, D.water.src, ...Object.values(D.sprites).map(s => s.src),
+                D.hero.walk, D.hero.walk_shadow, D.hero.idle, D.hero.idle_shadow,
+                ...(D.pixel || []).flatMap(p => [p.walk.src, p.idle.src])];
+  await Promise.all(srcs.map(async s => { IMG[s] = await load(s); }));
+  document.getElementById('loading').hidden = true;
+
+  const cv = document.getElementById('stage'), ctx = cv.getContext('2d');
+  const PPM = D.ppm, SE = Math.sin(D.elev * Math.PI / 180), CE = Math.cos(D.elev * Math.PI / 180), PH = D.plate[1];
+  const px = (x) => (x - D.x0) * PPM;
+  const py = (y, z = 0) => PH - ((y * SE + z * CE) - D.v0) * PPM;
+  const toWorld = (X, Y) => [X / PPM + D.x0, ((PH - Y) / PPM + D.v0) / SE];
+
+  // ---------------------------------------------------------------- the world
+  const SWAY_MS = 85, WATER_MS = 140, WALK_MS = 75, IDLE_MS = 120, PADDLE_MS = 100, LAP_S = 12;
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const props = D.place.map(p => ({ ...p, s: D.sprites[p.name], phase: Math.floor(rnd() * 16) }));
+  const R = 0.28;   // the hero's footprint
+  const pond = D.pond, J = D.jetty;
+  function pondD(x, y) {
+    const dx = x - pond.centre[0], dy = y - pond.centre[1], a = Math.atan2(dy, dx);
+    const rn = Math.hypot(dx / pond.rx, dy / pond.ry) / (1 + .07 * Math.sin(2 * a + .5) + .05 * Math.cos(3 * a + 1));
+    return (rn - 1) * (pond.rx + pond.ry) / 2;
+  }
+  function onJetty(x, y) {
+    const dx = x - J.x, dy = y - J.y, c = Math.cos(J.angle), s = Math.sin(J.angle);
+    return Math.abs(dx * c + dy * s) < J.half[0] && Math.abs(-dx * s + dy * c) < J.half[1] - .1;
+  }
+  function blocked(x, y) {
+    const b = D.bounds;
+    if (x < b[0] || x > b[1] || y < b[2] || y > b[3]) return true;
+    if (pondD(x, y) < .32 && !onJetty(x, y)) return true;
+    for (const p of props) {
+      const s = p.solid; if (!s) continue;
+      if (s[0] === 'c') { if (Math.hypot(x - p.x, y - p.y) < s[1] + R) return true; }
+      else if (Math.abs(x - p.x) < s[1] + R && Math.abs(y - p.y) < s[2] + R) return true;
+    }
+    return false;
+  }
+
+  // ---------------------------------------------------------------- the cast: the painted wanderer + any pp pixel characters
+  // dir index everywhere: 0 = facing screen right, counter-clockwise (2 = away, 6 = toward the camera)
+  const PIXEL_SCALE = 1.5;   // pixel sprites drawn 1.5x so a 30 px pp character stands as tall as the wanderer
+  const H = D.hero;
+  const cast = [{ name: 'the wanderer', kind: 'paint', x: D.start[0], y: D.start[1], speed: 1.1 }];
+  for (const [i, pc] of (D.pixel || []).entries()) {
+    const cycle = pc.walk.frames * pc.walk.ms / 1000;   // pp walk speed is px per cycle at 1x, matched to its stride
+    cast.push({ name: 'the ' + pc.name, kind: 'pixel', pc, x: D.start[0] - 2.5 + i, y: D.start[1] + 8,
+                speed: pc.walk.speed * PIXEL_SCALE / cycle / PPM });
+  }
+  for (const c of cast) Object.assign(c, { dir: 6, walking: false, walkT: 0, target: null, stuck: 0, wait: 1 + rnd() * 2 });
+  const boot = window.claude?.hot?.data ?? {};
+  let ctrl = Math.min(boot.ctrl ?? 0, cast.length - 1);
+  if (boot.x != null) { cast[ctrl].x = boot.x; cast[ctrl].y = boot.y; }
+  window.claude?.hot?.snapshot?.(() => ({ ctrl, x: cast[ctrl].x, y: cast[ctrl].y }));
+  const keys = new Set();
+  const hint = document.getElementById('hint'), sw = document.getElementById('switch');
+  let hinted = false; const dismiss = () => { if (!hinted) { hinted = true; setTimeout(() => hint.classList.add('gone'), 1800); } };
+  function setCtrl(i) {
+    cast[ctrl].target = null; ctrl = i; cast[ctrl].target = null;
+    if (sw) sw.textContent = cast.length > 1 ? `Play as ${cast[(ctrl + 1) % cast.length].name}` : '';
+  }
+  if (sw) { sw.hidden = cast.length < 2; sw.addEventListener('click', () => { setCtrl((ctrl + 1) % cast.length); cv.focus(); }); }
+  setCtrl(ctrl);
+  addEventListener('keydown', e => {
+    const k = e.key.toLowerCase();
+    if (['arrowup', 'arrowdown', 'arrowleft', 'arrowright', 'w', 'a', 's', 'd'].includes(k)) { keys.add(k); cast[ctrl].target = null; e.preventDefault(); dismiss(); }
+    if (k === 'tab' && cast.length > 1) { setCtrl((ctrl + 1) % cast.length); e.preventDefault(); }
+  });
+  addEventListener('keyup', e => keys.delete(e.key.toLowerCase()));
+  addEventListener('blur', () => keys.clear());
+
+  let view = { scale: 1, w: 960, h: 540 }, cam = { x: px(cast[ctrl].x), y: py(cast[ctrl].y) };
+  cv.addEventListener('pointerdown', e => {
+    const r = cv.getBoundingClientRect();
+    const X = (e.clientX - r.left) / view.scale - view.w / 2 + cam.x, Y = (e.clientY - r.top) / view.scale - view.h / 2 + cam.y;
+    const [wx, wy] = toWorld(X, Y + 6);
+    cast[ctrl].target = [wx, wy]; cast[ctrl].stuck = 0; dismiss(); cv.focus();
+  });
+
+  function move(c, vx, vy, dt) {
+    const L = Math.hypot(vx, vy);
+    c.walking = L > 0;
+    if (!c.walking) return;
+    vx /= L; vy /= L;
+    c.dir = ((Math.round(Math.atan2(vy, vx) / (Math.PI / 4)) % 8) + 8) % 8;
+    const sx = vx * c.speed * dt, sy = vy * c.speed * dt;
+    let moved = false;
+    if (!blocked(c.x + sx, c.y + sy)) { c.x += sx; c.y += sy; moved = true; }
+    else if (sx && !blocked(c.x + sx, c.y)) { c.x += sx; moved = true; }   // slide along whatever is in the way
+    else if (sy && !blocked(c.x, c.y + sy)) { c.y += sy; moved = true; }
+    if (!moved) { c.stuck += dt; if (c.stuck > .35) { c.target = null; c.walking = false; } }
+    else c.stuck = 0;
+    if (c.walking) c.walkT += dt * 1000;
+  }
+  function towardTarget(c) {
+    if (!c.target) return [0, 0];
+    const dx = c.target[0] - c.x, dy = c.target[1] - c.y, L = Math.hypot(dx, dy);
+    if (L < .12) { c.target = null; return [0, 0]; }
+    return [dx / L, dy / L];
+  }
+  function stepCast(dt) {
+    cast.forEach((c, i) => {
+      let vx = 0, vy = 0;
+      if (i === ctrl) {
+        if (keys.has('arrowleft') || keys.has('a')) vx -= 1;
+        if (keys.has('arrowright') || keys.has('d')) vx += 1;
+        if (keys.has('arrowup') || keys.has('w')) vy += 1;
+        if (keys.has('arrowdown') || keys.has('s')) vy -= 1;
+        if (!vx && !vy) [vx, vy] = towardTarget(c);
+      } else {   // wander: pause, pick a nearby open spot, stroll there
+        if (!c.target) {
+          c.wait -= dt;
+          if (c.wait <= 0) {
+            for (let k = 0; k < 12; k++) {
+              const a = rnd() * 6.283, r = 2 + rnd() * 6, tx = c.x + Math.cos(a) * r, ty = c.y + Math.sin(a) * r;
+              if (!blocked(tx, ty)) { c.target = [tx, ty]; break; }
+            }
+            c.wait = 1.5 + rnd() * 3.5;
+          }
+        }
+        [vx, vy] = towardTarget(c);
+      }
+      move(c, vx, vy, dt);
+    });
+  }
+  function charFrame(c, t) {
+    if (c.kind === 'paint') return c.walking ? Math.floor(c.walkT / WALK_MS) % H.frames : Math.floor(t * 1000 / IDLE_MS) % H.frames;
+    const k = c.pc[c.walking ? 'walk' : 'idle'];   // pp clips keep their own frame time
+    return Math.floor((c.walking ? c.walkT : t * 1000) / k.ms) % k.frames;
+  }
+  function drawChar(c, t, layer) {   // layer: 'shadow' | 'body'
+    const f = charFrame(c, t), clip = c.walking ? 'walk' : 'idle';
+    if (c.kind === 'paint') return blit(H, IMG[H[clip + (layer === 'shadow' ? '_shadow' : '')]], f, c.dir, c.x, c.y);
+    if (layer === 'shadow') return;   // pp sprites carry their own ground shadow
+    const pc = c.pc, row = (c.dir + 2) % 8;   // pp rows run S, SE, E, NE, N, NW, W, SW
+    const S = PIXEL_SCALE, img = IMG[pc[clip].src];
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(img, f * pc.w, row * pc.h, pc.w, pc.h,
+                  Math.round(px(c.x) - pc.anchor[0] * S), Math.round(py(c.y) - pc.anchor[1] * S), pc.w * S, pc.h * S);
+    ctx.imageSmoothingEnabled = true;
+  }
+
+  // ---------------------------------------------------------------- petals on the wind (wind period = one tree sway loop)
+  const petals = [];
+  const GUST_S = (D.sprites.oak?.frames || 32) * SWAY_MS / 1000;   // one tree-sway loop
+  const wind = t => .55 + .35 * Math.sin(t * 2 * Math.PI / GUST_S);
+  function spawnPetal(x, y, z) {
+    petals.push({ x, y, z, vx: 0, vy: (rnd() - .5) * .25, vz: -.25 - rnd() * .2, spin: rnd() * 6.3, rate: 3 + rnd() * 4,
+                  ph: rnd() * 6.3, life: 0, landed: false, tone: rnd() < .5 });
+  }
+  function stepPetals(t, dt) {
+    for (const [bx, by] of D.blossoms) {
+      if (rnd() < dt * (1.6 + 2.2 * wind(t))) {
+        const a = rnd() * 6.3, r = Math.sqrt(rnd()) * 2.6;
+        spawnPetal(bx + Math.cos(a) * r, by + Math.sin(a) * r * .8, 3.6 + rnd() * 2.6);
+      }
+    }
+    for (const p of petals) {
+      p.life += dt;
+      if (p.landed) continue;
+      const w = wind(t);
+      p.x += (w * (.8 + .4 * Math.sin(p.ph)) + .35 * Math.sin(t * 2.3 + p.ph)) * dt;
+      p.y += p.vy * dt; p.z += (p.vz + .12 * Math.sin(t * 3.1 + p.ph)) * dt; p.spin += p.rate * dt;
+      if (p.z <= 0) { p.z = 0; p.landed = true; p.life = 0; }
+    }
+    for (let i = petals.length - 1; i >= 0; i--) {
+      const p = petals[i];
+      if ((p.landed && p.life > 6) || p.x > D.bounds[1] + 2 || petals.length > 320) petals.splice(i, 1);
+    }
+  }
+  function drawPetal(p) {
+    const X = px(p.x), Y = py(p.y, p.z), c = Math.cos(p.spin);
+    ctx.globalAlpha = p.landed ? Math.max(0, 1 - p.life / 6) : 1;
+    ctx.fillStyle = (c > 0) === p.tone ? '#fde3ea' : '#e895ae';
+    ctx.beginPath();
+    ctx.ellipse(X, Y, p.landed ? 2.2 : Math.max(.6, 2.6 * Math.abs(c)), 1.5, p.spin * .3, 0, 6.283);
+    ctx.fill();
+    ctx.globalAlpha = 1;
+  }
+
+  // ---------------------------------------------------------------- drawing
+  const GUT = D.gutter || 0;   // sheet cells carry a border of edge pixels
+  function frameRect(s, img, col, row) {
+    return [img, col * (s.w + 2 * GUT) + GUT, row * (s.h + 2 * GUT) + GUT, s.w, s.h];
+  }
+  function blit(s, img, col, row, x, y) {
+    const [i, sx, sy, w, h] = frameRect(s, img, col, row);
+    ctx.drawImage(i, sx, sy, w, h, Math.round(px(x) - s.anchor[0]), Math.round(py(y) - s.anchor[1]), w, h);
+  }
+  function ducks(t) {
+    const out = [], r = D.ducks.route, n = D.ducks.ducklings;
+    for (let k = 0; k <= n; k++) {
+      const a = t / LAP_S * 2 * Math.PI + (k ? -.32 - .2 * k : 0);
+      const x = r.centre[0] + r.rx * Math.cos(a), y = r.centre[1] + r.ry * Math.sin(a);
+      const d = ((Math.round(Math.atan2(r.ry * Math.cos(a), -r.rx * Math.sin(a)) / (Math.PI / 4)) % 8) + 8) % 8;
+      const name = k ? 'duckling' : 'drake', s = D.sprites[name];
+      out.push({ y, draw: () => blit(s, IMG[s.src], (Math.floor(t * 1000 / PADDLE_MS) + 3 * k) % s.frames, d, x, y) });
+    }
+    return out;
+  }
+
+  function resize() {
+    const W = innerWidth, H = innerHeight, dpr = Math.min(2, window.devicePixelRatio || 1, Math.sqrt(3.2e6 / (W * H)));
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    view.scale = Math.min(1.2, Math.max(W / 1500, H / 860));
+    view.w = W / view.scale; view.h = H / view.scale; view.dpr = dpr;
+  }
+  addEventListener('resize', resize); resize();
+
+  let last = performance.now(), t0 = last, work = 0;
+  function onScreen(s, x, y) {   // skip sprites whose box is outside the view
+    const X = px(x) - s.anchor[0], Y = py(y) - s.anchor[1];
+    return X < cam.x + view.w / 2 && X + s.w > cam.x - view.w / 2 && Y < cam.y + view.h / 2 && Y + s.h > cam.y - view.h / 2;
+  }
+  function tick(now) {
+    const dt = Math.min(.05, (now - last) / 1000); last = now;
+    const t = (now - t0) / 1000, w0 = performance.now();
+    stepCast(dt); stepPetals(t, dt);
+    const me = cast[ctrl], hx = px(me.x), hy = py(me.y) - 20;
+    cam.x += (hx - cam.x) * Math.min(1, dt * 4); cam.y += (hy - cam.y) * Math.min(1, dt * 4);
+    cam.x = Math.max(view.w / 2, Math.min(D.plate[0] - view.w / 2, cam.x));
+    cam.y = Math.max(view.h / 2, Math.min(PH - view.h / 2, cam.y));
+    if (view.w > D.plate[0]) cam.x = D.plate[0] / 2;
+    if (view.h > PH) cam.y = PH / 2;
+
+    ctx.setTransform(view.scale * view.dpr, 0, 0, view.scale * view.dpr, 0, 0);
+    ctx.fillStyle = '#1d3a2c'; ctx.fillRect(0, 0, view.w, view.h);
+    ctx.translate(Math.round(view.w / 2 - cam.x), Math.round(view.h / 2 - cam.y));
+    const gx = Math.max(0, Math.floor(cam.x - view.w / 2) - 2), gy = Math.max(0, Math.floor(cam.y - view.h / 2) - 2);
+    const gw = Math.min(D.plate[0] - gx, Math.ceil(view.w) + 4), gh = Math.min(PH - gy, Math.ceil(view.h) + 4);
+    ctx.drawImage(IMG[D.ground], gx, gy, gw, gh, gx, gy, gw, gh);
+    const wr = D.water.rect, wf = Math.floor(t * 1000 / WATER_MS) % D.water.frames;
+    if (wr[0] < gx + gw && wr[0] + wr[2] > gx && wr[1] < gy + gh && wr[1] + wr[3] > gy)
+      ctx.drawImage(IMG[D.water.src], (wf % D.water.cols) * (wr[2] + 2 * GUT) + GUT, Math.floor(wf / D.water.cols) * (wr[3] + 2 * GUT) + GUT, wr[2], wr[3], wr[0], wr[1], wr[2], wr[3]);
+    for (const p of petals) if (p.landed) drawPetal(p);
+
+    for (const c of cast) drawChar(c, t, 'shadow');
+
+    const items = [];
+    for (const p of props) {
+      const s = p.s;
+      if (!onScreen(s, p.x, p.y)) continue;
+      if (s.frames === 1) { items.push({ y: p.y, draw: () => blit(s, IMG[s.src], 0, 0, p.x, p.y) }); continue; }
+      // sway: draw this frame, then the next one faded in by how far we are between them
+      const ft = t * 1000 / SWAY_MS + p.phase * 2, f = Math.floor(ft) % s.frames, g = (f + 1) % s.frames, k = ft - Math.floor(ft);
+      items.push({ y: p.y, draw: () => {
+        blit(s, IMG[s.src], f % s.cols, Math.floor(f / s.cols), p.x, p.y);
+        ctx.globalAlpha = k; blit(s, IMG[s.src], g % s.cols, Math.floor(g / s.cols), p.x, p.y); ctx.globalAlpha = 1;
+      } });
+    }
+    items.push(...ducks(t));
+    for (const c of cast) items.push({ y: c.y, draw: () => drawChar(c, t, 'body') });
+    items.sort((a, b) => b.y - a.y);
+    for (const it of items) it.draw();
+    // a faint second pass of the player: invisible where nothing covers them, a silhouette behind crowns and roofs
+    ctx.globalAlpha = .32; drawChar(me, t, 'body'); ctx.globalAlpha = 1;
+    for (const p of petals) if (!p.landed) drawPetal(p);
+    work = work * .95 + (performance.now() - w0) * .05; window.__work = work;
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>

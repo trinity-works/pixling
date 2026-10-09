@@ -1,0 +1,271 @@
+{
+ "name": "st_wall",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Tileable 40 px city wall: pale stone, walkway, crenels.",
+ "frame": [
+  52,
+  40
+ ],
+ "anchor": [
+  26,
+  34
+ ],
+ "view": {
+  "yaw": {
+   "S": 0
+  }
+ },
+ "materials": {
+  "roof_t": {
+   "ramp": "roof",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "plum_t": {
+   "ramp": "roof_plum",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "wall_s": {
+   "ramp": "stone",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.62,
+    0.86
+   ],
+   "detail": {
+    "kind": "stone",
+    "scale": 1.4,
+    "amount": 0.5
+   }
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {}
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "body",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      8
+     ],
+     "half": [
+      20,
+      4,
+      8
+     ],
+     "mat": "wall_s"
+    }
+   ]
+  },
+  {
+   "name": "top",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -18.0,
+      -2.8,
+      17.2
+     ],
+     "half": [
+      1.1,
+      1.4,
+      1.3
+     ],
+     "mat": "wall_s"
+    },
+    {
+     "shape": "box",
+     "at": [
+      -14.0,
+      -2.8,
+      17.2
+     ],
+     "half": [
+      1.1,
+      1.4,
+      1.3
+     ],
+     "mat": "wall_s"
+    },
+    {
+     "shape": "box",
+     "at": [
+      -10.0,
+      -2.8,
+      17.2
+     ],
+     "half": [
+      1.1,
+      1.4,
+      1.3
+     ],
+     "mat": "wall_s"
+    },
+    {
+     "shape": "box",
+     "at": [
+      -6.0,
+      -2.8,
+      17.2
+     ],
+     "half": [
+      1.1,
+      1.4,
+      1.3
+     ],
+     "mat": "wall_s"
+    },
+    {
+     "shape": "box",
+     "at": [
+      -2.0,
+      -2.8,
+      17.2
+     ],
+     "half": [
+      1.1,
+      1.4,
+      1.3
+     ],
+     "mat": "wall_s"
+    },
+    {
+     "shape": "box",
+     "at": [
+      2.0,
+      -2.8,
+      17.2
+     ],
+     "half": [
+      1.1,
+      1.4,
+      1.3
+     ],
+     "mat": "wall_s"
+    },
+    {
+     "shape": "box",
+     "at": [
+      6.0,
+      -2.8,
+      17.2
+     ],
+     "half": [
+      1.1,
+      1.4,
+      1.3
+     ],
+     "mat": "wall_s"
+    },
+    {
+     "shape": "box",
+     "at": [
+      10.0,
+      -2.8,
+      17.2
+     ],
+     "half": [
+      1.1,
+      1.4,
+      1.3
+     ],
+     "mat": "wall_s"
+    },
+    {
+     "shape": "box",
+     "at": [
+      14.0,
+      -2.8,
+      17.2
+     ],
+     "half": [
+      1.1,
+      1.4,
+      1.3
+     ],
+     "mat": "wall_s"
+    },
+    {
+     "shape": "box",
+     "at": [
+      18.0,
+      -2.8,
+      17.2
+     ],
+     "half": [
+      1.1,
+      1.4,
+      1.3
+     ],
+     "mat": "wall_s"
+    }
+   ]
+  }
+ ],
+ "size": {
+  "height": 30
+ }
+}

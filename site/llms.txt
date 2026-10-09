@@ -1,0 +1,64 @@
+# pixling
+
+> Art know-how and tools for your coding agent. A CLI (Python 3.9+) that packages pipelines, styles and taste for
+> making game sprites with code: JSON spec -> pixel sprites, Python kits -> exact-iso scenes, living maps, VFX,
+> AI image -> video -> keyed sprite frames, Blender -> painterly sprites. Every style ships with how it was made
+> (hand, kit code, lab notes). Run a pipeline as it is, or read how it was made and take what helps.
+> Status: v0.1, experimental.
+
+Source: https://github.com/trinity-works/pixling
+Commands as JSON: ./agents.json
+
+## Install
+uv tool install pixling          # or: pipx install pixling | npx pixling
+                                 # from source: git clone https://github.com/trinity-works/pixling && cd pixling && pip install -e .
+pixling doctor                   # numpy, Pillow, scipy; ffmpeg (video), Blender (painted), Scenario sign-in
+pixling agent install .          # run in the user's repo: adds the pixling skill and an AGENTS.md block
+
+## Know-how first
+pixling                          # the command map
+pixling pipelines                # spec, iso, map, fx, video, painted, style: what each makes
+pixling pipelines NAME           # when to pick it, the steps, the code, what we learned
+pixling styles                   # launch styles: vista, tactics (Crisp Tactics), flat (Flat Minimal)
+                                 # also: sunmeadow, duskborne, vermilion (SDF sprites), painted_cards (painted)
+pixling styles NAME --how        # how a style was made: hand, kit code, lab notes, build command
+pixling code [MODULE]            # engine and kit modules with docstrings and paths; pixling code tactics.kit
+pixling guide [TOPIC] [SECTION]  # docs and research notes; pixling guide --grep WORD searches them all
+pixling guide styles "The shared taste layer"   # rules that hold for any game art
+
+## Pipelines
+spec     JSON spec (shapes on bones) -> 8-direction, palette-locked sprite sheets
+         pixling specs STYLE ; pixling new EXAMPLE NAME ; pixling build SPEC --clips idle --dirs S,E
+         pixling review out/NAME (open the PNG and look) ; fix, rebuild ; pixling scene ... ; pixling lint out/NAME
+iso      Python kit + scene -> exact 2:1 iso scene (noon, loop, night) + animal sheets
+         pixling world tactics|flat [--only SCENE] ; python3 -m pp.iso out/SCENE/scene.json --out DIR [--hour night]
+map      map JSON -> living map ; pixling map MAP.json [--still] [--layers] [--meaning]
+         pixling states SPEC (ruin, build25..90, built) ; pixling light MAP.json [--gif] (day..night + light.json)
+fx       pixling fx KIND --style STYLE [--ramp RAMP]   KIND: slash hit_spark burst eruption aura dust projectile
+         lightning sparkle leaves shockwave -> sheet PNG, GIF, JSON
+video    design -> 5-facing start sheet -> MiniMax H3 takes (first = last frame) -> key, cut -> sheets + actor JSON
+         pixling scenario login (the USER runs it; opens a browser) ; pixling reel split SHEET
+         pixling scenario cost|run model_minimax-h3 @take.json --out takes/X.mp4 ; pixling reel contact TAKE
+         pixling reel gambit char.json ; pixling reel page NAME ; pixling reel fx SPEC (spells on black)
+painted  style + layout -> Blender painterly sprites (shadow layers, sway loops, 8 headings) -> scene, web scene
+         pixling painted doctor ; pixling painted kit ; pixling painted compose ; pixling painted game
+style    a new style: refs -> DNA sheet -> hand modes -> own kit -> calibration brief -> review card -> walk -> vote
+         pixling pipelines style ; pixling guide style-search ; pixling guide style-dna
+
+## Ship
+pixling pack NAME BUILD_DIRS... --style STYLE    # itch.io-ready pack
+pixling aseprite out/NAME                        # editable .aseprite
+Outputs per build: sheets (rows S, SE, E, NE, N, NW, W, SW; cols = frames), gif/ previews, JSON (anchor, frames, ms, events).
+
+## Rules
+- You never paint pixels. Pick a pipeline and drive it with code; the tools render.
+- Read the pipeline before running it (pixling pipelines NAME); its lessons save rerolls and credits.
+- Judge by looking at the review images, at 1x and animated. No measurement essays.
+- Use the style's ramps. Never invent colours. A recolour is a biome, not a new style.
+- Prototype ONE asset, get the user's sign-off, then make the family.
+- One painter per material: don't mix pixel and painted assets, or kit trees with painted forest, in one scene.
+- Scale pixel art only by whole numbers, nearest neighbour.
+- Estimate Scenario credits (pixling scenario cost) and ask before spending.
+- If the engine can't do something, tell the user what's missing instead of working around it with many micro-parts.
+- Installed, pixling writes into the current directory; PIXLING_OUT overrides the output root.
+- Every command takes -h; the ones agents parse take --json.

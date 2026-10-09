@@ -1,0 +1,155 @@
+{
+ "name": "rock",
+ "style": "sunmeadow",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Faceted field boulder: flat lit top plane, a leaning slab and a pebble.",
+ "frame": [
+  28,
+  22
+ ],
+ "anchor": [
+  14,
+  18
+ ],
+ "shadow": {
+  "w": 16,
+  "h": 3
+ },
+ "materials": {
+  "rk": {
+   "ramp": "stone",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "sky": 0.45,
+   "detail": {
+    "kind": "stone"
+   }
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {}
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "main",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -1,
+      0.5,
+      3.6
+     ],
+     "half": [
+      4.6,
+      3.8,
+      3.6
+     ],
+     "round": 1.2,
+     "rot": [
+      0,
+      6,
+      -18
+     ],
+     "mat": "rk"
+    },
+    {
+     "shape": "box",
+     "at": [
+      -1.5,
+      0,
+      7.4
+     ],
+     "half": [
+      3.2,
+      2.8,
+      0.8
+     ],
+     "round": 0.8,
+     "rot": [
+      4,
+      -8,
+      -18
+     ],
+     "mat": "rk",
+     "blend": 0.6
+    }
+   ]
+  },
+  {
+   "name": "slab",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      4.6,
+      -1.2,
+      2.4
+     ],
+     "half": [
+      2.6,
+      2.4,
+      2.4
+     ],
+     "round": 0.9,
+     "rot": [
+      0,
+      -14,
+      24
+     ],
+     "mat": "rk"
+    }
+   ]
+  },
+  {
+   "name": "pebble",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -6.2,
+      -2.6,
+      0.9
+     ],
+     "half": [
+      1.4,
+      1.2,
+      0.9
+     ],
+     "round": 0.5,
+     "rot": [
+      0,
+      0,
+      30
+     ],
+     "mat": "rk"
+    }
+   ]
+  }
+ ]
+}

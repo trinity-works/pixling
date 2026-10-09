@@ -1,0 +1,4 @@
+#!/bin/sh
+# pixling without installing: symlink this into your PATH (ln -s "$PWD/bin/pixling" ~/.local/bin/pixling).
+here=$(cd "$(dirname "$(readlink -f "$0" 2>/dev/null || python3 -c 'import os,sys;print(os.path.realpath(sys.argv[1]))' "$0")")/.." && pwd)
+PYTHONPATH="$here${PYTHONPATH:+:$PYTHONPATH}" exec "${PIXLING_PYTHON:-python3}" -m pp "$@"

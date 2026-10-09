@@ -1,0 +1,314 @@
+{
+ "name": "st_bridge_ew",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Arched stone bridge crossing the river east-west: humped deck, parapets, one round arch facing the viewer.",
+ "frame": [
+  52,
+  30
+ ],
+ "anchor": [
+  26,
+  22
+ ],
+ "view": {
+  "yaw": {
+   "S": 0
+  }
+ },
+ "materials": {
+  "roof_t": {
+   "ramp": "roof",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "plum_t": {
+   "ramp": "roof_plum",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "wall_s": {
+   "ramp": "stone",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.62,
+    0.86
+   ],
+   "detail": {
+    "kind": "stone",
+    "scale": 1.4,
+    "amount": 0.5
+   }
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {}
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "body",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      4.0
+     ],
+     "half": [
+      14.0,
+      6,
+      4.0
+     ],
+     "mat": "wall_s"
+    },
+    {
+     "shape": "cylinder",
+     "at": [
+      0,
+      0,
+      -0.5
+     ],
+     "r": 7.2,
+     "h": 8,
+     "rot": [
+      90,
+      0,
+      0
+     ],
+     "mat": "wall_s",
+     "subtract": true
+    }
+   ]
+  },
+  {
+   "name": "deck",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0.0,
+      8.0
+     ],
+     "half": [
+      6.0,
+      6,
+      1.5
+     ],
+     "mat": "sand"
+    },
+    {
+     "shape": "box",
+     "at": [
+      14.0,
+      0.0,
+      4.0
+     ],
+     "half": [
+      9.544271909999159,
+      6,
+      1.5
+     ],
+     "mat": "sand",
+     "rot": [
+      0,
+      26.56505117707799,
+      0
+     ]
+    },
+    {
+     "shape": "box",
+     "at": [
+      -14.0,
+      0.0,
+      4.0
+     ],
+     "half": [
+      9.544271909999159,
+      6,
+      1.5
+     ],
+     "mat": "sand",
+     "rot": [
+      0,
+      -26.56505117707799,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "name": "parapetN",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      6.2,
+      9.6
+     ],
+     "half": [
+      6.0,
+      0.8,
+      1.3
+     ],
+     "mat": "wall_s"
+    },
+    {
+     "shape": "box",
+     "at": [
+      14.0,
+      6.2,
+      5.6
+     ],
+     "half": [
+      9.544271909999159,
+      0.8,
+      1.3
+     ],
+     "mat": "wall_s",
+     "rot": [
+      0,
+      26.56505117707799,
+      0
+     ]
+    },
+    {
+     "shape": "box",
+     "at": [
+      -14.0,
+      6.2,
+      5.6
+     ],
+     "half": [
+      9.544271909999159,
+      0.8,
+      1.3
+     ],
+     "mat": "wall_s",
+     "rot": [
+      0,
+      -26.56505117707799,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "name": "parapetS",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      -6.2,
+      9.6
+     ],
+     "half": [
+      6.0,
+      0.8,
+      1.3
+     ],
+     "mat": "wall_s"
+    },
+    {
+     "shape": "box",
+     "at": [
+      14.0,
+      -6.2,
+      5.6
+     ],
+     "half": [
+      9.544271909999159,
+      0.8,
+      1.3
+     ],
+     "mat": "wall_s",
+     "rot": [
+      0,
+      26.56505117707799,
+      0
+     ]
+    },
+    {
+     "shape": "box",
+     "at": [
+      -14.0,
+      -6.2,
+      5.6
+     ],
+     "half": [
+      9.544271909999159,
+      0.8,
+      1.3
+     ],
+     "mat": "wall_s",
+     "rot": [
+      0,
+      -26.56505117707799,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

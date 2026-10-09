@@ -1,0 +1,24 @@
+{
+ "name": "necro_signet",
+ "take": "takes/necro_signet_a.mp4",
+ "range": [
+  4,
+  110
+ ],
+ "frames": 24,
+ "fps": 12,
+ "size": 384,
+ "black": 16,
+ "anchor": [
+  0.5,
+  0.76
+ ],
+ "tiles": 2.4,
+ "layer": "over",
+ "note": "MiniMax H3 768P 5 s, first = last frame = black; sigil floats above the target, beam lands on the anchor",
+ "hits": [
+  9,
+  12
+ ],
+ "hits_note": "impact keys by eye (auto = peaks of light near the anchor)"
+}

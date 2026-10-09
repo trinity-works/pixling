@@ -1,0 +1,29 @@
+{
+ "name": "fireball_rain",
+ "take": "takes/fireball_rain_a.mp4",
+ "range": [
+  18,
+  112
+ ],
+ "frames": 24,
+ "fps": 12,
+ "size": 384,
+ "black": 16,
+ "anchor": [
+  0.5,
+  0.78
+ ],
+ "tiles": 4.0,
+ "layer": "over",
+ "note": "MiniMax H3 768P 5 s, first = last frame = black_1024.png (asset_hgYQo1TKfxvq8KnCd8ibEVWh); 80 CU; fireball_rain_b.mp4 (asked for a wide margin) came back clipped inside a hard-edged vertical strip: rejected",
+ "hits": [
+  5,
+  7,
+  9,
+  11,
+  15
+ ],
+ "hits_note": "impact keys by eye (auto = peaks of light near the anchor)",
+ "feather": 0.12,
+ "vignette": 0.35
+}

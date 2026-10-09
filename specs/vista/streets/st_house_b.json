@@ -1,0 +1,566 @@
+{
+ "name": "st_house_b",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Street-level townhouse 29x21x29, 3 floors, banner shop awning",
+ "frame": [
+  64,
+  75
+ ],
+ "anchor": [
+  32,
+  67
+ ],
+ "view": {
+  "yaw": {
+   "S": -24
+  }
+ },
+ "materials": {
+  "roof_t": {
+   "ramp": "roof",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "plum_t": {
+   "ramp": "roof_plum",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "wall_s": {
+   "ramp": "stone",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.62,
+    0.86
+   ],
+   "detail": {
+    "kind": "stone",
+    "scale": 1.4,
+    "amount": 0.5
+   }
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {}
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "walls",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      14.5
+     ],
+     "half": [
+      14.5,
+      10.5,
+      14.5
+     ],
+     "mat": "plaster"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      14.8,
+      -3.0,
+      5.316666666666666
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      14.8,
+      3.0,
+      5.316666666666666
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -9.0,
+      -10.8,
+      14.983333333333333
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -3.0,
+      -10.8,
+      14.983333333333333
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      3.0,
+      -10.8,
+      14.983333333333333
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      9.0,
+      -10.8,
+      14.983333333333333
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      14.8,
+      -3.0,
+      14.983333333333333
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      14.8,
+      3.0,
+      14.983333333333333
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -9.0,
+      -10.8,
+      24.65
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -3.0,
+      -10.8,
+      24.65
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      3.0,
+      -10.8,
+      24.65
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      9.0,
+      -10.8,
+      24.65
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      14.8,
+      -3.0,
+      24.65
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      14.8,
+      3.0,
+      24.65
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      5.2,
+      -10.8,
+      2.5
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      ".aaa.",
+      "abbba",
+      "abbba",
+      "abcba",
+      "abbba"
+     ],
+     "key": {
+      "a": "wood:0",
+      "b": "wood:1",
+      "c": "gold"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "base",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      1.1
+     ],
+     "half": [
+      14.9,
+      10.9,
+      1.1
+     ],
+     "mat": "wall_s"
+    }
+   ]
+  },
+  {
+   "name": "roof",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "roof",
+     "at": [
+      0,
+      0,
+      29
+     ],
+     "half": [
+      15.7,
+      11.7
+     ],
+     "h": 11.55,
+     "mat": "plum_t",
+     "gable": true
+    }
+   ]
+  },
+  {
+   "name": "shop",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "stamp",
+     "at": [
+      -2.8,
+      -10.8,
+      3
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aaaaaa",
+      "abbbba",
+      "abbbba"
+     ],
+     "key": {
+      "a": "wood:0",
+      "b": "window"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "awning",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      -13.5,
+      8.066666666666666
+     ],
+     "half": [
+      13.0,
+      3.4,
+      0.8
+     ],
+     "mat": "banner",
+     "rot": [
+      -32,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,521 @@
+{
+ "name": "st_gate",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Gatehouse: two square towers with terracotta hip roofs, an arched gate, red banners with a gold mark.",
+ "frame": [
+  72,
+  64
+ ],
+ "anchor": [
+  36,
+  56
+ ],
+ "view": {
+  "yaw": {
+   "S": 0
+  }
+ },
+ "materials": {
+  "roof_t": {
+   "ramp": "roof",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "plum_t": {
+   "ramp": "roof_plum",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "wall_s": {
+   "ramp": "stone",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.62,
+    0.86
+   ],
+   "detail": {
+    "kind": "stone",
+    "scale": 1.4,
+    "amount": 0.5
+   }
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {}
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "arch",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      10
+     ],
+     "half": [
+      10,
+      5,
+      10
+     ],
+     "mat": "wall_s"
+    },
+    {
+     "shape": "box",
+     "at": [
+      0,
+      -5,
+      5
+     ],
+     "half": [
+      5,
+      2,
+      5
+     ],
+     "mat": "wall_s",
+     "subtract": true
+    },
+    {
+     "shape": "cylinder",
+     "at": [
+      0,
+      -5,
+      10
+     ],
+     "r": 5,
+     "h": 2,
+     "rot": [
+      90,
+      0,
+      0
+     ],
+     "mat": "wall_s",
+     "subtract": true
+    }
+   ]
+  },
+  {
+   "name": "dark",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      -2.6,
+      7
+     ],
+     "half": [
+      5,
+      0.6,
+      7
+     ],
+     "mat": "dark"
+    }
+   ]
+  },
+  {
+   "name": "arch_top",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -8.0,
+      -3,
+      21.2
+     ],
+     "half": [
+      1.1,
+      1.4,
+      1.3
+     ],
+     "mat": "wall_s"
+    },
+    {
+     "shape": "box",
+     "at": [
+      -4.0,
+      -3,
+      21.2
+     ],
+     "half": [
+      1.1,
+      1.4,
+      1.3
+     ],
+     "mat": "wall_s"
+    },
+    {
+     "shape": "box",
+     "at": [
+      0.0,
+      -3,
+      21.2
+     ],
+     "half": [
+      1.1,
+      1.4,
+      1.3
+     ],
+     "mat": "wall_s"
+    },
+    {
+     "shape": "box",
+     "at": [
+      4.0,
+      -3,
+      21.2
+     ],
+     "half": [
+      1.1,
+      1.4,
+      1.3
+     ],
+     "mat": "wall_s"
+    },
+    {
+     "shape": "box",
+     "at": [
+      8.0,
+      -3,
+      21.2
+     ],
+     "half": [
+      1.1,
+      1.4,
+      1.3
+     ],
+     "mat": "wall_s"
+    }
+   ]
+  },
+  {
+   "name": "tl",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -15,
+      0,
+      14
+     ],
+     "half": [
+      5.5,
+      6,
+      14
+     ],
+     "mat": "wall_s"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -15,
+      -6.3,
+      20
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a",
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -15,
+      -6.3,
+      12
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a",
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "tr",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      15,
+      0,
+      14
+     ],
+     "half": [
+      5.5,
+      6,
+      14
+     ],
+     "mat": "wall_s"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      15,
+      -6.3,
+      20
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a",
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      15,
+      -6.3,
+      12
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a",
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      20.8,
+      0,
+      16
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "a",
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "rl",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "roof",
+     "at": [
+      -15,
+      0,
+      28
+     ],
+     "half": [
+      6.6,
+      7
+     ],
+     "h": 7,
+     "mat": "roof_t"
+    }
+   ]
+  },
+  {
+   "name": "rr",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "roof",
+     "at": [
+      15,
+      0,
+      28
+     ],
+     "half": [
+      6.6,
+      7
+     ],
+     "h": 7,
+     "mat": "roof_t"
+    }
+   ]
+  },
+  {
+   "name": "banners",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -15,
+      -6.5,
+      16
+     ],
+     "half": [
+      2.2,
+      0.4,
+      4.5
+     ],
+     "mat": "banner"
+    },
+    {
+     "shape": "box",
+     "at": [
+      15,
+      -6.5,
+      16
+     ],
+     "half": [
+      2.2,
+      0.4,
+      4.5
+     ],
+     "mat": "banner"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -15,
+      -7.1,
+      17
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      ".a.",
+      "aaa",
+      ".a."
+     ],
+     "key": {
+      "a": "gold:2"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      15,
+      -7.1,
+      17
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      ".a.",
+      "aaa",
+      ".a."
+     ],
+     "key": {
+      "a": "gold:2"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  }
+ ],
+ "size": {
+  "height": 62
+ }
+}

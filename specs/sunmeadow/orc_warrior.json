@@ -1,0 +1,852 @@
+{
+ "name": "orc_warrior",
+ "style": "sunmeadow",
+ "rig": "humanoid",
+ "concept": "Grukk, orc vanguard: hunched barrel of olive muscle on short, wide-planted legs, long swept ears, underbite with tusks, one steel pauldron over a round iron-rimmed wooden shield. Defining feature: a curved blade that glows ice-pale.",
+ "frame": [
+  72,
+  64
+ ],
+ "anchor": [
+  36,
+  48
+ ],
+ "shadow": {
+  "w": 15,
+  "h": 3
+ },
+ "smear": {
+  "color": "#f0fffc",
+  "edge": "#48c0dc",
+  "radius": 15,
+  "width": 7,
+  "height": 10,
+  "plane": "v",
+  "tilt": -40,
+  "side": 3
+ },
+ "fx": {
+  "ramp": "glow_cyan",
+  "hand_h": 11,
+  "reach": 7
+ },
+ "anim": {
+  "gait": "lurch",
+  "attack_style": "slash",
+  "hitstop": 2,
+  "props": [
+   "ears"
+  ],
+  "prop_swing": 5,
+  "attack_lunge": 4,
+  "idle_bob": 1,
+  "raise_weapon_rot": [
+   45,
+   70,
+   0
+  ],
+  "run_lean": 10
+ },
+ "materials": {
+  "skin": {
+   "ramp": "skin_orc",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ]
+  },
+  "blade": {
+   "ramp": "glow_cyan",
+   "shades": [
+    1,
+    2,
+    3
+   ],
+   "emissive": true,
+   "no_outline": true
+  },
+  "pants": {
+   "ramp": "fur_brown",
+   "shades": [
+    0,
+    1,
+    2
+   ],
+   "detail": {
+    "kind": "cloth"
+   }
+  },
+  "boot": {
+   "ramp": "ink",
+   "shades": [
+    0,
+    1,
+    2
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "hips",
+   "parent": "root",
+   "at": [
+    0,
+    0,
+    9.6
+   ],
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "r": [
+      3.9,
+      3.4,
+      2.5
+     ],
+     "mat": "pants"
+    },
+    {
+     "shape": "box",
+     "at": [
+      0,
+      -2.7,
+      -1.8
+     ],
+     "half": [
+      2.0,
+      0.6,
+      2.4
+     ],
+     "round": 0.4,
+     "mat": "leather"
+    }
+   ]
+  },
+  {
+   "name": "torso",
+   "parent": "hips",
+   "at": [
+    0,
+    0,
+    0.8
+   ],
+   "rot": [
+    12,
+    0,
+    0
+   ],
+   "blend": 1.0,
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -1.0,
+      2.4
+     ],
+     "r": [
+      4.7,
+      4.9,
+      3.3
+     ],
+     "mat": "skin"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      0.2,
+      5.4
+     ],
+     "r": [
+      5.6,
+      4.8,
+      3.5
+     ],
+     "mat": "skin"
+    },
+    {
+     "shape": "box",
+     "at": [
+      0,
+      -0.6,
+      0.7
+     ],
+     "half": [
+      4.6,
+      4.4,
+      0.9
+     ],
+     "round": 0.5,
+     "mat": "leather"
+    },
+    {
+     "shape": "box",
+     "at": [
+      0,
+      -5.0,
+      0.7
+     ],
+     "half": [
+      1.0,
+      0.4,
+      0.8
+     ],
+     "mat": "steel"
+    },
+    {
+     "shape": "box",
+     "at": [
+      0.6,
+      -3.9,
+      4.6
+     ],
+     "half": [
+      0.8,
+      0.7,
+      4.4
+     ],
+     "rot": [
+      0,
+      -34,
+      0
+     ],
+     "mat": "leather"
+    }
+   ]
+  },
+  {
+   "name": "head",
+   "parent": "torso",
+   "at": [
+    0,
+    -1.6,
+    8.0
+   ],
+   "rot": [
+    -10,
+    0,
+    0
+   ],
+   "blend": 0.7,
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      0.2,
+      2.8
+     ],
+     "r": [
+      3.5,
+      3.8,
+      3.1
+     ],
+     "mat": "skin"
+    },
+    {
+     "shape": "box",
+     "at": [
+      0,
+      -1.6,
+      1.0
+     ],
+     "half": [
+      3.1,
+      2.5,
+      1.4
+     ],
+     "round": 1.1,
+     "mat": "skin"
+    },
+    {
+     "shape": "box",
+     "at": [
+      0,
+      -2.7,
+      3.4
+     ],
+     "half": [
+      3.0,
+      0.9,
+      0.7
+     ],
+     "round": 0.5,
+     "mat": "skin"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -1.4,
+      -3.4,
+      2.6
+     ],
+     "normal": [
+      -0.45,
+      -1,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "eye_white"
+     }
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      1.4,
+      -3.4,
+      2.6
+     ],
+     "normal": [
+      0.45,
+      -1,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "eye_white"
+     }
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -1.8,
+      -3.7,
+      1.1
+     ],
+     "normal": [
+      -0.5,
+      -1,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "fur_white:2"
+     }
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      1.8,
+      -3.7,
+      1.1
+     ],
+     "normal": [
+      0.5,
+      -1,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "fur_white:2"
+     }
+    }
+   ],
+   "seam": true
+  },
+  {
+   "name": "ears",
+   "parent": "head",
+   "at": [
+    0,
+    0.4,
+    3.0
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "a": [
+      -2.8,
+      0.4,
+      0.2
+     ],
+     "b": [
+      -7.6,
+      2.4,
+      1.0
+     ],
+     "r1": 1.6,
+     "r2": 1.0,
+     "mat": "skin"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      2.8,
+      0.4,
+      0.2
+     ],
+     "b": [
+      7.6,
+      2.4,
+      1.0
+     ],
+     "r1": 1.6,
+     "r2": 1.0,
+     "mat": "skin"
+    }
+   ]
+  },
+  {
+   "name": "armL",
+   "parent": "torso",
+   "at": [
+    -5.8,
+    0,
+    6.2
+   ],
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      -0.3,
+      0,
+      0.8
+     ],
+     "r": [
+      2.5,
+      2.6,
+      1.8
+     ],
+     "mat": "steel"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      -0.4
+     ],
+     "b": [
+      -0.4,
+      0,
+      -3.6
+     ],
+     "r1": 2.1,
+     "r2": 1.8,
+     "mat": "skin"
+    }
+   ],
+   "rot": [
+    -28,
+    0,
+    -10
+   ]
+  },
+  {
+   "name": "foreL",
+   "parent": "armL",
+   "at": [
+    -0.4,
+    0,
+    -3.6
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      0
+     ],
+     "b": [
+      0,
+      0,
+      -2.8
+     ],
+     "r1": 1.8,
+     "r2": 1.7,
+     "mat": "leather"
+    },
+    {
+     "shape": "sphere",
+     "at": [
+      0,
+      0,
+      -3.5
+     ],
+     "r": 1.8,
+     "mat": "skin"
+    }
+   ],
+   "rot": [
+    -55,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "shield",
+   "parent": "foreL",
+   "at": [
+    -1.2,
+    -1.6,
+    -2.4
+   ],
+   "rot": [
+    160,
+    0,
+    -10
+   ],
+   "z_bias": -1.5,
+   "parts": [
+    {
+     "shape": "cylinder",
+     "r": 4.1,
+     "h": 0.7,
+     "round": 0.3,
+     "mat": "wood"
+    },
+    {
+     "shape": "torus",
+     "R": 3.8,
+     "r": 0.85,
+     "mat": "steel"
+    },
+    {
+     "shape": "sphere",
+     "at": [
+      0,
+      0,
+      0.8
+     ],
+     "r": 1.3,
+     "mat": "steel"
+    }
+   ]
+  },
+  {
+   "name": "armR",
+   "parent": "torso",
+   "at": [
+    5.8,
+    0,
+    6.2
+   ],
+   "parts": [
+    {
+     "shape": "sphere",
+     "at": [
+      0.2,
+      0,
+      0.3
+     ],
+     "r": 2.4,
+     "mat": "skin"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      -0.4
+     ],
+     "b": [
+      0.4,
+      0,
+      -3.6
+     ],
+     "r1": 2.1,
+     "r2": 1.8,
+     "mat": "skin"
+    }
+   ],
+   "rot": [
+    -24,
+    0,
+    14
+   ]
+  },
+  {
+   "name": "foreR",
+   "parent": "armR",
+   "at": [
+    0.4,
+    0,
+    -3.6
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      0
+     ],
+     "b": [
+      0,
+      0,
+      -2.8
+     ],
+     "r1": 1.8,
+     "r2": 1.7,
+     "mat": "leather"
+    },
+    {
+     "shape": "sphere",
+     "at": [
+      0,
+      0,
+      -3.5
+     ],
+     "r": 1.8,
+     "mat": "skin"
+    }
+   ]
+  },
+  {
+   "name": "sword",
+   "parent": "foreR",
+   "at": [
+    0,
+    -0.4,
+    -3.5
+   ],
+   "rot": [
+    24,
+    30,
+    0
+   ],
+   "z_bias": -2.5,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      -0.2
+     ],
+     "half": [
+      0.7,
+      0.7,
+      1.6
+     ],
+     "mat": "leather"
+    },
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      1.6
+     ],
+     "half": [
+      2.2,
+      0.9,
+      0.6
+     ],
+     "round": 0.3,
+     "mat": "steel"
+    },
+    {
+     "shape": "box",
+     "at": [
+      0.3,
+      0,
+      6.8
+     ],
+     "half": [
+      2.0,
+      0.7,
+      5.0
+     ],
+     "round": 0.3,
+     "rot": [
+      0,
+      0,
+      40
+     ],
+     "mat": "blade"
+    },
+    {
+     "shape": "box",
+     "at": [
+      1.5,
+      0,
+      12.2
+     ],
+     "half": [
+      1.6,
+      0.7,
+      1.8
+     ],
+     "round": 0.4,
+     "rot": [
+      0,
+      28,
+      40
+     ],
+     "mat": "blade"
+    }
+   ]
+  },
+  {
+   "name": "legL",
+   "parent": "hips",
+   "at": [
+    -2.3,
+    0,
+    -1.0
+   ],
+   "rot": [
+    0,
+    5,
+    0
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "b": [
+      0,
+      0,
+      -7.2
+     ],
+     "r1": 2.3,
+     "r2": 1.8,
+     "mat": "pants"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      -4.3
+     ],
+     "b": [
+      0,
+      0,
+      -7.4
+     ],
+     "r1": 2.0,
+     "r2": 1.9,
+     "mat": "boot"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -1.3,
+      -3.7
+     ],
+     "r": [
+      1.5,
+      1.0,
+      1.3
+     ],
+     "mat": "steel"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -0.8,
+      -7.9
+     ],
+     "r": [
+      2.1,
+      2.9,
+      1.4
+     ],
+     "mat": "boot"
+    }
+   ]
+  },
+  {
+   "name": "legR",
+   "parent": "hips",
+   "at": [
+    2.3,
+    0,
+    -1.0
+   ],
+   "rot": [
+    0,
+    -5,
+    0
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "b": [
+      0,
+      0,
+      -7.2
+     ],
+     "r1": 2.3,
+     "r2": 1.8,
+     "mat": "pants"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      -4.3
+     ],
+     "b": [
+      0,
+      0,
+      -7.4
+     ],
+     "r1": 2.0,
+     "r2": 1.9,
+     "mat": "boot"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -1.3,
+      -3.7
+     ],
+     "r": [
+      1.5,
+      1.0,
+      1.3
+     ],
+     "mat": "steel"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -0.8,
+      -7.9
+     ],
+     "r": [
+      2.1,
+      2.9,
+      1.4
+     ],
+     "mat": "boot"
+    }
+   ]
+  }
+ ],
+ "size": {
+  "height": 26
+ },
+ "view": {
+  "widen": {
+   "E": 1.2,
+   "W": 1.2
+  },
+  "yaw": {
+   "E": -22,
+   "W": 22
+  }
+ }
+}

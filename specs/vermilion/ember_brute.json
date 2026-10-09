@@ -1,0 +1,636 @@
+{
+ "name": "ember_brute",
+ "style": "vermilion",
+ "rig": "humanoid",
+ "concept": "Ember brute: a hulking black mound with a small low head, bone tusks and a crown of red flame spikes, a red mantle stamped with a black chevron. Defining feature: huge banded fists.",
+ "frame": [
+  80,
+  72
+ ],
+ "anchor": [
+  40,
+  62
+ ],
+ "shadow": {
+  "w": 19,
+  "h": 4
+ },
+ "smear": {
+  "color": "#dc4a2c",
+  "edge": "#7e2419",
+  "radius": 17,
+  "width": 7,
+  "height": 11,
+  "forward": 2
+ },
+ "anim": {
+  "props": [
+   "crest"
+  ],
+  "prop_swing": 6,
+  "idle_bob": 2,
+  "attack_lunge": 3,
+  "hover": 1,
+  "walk_hop": 2,
+  "run_hop": 3,
+  "attack_style": "heavy",
+  "hitstop": 0
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "hips",
+   "parent": "root",
+   "at": [
+    0,
+    0,
+    8.0
+   ],
+   "parts": []
+  },
+  {
+   "name": "legL",
+   "parent": "hips",
+   "at": [
+    -3.4,
+    0,
+    0
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      0
+     ],
+     "b": [
+      -0.4,
+      0,
+      -7.2
+     ],
+     "r1": 2.6,
+     "r2": 2.3,
+     "mat": "ink"
+    },
+    {
+     "shape": "box",
+     "at": [
+      -0.4,
+      0,
+      -4.4
+     ],
+     "half": [
+      2.5,
+      2.5,
+      0.6
+     ],
+     "mat": "bone_mark"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      -0.4,
+      -0.9,
+      -7.8
+     ],
+     "r": [
+      2.5,
+      3.2,
+      1.2
+     ],
+     "mat": "ink"
+    }
+   ]
+  },
+  {
+   "name": "legR",
+   "parent": "hips",
+   "at": [
+    3.4,
+    0,
+    0
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      0
+     ],
+     "b": [
+      0.4,
+      0,
+      -7.2
+     ],
+     "r1": 2.6,
+     "r2": 2.3,
+     "mat": "ink"
+    },
+    {
+     "shape": "box",
+     "at": [
+      0.4,
+      0,
+      -4.4
+     ],
+     "half": [
+      2.5,
+      2.5,
+      0.6
+     ],
+     "mat": "bone_mark"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0.4,
+      -0.9,
+      -7.8
+     ],
+     "r": [
+      2.5,
+      3.2,
+      1.2
+     ],
+     "mat": "ink"
+    }
+   ]
+  },
+  {
+   "name": "torso",
+   "parent": "hips",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      0.6,
+      7.6
+     ],
+     "r": [
+      8.2,
+      6.6,
+      8.8
+     ],
+     "mat": "ink"
+    }
+   ]
+  },
+  {
+   "name": "mantle",
+   "parent": "torso",
+   "at": [
+    0,
+    0.2,
+    13.0
+   ],
+   "seam": true,
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": [
+      7.4,
+      6.2,
+      2.6
+     ],
+     "mat": "red"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      -5.0,
+      -1.2
+     ],
+     "r": 4.0,
+     "h": 8.4,
+     "rot": [
+      180,
+      0,
+      0
+     ],
+     "mat": "red",
+     "blend": 0.6
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -7.2,
+      -3.4
+     ],
+     "normal": [
+      0,
+      -1,
+      0.15
+     ],
+     "min_facing": 0.3,
+     "rows": [
+      "kkkkk",
+      ".kkk.",
+      "..k.."
+     ],
+     "key": {
+      "k": "ink:0"
+     }
+    }
+   ]
+  },
+  {
+   "name": "head",
+   "parent": "torso",
+   "at": [
+    0,
+    -2.8,
+    16.0
+   ],
+   "parts": [
+    {
+     "shape": "sphere",
+     "at": [
+      0,
+      0,
+      3.0
+     ],
+     "r": 4.6,
+     "mat": "ink"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -1.8,
+      -4.2,
+      3.4
+     ],
+     "normal": [
+      -0.4,
+      -1,
+      0.1
+     ],
+     "min_facing": 0.12,
+     "clamp": 2,
+     "rows": [
+      "rr",
+      "rw"
+     ],
+     "key": {
+      "r": "red_mark",
+      "w": "eye"
+     }
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      1.8,
+      -4.2,
+      3.4
+     ],
+     "normal": [
+      0.4,
+      -1,
+      0.1
+     ],
+     "min_facing": 0.12,
+     "clamp": 2,
+     "rows": [
+      "rr",
+      "wr"
+     ],
+     "key": {
+      "r": "red_mark",
+      "w": "eye"
+     }
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      -1.8,
+      -3.4,
+      1.0
+     ],
+     "b": [
+      -2.6,
+      -4.4,
+      3.6
+     ],
+     "r1": 0.9,
+     "r2": 0.6,
+     "mat": "bone"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      1.8,
+      -3.4,
+      1.0
+     ],
+     "b": [
+      2.6,
+      -4.4,
+      3.6
+     ],
+     "r1": 0.9,
+     "r2": 0.6,
+     "mat": "bone"
+    }
+   ]
+  },
+  {
+   "name": "crest",
+   "parent": "head",
+   "at": [
+    0,
+    0.4,
+    6.6
+   ],
+   "parts": [
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": 1.8,
+     "h": 5.8,
+     "rot": [
+      -8,
+      0,
+      0
+     ],
+     "mat": "red"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      -2.4,
+      0.2,
+      -0.6
+     ],
+     "r": 1.5,
+     "h": 4.4,
+     "rot": [
+      -5,
+      -28,
+      0
+     ],
+     "mat": "red"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      2.4,
+      0.2,
+      -0.6
+     ],
+     "r": 1.5,
+     "h": 4.4,
+     "rot": [
+      -5,
+      28,
+      0
+     ],
+     "mat": "red"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      2.2,
+      -0.8
+     ],
+     "r": 1.5,
+     "h": 4.0,
+     "rot": [
+      -40,
+      0,
+      0
+     ],
+     "mat": "red"
+    }
+   ]
+  },
+  {
+   "name": "armL",
+   "parent": "torso",
+   "at": [
+    -8.2,
+    0,
+    11.6
+   ],
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      -0.6,
+      0,
+      -0.4
+     ],
+     "r": [
+      3.4,
+      3.4,
+      3.2
+     ],
+     "mat": "ink"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      0
+     ],
+     "b": [
+      -1.4,
+      0,
+      -6
+     ],
+     "r1": 2.6,
+     "r2": 2.4,
+     "mat": "ink"
+    }
+   ]
+  },
+  {
+   "name": "armR",
+   "parent": "torso",
+   "at": [
+    8.2,
+    0,
+    11.6
+   ],
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0.6,
+      0,
+      -0.4
+     ],
+     "r": [
+      3.4,
+      3.4,
+      3.2
+     ],
+     "mat": "ink"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      0
+     ],
+     "b": [
+      1.4,
+      0,
+      -6
+     ],
+     "r1": 2.6,
+     "r2": 2.4,
+     "mat": "ink"
+    }
+   ]
+  },
+  {
+   "name": "foreL",
+   "parent": "armL",
+   "at": [
+    -1.4,
+    0,
+    -6
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      0
+     ],
+     "b": [
+      -0.4,
+      -0.6,
+      -5.4
+     ],
+     "r1": 2.4,
+     "r2": 2.6,
+     "mat": "ink"
+    },
+    {
+     "shape": "cylinder",
+     "at": [
+      -0.2,
+      -0.3,
+      -2.2
+     ],
+     "r": 2.7,
+     "h": 0.55,
+     "mat": "bone_mark"
+    },
+    {
+     "shape": "cylinder",
+     "at": [
+      -0.3,
+      -0.4,
+      -3.8
+     ],
+     "r": 2.8,
+     "h": 0.55,
+     "mat": "red_mark"
+    },
+    {
+     "shape": "sphere",
+     "at": [
+      -0.5,
+      -0.8,
+      -7.4
+     ],
+     "r": 3.1,
+     "mat": "ink"
+    }
+   ]
+  },
+  {
+   "name": "foreR",
+   "parent": "armR",
+   "at": [
+    1.4,
+    0,
+    -6
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      0
+     ],
+     "b": [
+      0.4,
+      -0.6,
+      -5.4
+     ],
+     "r1": 2.4,
+     "r2": 2.6,
+     "mat": "ink"
+    },
+    {
+     "shape": "cylinder",
+     "at": [
+      0.2,
+      -0.3,
+      -2.2
+     ],
+     "r": 2.7,
+     "h": 0.55,
+     "mat": "bone_mark"
+    },
+    {
+     "shape": "cylinder",
+     "at": [
+      0.3,
+      -0.4,
+      -3.8
+     ],
+     "r": 2.8,
+     "h": 0.55,
+     "mat": "red_mark"
+    },
+    {
+     "shape": "sphere",
+     "at": [
+      0.5,
+      -0.8,
+      -7.4
+     ],
+     "r": 3.1,
+     "mat": "ink"
+    }
+   ]
+  }
+ ],
+ "clips": [
+  "idle",
+  "walk",
+  "run",
+  "attack",
+  "hit",
+  "death"
+ ]
+}

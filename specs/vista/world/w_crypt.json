@@ -1,0 +1,324 @@
+{
+ "name": "w_crypt",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Dungeon: ruined mausoleum, cracked gable roof, dark doorway, two arcane braziers.",
+ "frame": [
+  40,
+  40
+ ],
+ "anchor": [
+  20,
+  32
+ ],
+ "view": {
+  "yaw": {
+   "S": -20
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {},
+     "hide": [
+      "g1"
+     ],
+     "hold": 6
+    },
+    {
+     "pose": {},
+     "hide": [
+      "g0"
+     ],
+     "hold": 4
+    },
+    {
+     "pose": {},
+     "hide": [
+      "g1"
+     ],
+     "hold": 6
+    },
+    {
+     "pose": {},
+     "hide": [
+      "g0"
+     ],
+     "hold": 4
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "body",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      4.5
+     ],
+     "half": [
+      7,
+      5,
+      4.5
+     ],
+     "mat": "stone"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -5.3,
+      2.4
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      ".a.",
+      "aaa",
+      "aaa"
+     ],
+     "key": {
+      "a": "dark:0"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "roof",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "roof",
+     "at": [
+      0,
+      0,
+      9
+     ],
+     "half": [
+      7.8,
+      5.8
+     ],
+     "h": 4.5,
+     "mat": "stone",
+     "gable": true
+    },
+    {
+     "shape": "box",
+     "at": [
+      5,
+      -2,
+      12
+     ],
+     "half": [
+      3,
+      3,
+      3
+     ],
+     "mat": "stone",
+     "subtract": true
+    }
+   ]
+  },
+  {
+   "name": "pillars",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -5,
+      -8,
+      2.5
+     ],
+     "half": [
+      0.9,
+      0.9,
+      2.5
+     ],
+     "mat": "stone"
+    },
+    {
+     "shape": "box",
+     "at": [
+      5,
+      -8,
+      2.5
+     ],
+     "half": [
+      0.9,
+      0.9,
+      2.5
+     ],
+     "mat": "stone"
+    },
+    {
+     "shape": "box",
+     "at": [
+      -5,
+      -8,
+      5.4
+     ],
+     "half": [
+      1.2,
+      1.2,
+      0.4
+     ],
+     "mat": "stone"
+    }
+   ]
+  },
+  {
+   "name": "g0",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -5,
+      -8,
+      5.9
+     ],
+     "half": [
+      0.8,
+      0.8,
+      0.8
+     ],
+     "mat": "arcane"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      5,
+      -8,
+      5.5
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "arcane:1"
+     },
+     "min_facing": 0.05,
+     "overhang": true,
+     "depth_tol": 20
+    }
+   ]
+  },
+  {
+   "name": "g1",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -5,
+      -8,
+      6.2
+     ],
+     "half": [
+      0.7,
+      0.7,
+      1.1
+     ],
+     "mat": "arcane"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      5,
+      -8,
+      5.5
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a",
+      "a"
+     ],
+     "key": {
+      "a": "arcane:2"
+     },
+     "min_facing": 0.05,
+     "overhang": true,
+     "depth_tol": 20
+    }
+   ]
+  }
+ ],
+ "materials": {
+  "rock_d": {
+   "ramp": "rock",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.85
+   ],
+   "detail": {
+    "kind": "stone",
+    "scale": 1.6,
+    "amount": 0.5
+   }
+  },
+  "snow": {
+   "ramp": "plaster",
+   "shades": [
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.5,
+    0.8
+   ],
+   "sky": 0.3
+  },
+  "spire": {
+   "ramp": "ink",
+   "shades": [
+    0,
+    1,
+    2
+   ],
+   "thresholds": [
+    0.45,
+    0.8
+   ]
+  }
+ }
+}

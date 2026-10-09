@@ -1,0 +1,747 @@
+{
+ "name": "keep",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Ascalon-style keep: long hall with a terracotta hip roof, four corner towers, a tall donjon flying a red flag, banners by the gate.",
+ "frame": [
+  72,
+  80
+ ],
+ "anchor": [
+  36,
+  70
+ ],
+ "view": {
+  "yaw": {
+   "S": -24
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {
+      "flag": {
+       "rot": [
+        0,
+        0,
+        0
+       ]
+      }
+     },
+     "hold": 4
+    },
+    {
+     "pose": {
+      "flag": {
+       "rot": [
+        0,
+        0,
+        20
+       ]
+      }
+     },
+     "hold": 4
+    },
+    {
+     "pose": {
+      "flag": {
+       "rot": [
+        0,
+        0,
+        32
+       ]
+      }
+     },
+     "hold": 4
+    },
+    {
+     "pose": {
+      "flag": {
+       "rot": [
+        0,
+        0,
+        20
+       ]
+      }
+     },
+     "hold": 4
+    },
+    {
+     "pose": {
+      "flag": {
+       "rot": [
+        0,
+        0,
+        0
+       ]
+      }
+     },
+     "hold": 4
+    },
+    {
+     "pose": {
+      "flag": {
+       "rot": [
+        0,
+        0,
+        -18
+       ]
+      }
+     },
+     "hold": 4
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "hall",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      5.5
+     ],
+     "half": [
+      13,
+      8,
+      5.5
+     ],
+     "mat": "plaster"
+    },
+    {
+     "shape": "stamp_row",
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "at": [
+      0,
+      0,
+      2.48
+     ],
+     "count": 9,
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp_row",
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "at": [
+      0,
+      0,
+      2.48
+     ],
+     "count": 5,
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp_row",
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "at": [
+      0,
+      0,
+      7.97
+     ],
+     "count": 9,
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp_row",
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "at": [
+      0,
+      0,
+      7.97
+     ],
+     "count": 5,
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -8.3,
+      2
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      ".aaa.",
+      "aaaaa",
+      "aaaaa"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "hall_roof",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "roof",
+     "at": [
+      0,
+      0,
+      11
+     ],
+     "half": [
+      13.7,
+      8.7
+     ],
+     "h": 7.5,
+     "mat": "roof"
+    }
+   ]
+  },
+  {
+   "name": "banners",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -7,
+      -8.4,
+      7
+     ],
+     "half": [
+      1.1,
+      0.3,
+      2.4
+     ],
+     "mat": "banner"
+    },
+    {
+     "shape": "box",
+     "at": [
+      7,
+      -8.4,
+      7
+     ],
+     "half": [
+      1.1,
+      0.3,
+      2.4
+     ],
+     "mat": "banner"
+    }
+   ]
+  },
+  {
+   "name": "tw0",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -14,
+      -8,
+      6.5
+     ],
+     "half": [
+      3.0,
+      3.0,
+      6.5
+     ],
+     "mat": "plaster"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -14,
+      -11.3,
+      10
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a",
+      ".",
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -10.7,
+      -8,
+      10
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "tr0",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "roof",
+     "at": [
+      -14,
+      -8,
+      13
+     ],
+     "half": [
+      3.7,
+      3.7
+     ],
+     "h": 4.5,
+     "mat": "roof"
+    }
+   ]
+  },
+  {
+   "name": "tw1",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      14,
+      -8,
+      6.5
+     ],
+     "half": [
+      3.0,
+      3.0,
+      6.5
+     ],
+     "mat": "plaster"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      14,
+      -11.3,
+      10
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a",
+      ".",
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      17.3,
+      -8,
+      10
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "tr1",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "roof",
+     "at": [
+      14,
+      -8,
+      13
+     ],
+     "half": [
+      3.7,
+      3.7
+     ],
+     "h": 4.5,
+     "mat": "roof"
+    }
+   ]
+  },
+  {
+   "name": "tw2",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -14,
+      8,
+      8.5
+     ],
+     "half": [
+      3.0,
+      3.0,
+      8.5
+     ],
+     "mat": "plaster"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -14,
+      4.7,
+      10
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a",
+      ".",
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -10.7,
+      8,
+      10
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "tr2",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "roof",
+     "at": [
+      -14,
+      8,
+      17
+     ],
+     "half": [
+      3.7,
+      3.7
+     ],
+     "h": 4.5,
+     "mat": "roof"
+    }
+   ]
+  },
+  {
+   "name": "tw3",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      14,
+      8,
+      8.5
+     ],
+     "half": [
+      3.0,
+      3.0,
+      8.5
+     ],
+     "mat": "plaster"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      14,
+      4.7,
+      10
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a",
+      ".",
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      17.3,
+      8,
+      10
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "tr3",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "roof",
+     "at": [
+      14,
+      8,
+      17
+     ],
+     "half": [
+      3.7,
+      3.7
+     ],
+     "h": 4.5,
+     "mat": "roof"
+    }
+   ]
+  },
+  {
+   "name": "donjon",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      3,
+      5,
+      12.0
+     ],
+     "half": [
+      4.0,
+      4.0,
+      12.0
+     ],
+     "mat": "plaster"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      3,
+      0.7,
+      20
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a.a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      7.3,
+      5,
+      20
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "a.a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "donjon_roof",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "roof",
+     "at": [
+      3,
+      5,
+      24
+     ],
+     "half": [
+      4.7,
+      4.7
+     ],
+     "h": 6.5,
+     "mat": "roof"
+    }
+   ]
+  },
+  {
+   "name": "flag",
+   "parent": "root",
+   "at": [
+    3,
+    5,
+    30.5
+   ],
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      2
+     ],
+     "half": [
+      0.4,
+      0.4,
+      2
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "box",
+     "at": [
+      1.6,
+      0,
+      3.4
+     ],
+     "half": [
+      1.4,
+      0.3,
+      0.8
+     ],
+     "mat": "banner"
+    }
+   ]
+  }
+ ]
+}

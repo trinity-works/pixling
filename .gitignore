@@ -1,0 +1,25 @@
+out/
+__pycache__/
+*.pyc
+*.mp4
+*.zip
+*.aseprite
+research/**/_*/
+packs/
+viewer/
+
+# local clutter
+.DS_Store
+.claude/*
+!.claude/skills/
+.env
+# parked experiments kept local only: the toon/cutout/Blender study
+research/toon/
+# reel: big facing sheets stay local (the committed ref/start_<facing>.png are cut from them)
+reel/chars/*/ref/sheet*.png
+
+# local reference media
+references/
+*.egg-info/
+dist/
+build/

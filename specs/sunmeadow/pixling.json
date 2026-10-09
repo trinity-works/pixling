@@ -1,0 +1,612 @@
+{
+ "name": "pixling",
+ "style": "sunmeadow",
+ "rig": "humanoid",
+ "concept": "Pixling, the mascot: a round duckling painter. Fat yellow down ball, wide orange bill, a red beret (defining feature), carries a big paintbrush loaded with pink paint; paints with a sweep.",
+ "frame": [
+  64,
+  48
+ ],
+ "anchor": [
+  32,
+  41
+ ],
+ "shadow": {
+  "w": 11,
+  "h": 3
+ },
+ "smear": {
+  "color": "#ffd1d3",
+  "edge": "#f1a2b4",
+  "radius": 13,
+  "width": 6,
+  "height": 7,
+  "plane": "h"
+ },
+ "anim": {
+  "props": [
+   "tail"
+  ],
+  "prop_swing": 6,
+  "attack_lunge": 2,
+  "idle_bob": 1,
+  "walk_leg": 24,
+  "walk_arm": 20,
+  "stride_px": 5,
+  "gait": "stride",
+  "attack_style": "slash"
+ },
+ "materials": {
+  "down": {
+   "ramp": "cloth_yellow",
+   "shades": [
+    1,
+    2,
+    3
+   ],
+   "detail": {
+    "kind": "feather",
+    "amount": 0.3
+   },
+   "edge": {
+    "kind": "feather",
+    "amount": 0.2
+   }
+  },
+  "bill": {
+   "ramp": "fur_orange",
+   "shades": [
+    1,
+    2,
+    3
+   ],
+   "detail": null,
+   "edge": null
+  },
+  "beret": {
+   "ramp": "cloth_red",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "detail": null
+  },
+  "handle": {
+   "ramp": "wood",
+   "shades": [
+    1,
+    2,
+    3
+   ]
+  },
+  "paint": {
+   "ramp": "pink",
+   "shades": [
+    1,
+    2,
+    3
+   ]
+  }
+ },
+ "clips": [
+  "idle",
+  "walk",
+  "attack",
+  "hit"
+ ],
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "hips",
+   "parent": "root",
+   "at": [
+    0,
+    0,
+    4.0
+   ],
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      0.6,
+      1.4
+     ],
+     "r": [
+      5.8,
+      5.6,
+      4.2
+     ],
+     "mat": "down"
+    }
+   ]
+  },
+  {
+   "name": "tail",
+   "parent": "hips",
+   "at": [
+    0,
+    5.4,
+    2.6
+   ],
+   "parts": [
+    {
+     "shape": "cone",
+     "rot": [
+      -55,
+      0,
+      0
+     ],
+     "r": 1.8,
+     "h": 2.6,
+     "mat": "down"
+    }
+   ]
+  },
+  {
+   "name": "torso",
+   "parent": "hips",
+   "at": [
+    0,
+    0,
+    0.8
+   ],
+   "blend": 1.2,
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -0.8,
+      2.2
+     ],
+     "r": [
+      5.3,
+      4.8,
+      3.8
+     ],
+     "mat": "down"
+    }
+   ]
+  },
+  {
+   "name": "head",
+   "parent": "torso",
+   "at": [
+    0,
+    -0.8,
+    4.6
+   ],
+   "blend": 0.8,
+   "parts": [
+    {
+     "shape": "sphere",
+     "at": [
+      0,
+      0,
+      4.0
+     ],
+     "r": 5.1,
+     "mat": "down"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -5.0,
+      2.9
+     ],
+     "r": [
+      3.1,
+      2.7,
+      1.15
+     ],
+     "mat": "bill"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -4.4,
+      1.9
+     ],
+     "r": [
+      2.4,
+      2.0,
+      0.8
+     ],
+     "mat": "bill"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -2.09,
+      -4.7,
+      4.9
+     ],
+     "normal": [
+      -0.5,
+      -1,
+      0
+     ],
+     "rows": [
+      "a",
+      "a"
+     ],
+     "key": {
+      "a": "pupil"
+     },
+     "min_facing": 0.05,
+     "clamp": 2
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      2.09,
+      -4.7,
+      4.9
+     ],
+     "normal": [
+      0.5,
+      -1,
+      0
+     ],
+     "rows": [
+      "a",
+      "a"
+     ],
+     "key": {
+      "a": "pupil"
+     },
+     "min_facing": 0.05,
+     "clamp": 2
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -3.3000000000000003,
+      -4.0,
+      3.2
+     ],
+     "normal": [
+      -0.6,
+      -1,
+      0
+     ],
+     "rows": [
+      "c"
+     ],
+     "key": {
+      "c": "pink:2"
+     }
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      3.3000000000000003,
+      -4.0,
+      3.2
+     ],
+     "normal": [
+      0.6,
+      -1,
+      0
+     ],
+     "rows": [
+      "c"
+     ],
+     "key": {
+      "c": "pink:2"
+     }
+    }
+   ]
+  },
+  {
+   "name": "beret",
+   "parent": "head",
+   "at": [
+    0,
+    0,
+    8.6
+   ],
+   "seam": true,
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      1.4,
+      0.6,
+      0.2
+     ],
+     "rot": [
+      6,
+      -22,
+      0
+     ],
+     "r": [
+      4.5,
+      4.4,
+      1.3
+     ],
+     "mat": "beret"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      1.0,
+      0.6,
+      1.2
+     ],
+     "b": [
+      1.0,
+      0.6,
+      2.4
+     ],
+     "r1": 1.25,
+     "r2": 1.2,
+     "mat": "beret"
+    }
+   ]
+  },
+  {
+   "name": "armL",
+   "parent": "torso",
+   "at": [
+    -5.0,
+    0,
+    2.8
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      0
+     ],
+     "b": [
+      -0.5,
+      0,
+      -2.2
+     ],
+     "r1": 1.7,
+     "r2": 1.5,
+     "mat": "down"
+    }
+   ]
+  },
+  {
+   "name": "foreL",
+   "parent": "armL",
+   "at": [
+    -0.5,
+    0,
+    -2.2
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      0
+     ],
+     "b": [
+      -0.3,
+      0.4,
+      -1.6
+     ],
+     "r1": 1.5,
+     "r2": 1.25,
+     "mat": "down"
+    }
+   ]
+  },
+  {
+   "name": "armR",
+   "parent": "torso",
+   "at": [
+    5.0,
+    0,
+    2.8
+   ],
+   "rot": [
+    -35,
+    0,
+    10
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      0
+     ],
+     "b": [
+      0.5,
+      0,
+      -2.2
+     ],
+     "r1": 1.7,
+     "r2": 1.5,
+     "mat": "down"
+    }
+   ]
+  },
+  {
+   "name": "foreR",
+   "parent": "armR",
+   "at": [
+    0.5,
+    0,
+    -2.2
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      0
+     ],
+     "b": [
+      0.3,
+      0,
+      -1.6
+     ],
+     "r1": 1.5,
+     "r2": 1.3,
+     "mat": "down"
+    }
+   ]
+  },
+  {
+   "name": "weapon",
+   "parent": "foreR",
+   "at": [
+    0.6,
+    -0.6,
+    -1.8
+   ],
+   "rot": [
+    25,
+    35,
+    0
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      -2.5
+     ],
+     "b": [
+      0,
+      0,
+      8.5
+     ],
+     "r1": 1.3,
+     "r2": 1.25,
+     "mat": "handle"
+    },
+    {
+     "shape": "cylinder",
+     "at": [
+      0,
+      0,
+      9.3
+     ],
+     "r": 1.6,
+     "h": 0.9,
+     "mat": "steel"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      0,
+      11.6
+     ],
+     "r": [
+      2.2,
+      2.2,
+      2.6
+     ],
+     "mat": "paint"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      0,
+      13.4
+     ],
+     "r": 1.6,
+     "h": 2.0,
+     "mat": "paint"
+    }
+   ]
+  },
+  {
+   "name": "legL",
+   "parent": "hips",
+   "at": [
+    -2.2,
+    0,
+    -0.4
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "b": [
+      0,
+      0,
+      -2.8
+     ],
+     "r1": 1.25,
+     "r2": 1.2,
+     "mat": "bill"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -1.3,
+      -3.6
+     ],
+     "r": [
+      2.0,
+      2.7,
+      0.9
+     ],
+     "mat": "bill"
+    }
+   ]
+  },
+  {
+   "name": "legR",
+   "parent": "hips",
+   "at": [
+    2.2,
+    0,
+    -0.4
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "b": [
+      0,
+      0,
+      -2.8
+     ],
+     "r1": 1.25,
+     "r2": 1.2,
+     "mat": "bill"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -1.3,
+      -3.6
+     ],
+     "r": [
+      2.0,
+      2.7,
+      0.9
+     ],
+     "mat": "bill"
+    }
+   ]
+  }
+ ],
+ "size": {
+  "height": 30
+ }
+}

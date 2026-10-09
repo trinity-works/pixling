@@ -1,0 +1,318 @@
+{
+ "name": "w_smuggler_cove",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Enemy spot: smugglers' cove, a tarred shack on stilts, stacked crates and a lantern.",
+ "frame": [
+  32,
+  26
+ ],
+ "anchor": [
+  15,
+  20
+ ],
+ "view": {
+  "yaw": {
+   "S": -15
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {},
+     "hide": [
+      "g1"
+     ],
+     "hold": 6
+    },
+    {
+     "pose": {},
+     "hide": [
+      "g0"
+     ],
+     "hold": 4
+    },
+    {
+     "pose": {},
+     "hide": [
+      "g1"
+     ],
+     "hold": 6
+    },
+    {
+     "pose": {},
+     "hide": [
+      "g0"
+     ],
+     "hold": 4
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "stilts",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -4,
+      -2,
+      1.5
+     ],
+     "half": [
+      0.5,
+      0.5,
+      1.5
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "box",
+     "at": [
+      -4,
+      3,
+      1.5
+     ],
+     "half": [
+      0.5,
+      0.5,
+      1.5
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "box",
+     "at": [
+      4,
+      -2,
+      1.5
+     ],
+     "half": [
+      0.5,
+      0.5,
+      1.5
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "box",
+     "at": [
+      4,
+      3,
+      1.5
+     ],
+     "half": [
+      0.5,
+      0.5,
+      1.5
+     ],
+     "mat": "wood"
+    }
+   ]
+  },
+  {
+   "name": "shack",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0.5,
+      5
+     ],
+     "half": [
+      5,
+      3.6,
+      2
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "roof",
+     "at": [
+      0,
+      0.5,
+      7
+     ],
+     "half": [
+      5.8,
+      4.2
+     ],
+     "h": 3,
+     "mat": "roof_plum",
+     "gable": true
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      1.5,
+      -3.4,
+      5
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "dark:0"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "crates",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      8,
+      -2,
+      1.3
+     ],
+     "half": [
+      1.3,
+      1.3,
+      1.3
+     ],
+     "mat": "sand"
+    },
+    {
+     "shape": "box",
+     "at": [
+      8.6,
+      0.8,
+      1.3
+     ],
+     "half": [
+      1.3,
+      1.3,
+      1.3
+     ],
+     "mat": "sand"
+    },
+    {
+     "shape": "box",
+     "at": [
+      8.3,
+      -0.6,
+      3.6
+     ],
+     "half": [
+      1.2,
+      1.2,
+      1.0
+     ],
+     "mat": "sand"
+    }
+   ]
+  },
+  {
+   "name": "g0",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -6,
+      -3,
+      3.8
+     ],
+     "half": [
+      0.7,
+      0.7,
+      0.8
+     ],
+     "mat": "torch"
+    }
+   ]
+  },
+  {
+   "name": "g1",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -6,
+      -3,
+      3.8
+     ],
+     "half": [
+      0.7,
+      0.7,
+      0.8
+     ],
+     "mat": "glass"
+    }
+   ]
+  }
+ ],
+ "materials": {
+  "rock_d": {
+   "ramp": "rock",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.85
+   ],
+   "detail": {
+    "kind": "stone",
+    "scale": 1.6,
+    "amount": 0.5
+   }
+  },
+  "snow": {
+   "ramp": "plaster",
+   "shades": [
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.5,
+    0.8
+   ],
+   "sky": 0.3
+  },
+  "spire": {
+   "ramp": "ink",
+   "shades": [
+    0,
+    1,
+    2
+   ],
+   "thresholds": [
+    0.45,
+    0.8
+   ]
+  }
+ }
+}

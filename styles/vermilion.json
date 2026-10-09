@@ -1,0 +1,215 @@
+{
+ "name": "vermilion",
+ "about": "Folk-print spirit style: three inks (warm black, vermilion, bone white) on cream paper. Black masses carry the silhouette, red carries the markings, 1-2 flat tones, no outline.",
+ "light": [
+  -0.55,
+  -0.42,
+  0.72
+ ],
+ "thresholds": [
+  0.5,
+  0.9
+ ],
+ "outline": {
+  "mode": "self",
+  "dark_below": -0.6,
+  "rim_above": 2.0
+ },
+ "inner_line_depth": 1.8,
+ "contact_shadow": 1,
+ "bg": "#e9dfc4",
+ "flash": "#fff6e6",
+ "shadow_color": "#cdbf9f",
+ "dust": "#a89a84",
+ "vfx_ramps": {
+  "red": "fx_ink",
+  "bone": "glow_bone"
+ },
+ "scale": {
+  "tile": 16,
+  "hero_h": 34
+ },
+ "motion": {
+  "gait": "hop",
+  "idle_style": "float",
+  "hover": 2,
+  "float_bob": 2,
+  "attack_style": "dart"
+ },
+ "ramps": {
+  "ink": [
+   "#1c1719",
+   "#2a2326",
+   "#3a3034"
+  ],
+  "red": [
+   "#7e2419",
+   "#b8331f",
+   "#dc4a2c",
+   "#ef7a52"
+  ],
+  "bone": [
+   "#a89a84",
+   "#cbbfa9",
+   "#f6f0e4"
+  ],
+  "paper": [
+   "#cdbf9f",
+   "#ddd0b0",
+   "#e9dfc4"
+  ],
+  "eye": [
+   "#1c1719",
+   "#f3ecdd"
+  ],
+  "ground": [
+   "#dccfae",
+   "#e4d8ba",
+   "#ebe1c7"
+  ],
+  "glow_red": [
+   "#7e2419",
+   "#dc4a2c",
+   "#ff9a64",
+   "#fff0d8"
+  ],
+  "glow_bone": [
+   "#8d8270",
+   "#ddd3c0",
+   "#f3ecdd",
+   "#fffaf0"
+  ],
+  "fx_ink": [
+   "#ef7a52",
+   "#dc4a2c",
+   "#7e2419",
+   "#1c1719"
+  ],
+  "dust": [
+   "#a89a84",
+   "#bdb09a",
+   "#cdbf9f"
+  ]
+ },
+ "materials": {
+  "ink": {
+   "ramp": "ink",
+   "shades": [
+    0,
+    1
+   ],
+   "thresholds": [
+    0.72
+   ],
+   "sky": 0.25
+  },
+  "ink_flat": {
+   "ramp": "ink",
+   "shades": [
+    0
+   ],
+   "no_outline": true
+  },
+  "red": {
+   "ramp": "red",
+   "shades": [
+    1,
+    2
+   ],
+   "thresholds": [
+    0.42
+   ],
+   "sky": 0.2
+  },
+  "red_dark": {
+   "ramp": "red",
+   "shades": [
+    0,
+    1
+   ],
+   "thresholds": [
+    0.5
+   ]
+  },
+  "red_mark": {
+   "ramp": "red",
+   "shades": [
+    2
+   ],
+   "no_outline": true
+  },
+  "canopy": {
+   "ramp": "red",
+   "shades": [
+    0,
+    1,
+    2
+   ],
+   "thresholds": [
+    0.36,
+    0.62
+   ],
+   "sky": 0.35,
+   "edge": {
+    "kind": "leaf",
+    "amount": 0.4
+   }
+  },
+  "fur": {
+   "ramp": "bone",
+   "shades": [
+    1,
+    2
+   ],
+   "thresholds": [
+    0.46
+   ],
+   "sky": 0.3,
+   "edge": {
+    "kind": "fur",
+    "amount": 0.7
+   }
+  },
+  "bone": {
+   "ramp": "bone",
+   "shades": [
+    1,
+    2
+   ],
+   "thresholds": [
+    0.5
+   ]
+  },
+  "bone_mark": {
+   "ramp": "bone",
+   "shades": [
+    2
+   ],
+   "no_outline": true
+  },
+  "eye": {
+   "ramp": "eye",
+   "shades": [
+    1
+   ],
+   "no_outline": true
+  },
+  "pupil": {
+   "ramp": "eye",
+   "shades": [
+    0
+   ],
+   "no_outline": true
+  },
+  "ember": {
+   "ramp": "glow_red",
+   "shades": [
+    1,
+    2,
+    3
+   ],
+   "emissive": true,
+   "no_outline": true
+  }
+ }
+}

@@ -1,0 +1,94 @@
+{
+ "name": "flat_dunes",
+ "about": "Flat Minimal (dunes): two world hues, one warm window accent, chunky pixels, flat faces and flat long shadows, two or three tones per material.",
+ "family": "flat",
+ "biome": "dunes",
+ "camera": "iso_exact",
+ "light": [
+  0,
+  -1,
+  1
+ ],
+ "accent": {
+  "ramp": "glow_fire",
+  "owner": "windows"
+ },
+ "night": {
+  "ramp": [
+   "#04141a",
+   "#082228",
+   "#0e3238",
+   "#16474a",
+   "#24605c"
+  ],
+  "glow": [
+   "#a8602a",
+   "#f2c544",
+   "#fbe58a"
+  ]
+ },
+ "ramps": {
+  "ink": [
+   "#0b1d22",
+   "#123036"
+  ],
+  "glow_fire": [
+   "#c27a1e",
+   "#f2c544",
+   "#fbe58a"
+  ],
+  "bg": [
+   "#1b2a4a",
+   "#22365c",
+   "#2b456e"
+  ],
+  "land": [
+   "#b06a36",
+   "#c98444",
+   "#dca15a"
+  ],
+  "tree": [
+   "#3d4a2a",
+   "#55633a",
+   "#6f7e48"
+  ],
+  "wall": [
+   "#dcae6e",
+   "#f2d29a"
+  ],
+  "roof": [
+   "#7a3a26",
+   "#94482c",
+   "#ad5a34"
+  ],
+  "trunk": [
+   "#4a2c1c",
+   "#6a4028"
+  ],
+  "cliff": [
+   "#6a3a24",
+   "#8a4e2e"
+  ],
+  "path": [
+   "#c98444",
+   "#dca15a",
+   "#ecc37c"
+  ],
+  "stone": [
+   "#7a4e34",
+   "#9e6a48"
+  ],
+  "fur_brown": [
+   "#5a2e22",
+   "#7e4630"
+  ],
+  "fur_tan": [
+   "#7e4630",
+   "#a0623e"
+  ],
+  "fur_white": [
+   "#9fd8c8",
+   "#d8f2e6"
+  ]
+ }
+}

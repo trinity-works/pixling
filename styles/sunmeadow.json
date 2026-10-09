@@ -1,0 +1,519 @@
+{
+ "name": "sunmeadow",
+ "about": "Bright cozy-adventure style: warm saturated mids, soft value range, colored (never black) outlines from each material's own darkest shade, light from the upper left.",
+ "light": [
+  -0.55,
+  -0.42,
+  0.72
+ ],
+ "thresholds": [
+  0.48,
+  0.78,
+  0.93
+ ],
+ "outline": {
+  "mode": "self",
+  "dark_below": -0.3,
+  "rim_above": 0.62
+ },
+ "inner_line_depth": 2.5,
+ "bg": "#8fb56a",
+ "flash": "#fffbe8",
+ "shadow_color": "#44703f",
+ "dust": "#e2dcc0",
+ "vfx_ramps": {
+  "fire": "glow_fire",
+  "cyan": "glow_cyan",
+  "leaf": "glow_leaf",
+  "white": "fur_white"
+ },
+ "scale": {
+  "tile": 16,
+  "hero_h": 30,
+  "critter_h": [
+   8,
+   16
+  ],
+  "animal_h": [
+   14,
+   30
+  ],
+  "tree_h": [
+   40,
+   96
+  ]
+ },
+ "motion": {
+  "gait": "bounce",
+  "attack_style": "hop",
+  "hitstop": 1
+ },
+ "ramps": {
+  "ink": [
+   "#2a1b2d",
+   "#3f2a3e",
+   "#5a3d4f"
+  ],
+  "skin": [
+   "#875c59",
+   "#b57f6c",
+   "#d9ab88",
+   "#f1dabb"
+  ],
+  "fur_tan": [
+   "#83564a",
+   "#b07a58",
+   "#d0a675",
+   "#e7d6af"
+  ],
+  "fur_brown": [
+   "#553232",
+   "#7d4e40",
+   "#9c7156",
+   "#b19a80"
+  ],
+  "fur_white": [
+   "#aba39b",
+   "#c5beb1",
+   "#ded9cc",
+   "#f8f5ec"
+  ],
+  "fur_grey": [
+   "#595e66",
+   "#78818c",
+   "#9ba6b0",
+   "#c3ccd2"
+  ],
+  "fur_orange": [
+   "#913c38",
+   "#c75833",
+   "#eb8541",
+   "#f8bd83"
+  ],
+  "cloth_red": [
+   "#773346",
+   "#a7474e",
+   "#ca6b59",
+   "#d89a7e"
+  ],
+  "cloth_blue": [
+   "#34476c",
+   "#406c9a",
+   "#5793bb",
+   "#8ab9ce"
+  ],
+  "cloth_green": [
+   "#2b5e47",
+   "#508356",
+   "#84a46c",
+   "#bac399"
+  ],
+  "cloth_yellow": [
+   "#a77e45",
+   "#c6a046",
+   "#dac76b",
+   "#efecaf"
+  ],
+  "leather": [
+   "#643b35",
+   "#8a573e",
+   "#a57a52",
+   "#b6a280"
+  ],
+  "wood": [
+   "#5d372e",
+   "#805338",
+   "#9b764e",
+   "#ac9d7c"
+  ],
+  "steel": [
+   "#616a73",
+   "#83939d",
+   "#aabdc5",
+   "#d9e8eb"
+  ],
+  "gold": [
+   "#aa723f",
+   "#cf9339",
+   "#e6bc5b",
+   "#f3e6a4"
+  ],
+  "leaf": [
+   "#004032",
+   "#00623a",
+   "#3e8237",
+   "#7a9e3f",
+   "#b3b94f"
+  ],
+  "leaf_autumn": [
+   "#7e2319",
+   "#a54013",
+   "#c76414",
+   "#e38b28",
+   "#fdb443"
+  ],
+  "bark": [
+   "#47292a",
+   "#674035",
+   "#805c46",
+   "#8f7d67"
+  ],
+  "stone": [
+   "#555763",
+   "#777e8d",
+   "#9da8b6",
+   "#c8d2db"
+  ],
+  "pink": [
+   "#9b6884",
+   "#ca819d",
+   "#f1a2b4",
+   "#ffd1d3"
+  ],
+  "skin_orc": [
+   "#3d4f1c",
+   "#6c7323",
+   "#a19648",
+   "#c8bf8c"
+  ],
+  "glow_fire": [
+   "#b8412a",
+   "#f07a32",
+   "#ffc14a",
+   "#fff4c8"
+  ],
+  "glow_cyan": [
+   "#2a7fa8",
+   "#48c0dc",
+   "#98f0f0",
+   "#f0fffc"
+  ],
+  "glow_leaf": [
+   "#3f8f3a",
+   "#a6e04a",
+   "#f0f58a",
+   "#fffce6"
+  ],
+  "eye": [
+   "#2a1b2d",
+   "#fff6e8"
+  ],
+  "ground": [
+   "#4a6d4e",
+   "#5f804c",
+   "#808c67"
+  ]
+ },
+ "materials": {
+  "skin": {
+   "ramp": "skin",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ]
+  },
+  "fur_tan": {
+   "ramp": "fur_tan",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "detail": {
+    "kind": "fur",
+    "amount": 0.8
+   },
+   "edge": {
+    "kind": "fur",
+    "amount": 0.3
+   }
+  },
+  "fur_brown": {
+   "ramp": "fur_brown",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "detail": {
+    "kind": "fur",
+    "amount": 0.8
+   },
+   "edge": {
+    "kind": "fur",
+    "amount": 0.3
+   }
+  },
+  "fur_white": {
+   "ramp": "fur_white",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "detail": {
+    "kind": "fur",
+    "amount": 0.8
+   },
+   "edge": {
+    "kind": "fur",
+    "amount": 0.3
+   }
+  },
+  "fur_grey": {
+   "ramp": "fur_grey",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "detail": {
+    "kind": "fur",
+    "amount": 0.8
+   },
+   "edge": {
+    "kind": "fur",
+    "amount": 0.3
+   }
+  },
+  "fur_orange": {
+   "ramp": "fur_orange",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "detail": {
+    "kind": "fur",
+    "amount": 0.8
+   },
+   "edge": {
+    "kind": "fur",
+    "amount": 0.3
+   }
+  },
+  "cloth_red": {
+   "ramp": "cloth_red",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "detail": {
+    "kind": "cloth"
+   }
+  },
+  "cloth_blue": {
+   "ramp": "cloth_blue",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "detail": {
+    "kind": "cloth"
+   }
+  },
+  "cloth_green": {
+   "ramp": "cloth_green",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "detail": {
+    "kind": "cloth"
+   }
+  },
+  "cloth_yellow": {
+   "ramp": "cloth_yellow",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "detail": {
+    "kind": "cloth"
+   }
+  },
+  "leather": {
+   "ramp": "leather",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ]
+  },
+  "wood": {
+   "ramp": "wood",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ]
+  },
+  "steel": {
+   "ramp": "steel",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ]
+  },
+  "gold": {
+   "ramp": "gold",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ]
+  },
+  "leaf": {
+   "ramp": "leaf",
+   "shades": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "thresholds": [
+    0.46,
+    0.66,
+    0.86,
+    0.985
+   ],
+   "sky": 0.3,
+   "sky_obj": 0.22,
+   "detail": {
+    "kind": "leaf"
+   },
+   "edge": {
+    "kind": "leaf",
+    "amount": 0.45
+   }
+  },
+  "leaf_autumn": {
+   "ramp": "leaf_autumn",
+   "shades": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "thresholds": [
+    0.46,
+    0.66,
+    0.86,
+    0.985
+   ],
+   "sky": 0.3,
+   "sky_obj": 0.22,
+   "detail": {
+    "kind": "leaf"
+   },
+   "edge": {
+    "kind": "leaf",
+    "amount": 0.45
+   }
+  },
+  "bark": {
+   "ramp": "bark",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "detail": {
+    "kind": "bark"
+   }
+  },
+  "stone": {
+   "ramp": "stone",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "detail": {
+    "kind": "stone"
+   }
+  },
+  "pink": {
+   "ramp": "pink",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ]
+  },
+  "skin_orc": {
+   "ramp": "skin_orc",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ]
+  },
+  "pupil": {
+   "ramp": "eye",
+   "shades": [
+    0
+   ],
+   "no_outline": true
+  },
+  "eye_white": {
+   "ramp": "eye",
+   "shades": [
+    1
+   ],
+   "no_outline": true
+  },
+  "nose": {
+   "ramp": "ink",
+   "shades": [
+    0,
+    1
+   ],
+   "no_outline": true
+  },
+  "fire": {
+   "ramp": "glow_fire",
+   "shades": [
+    1,
+    2,
+    3
+   ],
+   "emissive": true,
+   "no_outline": true
+  },
+  "dark": {
+   "ramp": "ink",
+   "shades": [
+    0,
+    1,
+    2
+   ]
+  }
+ }
+}

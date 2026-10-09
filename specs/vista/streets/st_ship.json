@@ -1,0 +1,378 @@
+{
+ "name": "st_ship",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Two-masted harbour ship: dark wooden hull, cream sails, red pennants, gently bobbing.",
+ "frame": [
+  48,
+  40
+ ],
+ "anchor": [
+  24,
+  32
+ ],
+ "view": {
+  "yaw": {
+   "S": 0
+  }
+ },
+ "materials": {
+  "roof_t": {
+   "ramp": "roof",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "plum_t": {
+   "ramp": "roof_plum",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "wall_s": {
+   "ramp": "stone",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.62,
+    0.86
+   ],
+   "detail": {
+    "kind": "stone",
+    "scale": 1.4,
+    "amount": 0.5
+   }
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {},
+     "root": [
+      0,
+      0,
+      0
+     ],
+     "hold": 5
+    },
+    {
+     "pose": {},
+     "root": [
+      0,
+      0,
+      0.6
+     ],
+     "hold": 5
+    },
+    {
+     "pose": {},
+     "root": [
+      0,
+      0,
+      1
+     ],
+     "hold": 5
+    },
+    {
+     "pose": {},
+     "root": [
+      0,
+      0,
+      0.6
+     ],
+     "hold": 5
+    },
+    {
+     "pose": {},
+     "root": [
+      0,
+      0,
+      0
+     ],
+     "hold": 5
+    },
+    {
+     "pose": {},
+     "root": [
+      0,
+      0,
+      -0.4
+     ],
+     "hold": 5
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "hull",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      0,
+      1.6
+     ],
+     "r": [
+      18,
+      6,
+      3.2
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      5.6
+     ],
+     "half": [
+      30,
+      30,
+      2.4
+     ],
+     "mat": "wood",
+     "subtract": true
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      0,
+      3.0
+     ],
+     "r": [
+      16,
+      4.6,
+      1.6
+     ],
+     "mat": "sand"
+    }
+   ]
+  },
+  {
+   "name": "masts",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -6,
+      0,
+      12
+     ],
+     "half": [
+      0.6,
+      0.6,
+      10
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "box",
+     "at": [
+      6,
+      0,
+      12
+     ],
+     "half": [
+      0.6,
+      0.6,
+      10
+     ],
+     "mat": "wood"
+    }
+   ]
+  },
+  {
+   "name": "sails",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "roof",
+     "at": [
+      -2.4,
+      -0.8,
+      4.6
+     ],
+     "half": [
+      4.2,
+      30
+     ],
+     "h": 14,
+     "mat": "plaster",
+     "gable": true,
+     "rot": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "shape": "box",
+     "at": [
+      -2.4,
+      30.4,
+      10
+     ],
+     "half": [
+      8,
+      30,
+      12
+     ],
+     "mat": "plaster",
+     "subtract": true
+    },
+    {
+     "shape": "box",
+     "at": [
+      -2.4,
+      -31.2,
+      10
+     ],
+     "half": [
+      8,
+      30,
+      12
+     ],
+     "mat": "plaster",
+     "subtract": true
+    },
+    {
+     "shape": "roof",
+     "at": [
+      9.6,
+      -0.8,
+      4.6
+     ],
+     "half": [
+      4.2,
+      30
+     ],
+     "h": 14,
+     "mat": "plaster",
+     "gable": true,
+     "rot": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "shape": "box",
+     "at": [
+      9.6,
+      30.4,
+      10
+     ],
+     "half": [
+      8,
+      30,
+      12
+     ],
+     "mat": "plaster",
+     "subtract": true
+    },
+    {
+     "shape": "box",
+     "at": [
+      9.6,
+      -31.2,
+      10
+     ],
+     "half": [
+      8,
+      30,
+      12
+     ],
+     "mat": "plaster",
+     "subtract": true
+    }
+   ]
+  },
+  {
+   "name": "pennants",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -4.4,
+      0,
+      22.4
+     ],
+     "half": [
+      1.6,
+      0.3,
+      0.6
+     ],
+     "mat": "banner"
+    },
+    {
+     "shape": "box",
+     "at": [
+      7.6,
+      0,
+      22.4
+     ],
+     "half": [
+      1.6,
+      0.3,
+      0.6
+     ],
+     "mat": "banner"
+    }
+   ]
+  }
+ ]
+}

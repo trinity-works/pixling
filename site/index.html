@@ -1,0 +1,810 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>pixling</title>
+<!--
+  AI agents: this page documents the pixling CLI. Plain text: ./llms.txt · commands as JSON: ./agents.json
+  pixling is a catalogue for making game art with code: pipelines (spec, iso, map, fx, video, painted, style), styles
+  with how they were made (hand, kit code, lab notes), and the taste rules behind them. Run them or take what helps.
+  Install: uv tool install pixling (or pipx install pixling, or npx pixling). Then in the user's repo: pixling agent install .
+  Then: pixling pipelines, pixling styles NAME --how, pixling guide. Loop: run -> look at the PNG -> fix -> again.
+-->
+<meta name="description" content="pixling lets coding agents program pixel art: sprites, living maps and effects written as code and rendered pixel-perfect, with collision, animation and a locked palette built in. Not image generation.">
+<meta name="theme-color" content="#0e1316">
+<link rel="alternate" type="text/plain" href="llms.txt" title="pixling for agents">
+<link rel="alternate" type="application/json" href="agents.json" title="pixling commands">
+<link rel="icon" href="a/favicon-32.png">
+<link rel="preload" href="fonts/GeistPixel-Square.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/GeistMono-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* self-hosted and preloaded, with block so the first paint is already in the right face (no swap flash) */
+@font-face{font-family:"Geist Pixel";src:url(fonts/GeistPixel-Square.woff2) format("woff2");font-display:block}
+@font-face{font-family:"Geist";src:url(fonts/Geist-Variable.woff2) format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Geist Mono";src:url(fonts/GeistMono-Variable.woff2) format("woff2");font-weight:100 900;font-display:block}
+/* Dark, visual-first. Every picture is a real pixling output, shown at whole-number scale and moved in whole pixels.
+   Sections: a wall of worlds (hero) · why code · how it works, told on a sticky stage ·
+   what it makes (bento of live tiles) · the looks · install in three steps. Geist Pixel for headings and labels, Geist for reading. */
+:root{
+  --bg:#0e1316; --bg2:#121a1d; --card:#161f23; --card2:#1b262b; --line:rgba(236,230,214,.09); --line2:rgba(236,230,214,.16);
+  --fog:#ece6d6; --dim:#9aa5a6; --mute:#6c787a; --gold:#e2c05a; --teal:#5fa89f; --mint:#86b09c; --coral:#e48d7c; --sea:#2a6570;
+  --pixel:"Geist Pixel",ui-monospace,Menlo,monospace;
+  --sans:"Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fog);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%}
+.px{image-rendering:pixelated;image-rendering:crisp-edges}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+button{font:inherit;color:inherit}
+.col{max-width:1200px;margin:0 auto;padding-inline:24px}
+@media (max-width:560px){.col{padding-inline:16px}}
+h1,h2,h3{font-family:var(--pixel);font-weight:400;margin:0;text-wrap:balance;letter-spacing:0}
+h2{font-size:clamp(34px,4.6vw,56px);line-height:1.06}
+h3{font-size:21px;line-height:1.25}
+p{margin:0}
+.lede{font-size:18px;color:var(--dim);max-width:34em}
+.sprite{background-repeat:no-repeat;image-rendering:pixelated;image-rendering:crisp-edges;display:block}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s steps(6)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+
+/* nav */
+.nav{position:fixed;inset:0 0 auto;z-index:20;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.nav .logo{transition:opacity .3s}.nav:not(.solid) .logo{opacity:0;pointer-events:none}
+.nav.solid{background:rgba(14,19,22,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-color:var(--line)}
+.nav .col{display:flex;align-items:center;gap:18px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo img{width:160.5px;height:45px;display:block;image-rendering:pixelated}
+@media (max-width:420px){.logo img{width:107px;height:30px;image-rendering:pixelated}}
+.nav nav{margin-left:auto;display:flex;gap:4px;align-items:center}
+.nav nav a{font:500 13px/1 var(--sans);color:var(--dim);text-decoration:none;padding:8px 11px;border-radius:8px;white-space:nowrap}
+.nav nav a:hover{color:var(--fog);background:rgba(236,230,214,.06)}
+.nav nav a.cta{background:var(--fog);color:var(--bg)}
+.nav nav a.cta:hover{background:#fff}
+@media (max-width:820px){.nav nav a.hide-s[href^="http"]{display:none}}
+@media (max-width:760px){.nav nav a.hide-s{display:none}.scrollhint{display:none}.nav nav a.cta{padding:12px 16px}}
+
+/* hero: a wall of worlds */
+.hero{position:relative;min-height:max(720px,100svh);display:grid;place-items:center;overflow:hidden;isolation:isolate}
+.wall{position:absolute;inset:-40px 0;display:flex;gap:14px;justify-content:center;z-index:-2;opacity:0;transition:opacity .7s}
+.wall.ready{opacity:1}
+.wall .lane{flex:none;width:280px;display:flex;flex-direction:column;gap:14px;will-change:transform}
+.wall .tile{flex:none;border-radius:12px;overflow:hidden;background-repeat:no-repeat;background-color:var(--sea);image-rendering:pixelated;image-rendering:crisp-edges;box-shadow:0 0 0 1px var(--line)}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:
+  radial-gradient(ellipse 66% 70% at 50% 52%,rgba(14,19,22,.97) 0%,rgba(14,19,22,.94) 50%,rgba(14,19,22,.6) 80%,rgba(14,19,22,.3) 100%),
+  linear-gradient(to bottom,rgba(14,19,22,.85),transparent 18%,transparent 78%,var(--bg))}
+.hero-in{display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px;padding:120px 20px 90px;max-width:1000px}
+.brandline{display:flex;align-items:center;gap:36px;text-align:left}
+.hero h1{font-size:56px;line-height:1.12}
+.hero h1 em{display:block}
+@media (max-width:900px){.brandline{gap:26px}.hero h1{font-size:42px}}
+@media (max-width:640px){.brandline{flex-direction:column;gap:22px;text-align:center}.hero h1{font-size:28px}}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.lede .hi,.lede .no,.lede .yes{white-space:nowrap}.lede .hi{color:var(--gold);font-weight:500}.lede .no{color:var(--mute)}.lede .yes{color:var(--fog);font-weight:500}
+.hero .lede{text-align:center;font-size:18px;line-height:1.55;max-width:34em;text-wrap:balance;color:var(--dim)}
+.chick{cursor:pointer;border:0;background:none;padding:0;position:relative}
+.chick.hop .sprite{animation:hop .42s steps(6) 1}
+@keyframes hop{0%,100%{transform:translateY(0)}40%{transform:translateY(-20px)}70%{transform:translateY(-6px)}}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line2);border-radius:999px;padding:8px 8px 8px 18px;font:400 15px/1 var(--mono);cursor:pointer;transition:border-color .2s}
+.pill:hover{border-color:var(--gold)}
+.pill .dollar{color:var(--mute)}
+.pill .copyb{font:500 13px/1 var(--sans);background:var(--fog);color:var(--bg);border-radius:999px;padding:9px 14px}
+.pill.done .copyb{background:var(--gold)}
+.ghost{font:500 15px/1 var(--sans);color:var(--fog);text-decoration:none;padding:14px 18px;border-radius:999px;border:1px solid var(--line2)}
+.ghost:hover{border-color:var(--fog)}
+.scrollhint{position:absolute;bottom:22px;white-space:nowrap;left:50%;transform:translateX(-50%);font:400 11px/1 var(--pixel);letter-spacing:.12em;color:var(--mute);text-transform:uppercase}
+/* phones: the headline sits over the wall, so the shade reaches the edges; the install line stays on one line */
+@media (max-width:640px){
+  .hero::before{background:
+    radial-gradient(ellipse 100% 62% at 50% 50%,rgba(14,19,22,.94) 0%,rgba(14,19,22,.88) 55%,rgba(14,19,22,.5) 85%,rgba(14,19,22,.25) 100%),
+    linear-gradient(to bottom,rgba(14,19,22,.85),transparent 18%,transparent 78%,var(--bg))}
+  .pill{font-size:14px;padding-left:16px}.pill>span:first-child{white-space:nowrap}
+}
+@media (max-width:380px){.hero h1{font-size:26px}}
+
+/* sections */
+.sec{padding-block:120px 40px}
+@media (max-width:700px){.sec{padding-block:80px 24px}}
+.head{display:flex;flex-direction:column;gap:18px;margin-bottom:48px;max-width:760px}
+.head.center{align-items:center;text-align:center;margin-inline:auto}
+
+/* pipeline: sticky stage + steps */
+.flow{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:56px;align-items:start}
+@media (max-width:900px){.flow{grid-template-columns:minmax(0,1fr);gap:0}}
+.stage{position:sticky;top:104px;aspect-ratio:1/1;max-height:calc(100vh - 130px);width:100%;border-radius:22px;overflow:hidden;background:var(--bg2);border:1px solid var(--line);box-shadow:0 40px 80px -40px rgba(0,0,0,.7)}
+@media (max-width:900px){.stage{top:72px;aspect-ratio:auto;height:44vh;z-index:2}.step{padding-top:20px}}
+.scene{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transition:opacity .45s;pointer-events:none;padding:28px}
+.scene.on{opacity:1;pointer-events:auto}
+.grid-bg{background-color:#13383f;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:8px 8px}
+.steps{display:flex;flex-direction:column}
+.step{min-height:78vh;display:flex;flex-direction:column;justify-content:center;gap:14px;padding-block:40px;opacity:.32;transition:opacity .35s}
+.step.on{opacity:1}
+@media (max-width:900px){.step{min-height:60vh}.step:first-child{min-height:0;padding-top:28px}}
+.step .n{font:400 13px/1 var(--pixel);color:var(--gold);letter-spacing:.1em}
+.step h3{font-size:clamp(28px,3.2vw,40px);line-height:1.1}
+.step p{color:var(--dim);font-size:17px;max-width:30em}
+.tagrow{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font:400 12px/1 var(--mono);color:var(--dim);background:rgba(236,230,214,.05);border:1px solid var(--line);border-radius:999px;padding:6px 10px}
+/* scene 1: the ask */
+.chat{width:min(440px,100%);display:flex;flex-direction:column;gap:12px}
+.bubble{border-radius:18px;padding:14px 16px;font-size:16px;line-height:1.45;max-width:88%}
+.bubble.you{align-self:flex-end;background:var(--fog);color:var(--bg);border-bottom-right-radius:6px}
+.bubble.it{align-self:flex-start;background:var(--card2);border:1px solid var(--line);border-bottom-left-radius:6px;display:flex;gap:10px;align-items:flex-start}
+.bubble.it .av{flex:none;width:24px;height:24px;border-radius:7px;background:var(--gold);display:grid;place-items:center;overflow:hidden}
+.typing i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--dim);margin-right:4px;animation:blink 1s steps(2) infinite}
+.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+@keyframes blink{50%{opacity:.25}}
+/* scene 2: pick */
+.pick{width:100%;display:flex;flex-direction:column;gap:22px;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:460px}
+.chip{font:400 13px/1 var(--pixel);letter-spacing:.06em;padding:10px 12px;border-radius:9px;border:1px solid var(--line2);color:var(--dim);transition:all .3s}
+.chip.on{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.fan{position:relative;width:420px;max-width:100%;height:230px}
+.fan .card{position:absolute;left:50%;bottom:0;width:170px;height:210px;border-radius:14px;overflow:hidden;border:1px solid var(--line2);background-color:var(--card);background-repeat:no-repeat;image-rendering:pixelated;transform-origin:50% 120%;transform:translateX(-50%) rotate(var(--r));transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s}
+.fan .card.sel{z-index:2;transform:translateX(-50%) translateY(-12px) rotate(calc(var(--r) * .25)) scale(1.06)}
+.fan .card span{position:absolute;left:8px;bottom:8px;font:400 11px/1 var(--pixel);color:var(--fog);background:rgba(14,19,22,.8);padding:6px 7px;border-radius:5px}
+.pickcap{margin:6px 0 0;min-height:2.6em;max-width:360px;text-align:center;font-size:14px;line-height:1.35;color:var(--dim)}
+.pickcap b{display:block;font:400 13px/1.4 var(--pixel);letter-spacing:.06em;color:var(--gold);font-weight:400}
+.fan .card.sel{box-shadow:0 0 0 2px var(--gold),0 20px 40px rgba(0,0,0,.5)}
+/* scene 3: build */
+.build{display:flex;flex-direction:column;align-items:center;gap:18px}
+.build img{width:294px;height:252px;max-width:none}
+.parts{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.parts .tag.on{color:var(--bg);background:var(--mint);border-color:var(--mint)}
+/* scene 4: fix */
+.fix{display:flex;gap:18px;align-items:flex-end;justify-content:center;flex-wrap:wrap}
+.fix figure{margin:0;display:flex;flex-direction:column;gap:10px;align-items:center}
+.fix figcaption{font:400 12px/1 var(--pixel);color:var(--dim);letter-spacing:.06em}
+.fix .lens{position:relative;border-radius:14px;padding:16px;background:#13383f}
+.fix .lens.bad::after{content:"";position:absolute;left:22%;top:30%;width:62%;height:38%;border:2px dashed var(--coral);border-radius:50%;transition:opacity .4s}
+.fix figure{transition:opacity .5s}.fix figure.wait{opacity:.18}.fix .lens.ok::after{opacity:0}
+.note{position:absolute;left:50%;top:22px;transform:translateX(-50%);background:var(--card2);border:1px solid var(--line2);border-radius:12px;padding:10px 14px;font-size:14px;color:var(--fog);white-space:nowrap;display:flex;gap:8px;align-items:center}
+.note b{color:var(--coral);font-weight:500}.note s{text-decoration:none;color:var(--mint)}
+/* scene 5: ship (exploded layers) */
+.stack{position:relative;width:300px;height:360px;perspective:1100px;margin-right:110px}
+.stack .ly{position:absolute;left:50%;top:50%;width:200px;height:200px;margin:-100px 0 0 -100px;border-radius:8px;background-repeat:no-repeat;background-size:400px auto;background-position:-100px -300px;image-rendering:pixelated;
+  transform:rotateX(58deg) rotateZ(-38deg) translateZ(var(--z));box-shadow:0 0 0 1px rgba(236,230,214,.25),0 20px 30px rgba(0,0,0,.35);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.stage:not(.ship) .stack .ly{transform:rotateX(58deg) rotateZ(-38deg) translateZ(0)}
+.stack .lbl{position:absolute;left:calc(100% + 4px);font:400 11px/1 var(--pixel);color:var(--dim);letter-spacing:.06em;white-space:nowrap;display:flex;align-items:center;gap:8px}
+.stack .lbl::before{content:"";width:26px;height:1px;background:var(--line2)}
+/* phones: every scene fits the short stage (whole-number art scales; the fan and layer stack are zoomed as one) */
+@media (max-width:600px){
+  .stage{height:42vh}
+  .scene{padding:12px;grid-template-columns:minmax(0,1fr)}
+  .build img{width:245px;height:210px}
+  .chips{gap:6px}.chip{padding:9px 10px}
+  .fan{zoom:.72}
+  .note{top:14px;white-space:normal;width:max-content;max-width:calc(100% - 24px);flex-wrap:wrap;justify-content:center;text-align:center;gap:2px 8px}
+  .fix{flex-wrap:nowrap;gap:8px}.fix .lens{padding:0}
+  .fix .lens img{width:147px !important;height:126px !important}
+  .stack{zoom:.7;margin-right:140px}.stack .lbl{font-size:13px}
+}
+
+/* bento: what it makes */
+.bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}
+.tile{position:relative;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;min-width:0;transition:border-color .3s}
+.tile:hover{border-color:var(--line2)}
+.tile .art{position:relative;flex:1;min-height:260px;display:grid;place-items:center;overflow:hidden}
+.tile .txt{padding:18px 20px 20px;display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--line)}
+.tile .txt h3{font-size:20px}
+.tile .txt p{color:var(--dim);font-size:15px}
+.tile .via{position:absolute;top:14px;left:14px;z-index:2;font:400 11px/1 var(--pixel);letter-spacing:.08em;text-transform:uppercase;background:rgba(14,19,22,.72);backdrop-filter:blur(6px);color:var(--fog);padding:7px 9px;border-radius:7px}
+.b-hours{grid-column:span 7;grid-row:span 2}.b-dirs{grid-column:span 5}.b-states{grid-column:span 5}
+.b-video{grid-column:span 6}.b-painted{grid-column:span 6}
+.b-fx{grid-column:span 6}.b-style{grid-column:span 6}
+@media (max-width:980px){.b-hours,.b-dirs,.b-states,.b-video,.b-painted,.b-fx,.b-style{grid-column:span 6;grid-row:auto}.b-hours{grid-column:1/-1}}
+@media (max-width:640px){.b-hours,.b-dirs,.b-states,.b-video,.b-painted,.b-fx,.b-style{grid-column:1/-1}}
+.hourart{position:absolute;inset:0;background-repeat:no-repeat;background-size:800px auto;background-position:50% 72%;image-rendering:pixelated;transition:none}
+.hourbar{position:absolute;left:16px;right:16px;bottom:16px;display:flex;gap:6px;z-index:2}
+.hourbar button{flex:1;font:400 11px/1 var(--pixel);letter-spacing:.06em;text-transform:uppercase;padding:9px 0;border-radius:8px;border:0;background:rgba(14,19,22,.66);backdrop-filter:blur(6px);color:var(--dim);cursor:pointer}
+.hourbar button[aria-pressed="true"]{background:var(--gold);color:var(--bg)}
+@media (max-width:760px){.hourbar button{padding:13px 0}}
+.dirgrid{display:grid;grid-template-columns:repeat(4,auto);gap:6px 18px;padding:20px}
+.dirart{background:#d8d2ac}
+.statesart{background:var(--sea);display:flex !important;align-items:flex-end;justify-content:center;gap:28px;padding-bottom:34px}
+.fxart{background:#20242e;display:grid !important;grid-template-columns:repeat(3,1fr);place-items:center}
+.fxart button{border:0;background:none;padding:0;cursor:pointer;display:grid;place-items:center;width:100%;height:100%}
+.vidart{background:#0b0d10;gap:16px;display:flex !important;align-items:center;justify-content:center}
+.vidart img{width:150px;height:150px;border-radius:10px}
+.vidart .arrow{font:400 26px/1 var(--pixel);color:var(--gold)}
+@media (max-width:980px){.vidart{gap:10px}.vidart img{width:128px;height:128px}#fireball{zoom:.72}}
+.meanart .layer{position:absolute;inset:0;background-repeat:no-repeat;background-size:800px auto;background-position:45% 40%;image-rendering:pixelated}
+.meanart .top{clip-path:inset(0 0 0 var(--x,50%))}
+.meanart .handle{position:absolute;top:0;bottom:0;left:var(--x,50%);width:2px;background:var(--gold)}
+.styleart{display:grid !important;grid-template-columns:repeat(3,1fr);gap:0;place-items:stretch !important}
+.styleart div{background-repeat:no-repeat;image-rendering:pixelated;height:100%;min-height:260px}
+
+/* why: programmed vs generated */
+.why{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:980px){.why{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.why{grid-template-columns:minmax(0,1fr)}}
+.why .wart{min-height:220px;flex:none;height:220px}
+.why .meanart .layer{background-size:800px auto;background-position:40% 42%}
+.consist{display:flex;align-items:flex-end;gap:0;margin-bottom:18px}
+.consist img{height:auto;max-width:none}
+.consist img:nth-child(1){width:147px}.consist img:nth-child(2){width:144px}
+.wramp{position:absolute;left:20px;right:20px;bottom:16px;height:8px}
+.recolor{display:flex;flex-direction:column;align-items:center;gap:14px}
+.recolor img{width:196px;height:168px;max-width:none;margin-block:-20px -10px}
+.recolor .tag{color:var(--fog)}
+.sizes{display:flex;align-items:flex-end;gap:22px}
+.sizes figure,.same figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:8px}
+.sizes figcaption,.same figcaption{font:400 11px/1.3 var(--pixel);color:var(--dim);letter-spacing:.04em;text-align:center;max-width:160px}
+.sizes img,.same img{max-width:none}
+.same{display:flex;align-items:center;gap:0}
+.same img{width:147px;height:126px}
+.same .eq{font:600 28px/1 var(--sans);color:var(--gold)}
+.heron{display:grid;grid-template-columns:repeat(4,auto);gap:4px 18px}
+/* side by side: the same house, generated vs programmed, row for row */
+.vs{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--card)}
+.vs-col{display:flex;flex-direction:column;gap:18px;padding:24px 26px 26px;min-width:0}
+.vs-col.bad{border-right:1px solid var(--line)}
+.vs-col.good{background:linear-gradient(180deg,rgba(134,176,156,.08),transparent 60%)}
+.vs-head{display:flex;align-items:center;gap:18px}
+.vs-art{flex:none;width:150px;height:120px;border-radius:12px;background:#13383f;display:grid;place-items:center;overflow:hidden}
+.vs-art img{width:147px;height:126px;max-width:none}
+.vs-art .mush{image-rendering:auto;filter:blur(1.4px) saturate(.75) contrast(.9);transform:scale(1.08) rotate(-2deg)}
+.vs-l{font:400 13px/1.3 var(--pixel);letter-spacing:.1em;text-transform:uppercase}
+.vs-col.bad .vs-l{color:var(--coral)}.vs-col.good .vs-l{color:var(--mint)}
+.vs-head small{display:block;margin-top:6px;font:400 14px/1.4 var(--sans);letter-spacing:0;text-transform:none;color:var(--mute)}
+.vs ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.vs li{display:flex;gap:12px;align-items:baseline;padding:11px 0;border-top:1px solid var(--line);font-size:15px;line-height:1.4}
+.vs li::before{flex:none;width:16px;font:600 16px/1 var(--sans)}
+.vs-col.bad li{color:var(--mute)}.vs-col.bad li::before{content:"✕";color:var(--coral)}
+.vs-col.good li{color:var(--fog)}.vs-col.good li::before{content:"✓";color:var(--mint)}
+@media (max-width:720px){.vs{grid-template-columns:1fr}.vs-col.bad{border-right:0;border-bottom:1px solid var(--line)}.vs-col{padding:20px}}
+
+/* looks */
+.looks{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px;align-items:stretch}
+@media (max-width:900px){.looks{grid-template-columns:minmax(0,1fr)}}
+.lookview{position:relative;border-radius:22px;overflow:hidden;min-height:560px;background:var(--sea);border:1px solid var(--line)}
+@media (max-width:640px){.lookview{min-height:340px}}
+.lookview .img{position:absolute;inset:0;background-repeat:no-repeat;image-rendering:pixelated;transition:opacity .4s}
+.looktabs{display:flex;flex-direction:column;gap:10px}
+.look{text-align:left;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;cursor:pointer;display:flex;flex-direction:column;gap:10px;transition:border-color .2s,background .2s}
+.look:hover{border-color:var(--line2)}
+.look[aria-selected="true"]{background:var(--card2);border-color:var(--gold)}
+.look{position:relative;overflow:hidden}
+.look.run::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--gold);transform-origin:left;animation:lookrun 5s linear forwards}
+.looks:hover .look.run::after{animation-play-state:paused}
+@keyframes lookrun{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.look h3{font-size:19px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.look h3 small{font:400 11px/1 var(--pixel);color:var(--mute);letter-spacing:.08em;text-transform:uppercase}
+.ramp{display:flex;height:8px;border-radius:3px;overflow:hidden}.ramp i{flex:1}
+.look .more{display:none;flex-direction:column;gap:8px;color:var(--dim);font-size:14.5px}
+.look[aria-selected="true"] .more{display:flex}
+.look .more ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.look .more .made{color:var(--fog);border-left:2px solid var(--gold);padding-left:10px}
+
+/* install */
+.install{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:900px){.install{grid-template-columns:minmax(0,1fr)}}
+.istep{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.istep .n{font:400 13px/1 var(--pixel);color:var(--gold);letter-spacing:.1em}
+.istep h3{font-size:22px}
+.istep p{color:var(--dim);font-size:15px}
+.istep .pill{width:100%;justify-content:space-between;border-radius:12px;padding:8px 8px 8px 14px;font-size:14px}
+.istep .pill code{min-width:0;overflow-x:auto;white-space:nowrap;scrollbar-width:none;font-family:var(--mono)}
+.via-tabs{display:flex;gap:4px}
+.via-tabs button{font:400 11px/1 var(--pixel);letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);background:none;color:var(--dim);padding:7px 9px;border-radius:7px;cursor:pointer}
+.via-tabs button[aria-selected="true"]{background:var(--fog);color:var(--bg);border-color:var(--fog)}
+.istep .bubble.you{max-width:100%;align-self:stretch;font-size:15px}
+.istep .copyline{display:flex;justify-content:flex-end}
+.istep .copyline button{font:500 13px/1 var(--sans);background:none;border:1px solid var(--line2);border-radius:999px;padding:8px 12px;cursor:pointer;color:var(--fog)}
+.istep .copyline button.done{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+@media (max-width:760px){.via-tabs button{padding:11px 12px}.istep .copyline button{padding:12px 16px}}
+.foragents{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;color:var(--mute);font-size:14px}
+.foragents a{text-decoration:none;color:var(--fog);border:1px solid var(--line2);border-radius:999px;padding:8px 14px;font-size:14px}
+.foragents a:hover{border-color:var(--fog)}
+
+/* finale */
+.finale{position:relative;margin-top:120px;border-radius:28px;overflow:hidden;min-height:420px;display:grid;place-items:center;text-align:center;border:1px solid var(--line)}
+.finale .bgimg{position:absolute;inset:0;background:url(a/w_vale.png) 50% 40%/1040px auto no-repeat var(--sea);image-rendering:pixelated;z-index:-1}
+.finale::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at center,rgba(14,19,22,.88),rgba(14,19,22,.55))}
+.finale-in{display:flex;flex-direction:column;gap:22px;align-items:center;padding:60px 20px}
+.finale .oss{margin:0;max-width:30em;color:var(--fog);font-size:17px;line-height:1.5;text-wrap:balance}
+@media (max-width:640px){.finale{margin-top:72px;min-height:340px}.finale-in{padding:48px 16px}}
+footer{padding-block:48px 64px}
+footer .col{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;color:var(--mute);font-size:13px;border-top:1px solid var(--line);padding-top:28px}
+</style>
+</head>
+<body>
+<header class="nav" id="nav">
+  <div class="col">
+    <a class="logo" href="#top" aria-label="pixling, home"><img class="px" src="a/pixling-logo-dark.svg" alt="pixling"></a>
+    <nav aria-label="Sections">
+      <a href="#why" class="hide-s">Why code</a>
+      <a href="#how" class="hide-s">How it works</a>
+      <a href="#makes" class="hide-s">What it makes</a>
+      <a href="#looks" class="hide-s">Styles</a>
+      <a href="https://github.com/trinity-works/pixling" class="hide-s">GitHub</a>
+      <a href="#install" class="cta">Install</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- hero: a wall of real worlds -->
+  <section class="hero" aria-label="pixling">
+    <div class="wall" id="wall" aria-hidden="true"></div>
+    <div class="hero-in">
+      <div class="brandline">
+        <button class="chick" id="chickbtn" aria-label="pixling. Press to make the chick hop"><span id="chick" role="img" aria-label="pixling"></span></button>
+        <h1>Game art by your agent. <em>pixling-perfect.</em></h1>
+      </div>
+      <div class="ctas">
+        <button class="pill" data-copy="uv tool install pixling"><span><span class="dollar">$ </span>uv tool install pixling</span><span class="copyb">Copy</span></button>
+      </div>
+    </div>
+    <span class="scrollhint">every tile here was made with pixling</span>
+  </section>
+
+  <!-- why programmed beats generated -->
+  <section class="sec col" id="why">
+    <div class="head reveal" style="max-width:980px">
+      <h2>Not an image model.<br>Game assets, written as code.</h2>
+      <p class="lede">Your agent writes the shapes, materials and timing. pixling renders every pixel, with collision, frames and layers built in. Any change is one line.</p>
+    </div>
+    <div class="why">
+      <article class="tile reveal">
+        <div class="art wart meanart" id="why-col"><div class="layer" style="background-image:url(a/r_base.png)"></div><div class="layer top" style="background-image:url(a/r_collision.png)"></div><div class="handle"></div></div>
+        <div class="txt"><h3>Collision built in</h3><p>Walkable, slow and blocked ground, depth and object ids come out with every map. Nothing to trace by hand.</p></div>
+      </article>
+      <article class="tile reveal">
+        <div class="art wart" style="background:#13383f"><div class="consist"><img class="px" src="a/b_s4_chimney.png" alt=""><img class="px" src="a/st_chapel_built.png" alt=""></div><div class="ramp wramp"><i style="background:#5c2f2b"></i><i style="background:#874633"></i><i style="background:#ad6340"></i><i style="background:#cc8654"></i><i style="background:#e2ddcc"></i><i style="background:#44684b"></i><i style="background:#c3962f"></i><i style="background:#2a6570"></i><i style="background:#86b09c"></i></div></div>
+        <div class="txt"><h3>One world, one palette</h3><p>Every asset draws from the style's locked colours, light and outline. A thousand sprites still belong together.</p></div>
+      </article>
+      <article class="tile reveal">
+        <div class="art wart" style="background:#13383f"><div class="recolor"><img class="px" id="recolor" src="a/b_s4_chimney.png" alt="The same house with a different roof material"><span class="tag" id="recolorlbl">roof: plum</span></div></div>
+        <div class="txt"><h3>Recolour in one line</h3><p>Swap a material, a roof shape or a season. Variants are edits, not rerolls, and the rest stays identical.</p></div>
+      </article>
+      <article class="tile reveal">
+        <div class="art wart" style="background:#13383f"><div class="sizes"><figure><img class="px" src="a/b_s5_terracotta.png" style="width:49px;height:42px" alt=""><figcaption>1×</figcaption></figure><figure><img class="px" src="a/b_s5_terracotta.png" style="width:196px;height:168px" alt=""><figcaption>4× · 49 × 42 px, every pixel placed</figcaption></figure></div></div>
+        <div class="txt"><h3>Exact size, crisp at any zoom</h3><p>Sprites come out at the size your game asks for, on one pixel grid, with an anchor point. No mushy downscaling.</p></div>
+      </article>
+      <article class="tile reveal">
+        <div class="art wart" style="background:#d8d2ac"><div class="heron" id="heron" role="img" aria-label="A heron in eight directions"></div></div>
+        <div class="txt"><h3>Turns, walks and acts</h3><p>Eight directions and every animation frame stay on model, because they are rendered from the same source.</p></div>
+      </article>
+      <article class="tile reveal">
+        <div class="art wart" style="background:#13383f"><div class="same"><figure><img class="px" src="a/b_s4_chimney.png" alt=""><figcaption>build 1 · 65bf656c…</figcaption></figure><span class="eq">=</span><figure><img class="px" src="a/b_s4_chimney.png" alt=""><figcaption>build 2 · 65bf656c…</figcaption></figure></div></div>
+        <div class="txt"><h3>Same input, same pixels</h3><p>Byte-identical every build, so art lives in git, diffs are reviewable and nothing drifts between sessions.</p></div>
+      </article>
+    </div>
+    <div class="vs reveal">
+      <div class="vs-col bad">
+        <div class="vs-head"><div class="vs-art"><img class="mush" src="a/b_s5_terracotta.png" alt="A blurry, generated-looking house"></div><div class="vs-l">A generated image<small>A picture of a house</small></div></div>
+        <ul><li>One flat picture</li><li>Whatever size it comes out at</li><li>No collision, nothing to walk on</li><li>Can't turn or animate</li><li>Redraws differently every time</li></ul>
+      </div>
+      <div class="vs-col good">
+        <div class="vs-head"><div class="vs-art"><img class="px" src="a/b_s5_terracotta.png" alt="The same house as a crisp pixling sprite"></div><div class="vs-l">A pixling asset<small>A house your game can use</small></div></div>
+        <ul><li>Layers: base, light, depth and collision</li><li>Exact size, on one pixel grid</li><li>Collision exported with every map</li><li>Eight directions, every frame on model</li><li>Byte-identical every build</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- the pipeline, on a sticky stage -->
+  <section class="sec col" id="how">
+    <div class="head reveal">
+      <h2>How it works</h2>
+      <p class="lede">You ask. Your agent picks a pipeline and a style, programs the art, checks it like an artist and ships it.</p>
+    </div>
+    <div class="flow">
+      <div class="stage" id="stage">
+        <div class="scene grid-bg on" data-s="0">
+          <div class="chat">
+            <div class="bubble you">A harbour town for my game that lights up at dusk.</div>
+            <div class="bubble it"><span class="av"><span id="av1"></span></span><span id="reply"><span class="typing"><i></i><i></i><i></i></span></span></div>
+          </div>
+        </div>
+        <div class="scene" data-s="1" style="background:#11181b">
+          <div class="pick">
+            <div class="chips" id="chips"></div>
+            <div class="fan" id="fan"></div>
+            <p class="pickcap" id="pickcap" aria-live="polite"></p>
+          </div>
+        </div>
+        <div class="scene grid-bg" data-s="2">
+          <div class="build">
+            <img class="px" id="buildimg" src="a/b_s1_box.png" alt="A house being built from its spec, part by part">
+            <div class="parts" id="parts"><span class="tag">walls</span><span class="tag">windows</span><span class="tag">roof</span><span class="tag">chimney</span></div>
+          </div>
+        </div>
+        <div class="scene" data-s="3" style="background:#11181b">
+          <div class="note" id="fixnote"><b>Roof sinks into the sea</b> → <s>terracotta from the style</s></div>
+          <div class="fix">
+            <figure><div class="lens bad" id="fixbad"><img class="px" src="a/b_s4_chimney.png" style="width:196px;height:168px;display:block;max-width:none" alt="Before: a plum roof"></div><figcaption>render 1</figcaption></figure>
+            <figure id="fixafter"><div class="lens"><img class="px" src="a/b_s5_terracotta.png" style="width:196px;height:168px;display:block;max-width:none" alt="After: a terracotta roof"></div><figcaption>render 2</figcaption></figure>
+          </div>
+        </div>
+        <div class="scene" data-s="4" style="background:#11181b">
+          <div class="stack" id="stack">
+            <div class="ly" style="--z:-120px;background-image:url(a/r_collision.png)"></div>
+            <div class="ly" style="--z:0px;background-image:url(a/r_base.png)"></div>
+            <div class="ly" style="--z:120px;background-image:url(a/hub_h4.png)"></div>
+            <span class="lbl" style="top:40px">night light</span>
+            <span class="lbl" style="top:160px">animated base</span>
+            <span class="lbl" style="top:280px">collision</span>
+          </div>
+        </div>
+      </div>
+      <div class="steps" id="steps">
+        <div class="step on" data-s="0">
+          <span class="n">01 · ask</span>
+          <h3>Say what your game needs</h3>
+          <p>A town, a creature, a spell, a whole new look. In your words, in the chat you already use.</p>
+        </div>
+        <div class="step" data-s="1">
+          <span class="n">02 · choose</span>
+          <h3>It picks a pipeline and a look</h3>
+          <p>Before it draws, your agent reads two things: the pipeline that fits the job, with the lessons we learned the hard way, and the style's making-of, with its hand, its kit and its lab notes.</p>
+          <div class="tagrow"><span class="tag">spec → sprites</span><span class="tag">kit → iso scene</span><span class="tag">living maps</span><span class="tag">effects</span><span class="tag">AI video → frames</span><span class="tag">Blender → painterly</span><span class="tag">new style</span></div>
+        </div>
+        <div class="step" data-s="2">
+          <span class="n">03 · build</span>
+          <h3>It programs the art</h3>
+          <p>No image model here. Your agent writes shapes on bones, materials from the style and the timing of each frame, and pixling renders them pixel by pixel.</p>
+        </div>
+        <div class="step" data-s="3">
+          <span class="n">04 · look</span>
+          <h3>It looks, like an artist would</h3>
+          <p>It renders, then looks: up close at the pixels, then zoomed out at game scale beside the rest of the set. It names the one thing that doesn't read, fixes it with the style's own colours and renders again, until it holds up. Lints only hint; the eye decides.</p>
+          <div class="tagrow"><span class="tag">render</span><span class="tag">look up close</span><span class="tag">look at game zoom</span><span class="tag">one fix</span><span class="tag">again</span></div>
+        </div>
+        <div class="step" data-s="4">
+          <span class="n">05 · ship</span>
+          <h3>Game-ready, layer by layer</h3>
+          <p>Sprite sheets, animation timing, collision, depth and lighting for every hour, straight into your repo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- what it makes: live tiles -->
+  <section class="sec col" id="makes">
+    <div class="head reveal">
+      <h2>A pipeline for every kind of game art</h2>
+      <p class="lede">Sprites, living maps, effects, motion from AI video and painterly scenes. Each one comes with the know-how, ready for your agent to run.</p>
+    </div>
+    <div class="bento">
+      <article class="tile b-hours reveal">
+        <span class="via">living maps</span>
+        <div class="art"><div class="hourart" id="hourart" role="img" aria-label="The harbour at the selected hour"></div>
+          <div class="hourbar" id="hourbar"></div></div>
+        <div class="txt"><h3>Every hour of the day</h3><p>Windows light one by one as the sun goes down. A light file comes with it for your engine.</p></div>
+      </article>
+      <article class="tile b-dirs reveal">
+        <span class="via">iso · crisp tactics</span>
+        <div class="art dirart"><div class="dirgrid" id="dirs" role="img" aria-label="A stag walking in eight directions"></div></div>
+        <div class="txt"><h3>Eight directions</h3><p>One creature, every facing, on held keys.</p></div>
+      </article>
+      <article class="tile b-states reveal">
+        <span class="via">building states</span>
+        <div class="art statesart" id="states"></div>
+        <div class="txt"><h3>Ruins that rebuild</h3><p>Ruin, four building stages and finished, all from one spec.</p></div>
+      </article>
+      <article class="tile b-video reveal">
+        <span class="via">AI video → sprites</span>
+        <div class="art vidart"><img src="a/pl_reel_take.webp" alt="A frame of the generated video"><span class="arrow">→</span><span id="fireball" role="img" aria-label="The spell as an additive sprite sheet"></span></div>
+        <div class="txt"><h3>Motion from AI video</h3><p>Generate a take, then key it, cut it and lock it into a sprite sheet that matches your game.</p></div>
+      </article>
+      <article class="tile b-painted reveal">
+        <span class="via">Blender · painted</span>
+        <div class="art" style="background:url(a/pl_painted.webp) 50% 50%/cover no-repeat #4f8a3c"></div>
+        <div class="txt"><h3>Not only pixels</h3><p>Painterly scenes rendered in Blender, with swaying trees and paddling ducks.</p></div>
+      </article>
+      <article class="tile b-fx reveal">
+        <span class="via">effects</span>
+        <div class="art fxart" id="fx"></div>
+        <div class="txt"><h3>Effects that land</h3><p>Slashes, bursts and lightning in your style's colours. Tap one.</p></div>
+      </article>
+      <article class="tile b-style reveal">
+        <span class="via">new styles</span>
+        <div class="art styleart"><div style="background:url(a/w_harbour.webp) -150px -420px/400px auto"></div><div style="background:url(a/w_tac_valley.webp) -170px -60px/400px auto"></div><div style="background:url(a/w_flat_dunes.png) -100px -20px/512px auto"></div></div>
+        <div class="txt"><h3>A look of your own</h3><p>The recipe that found these three styles, ready for your agent to run again.</p></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- the looks -->
+  <section class="sec col" id="looks">
+    <div class="head reveal">
+      <h2>A growing catalogue of styles</h2>
+      <p class="lede">Four looks so far, each with its own camera, shading, line and kit, and the notes on how it was made, so your agent can reuse one or build its own. More are on the way.</p>
+    </div>
+    <div class="looks">
+      <div class="lookview" id="lookview"></div>
+      <div class="looktabs" id="looktabs" role="tablist" aria-label="Styles"></div>
+    </div>
+  </section>
+
+  <!-- install -->
+  <section class="sec col" id="install">
+    <div class="head center reveal">
+      <h2>Three steps. Then just ask.</h2>
+    </div>
+    <div class="install">
+      <div class="istep reveal">
+        <span class="n">01</span><h3>Install pixling</h3><p>Free. Python 3.9 or newer. One command.</p>
+        <div class="via-tabs" role="tablist" aria-label="Install with">
+          <button role="tab" aria-selected="true" data-cmd="uv tool install pixling">uv</button>
+          <button role="tab" aria-selected="false" data-cmd="pipx install pixling">pipx</button>
+          <button role="tab" aria-selected="false" data-cmd="npx pixling">npx</button>
+        </div>
+        <button class="pill" id="installpill" data-copy="uv tool install pixling"><code>uv tool install pixling</code><span class="copyb">Copy</span></button>
+      </div>
+      <div class="istep reveal">
+        <span class="n">02</span><h3>Bring your own agent</h3><p>Run it in your game's repo. It adds the skill and a short note your agent reads, whichever agent you use.</p>
+        <button class="pill" data-copy="pixling agent install ."><code>pixling agent install .</code><span class="copyb">Copy</span></button>
+      </div>
+      <div class="istep reveal">
+        <span class="n">03</span><h3>Ask for art</h3><p>Start with one asset and look at it together.</p>
+        <div class="bubble you" id="prompt">Make one building for our village in a pixling style that fits the game, and show me the review image before you make more.</div>
+        <div class="copyline"><button data-copyfrom="prompt">Copy prompt</button></div>
+      </div>
+    </div>
+    <div class="foragents reveal"><span>For agents:</span><a href="llms.txt">llms.txt</a><a href="agents.json">agents.json</a><a href="https://github.com/trinity-works/pixling">Source and docs</a></div>
+
+    <div class="finale reveal">
+      <div class="bgimg"></div>
+      <div class="finale-in">
+        <h2>Go make a world.</h2>
+        <p class="oss">pixling is open source. Read the engine, the docs and every style's lab notes, or add a style of your own.</p>
+        <div class="ctas">
+          <button class="pill" data-copy="uv tool install pixling"><span><span class="dollar">$ </span>uv tool install pixling</span><span class="copyb">Copy</span></button>
+          <a class="ghost" href="https://github.com/trinity-works/pixling">Open on GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="col">
+    <a class="logo" href="#top" aria-label="pixling, home"><img class="px" src="a/pixling-logo-dark.svg" alt="pixling"></a>
+    <span>v0.1 · experimental · Pixel Perfect engine · Geist Pixel by Vercel</span>
+  </div>
+</footer>
+
+<script>
+(() => {
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = id => document.getElementById(id);
+
+/* nav turns solid after the hero starts scrolling */
+const nav = $('nav'); const onScroll = () => nav.classList.toggle('solid', scrollY > 40); addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+/* copy */
+function copied(b, text) {
+  const done = () => { b.classList.add('done'); const c = b.querySelector('.copyb'); const was = c ? c.textContent : b.textContent;
+    if (c) c.textContent = 'Copied'; else b.textContent = 'Copied'; setTimeout(() => { b.classList.remove('done'); if (c) c.textContent = was; else b.textContent = was }, 1400) };
+  try { navigator.clipboard.writeText(text).then(done, done) } catch (_) { done() }
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-copy],[data-copyfrom]'); if (!b) return;
+  copied(b, b.dataset.copy || $(b.dataset.copyfrom).innerText.trim());
+});
+document.querySelectorAll('.via-tabs button').forEach((b, _, all) => b.onclick = () => {
+  all.forEach(t => t.setAttribute('aria-selected', t === b));
+  const p = $('installpill'); p.dataset.copy = b.dataset.cmd; p.querySelector('code').textContent = b.dataset.cmd;
+});
+
+/* sprites: one clock, whole-pixel frames */
+const sprites = [];
+function sprite(el, o) {
+  const s = Object.assign({ scale: 2, gap: 0, rows: 1, row: 0 }, o);
+  s.durs = s.durs || Array(s.n).fill(s.ms || 75);
+  s.total = s.durs.reduce((a, b) => a + b, 0) + s.gap;
+  el.classList.add('sprite');
+  Object.assign(el.style, { width: s.w * s.scale + 'px', height: s.h * s.scale + 'px', backgroundImage: `url(${s.src})`, backgroundSize: `${s.w * s.n * s.scale}px ${s.h * s.rows * s.scale}px` });
+  s.el = el; s.t0 = performance.now(); sprites.push(s); frame(s, 0); return s;
+}
+function frame(s, f) { s.el.style.backgroundPosition = `${-f * s.w * s.scale}px ${-s.row * s.h * s.scale}px` }
+
+/* hero wall: lanes of real worlds, drifting in whole pixels */
+const TILES = [
+  ['a/w_tac_valley.webp', 400, 300, 1, 60, 30, 280, 210], ['a/w_harbour.webp', 400, 720, 1, 60, 120, 280, 380], ['a/w_flat_forest.webp', 256, 164, 2, 120, 60, 280, 220],
+  ['a/pl_painted.webp', 1200, 600, .5, 40, 20, 280, 220, 1], ['a/w_hill.webp', 195, 422, 2, 60, 200, 280, 400], ['a/w_tac_harbour.webp', 400, 300, 1, 70, 40, 280, 220],
+  ['a/w_flat_dunes.png', 256, 164, 2, 110, 70, 280, 200], ['a/w_hill_night.png', 195, 422, 2, 60, 300, 280, 320], ['a/w_tac_autumn.png', 400, 300, 1, 90, 50, 280, 220],
+  ['a/w_town.webp', 195, 1180, 2, 60, 900, 280, 420], ['a/w_flat_forest_night.png', 256, 164, 2, 120, 60, 280, 210], ['a/w_vale.png', 520, 800, 1, 120, 200, 280, 340],
+  ['a/w_harbour_day.webp', 400, 720, 1, 60, 380, 280, 300], ['a/hub_h3.1.png', 400, 720, 1, 60, 300, 280, 260], ['a/pl_painted_kit.webp', 800, 720, .5, 0, 0, 280, 230, 1]];
+const wall = $('wall'), lanes = [];
+const nLanes = Math.max(3, Math.min(7, Math.ceil(innerWidth / 294) + 1));
+for (let l = 0; l < nLanes; l++) {
+  const lane = document.createElement('div'); lane.className = 'lane';
+  const pick = TILES.filter((_, i) => (i + l * 2) % nLanes === l % nLanes || (i * 7 + l) % 5 === 0).slice(0, 5);
+  const set = (pick.length >= 3 ? pick : TILES.slice(l, l + 4));
+  for (let rep = 0; rep < 2; rep++) set.forEach(([src, w, h, k, x, y, tw, th, smooth]) => {
+    const t = document.createElement('div'); t.className = 'tile';
+    Object.assign(t.style, { width: tw + 'px', height: th + 'px', backgroundImage: `url(${src})`, backgroundSize: `${w * k}px auto`, backgroundPosition: `${-x}px ${-y}px` });
+    if (smooth) t.style.imageRendering = 'auto';
+    lane.append(t);
+  });
+  wall.append(lane); lanes.push({ el: lane, v: (l % 2 ? 1 : -1) * (10 + (l * 7) % 9), y: -((l * 137) % 300) });
+}
+/* tiles have fixed sizes, so the lanes are measured and set at their starting offsets before the first paint;
+   the wall fades in once its images are decoded instead of popping in tile by tile */
+const measure = () => lanes.forEach(L => { L.half = L.el.scrollHeight / 2; L.el.style.transform = `translate3d(0,${Math.round(L.y)}px,0)` });
+measure(); addEventListener('resize', measure);
+const wallSrcs = [...new Set(lanes.flatMap(L => [...L.el.children].map(t => t.style.backgroundImage.slice(5, -2))))];
+Promise.race([Promise.all(wallSrcs.map(src => { const i = new Image(); i.src = src; return i.decode().catch(() => {}) })), new Promise(r => setTimeout(r, 1500))])
+  .then(() => wall.classList.add('ready'));
+
+/* chick */
+$('chickbtn').onclick = () => { const b = $('chickbtn'); b.classList.remove('hop'); void b.offsetWidth; b.classList.add('hop') };
+sprite($('chick'), { src: 'a/m_mark.png', w: 24, h: 23, n: 9, durs: [900,150,600,70,70,220,70,70,450], scale: matchMedia('(max-width:640px)').matches ? 4 : 6 });
+sprite($('av1'), { src: 'a/m_mark.png', w: 24, h: 23, n: 9, durs: [900,150,600,70,70,220,70,70,450], scale: 1 });
+
+/* pipeline stage */
+const stage = $('stage'), scenes = [...stage.querySelectorAll('.scene')], steps = [...document.querySelectorAll('.step')];
+const PIPES = ['spec', 'iso', 'map', 'fx', 'video', 'painted', 'style'];
+const LOOKCARDS = [['vista', 'a/w_harbour.webp', 400, -110, -430], ['crisp tactics', 'a/w_tac_valley.webp', 400, -150, -50], ['flat minimal', 'a/w_flat_forest.webp', 512, -150, -70], ['painted', 'a/pl_painted.webp', 600, -150, -60]];
+PIPES.forEach(p => { const c = document.createElement('span'); c.className = 'chip'; c.textContent = p; $('chips').append(c) });
+LOOKCARDS.forEach(([n, src, bw, x, y], i) => {
+  const c = document.createElement('div'); c.className = 'card'; c.dataset.i = i;
+  Object.assign(c.style, { backgroundImage: `url(${src})`, backgroundSize: `${bw}px auto`, backgroundPosition: `${x}px ${y}px` });
+  c.style.setProperty('--r', (i - 1.5) * 12 + 'deg');
+  if (n === 'painted') c.style.imageRendering = 'auto';
+  c.innerHTML = `<span>${n}</span>`; $('fan').append(c);
+});
+/* it weighs a few pipelines against the looks, settles on map + vista, then says what it reads before drawing */
+function showPick(p, l, cap) {
+  [...$('chips').children].forEach((c, i) => c.classList.toggle('on', i === p));
+  [...$('fan').children].forEach((c, i) => c.classList.toggle('sel', i === l));
+  $('pickcap').innerHTML = cap || '';
+}
+let active = -1, stageTimer = null;
+function setStep(s) {
+  if (s === active) return; active = s; clearInterval(stageTimer); clearTimeout(stageTimer);
+  scenes.forEach(el => el.classList.toggle('on', +el.dataset.s === s));
+  steps.forEach(el => el.classList.toggle('on', +el.dataset.s === s));
+  stage.classList.toggle('ship', s === 4);
+  if (s === 0) {
+    $('reply').innerHTML = '<span class="typing"><i></i><i></i><i></i></span>';
+    stageTimer = setTimeout(() => { $('reply').textContent = 'On it. Vista style, clustered round the harbour, lamps for dusk. One layout first for you to check.' }, RM ? 0 : 1400);
+  }
+  if (s === 1) {
+    const tries = [[0, 1], [4, 3], [5, 2], [2, 0]], done = '<b>map · vista</b>it reads the map lessons and how Vista was made, then draws'; let k = 0;
+    const seq = () => { const [p, l] = tries[k]; showPick(p, l, k === tries.length - 1 ? done : ''); if (++k >= tries.length) clearInterval(stageTimer) };
+    if (RM) showPick(2, 0, done); else { seq(); stageTimer = setInterval(seq, 800) }
+  }
+  if (s === 3) {
+    /* the artist loop: look, name the one thing that doesn't read, fix it from the style, render, look again */
+    const LOOP = [['<b>look up close</b> the roof sinks into the sea', 0], ['one fix: <s>terracotta from the style</s> → render', 1], ['<s>look at game zoom</s> the roof reads ✓', 2]]; let k = 0;
+    const seq = () => { const [t, n] = LOOP[k % 3]; $('fixnote').innerHTML = t;
+      $('fixafter').classList.toggle('wait', n === 0); $('fixbad').classList.toggle('ok', n === 2); k++ };
+    if (RM) { k = 2; seq() } else { seq(); stageTimer = setInterval(seq, 1500) }
+  }
+  if (s === 2) {
+    const imgs = ['s1_box', 's2_windows', 's3_roof', 's4_chimney'], tags = [...$('parts').children]; let k = 0;
+    const seq = () => { $('buildimg').src = `a/b_${imgs[k % 4]}.png`; tags.forEach((t, i) => t.classList.toggle('on', i <= k % 4)); k++ };
+    seq(); stageTimer = setInterval(seq, RM ? 1e9 : 900);
+  }
+}
+if ('IntersectionObserver' in window) {
+  /* side by side, a step counts at mid-screen; stacked (phones, tablets) the stage covers the top, so it counts
+     at the middle of the space left under the stage, where its text is readable */
+  let io = null, ioKey = '';
+  const watchSteps = () => {
+    const stacked = matchMedia('(max-width:900px)').matches, key = stacked ? innerWidth + 'x' + innerHeight : 'wide';
+    if (key === ioKey) return; ioKey = key; if (io) io.disconnect();
+    const mid = Math.round((parseFloat(getComputedStyle(stage).top) + stage.offsetHeight + innerHeight) / 2);
+    io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) setStep(+e.target.dataset.s) }),
+      { rootMargin: stacked ? `-${mid - 1}px 0px -${innerHeight - mid - 1}px 0px` : '-45% 0px -45% 0px' });
+    steps.forEach(s => io.observe(s));
+  };
+  watchSteps(); let ioT; addEventListener('resize', () => { clearTimeout(ioT); ioT = setTimeout(watchSteps, 150) });
+}
+setStep(0);
+
+/* bento: hours */
+const HRS = [['day', 'h0'], ['golden', 'h1.2'], ['sunset', 'h2.2'], ['dusk', 'h3.1'], ['night', 'h4']];
+HRS.forEach(([, h]) => { new Image().src = `a/hub_${h}.png` });
+let hour = 0;
+const setHour = i => { hour = i; $('hourart').style.backgroundImage = `url(a/hub_${HRS[i][1]}.png)`; [...$('hourbar').children].forEach((b, j) => b.setAttribute('aria-pressed', j === i)) };
+HRS.forEach(([n], i) => { const b = document.createElement('button'); b.textContent = n; b.onclick = () => setHour(i); $('hourbar').append(b) });
+setHour(0);
+
+/* bento: eight directions (one row of the sheet each) */
+for (let r = 0; r < 8; r++) { const s = document.createElement('span'); $('dirs').append(s); sprite(s, { src: 'a/p_tactics_stag.png', w: 52, h: 56, n: 4, ms: 140, scale: 1, rows: 8, row: r }) }
+
+/* bento: states */
+const ST = ['ruin', 'build25', 'build50', 'build75', 'build90', 'built'], BS = [['chapel', 48, 64], ['house_5', 49, 42]];
+const stI = BS.map(([b, w, h]) => { const i = new Image(); i.className = 'px'; i.style.width = w * 3 + 'px'; i.style.height = h * 3 + 'px'; i.alt = b.replace('_', ' '); $('states').append(i); return [i, b] });
+ST.forEach(s => BS.forEach(([b]) => { new Image().src = `a/st_${b}_${s}.png` }));
+let sk = 5; const setSt = k => stI.forEach(([i, b]) => i.src = `a/st_${b}_${ST[Math.min(5, k)]}.png`); setSt(5);
+if (!RM) setInterval(() => { sk = (sk + 1) % 8; setSt(sk) }, 650);
+
+/* why: heron in 8 directions, recolour cycle, collision sweep */
+for (let r = 0; r < 8; r++) { const s = document.createElement('span'); $('heron').append(s); sprite(s, { src: 'a/p_flat_heron.png', w: 20, h: 22, n: 4, ms: 220, scale: 3, rows: 8, row: r }) }
+const RECOL = [['s4_chimney', 'roof: plum'], ['s5_terracotta', 'roof: terracotta'], ['s7_slate', 'roof: slate, hip'], ['s9_slate_gable', 'roof: slate, gable']];
+let rc = 0; const setRc = () => { $('recolor').src = `a/b_${RECOL[rc][0]}.png`; $('recolorlbl').textContent = RECOL[rc][1]; rc = (rc + 1) % RECOL.length };
+setRc(); if (!RM) setInterval(setRc, 1300);
+
+/* bento: video -> sprite */
+const fb = sprite($('fireball'), { src: 'a/pl_reel_fireball.webp', w: 191, h: 192, n: 24, ms: 83, scale: 1, gap: 300 }); $('fireball').style.mixBlendMode = 'screen'; $('fireball').style.imageRendering = 'auto';
+
+/* bento: fx */
+[['hc_slash', 64, 48, 8], ['hc_burst', 56, 56, 12], ['hc_lightning', 32, 72, 8], ['hc_hit_spark', 51, 51, 7], ['hc_eruption', 48, 48, 19], ['hc_aura', 48, 56, 27]].forEach(([id, w, h, n]) => {
+  const b = document.createElement('button'); b.setAttribute('aria-label', id.replace(/_/g, ' ') + ', play again');
+  const d = document.createElement('span'); b.append(d); $('fx').append(b);
+  const s = sprite(d, { src: `a/fx_${id}.png`, w, h, n, ms: 75, scale: h > 60 ? 1 : 2, gap: 600 + Math.random() * 1000 });
+  s.t0 -= Math.random() * 2000; b.onclick = () => s.t0 = performance.now();
+});
+
+/* why: collision wipe, follows the pointer, sweeps by itself otherwise */
+const mean = $('why-col'); let meanAuto = true;
+mean.addEventListener('pointermove', e => { meanAuto = false; const r = mean.getBoundingClientRect(); mean.style.setProperty('--x', Math.max(0, Math.min(100, (e.clientX - r.left) / r.width * 100)) + '%') });
+mean.addEventListener('pointerleave', () => meanAuto = true);
+
+/* looks */
+const LOOKS = [
+  { name: 'Vista', tag: 'aerial maps', src: 'a/w_harbour.webp', w: 400, k: 2, pos: '50% 62%', ramp: ['#5c2f2b', '#874633', '#ad6340', '#cc8654', '#e2ddcc', '#44684b', '#c3962f', '#2a6570', '#86b09c'],
+    hand: ['Painted terrain, sea and forest around spec-built houses', 'Muted masses, terracotta roofs, teal sea, tiny people', 'Every hour of the day as a grade, never a repaint'],
+    made: 'The busy first village was rejected. Calm masses and one landmark per cluster made it a place.' },
+  { name: 'Crisp Tactics', tag: 'exact isometric', src: 'a/w_tac_valley.webp', w: 400, k: 2, pos: '40% 40%', ramp: ['#996362', '#cea499', '#f3ecca', '#2f6e68', '#4f8f82', '#16525a', '#3a8a8e', '#e17f41', '#e2dcb4'],
+    hand: ['Exact 2:1 iso: every edge a clean stair', 'Three flat face tones and a soft line inside the silhouette', 'One orange accent with a single owner'],
+    made: 'The first try jittered on every diagonal. Rebuilding every prop on an integer lattice fixed it.' },
+  { name: 'Flat Minimal', tag: 'chunky iso', src: 'a/w_flat_forest.webp', w: 256, k: 3, pos: '50% 50%', ramp: ['#2c8a7b', '#36a08e', '#4ab29c', '#163b40', '#69b3b0', '#7e3f33', '#f2c544', '#c98444', '#22365c'],
+    hand: ['Two world hues and one warm window accent', 'Flat faces, no line, long flat shadows', 'A small map, shown big'],
+    made: 'Trees and roofs cast through invisible boxes, so every shadow edge stays a clean stair.' },
+  { name: 'Painted', tag: 'Blender, not pixels', src: 'a/pl_painted.webp', w: 1200, k: 1, pos: '50% 50%', smooth: 1, ramp: ['#3f6f2f', '#5d9440', '#8fc057', '#c9e07a', '#e6a7c3', '#c06a3a', '#3d6e8c', '#8a5a3c', '#f2e6c8'],
+    hand: ['Leaf cards that shade as one soft mass', 'Stepped colour bands, no gradients, no outlines', 'Sway loops, shadow layers, ducks in 8 headings'],
+    made: 'Adapted from an anime-tree technique in Blender, then extended to every asset in the scene.' }];
+const lv = $('lookview'), LOOKMS = 5000;
+/* the looks play on their own while in view (paused on hover), until someone picks one */
+let look = 0, lookAuto = !RM, lookSeen = false, lookHover = false, lookT = 0;
+function setLook(i) {
+  look = i;
+  [...$('looktabs').children].forEach((t, j) => { t.setAttribute('aria-selected', j === i); t.classList.remove('run') });
+  [...lv.children].forEach((im, j) => im.style.opacity = j === i ? 1 : 0);
+  const t = $('looktabs').children[i]; if (lookAuto && lookSeen && t) { void t.offsetWidth; t.classList.add('run') }
+  lookT = performance.now();
+}
+LOOKS.forEach((L, i) => {
+  const d = document.createElement('div'); d.className = 'img';
+  Object.assign(d.style, { backgroundImage: `url(${L.src})`, backgroundSize: L.smooth ? 'cover' : `${L.w * L.k}px auto`, backgroundPosition: L.pos, opacity: i ? 0 : 1 });
+  if (L.smooth) d.style.imageRendering = 'auto';
+  lv.append(d);
+  const b = document.createElement('button'); b.className = 'look'; b.setAttribute('role', 'tab'); b.setAttribute('aria-selected', i === 0);
+  b.innerHTML = `<h3>${L.name}<small>${L.tag}</small></h3><div class="ramp">${L.ramp.map(c => `<i style="background:${c}"></i>`).join('')}</div>
+    <div class="more"><ul>${L.hand.map(h => `<li>${h}</li>`).join('')}</ul><p class="made">${L.made}</p></div>`;
+  b.onclick = () => { lookAuto = false; setLook(i) };
+  $('looktabs').append(b);
+});
+const looksEl = $('looktabs').parentElement;
+looksEl.addEventListener('pointerenter', () => lookHover = true);
+looksEl.addEventListener('pointerleave', () => { lookHover = false; if (lookAuto) setLook(look) });
+if ('IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => { lookSeen = e.isIntersecting; if (lookSeen) setLook(look) }), { threshold: .4 }).observe(looksEl);
+else lookSeen = true;
+setInterval(() => { if (lookAuto && lookSeen && !lookHover && performance.now() - lookT >= LOOKMS) setLook((look + 1) % LOOKS.length) }, 200);
+
+/* reveal on scroll */
+if ('IntersectionObserver' in window && !RM) {
+  const ro = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target) } }), { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+} else document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+
+/* one clock: sprites, the wall and the collision sweep all move in whole pixels */
+let last = performance.now();
+function tick(now) {
+  const dt = Math.min(64, now - last) / 1000; last = now;
+  for (const s of sprites) { let t = (now - s.t0) % s.total, f = 0; while (f < s.n - 1 && t >= s.durs[f]) { t -= s.durs[f]; f++ } frame(s, f) }
+  for (const L of lanes) { if (!L.half) continue; L.y += L.v * dt; if (L.y <= -L.half) L.y += L.half; if (L.y > 0) L.y -= L.half; L.el.style.transform = `translate3d(0,${Math.round(L.y)}px,0)` }
+  if (meanAuto) mean.style.setProperty('--x', (50 + Math.sin(now / 1700 + 1) * 34).toFixed(1) + '%');
+  requestAnimationFrame(tick);
+}
+if (!RM) requestAnimationFrame(tick); else sprites.forEach(s => frame(s, 0));
+})();
+</script>
+</body>
+</html>

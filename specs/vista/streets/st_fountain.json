@@ -1,0 +1,290 @@
+{
+ "name": "st_fountain",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Round plaza fountain: pale stone basin, pillar with a bowl, sparkling spray.",
+ "frame": [
+  28,
+  28
+ ],
+ "anchor": [
+  14,
+  22
+ ],
+ "view": {
+  "yaw": {
+   "S": 0
+  }
+ },
+ "materials": {
+  "roof_t": {
+   "ramp": "roof",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "plum_t": {
+   "ramp": "roof_plum",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "wall_s": {
+   "ramp": "stone",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.62,
+    0.86
+   ],
+   "detail": {
+    "kind": "stone",
+    "scale": 1.4,
+    "amount": 0.5
+   }
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {},
+     "hide": [
+      "spray1",
+      "spray2"
+     ],
+     "hold": 4
+    },
+    {
+     "pose": {},
+     "hide": [
+      "spray0",
+      "spray2"
+     ],
+     "hold": 4
+    },
+    {
+     "pose": {},
+     "hide": [
+      "spray0",
+      "spray1"
+     ],
+     "hold": 4
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "basin",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "cylinder",
+     "at": [
+      0,
+      0,
+      1.4
+     ],
+     "r": 8,
+     "h": 1.4,
+     "mat": "wall_s",
+     "round": 0.4
+    }
+   ]
+  },
+  {
+   "name": "pool",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "cylinder",
+     "at": [
+      0,
+      0,
+      2.6
+     ],
+     "r": 6.8,
+     "h": 0.4,
+     "mat": "sea"
+    }
+   ]
+  },
+  {
+   "name": "pillar",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "cylinder",
+     "at": [
+      0,
+      0,
+      4.5
+     ],
+     "r": 1.2,
+     "h": 2.5,
+     "mat": "stone"
+    },
+    {
+     "shape": "cylinder",
+     "at": [
+      0,
+      0,
+      7.2
+     ],
+     "r": 3.2,
+     "h": 0.6,
+     "mat": "stone"
+    },
+    {
+     "shape": "cylinder",
+     "at": [
+      0,
+      0,
+      7.8
+     ],
+     "r": 2.4,
+     "h": 0.2,
+     "mat": "sea"
+    }
+   ]
+  },
+  {
+   "name": "spray0",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      0,
+      9
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "..a..",
+      ".b.b.",
+      "b...b"
+     ],
+     "key": {
+      "a": "sea:5",
+      "b": "sea:4"
+     },
+     "min_facing": 0.05,
+     "overhang": true,
+     "depth_tol": 40
+    }
+   ]
+  },
+  {
+   "name": "spray1",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      0,
+      9
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      ".a.a.",
+      "b.b.b",
+      "....."
+     ],
+     "key": {
+      "a": "sea:5",
+      "b": "sea:4"
+     },
+     "min_facing": 0.05,
+     "overhang": true,
+     "depth_tol": 40
+    }
+   ]
+  },
+  {
+   "name": "spray2",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      0,
+      9
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "..a..",
+      "a...a",
+      ".b.b."
+     ],
+     "key": {
+      "a": "sea:5",
+      "b": "sea:4"
+     },
+     "min_facing": 0.05,
+     "overhang": true,
+     "depth_tol": 40
+    }
+   ]
+  }
+ ]
+}

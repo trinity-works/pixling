@@ -1,0 +1,133 @@
+{
+ "name": "sailboat",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Small sailboat seen from above: wooden hull, cream sail.",
+ "frame": [
+  20,
+  20
+ ],
+ "anchor": [
+  10,
+  15
+ ],
+ "view": {
+  "yaw": {
+   "S": 0
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {},
+     "root": [
+      0,
+      0,
+      0
+     ],
+     "hold": 6
+    },
+    {
+     "pose": {},
+     "root": [
+      0,
+      0,
+      0.6
+     ],
+     "hold": 6
+    },
+    {
+     "pose": {},
+     "root": [
+      0,
+      0,
+      0
+     ],
+     "hold": 6
+    },
+    {
+     "pose": {},
+     "root": [
+      0,
+      0,
+      -0.4
+     ],
+     "hold": 6
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "hull",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      0,
+      0.8
+     ],
+     "r": [
+      4.6,
+      1.8,
+      1.2
+     ],
+     "mat": "wood"
+    }
+   ]
+  },
+  {
+   "name": "sail",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0.6,
+      0,
+      4
+     ],
+     "half": [
+      2.4,
+      0.3,
+      3.2
+     ],
+     "mat": "plaster",
+     "rot": [
+      0,
+      0,
+      20
+     ]
+    },
+    {
+     "shape": "box",
+     "at": [
+      -0.8,
+      0,
+      4.2
+     ],
+     "half": [
+      0.3,
+      0.3,
+      3.6
+     ],
+     "mat": "wood"
+    }
+   ]
+  }
+ ]
+}

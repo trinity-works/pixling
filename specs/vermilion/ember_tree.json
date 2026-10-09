@@ -1,0 +1,29 @@
+{
+ "name": "ember_tree",
+ "style": "vermilion",
+ "concept": "Folk-print tree: a black crooked trunk under a flat red cloud of a crown.",
+ "generator": "tree_round",
+ "params": {
+  "seed": 3,
+  "height": 74,
+  "crown": 19,
+  "clumps": 7,
+  "leaf": "canopy",
+  "bark": "ink_flat",
+  "lean": 1.5,
+  "trunk_frac": 0.52,
+  "trunk_r": 2.8
+ },
+ "frame": [
+  84,
+  96
+ ],
+ "anchor": [
+  42,
+  90
+ ],
+ "shadow": {
+  "w": 18,
+  "h": 4
+ }
+}

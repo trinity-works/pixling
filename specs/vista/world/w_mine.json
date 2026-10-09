@@ -1,0 +1,318 @@
+{
+ "name": "w_mine",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Dungeon: mine entrance in a rocky mound, timber frame, two torches, rails running out.",
+ "frame": [
+  40,
+  36
+ ],
+ "anchor": [
+  20,
+  28
+ ],
+ "view": {
+  "yaw": {
+   "S": 0
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {},
+     "hide": [
+      "g1"
+     ],
+     "hold": 6
+    },
+    {
+     "pose": {},
+     "hide": [
+      "g0"
+     ],
+     "hold": 4
+    },
+    {
+     "pose": {},
+     "hide": [
+      "g1"
+     ],
+     "hold": 6
+    },
+    {
+     "pose": {},
+     "hide": [
+      "g0"
+     ],
+     "hold": 4
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "mound",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      2,
+      1
+     ],
+     "r": [
+      12,
+      8,
+      8
+     ],
+     "mat": "rock_d"
+    },
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      -10
+     ],
+     "half": [
+      20,
+      20,
+      10
+     ],
+     "mat": "rock_d",
+     "subtract": true
+    }
+   ]
+  },
+  {
+   "name": "frame",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -3.4,
+      -5.6,
+      3
+     ],
+     "half": [
+      0.8,
+      0.8,
+      3
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "box",
+     "at": [
+      3.4,
+      -5.6,
+      3
+     ],
+     "half": [
+      0.8,
+      0.8,
+      3
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "box",
+     "at": [
+      0,
+      -5.6,
+      6.4
+     ],
+     "half": [
+      4.4,
+      0.9,
+      0.7
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -6.4,
+      3
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aaaaa",
+      "aaaaa",
+      "aaaaa",
+      "aaaaa"
+     ],
+     "key": {
+      "a": "dark:0"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "rails",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -9,
+      0.2
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a.a",
+      "bbb",
+      "a.a",
+      "bbb",
+      "a.a"
+     ],
+     "key": {
+      "a": "wood:1",
+      "b": "stone:1"
+     },
+     "min_facing": 0.05,
+     "overhang": true
+    }
+   ]
+  },
+  {
+   "name": "g0",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -5,
+      -6.6,
+      6
+     ],
+     "half": [
+      0.6,
+      0.6,
+      0.8
+     ],
+     "mat": "torch"
+    },
+    {
+     "shape": "box",
+     "at": [
+      5,
+      -6.6,
+      6
+     ],
+     "half": [
+      0.6,
+      0.6,
+      0.8
+     ],
+     "mat": "torch"
+    }
+   ]
+  },
+  {
+   "name": "g1",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -5,
+      -6.6,
+      6.3
+     ],
+     "half": [
+      0.6,
+      0.6,
+      1.2
+     ],
+     "mat": "torch"
+    },
+    {
+     "shape": "box",
+     "at": [
+      5,
+      -6.6,
+      6.3
+     ],
+     "half": [
+      0.6,
+      0.6,
+      1.2
+     ],
+     "mat": "torch"
+    }
+   ]
+  }
+ ],
+ "materials": {
+  "rock_d": {
+   "ramp": "rock",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.85
+   ],
+   "detail": {
+    "kind": "stone",
+    "scale": 1.6,
+    "amount": 0.5
+   }
+  },
+  "snow": {
+   "ramp": "plaster",
+   "shades": [
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.5,
+    0.8
+   ],
+   "sky": 0.3
+  },
+  "spire": {
+   "ramp": "ink",
+   "shades": [
+    0,
+    1,
+    2
+   ],
+   "thresholds": [
+    0.45,
+    0.8
+   ]
+  }
+ }
+}

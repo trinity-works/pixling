@@ -1,0 +1,577 @@
+{
+ "name": "boar",
+ "style": "sunmeadow",
+ "rig": "quadruped",
+ "concept": "Chunky wild boar, tanky brute: big wedge head with curved ivory tusks (defining feature), bristly dark mane ridge, short stubby legs.",
+ "frame": [
+  56,
+  48
+ ],
+ "anchor": [
+  28,
+  36
+ ],
+ "shadow": {
+  "w": 17,
+  "h": 4
+ },
+ "anim": {
+  "stride_px": 9,
+  "leap_px": 8,
+  "walk_leg": 26
+ },
+ "materials": {
+  "tusk": {
+   "ramp": "fur_white",
+   "shades": [
+    1,
+    2,
+    3
+   ]
+  },
+  "boarfur": {
+   "ramp": "fur_brown",
+   "shades": [
+    0,
+    1,
+    2
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "fur"
+   },
+   "edge": {
+    "kind": "fur",
+    "amount": 0.4
+   }
+  },
+  "snout": {
+   "ramp": "pink",
+   "shades": [
+    0,
+    1
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "body",
+   "parent": "root",
+   "at": [
+    0.0,
+    0.0,
+    8.88
+   ],
+   "blend": 1.6,
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0.0,
+      -1.44,
+      1.2
+     ],
+     "r": [
+      6.48,
+      6.24,
+      6.24
+     ],
+     "mat": "boarfur"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0.0,
+      4.32,
+      -0.24
+     ],
+     "r": [
+      5.04,
+      4.8,
+      4.56
+     ],
+     "mat": "boarfur"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      -6.4,
+      5.4
+     ],
+     "r": 2.2,
+     "h": 3.6,
+     "rot": [
+      -35,
+      0,
+      0
+     ],
+     "mat": "dark"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      -3.8,
+      6.6
+     ],
+     "r": 2.3,
+     "h": 3.4,
+     "rot": [
+      -22,
+      0,
+      0
+     ],
+     "mat": "dark"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      -1.0,
+      6.8
+     ],
+     "r": 2.2,
+     "h": 3.0,
+     "rot": [
+      -12,
+      0,
+      0
+     ],
+     "mat": "dark"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      1.8,
+      6.0
+     ],
+     "r": 2.0,
+     "h": 2.4,
+     "rot": [
+      -5,
+      0,
+      0
+     ],
+     "mat": "dark"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      4.4,
+      4.6
+     ],
+     "r": 1.7,
+     "h": 1.8,
+     "rot": [
+      5,
+      0,
+      0
+     ],
+     "mat": "dark"
+    }
+   ]
+  },
+  {
+   "name": "head",
+   "parent": "body",
+   "at": [
+    0.0,
+    -6.24,
+    0.48
+   ],
+   "blend": 1.0,
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0.0,
+      -1.92,
+      0.24
+     ],
+     "r": [
+      4.6,
+      4.2,
+      4.0
+     ],
+     "mat": "boarfur"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      -2.8,
+      -0.2
+     ],
+     "b": [
+      0,
+      -6.6,
+      -1.4
+     ],
+     "r1": 3.0,
+     "r2": 2.1,
+     "mat": "boarfur"
+    },
+    {
+     "shape": "cylinder",
+     "at": [
+      0,
+      -7.9,
+      -1.5
+     ],
+     "rot": [
+      90,
+      0,
+      0
+     ],
+     "r": 1.7,
+     "h": 0.6,
+     "round": 0.4,
+     "mat": "snout"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      -2.0,
+      -6.2,
+      -2.2
+     ],
+     "b": [
+      -4.4,
+      -7.2,
+      2.4
+     ],
+     "r1": 1.5,
+     "r2": 0.9,
+     "mat": "tusk"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      2.0,
+      -6.2,
+      -2.2
+     ],
+     "b": [
+      4.4,
+      -7.2,
+      2.4
+     ],
+     "r1": 1.5,
+     "r2": 0.9,
+     "mat": "tusk"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -2.4,
+      -4.8,
+      1.92
+     ],
+     "normal": [
+      -0.7,
+      -1,
+      0.3
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "pupil"
+     }
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      2.4,
+      -4.8,
+      1.92
+     ],
+     "normal": [
+      0.7,
+      -1,
+      0.3
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "pupil"
+     }
+    },
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      -2.0,
+      3.6
+     ],
+     "r": 1.8,
+     "h": 2.6,
+     "rot": [
+      -40,
+      0,
+      0
+     ],
+     "mat": "dark"
+    }
+   ]
+  },
+  {
+   "name": "ears",
+   "parent": "head",
+   "at": [
+    0.0,
+    -0.48,
+    3.36
+   ],
+   "parts": [
+    {
+     "shape": "cone",
+     "at": [
+      -3.12,
+      0.0,
+      0.0
+     ],
+     "r": 1.8,
+     "h": 2.88,
+     "rot": [
+      20,
+      -35,
+      0
+     ],
+     "mat": "boarfur"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      3.12,
+      0.0,
+      0.0
+     ],
+     "r": 1.8,
+     "h": 2.88,
+     "rot": [
+      20,
+      35,
+      0
+     ],
+     "mat": "boarfur"
+    }
+   ]
+  },
+  {
+   "name": "jaw",
+   "parent": "head",
+   "at": [
+    0.0,
+    -4.32,
+    -2.64
+   ],
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0.0,
+      -0.72,
+      0.0
+     ],
+     "r": [
+      2.16,
+      2.16,
+      1.08
+     ],
+     "mat": "boarfur"
+    }
+   ]
+  },
+  {
+   "name": "tail",
+   "parent": "body",
+   "at": [
+    0.0,
+    8.88,
+    1.44
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "a": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "b": [
+      0.0,
+      1.44,
+      -2.88
+     ],
+     "r1": 0.84,
+     "r2": 0.72,
+     "mat": "dark"
+    },
+    {
+     "shape": "sphere",
+     "at": [
+      0.0,
+      1.56,
+      -3.36
+     ],
+     "r": 1.2,
+     "mat": "dark"
+    }
+   ]
+  },
+  {
+   "name": "legFL",
+   "parent": "body",
+   "at": [
+    -3.36,
+    -4.08,
+    -3.12
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "b": [
+      0.0,
+      0.0,
+      -4.56
+     ],
+     "r1": 2.16,
+     "r2": 1.68,
+     "mat": "boarfur"
+    },
+    {
+     "shape": "sphere",
+     "at": [
+      0.0,
+      -0.36,
+      -5.28
+     ],
+     "r": 1.56,
+     "mat": "dark"
+    }
+   ]
+  },
+  {
+   "name": "legFR",
+   "parent": "body",
+   "at": [
+    3.36,
+    -4.08,
+    -3.12
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "b": [
+      0.0,
+      0.0,
+      -4.56
+     ],
+     "r1": 2.16,
+     "r2": 1.68,
+     "mat": "boarfur"
+    },
+    {
+     "shape": "sphere",
+     "at": [
+      0.0,
+      -0.36,
+      -5.28
+     ],
+     "r": 1.56,
+     "mat": "dark"
+    }
+   ]
+  },
+  {
+   "name": "legHL",
+   "parent": "body",
+   "at": [
+    -3.12,
+    4.8,
+    -2.64
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "b": [
+      0.0,
+      0.36,
+      -5.04
+     ],
+     "r1": 2.28,
+     "r2": 1.68,
+     "mat": "boarfur"
+    },
+    {
+     "shape": "sphere",
+     "at": [
+      0.0,
+      0.24,
+      -5.76
+     ],
+     "r": 1.56,
+     "mat": "dark"
+    }
+   ]
+  },
+  {
+   "name": "legHR",
+   "parent": "body",
+   "at": [
+    3.12,
+    4.8,
+    -2.64
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "b": [
+      0.0,
+      0.36,
+      -5.04
+     ],
+     "r1": 2.28,
+     "r2": 1.68,
+     "mat": "boarfur"
+    },
+    {
+     "shape": "sphere",
+     "at": [
+      0.0,
+      0.24,
+      -5.76
+     ],
+     "r": 1.56,
+     "mat": "dark"
+    }
+   ]
+  }
+ ],
+ "view": {
+  "yaw": {
+   "S": 16,
+   "N": 16
+  },
+  "widen": {
+   "S": 1.18,
+   "N": 1.18
+  }
+ },
+ "clips": [
+  "idle",
+  "walk",
+  "run",
+  "attack",
+  "hit",
+  "death"
+ ]
+}

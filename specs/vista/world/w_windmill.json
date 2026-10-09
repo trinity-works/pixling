@@ -1,0 +1,247 @@
+{
+ "name": "w_windmill",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Farm windmill: white tapered tower, red cap, four turning sails.",
+ "frame": [
+  24,
+  32
+ ],
+ "anchor": [
+  12,
+  26
+ ],
+ "view": {
+  "yaw": {
+   "S": 0
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {
+      "hub": {
+       "rot": [
+        0,
+        0,
+        0
+       ]
+      }
+     },
+     "hold": 5
+    },
+    {
+     "pose": {
+      "hub": {
+       "rot": [
+        0,
+        30,
+        0
+       ]
+      }
+     },
+     "hold": 5
+    },
+    {
+     "pose": {
+      "hub": {
+       "rot": [
+        0,
+        60,
+        0
+       ]
+      }
+     },
+     "hold": 5
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "body",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": 3.6,
+     "h": 11,
+     "mat": "plaster",
+     "flat": true,
+     "r_top": 2.4
+    }
+   ]
+  },
+  {
+   "name": "cap",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      0,
+      10.6
+     ],
+     "r": 3,
+     "h": 3.4,
+     "mat": "roof",
+     "flat": true,
+     "r_top": 0.4
+    }
+   ]
+  },
+  {
+   "name": "hub",
+   "parent": "root",
+   "at": [
+    0,
+    -3,
+    11
+   ],
+   "seam": true,
+   "z_bias": -3,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0.0,
+      0,
+      3.4
+     ],
+     "half": [
+      0.8,
+      0.25,
+      3.0
+     ],
+     "rot": [
+      0,
+      0,
+      0
+     ],
+     "mat": "plaster"
+    },
+    {
+     "shape": "box",
+     "at": [
+      3.4,
+      0,
+      2.0818995585505003e-16
+     ],
+     "half": [
+      0.8,
+      0.25,
+      3.0
+     ],
+     "rot": [
+      0,
+      90,
+      0
+     ],
+     "mat": "plaster"
+    },
+    {
+     "shape": "box",
+     "at": [
+      4.1637991171010006e-16,
+      0,
+      -3.4
+     ],
+     "half": [
+      0.8,
+      0.25,
+      3.0
+     ],
+     "rot": [
+      0,
+      180,
+      0
+     ],
+     "mat": "plaster"
+    },
+    {
+     "shape": "box",
+     "at": [
+      -3.4,
+      0,
+      -6.245698675651501e-16
+     ],
+     "half": [
+      0.8,
+      0.25,
+      3.0
+     ],
+     "rot": [
+      0,
+      270,
+      0
+     ],
+     "mat": "plaster"
+    }
+   ]
+  }
+ ],
+ "materials": {
+  "rock_d": {
+   "ramp": "rock",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.85
+   ],
+   "detail": {
+    "kind": "stone",
+    "scale": 1.6,
+    "amount": 0.5
+   }
+  },
+  "snow": {
+   "ramp": "plaster",
+   "shades": [
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.5,
+    0.8
+   ],
+   "sky": 0.3
+  },
+  "spire": {
+   "ramp": "ink",
+   "shades": [
+    0,
+    1,
+    2
+   ],
+   "thresholds": [
+    0.45,
+    0.8
+   ]
+  }
+ }
+}

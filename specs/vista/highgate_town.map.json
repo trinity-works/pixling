@@ -1,0 +1,2194 @@
+{
+ "name": "highgate_town",
+ "style": "vista",
+ "size": [
+  195,
+  1180
+ ],
+ "frames": 120,
+ "ms": 80,
+ "seed": 31,
+ "cast_shadow": [
+  3,
+  1
+ ],
+ "terrain": [
+  {
+   "kind": "land",
+   "tufts": 0.006,
+   "patch_cell": 14
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    -6,
+    -6,
+    207,
+    44
+   ],
+   "mix": [
+    [
+     "leaf",
+     0.8
+    ],
+    [
+     "leaf_gold",
+     0.2
+    ]
+   ],
+   "rough": 0
+  },
+  {
+   "kind": "paving",
+   "rect": [
+    84,
+    62,
+    27,
+    900
+   ],
+   "ramp": "sand",
+   "slab": [
+    12,
+    6
+   ],
+   "rough": 0.4,
+   "alt_rate": 90
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    -4,
+    82,
+    88,
+    24
+   ],
+   "rough": 2,
+   "density": 0.85,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    111,
+    82,
+    88,
+    24
+   ],
+   "rough": 2,
+   "density": 0.85,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "paving",
+   "rect": [
+    -2,
+    122,
+    199,
+    10
+   ],
+   "ramp": "sand",
+   "slab": [
+    12,
+    6
+   ],
+   "rough": 0.5,
+   "alt_rate": 90
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    -4,
+    140,
+    88,
+    24
+   ],
+   "rough": 2,
+   "density": 0.85,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    111,
+    140,
+    88,
+    24
+   ],
+   "rough": 2,
+   "density": 0.85,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "paving",
+   "rect": [
+    -2,
+    180,
+    199,
+    14
+   ],
+   "ramp": "sand",
+   "slab": [
+    12,
+    6
+   ],
+   "rough": 0.5,
+   "alt_rate": 90
+  },
+  {
+   "kind": "paving",
+   "ellipse": [
+    97,
+    232,
+    50,
+    24
+   ],
+   "ramp": "stone",
+   "slab": [
+    7,
+    4
+   ],
+   "rough": 1.0,
+   "alt_rate": 150
+  },
+  {
+   "kind": "canopy",
+   "ellipse": [
+    18,
+    226,
+    22,
+    20
+   ],
+   "rough": 1.5,
+   "mix": [
+    [
+     "leaf",
+     0.65
+    ],
+    [
+     "leaf_gold",
+     0.35
+    ]
+   ]
+  },
+  {
+   "kind": "canopy",
+   "ellipse": [
+    178,
+    228,
+    22,
+    20
+   ],
+   "rough": 1.5,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    -4,
+    278,
+    88,
+    24
+   ],
+   "rough": 2,
+   "density": 0.85,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    111,
+    278,
+    88,
+    24
+   ],
+   "rough": 2,
+   "density": 0.85,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "paving",
+   "rect": [
+    -2,
+    318,
+    199,
+    10
+   ],
+   "ramp": "sand",
+   "slab": [
+    12,
+    6
+   ],
+   "rough": 0.5,
+   "alt_rate": 90
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    -4,
+    336,
+    88,
+    24
+   ],
+   "rough": 2,
+   "density": 0.85,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    111,
+    336,
+    88,
+    24
+   ],
+   "rough": 2,
+   "density": 0.85,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "paving",
+   "rect": [
+    -2,
+    376,
+    199,
+    14
+   ],
+   "ramp": "sand",
+   "slab": [
+    12,
+    6
+   ],
+   "rough": 0.5,
+   "alt_rate": 90
+  },
+  {
+   "kind": "fill",
+   "ellipse": [
+    152,
+    391,
+    9,
+    4
+   ],
+   "ramp": "ink",
+   "tones": {
+    "base": 0
+   },
+   "rough": 0
+  },
+  {
+   "kind": "sea",
+   "rect": [
+    140,
+    391,
+    24,
+    560
+   ],
+   "rough": 0,
+   "gradient": 0.1,
+   "levels": [
+    0.45,
+    0.62
+   ],
+   "tones": {
+    "deep": 1
+   }
+  },
+  {
+   "kind": "shore",
+   "rect": [
+    140,
+    391,
+    24,
+    560
+   ],
+   "width": 2,
+   "rough": 0
+  },
+  {
+   "kind": "fill",
+   "rect": [
+    138,
+    390,
+    2,
+    562
+   ],
+   "ramp": "stone",
+   "tones": {
+    "base": 3
+   },
+   "rough": 0
+  },
+  {
+   "kind": "fill",
+   "rect": [
+    164,
+    390,
+    2,
+    562
+   ],
+   "ramp": "stone",
+   "tones": {
+    "base": 1
+   },
+   "rough": 0
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    -4,
+    400,
+    88,
+    24
+   ],
+   "rough": 2,
+   "density": 0.85,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    111,
+    400,
+    27,
+    24
+   ],
+   "rough": 2,
+   "density": 0.9,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    166,
+    400,
+    33,
+    24
+   ],
+   "rough": 2,
+   "density": 0.9,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "paving",
+   "rect": [
+    -2,
+    440,
+    140,
+    10
+   ],
+   "ramp": "sand",
+   "slab": [
+    12,
+    6
+   ],
+   "rough": 0.5,
+   "alt_rate": 90
+  },
+  {
+   "kind": "paving",
+   "rect": [
+    166,
+    440,
+    31,
+    10
+   ],
+   "ramp": "sand",
+   "slab": [
+    12,
+    6
+   ],
+   "rough": 0.5,
+   "alt_rate": 90
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    -4,
+    458,
+    88,
+    24
+   ],
+   "rough": 2,
+   "density": 0.85,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    111,
+    458,
+    27,
+    24
+   ],
+   "rough": 2,
+   "density": 0.9,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    166,
+    458,
+    33,
+    24
+   ],
+   "rough": 2,
+   "density": 0.9,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "paving",
+   "rect": [
+    -2,
+    498,
+    140,
+    10
+   ],
+   "ramp": "sand",
+   "slab": [
+    12,
+    6
+   ],
+   "rough": 0.5,
+   "alt_rate": 90
+  },
+  {
+   "kind": "paving",
+   "rect": [
+    166,
+    498,
+    31,
+    10
+   ],
+   "ramp": "sand",
+   "slab": [
+    12,
+    6
+   ],
+   "rough": 0.5,
+   "alt_rate": 90
+  },
+  {
+   "kind": "paving",
+   "rect": [
+    -2,
+    604,
+    140,
+    42
+   ],
+   "ramp": "stone",
+   "slab": [
+    7,
+    4
+   ],
+   "rough": 0.6,
+   "alt_rate": 150
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    104,
+    522,
+    34,
+    38
+   ],
+   "rough": 2,
+   "density": 0.9,
+   "mix": [
+    [
+     "leaf",
+     0.65
+    ],
+    [
+     "leaf_gold",
+     0.35
+    ]
+   ]
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    166,
+    522,
+    33,
+    34
+   ],
+   "rough": 2,
+   "density": 0.9,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    -4,
+    508,
+    88,
+    52
+   ],
+   "rough": 2,
+   "density": 0.95,
+   "mix": [
+    [
+     "leaf",
+     0.7
+    ],
+    [
+     "leaf_gold",
+     0.3
+    ]
+   ]
+  },
+  {
+   "kind": "paving",
+   "rect": [
+    166,
+    556,
+    31,
+    10
+   ],
+   "ramp": "sand",
+   "slab": [
+    12,
+    6
+   ],
+   "rough": 0.5,
+   "alt_rate": 90
+  },
+  {
+   "kind": "paving",
+   "rect": [
+    166,
+    604,
+    34,
+    42
+   ],
+   "ramp": "stone",
+   "slab": [
+    7,
+    4
+   ],
+   "rough": 0.6,
+   "alt_rate": 150
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    -4,
+    664,
+    88,
+    24
+   ],
+   "rough": 2,
+   "density": 0.85,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    111,
+    664,
+    27,
+    24
+   ],
+   "rough": 2,
+   "density": 0.9,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    166,
+    664,
+    33,
+    24
+   ],
+   "rough": 2,
+   "density": 0.9,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "paving",
+   "rect": [
+    -2,
+    704,
+    140,
+    10
+   ],
+   "ramp": "sand",
+   "slab": [
+    12,
+    6
+   ],
+   "rough": 0.5,
+   "alt_rate": 90
+  },
+  {
+   "kind": "paving",
+   "rect": [
+    166,
+    704,
+    31,
+    10
+   ],
+   "ramp": "sand",
+   "slab": [
+    12,
+    6
+   ],
+   "rough": 0.5,
+   "alt_rate": 90
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    -4,
+    722,
+    88,
+    24
+   ],
+   "rough": 2,
+   "density": 0.85,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    111,
+    722,
+    27,
+    24
+   ],
+   "rough": 2,
+   "density": 0.9,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    166,
+    722,
+    33,
+    24
+   ],
+   "rough": 2,
+   "density": 0.9,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "paving",
+   "rect": [
+    -2,
+    762,
+    140,
+    10
+   ],
+   "ramp": "sand",
+   "slab": [
+    12,
+    6
+   ],
+   "rough": 0.5,
+   "alt_rate": 90
+  },
+  {
+   "kind": "paving",
+   "rect": [
+    166,
+    762,
+    31,
+    10
+   ],
+   "ramp": "sand",
+   "slab": [
+    12,
+    6
+   ],
+   "rough": 0.5,
+   "alt_rate": 90
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    -4,
+    780,
+    88,
+    24
+   ],
+   "rough": 2,
+   "density": 0.85,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    111,
+    780,
+    27,
+    24
+   ],
+   "rough": 2,
+   "density": 0.9,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    166,
+    780,
+    33,
+    24
+   ],
+   "rough": 2,
+   "density": 0.9,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "paving",
+   "rect": [
+    -2,
+    820,
+    140,
+    10
+   ],
+   "ramp": "sand",
+   "slab": [
+    12,
+    6
+   ],
+   "rough": 0.5,
+   "alt_rate": 90
+  },
+  {
+   "kind": "paving",
+   "rect": [
+    166,
+    820,
+    31,
+    10
+   ],
+   "ramp": "sand",
+   "slab": [
+    12,
+    6
+   ],
+   "rough": 0.5,
+   "alt_rate": 90
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    -4,
+    838,
+    88,
+    24
+   ],
+   "rough": 2,
+   "density": 0.85,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    111,
+    838,
+    27,
+    24
+   ],
+   "rough": 2,
+   "density": 0.9,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    166,
+    838,
+    33,
+    24
+   ],
+   "rough": 2,
+   "density": 0.9,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "paving",
+   "rect": [
+    -2,
+    878,
+    140,
+    10
+   ],
+   "ramp": "sand",
+   "slab": [
+    12,
+    6
+   ],
+   "rough": 0.5,
+   "alt_rate": 90
+  },
+  {
+   "kind": "paving",
+   "rect": [
+    166,
+    878,
+    31,
+    10
+   ],
+   "ramp": "sand",
+   "slab": [
+    12,
+    6
+   ],
+   "rough": 0.5,
+   "alt_rate": 90
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    -4,
+    894,
+    88,
+    24
+   ],
+   "rough": 2,
+   "density": 0.85,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    111,
+    894,
+    27,
+    24
+   ],
+   "rough": 2,
+   "density": 0.9,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "canopy",
+   "rect": [
+    166,
+    894,
+    33,
+    24
+   ],
+   "rough": 2,
+   "density": 0.9,
+   "mix": [
+    [
+     "leaf",
+     0.75
+    ],
+    [
+     "leaf_gold",
+     0.25
+    ]
+   ]
+  },
+  {
+   "kind": "paving",
+   "rect": [
+    -2,
+    934,
+    199,
+    22
+   ],
+   "ramp": "stone",
+   "slab": [
+    8,
+    5
+   ],
+   "rough": 0,
+   "alt_rate": 150
+  },
+  {
+   "kind": "wall_face",
+   "rect": [
+    0,
+    956,
+    195,
+    5
+   ],
+   "ramp": "stone",
+   "course": 3,
+   "rough": 0
+  },
+  {
+   "kind": "sea",
+   "rect": [
+    140,
+    926,
+    24,
+    36
+   ],
+   "rough": 0,
+   "gradient": 0.1,
+   "levels": [
+    0.45,
+    0.62
+   ],
+   "tones": {
+    "deep": 1
+   }
+  },
+  {
+   "kind": "fill",
+   "rect": [
+    138,
+    926,
+    2,
+    35
+   ],
+   "ramp": "stone",
+   "tones": {
+    "base": 3
+   },
+   "rough": 0
+  },
+  {
+   "kind": "fill",
+   "rect": [
+    164,
+    926,
+    2,
+    35
+   ],
+   "ramp": "stone",
+   "tones": {
+    "base": 1
+   },
+   "rough": 0
+  },
+  {
+   "kind": "sea",
+   "rect": [
+    0,
+    961,
+    195,
+    230
+   ],
+   "rough": 0,
+   "gradient": 0.55,
+   "levels": [
+    0.4,
+    0.58
+   ],
+   "tones": {
+    "deep": 1
+   },
+   "deep_at": "bottom"
+  },
+  {
+   "kind": "fill",
+   "rect": [
+    140,
+    950,
+    24,
+    11
+   ],
+   "ramp": "sea",
+   "tones": {
+    "base": 2
+   },
+   "rough": 0
+  },
+  {
+   "kind": "paving",
+   "rect": [
+    84,
+    956,
+    27,
+    150
+   ],
+   "ramp": "stone",
+   "slab": [
+    8,
+    5
+   ],
+   "rough": 0,
+   "alt_rate": 150
+  },
+  {
+   "kind": "wall_face",
+   "rect": [
+    84,
+    1106,
+    27,
+    4
+   ],
+   "ramp": "stone",
+   "course": 2,
+   "rough": 0
+  },
+  {
+   "kind": "planks",
+   "rect": [
+    34,
+    961,
+    8,
+    70
+   ],
+   "vertical": true,
+   "rough": 0
+  },
+  {
+   "kind": "planks",
+   "rect": [
+    168,
+    961,
+    8,
+    80
+   ],
+   "vertical": true,
+   "rough": 0
+  },
+  {
+   "kind": "shore",
+   "rect": [
+    0,
+    950,
+    195,
+    240
+   ],
+   "width": 3,
+   "rough": 0
+  }
+ ],
+ "objects": [
+  {
+   "build": "st_wall",
+   "at": [
+    28,
+    60
+   ]
+  },
+  {
+   "build": "st_wall",
+   "at": [
+    96,
+    60
+   ]
+  },
+  {
+   "build": "st_wall",
+   "at": [
+    92,
+    60
+   ]
+  },
+  {
+   "build": "st_wall",
+   "at": [
+    160,
+    60
+   ]
+  },
+  {
+   "build": "st_gate",
+   "at": [
+    97,
+    66
+   ]
+  },
+  {
+   "build": "st_house_e",
+   "at": [
+    23,
+    122
+   ]
+  },
+  {
+   "build": "st_house_g",
+   "at": [
+    65,
+    122
+   ]
+  },
+  {
+   "build": "st_house_j",
+   "at": [
+    123,
+    122
+   ]
+  },
+  {
+   "build": "st_house_a",
+   "at": [
+    156,
+    122
+   ]
+  },
+  {
+   "build": "st_house_i",
+   "at": [
+    15,
+    180
+   ]
+  },
+  {
+   "build": "st_house_d",
+   "at": [
+    48,
+    180
+   ]
+  },
+  {
+   "build": "st_house_a",
+   "at": [
+    130,
+    180
+   ]
+  },
+  {
+   "build": "st_house_c",
+   "at": [
+    173,
+    180
+   ]
+  },
+  {
+   "build": "st_fountain",
+   "at": [
+    97,
+    232
+   ]
+  },
+  {
+   "build": "st_stall_red",
+   "at": [
+    68,
+    222
+   ]
+  },
+  {
+   "build": "st_stall_gold",
+   "at": [
+    126,
+    220
+   ]
+  },
+  {
+   "build": "st_stall_teal",
+   "at": [
+    134,
+    246
+   ]
+  },
+  {
+   "build": "st_cart",
+   "at": [
+    60,
+    248
+   ]
+  },
+  {
+   "build": "st_lamp",
+   "at": [
+    74,
+    256
+   ]
+  },
+  {
+   "build": "st_lamp",
+   "at": [
+    120,
+    256
+   ]
+  },
+  {
+   "build": "st_well",
+   "at": [
+    164,
+    244
+   ]
+  },
+  {
+   "build": "st_house_b",
+   "at": [
+    15,
+    318
+   ]
+  },
+  {
+   "build": "st_house_f",
+   "at": [
+    52,
+    318
+   ]
+  },
+  {
+   "build": "st_house_i",
+   "at": [
+    128,
+    318
+   ]
+  },
+  {
+   "build": "st_house_d",
+   "at": [
+    161,
+    318
+   ]
+  },
+  {
+   "build": "st_house_g",
+   "at": [
+    13,
+    376
+   ]
+  },
+  {
+   "build": "st_house_j",
+   "at": [
+    42,
+    376
+   ]
+  },
+  {
+   "build": "st_house_d",
+   "at": [
+    70,
+    376
+   ]
+  },
+  {
+   "build": "st_house_d",
+   "at": [
+    125,
+    376
+   ]
+  },
+  {
+   "build": "st_house_a",
+   "at": [
+    160,
+    376
+   ]
+  },
+  {
+   "build": "st_house_d",
+   "at": [
+    12,
+    440
+   ]
+  },
+  {
+   "build": "st_house_g",
+   "at": [
+    43,
+    440
+   ]
+  },
+  {
+   "build": "st_house_j",
+   "at": [
+    72,
+    440
+   ]
+  },
+  {
+   "build": "st_house_d",
+   "at": [
+    125,
+    440
+   ]
+  },
+  {
+   "build": "st_house_g",
+   "at": [
+    180,
+    440
+   ]
+  },
+  {
+   "build": "st_bridge_ew",
+   "at": [
+    152,
+    445
+   ],
+   "z": 4
+  },
+  {
+   "build": "st_house_c",
+   "at": [
+    20,
+    498
+   ]
+  },
+  {
+   "build": "st_house_j",
+   "at": [
+    56,
+    498
+   ]
+  },
+  {
+   "build": "st_house_d",
+   "at": [
+    125,
+    498
+   ]
+  },
+  {
+   "build": "st_house_d",
+   "at": [
+    179,
+    498
+   ]
+  },
+  {
+   "build": "st_hall",
+   "at": [
+    52,
+    606
+   ]
+  },
+  {
+   "build": "st_fountain",
+   "at": [
+    116,
+    630
+   ]
+  },
+  {
+   "build": "st_lamp",
+   "at": [
+    96,
+    642
+   ]
+  },
+  {
+   "build": "st_lamp",
+   "at": [
+    8,
+    642
+   ]
+  },
+  {
+   "build": "st_stall_gold",
+   "at": [
+    124,
+    614
+   ]
+  },
+  {
+   "build": "st_barrels",
+   "at": [
+    132,
+    640
+   ]
+  },
+  {
+   "build": "st_house_j",
+   "at": [
+    177,
+    556
+   ]
+  },
+  {
+   "build": "st_bridge_ew",
+   "at": [
+    152,
+    624
+   ],
+   "z": 4
+  },
+  {
+   "build": "st_house_i",
+   "at": [
+    15,
+    704
+   ]
+  },
+  {
+   "build": "st_house_c",
+   "at": [
+    56,
+    704
+   ]
+  },
+  {
+   "build": "st_house_d",
+   "at": [
+    125,
+    704
+   ]
+  },
+  {
+   "build": "st_house_d",
+   "at": [
+    179,
+    704
+   ]
+  },
+  {
+   "build": "st_house_a",
+   "at": [
+    17,
+    762
+   ]
+  },
+  {
+   "build": "st_house_d",
+   "at": [
+    52,
+    762
+   ]
+  },
+  {
+   "build": "st_house_d",
+   "at": [
+    125,
+    762
+   ]
+  },
+  {
+   "build": "st_house_d",
+   "at": [
+    179,
+    762
+   ]
+  },
+  {
+   "build": "st_house_c",
+   "at": [
+    20,
+    820
+   ]
+  },
+  {
+   "build": "st_house_d",
+   "at": [
+    58,
+    820
+   ]
+  },
+  {
+   "build": "st_house_j",
+   "at": [
+    123,
+    820
+   ]
+  },
+  {
+   "build": "st_house_d",
+   "at": [
+    179,
+    820
+   ]
+  },
+  {
+   "build": "st_house_j",
+   "at": [
+    10,
+    878
+   ]
+  },
+  {
+   "build": "st_house_d",
+   "at": [
+    38,
+    878
+   ]
+  },
+  {
+   "build": "st_house_d",
+   "at": [
+    68,
+    878
+   ]
+  },
+  {
+   "build": "st_house_d",
+   "at": [
+    125,
+    878
+   ]
+  },
+  {
+   "build": "st_house_g",
+   "at": [
+    180,
+    878
+   ]
+  },
+  {
+   "build": "st_house_e",
+   "at": [
+    23,
+    936
+   ]
+  },
+  {
+   "build": "st_house_b",
+   "at": [
+    67,
+    936
+   ]
+  },
+  {
+   "build": "st_house_j",
+   "at": [
+    123,
+    936
+   ]
+  },
+  {
+   "build": "st_house_g",
+   "at": [
+    180,
+    936
+   ]
+  },
+  {
+   "build": "st_bridge_ew",
+   "at": [
+    152,
+    945
+   ],
+   "z": 4
+  },
+  {
+   "build": "st_lighthouse",
+   "at": [
+    97,
+    1100
+   ]
+  },
+  {
+   "build": "st_barrels",
+   "at": [
+    70,
+    952
+   ]
+  },
+  {
+   "build": "st_barrels",
+   "at": [
+    126,
+    952
+   ]
+  },
+  {
+   "build": "st_lamp",
+   "at": [
+    86,
+    1000
+   ]
+  },
+  {
+   "build": "st_lamp",
+   "at": [
+    108,
+    1000
+   ]
+  },
+  {
+   "build": "st_ship",
+   "at": [
+    60,
+    1000
+   ],
+   "phase": 1
+  },
+  {
+   "build": "st_ship",
+   "at": [
+    60,
+    1040
+   ],
+   "phase": 1
+  },
+  {
+   "build": "st_ship",
+   "at": [
+    146,
+    1012
+   ],
+   "phase": 2
+  },
+  {
+   "build": "st_ship",
+   "at": [
+    190,
+    1060
+   ],
+   "phase": 0
+  }
+ ],
+ "walkers": [
+  {
+   "build": "st_rowboat",
+   "path": [
+    [
+     152,
+     444
+    ],
+    [
+     152,
+     623
+    ]
+   ],
+   "loop": false,
+   "clip": "idle",
+   "phase": 0.0
+  },
+  {
+   "build": "st_rowboat",
+   "path": [
+    [
+     152,
+     623
+    ],
+    [
+     152,
+     944
+    ]
+   ],
+   "loop": false,
+   "clip": "idle",
+   "phase": 0.35
+  },
+  {
+   "build": "st_rowboat",
+   "path": [
+    [
+     152,
+     944
+    ],
+    [
+     150,
+     1010
+    ],
+    [
+     136,
+     1195
+    ]
+   ],
+   "loop": false,
+   "clip": "idle",
+   "phase": 0.7
+  },
+  {
+   "build": "st_ship",
+   "path": [
+    [
+     -30,
+     1150
+    ],
+    [
+     230,
+     1146
+    ]
+   ],
+   "loop": false,
+   "clip": "idle",
+   "phase": 0.3
+  }
+ ],
+ "fx": [
+  {
+   "kind": "waves",
+   "rect": [
+    0,
+    962,
+    195,
+    220
+   ],
+   "spacing": 6,
+   "speed": 0.3,
+   "on": "sea:1",
+   "color": "sea:2"
+  },
+  {
+   "kind": "waves",
+   "rect": [
+    0,
+    964,
+    195,
+    220
+   ],
+   "spacing": 7,
+   "speed": -0.25,
+   "on": "sea:2",
+   "color": "sea:3"
+  },
+  {
+   "kind": "glints",
+   "rect": [
+    0,
+    964,
+    195,
+    216
+   ],
+   "count": 18,
+   "rate": 3,
+   "color": "sea:5",
+   "color2": "sea:4"
+  },
+  {
+   "kind": "glints",
+   "rect": [
+    142,
+    392,
+    20,
+    556
+   ],
+   "count": 16,
+   "rate": 3,
+   "color": "sea:5",
+   "color2": "sea:4"
+  },
+  {
+   "kind": "birds",
+   "count": 3,
+   "y": [
+    80,
+    520,
+    1000
+   ],
+   "laps": 1,
+   "color": "plaster:3",
+   "shade": "plaster:1",
+   "shadow_drop": 34
+  },
+  {
+   "kind": "clouds",
+   "count": 2,
+   "size": [
+    130,
+    70
+   ],
+   "y": [
+    300,
+    800
+   ],
+   "laps": 1
+  },
+  {
+   "kind": "smoke",
+   "at": [
+    35.8,
+    79.4
+   ],
+   "life": 64,
+   "puffs": 5,
+   "rise": 18,
+   "grow": 2.2,
+   "drift": 7,
+   "colors": [
+    "plaster:3",
+    "plaster:2",
+    "plaster:1"
+   ]
+  },
+  {
+   "kind": "smoke",
+   "at": [
+    164.7,
+    81.2
+   ],
+   "life": 64,
+   "puffs": 5,
+   "rise": 18,
+   "grow": 2.2,
+   "drift": 7,
+   "colors": [
+    "plaster:3",
+    "plaster:2",
+    "plaster:1"
+   ]
+  },
+  {
+   "kind": "smoke",
+   "at": [
+    47.6,
+    276.3
+   ],
+   "life": 64,
+   "puffs": 5,
+   "rise": 18,
+   "grow": 2.2,
+   "drift": 7,
+   "colors": [
+    "plaster:3",
+    "plaster:2",
+    "plaster:1"
+   ]
+  },
+  {
+   "kind": "smoke",
+   "at": [
+    168.7,
+    335.2
+   ],
+   "life": 64,
+   "puffs": 5,
+   "rise": 18,
+   "grow": 2.2,
+   "drift": 7,
+   "colors": [
+    "plaster:3",
+    "plaster:2",
+    "plaster:1"
+   ]
+  },
+  {
+   "kind": "smoke",
+   "at": [
+    185.8,
+    409.6
+   ],
+   "life": 64,
+   "puffs": 5,
+   "rise": 18,
+   "grow": 2.2,
+   "drift": 7,
+   "colors": [
+    "plaster:3",
+    "plaster:2",
+    "plaster:1"
+   ]
+  },
+  {
+   "kind": "smoke",
+   "at": [
+    174.5,
+    518.7
+   ],
+   "life": 64,
+   "puffs": 5,
+   "rise": 18,
+   "grow": 2.2,
+   "drift": 7,
+   "colors": [
+    "plaster:3",
+    "plaster:2",
+    "plaster:1"
+   ]
+  },
+  {
+   "kind": "smoke",
+   "at": [
+    11.6,
+    781.1
+   ],
+   "life": 64,
+   "puffs": 5,
+   "rise": 18,
+   "grow": 2.2,
+   "drift": 7,
+   "colors": [
+    "plaster:3",
+    "plaster:2",
+    "plaster:1"
+   ]
+  },
+  {
+   "kind": "smoke",
+   "at": [
+    185.8,
+    847.6
+   ],
+   "life": 64,
+   "puffs": 5,
+   "rise": 18,
+   "grow": 2.2,
+   "drift": 7,
+   "colors": [
+    "plaster:3",
+    "plaster:2",
+    "plaster:1"
+   ]
+  },
+  {
+   "kind": "smoke",
+   "at": [
+    185.8,
+    905.6
+   ],
+   "life": 64,
+   "puffs": 5,
+   "rise": 18,
+   "grow": 2.2,
+   "drift": 7,
+   "colors": [
+    "plaster:3",
+    "plaster:2",
+    "plaster:1"
+   ]
+  }
+ ]
+}

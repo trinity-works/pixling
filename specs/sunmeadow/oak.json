@@ -1,0 +1,1 @@
+{"name": "oak", "style": "sunmeadow", "generator": "tree_round", "params": {"seed": 3, "height": 58, "crown": 22, "clumps": 8, "trunk_frac": 0.36, "trunk_r": 3.0}, "frame": [64, 76], "anchor": [32, 71], "shadow": {"w": 25, "h": 6}}

@@ -1,0 +1,976 @@
+{
+ "name": "st_hall",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Guild hall: long two-storey hall, columned portico with a pediment, clock tower flying a red flag.",
+ "frame": [
+  130,
+  130
+ ],
+ "anchor": [
+  65,
+  120
+ ],
+ "view": {
+  "yaw": {
+   "S": -24
+  }
+ },
+ "materials": {
+  "roof_t": {
+   "ramp": "roof",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "plum_t": {
+   "ramp": "roof_plum",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "wall_s": {
+   "ramp": "stone",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.62,
+    0.86
+   ],
+   "detail": {
+    "kind": "stone",
+    "scale": 1.4,
+    "amount": 0.5
+   }
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {
+      "flag": {
+       "rot": [
+        0,
+        0,
+        0
+       ]
+      }
+     },
+     "hold": 4
+    },
+    {
+     "pose": {
+      "flag": {
+       "rot": [
+        0,
+        0,
+        20
+       ]
+      }
+     },
+     "hold": 4
+    },
+    {
+     "pose": {
+      "flag": {
+       "rot": [
+        0,
+        0,
+        32
+       ]
+      }
+     },
+     "hold": 4
+    },
+    {
+     "pose": {
+      "flag": {
+       "rot": [
+        0,
+        0,
+        20
+       ]
+      }
+     },
+     "hold": 4
+    },
+    {
+     "pose": {
+      "flag": {
+       "rot": [
+        0,
+        0,
+        0
+       ]
+      }
+     },
+     "hold": 4
+    },
+    {
+     "pose": {
+      "flag": {
+       "rot": [
+        0,
+        0,
+        -18
+       ]
+      }
+     },
+     "hold": 4
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "hall",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      11
+     ],
+     "half": [
+      26,
+      13,
+      11
+     ],
+     "mat": "plaster"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -21.0,
+      -13.3,
+      6.050000000000001
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -15.0,
+      -13.3,
+      6.050000000000001
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -9.0,
+      -13.3,
+      6.050000000000001
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      9.0,
+      -13.3,
+      6.050000000000001
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      15.0,
+      -13.3,
+      6.050000000000001
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      21.0,
+      -13.3,
+      6.050000000000001
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      26.3,
+      -6.0,
+      6.050000000000001
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      26.3,
+      0.0,
+      6.050000000000001
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      26.3,
+      6.0,
+      6.050000000000001
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -21.0,
+      -13.3,
+      17.05
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -15.0,
+      -13.3,
+      17.05
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -9.0,
+      -13.3,
+      17.05
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -3.0,
+      -13.3,
+      17.05
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      3.0,
+      -13.3,
+      17.05
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      9.0,
+      -13.3,
+      17.05
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      15.0,
+      -13.3,
+      17.05
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      21.0,
+      -13.3,
+      17.05
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      26.3,
+      -6.0,
+      17.05
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      26.3,
+      0.0,
+      17.05
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      26.3,
+      6.0,
+      17.05
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa",
+      "bb"
+     ],
+     "key": {
+      "a": "window",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -13.3,
+      3.5
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      ".aaaaa.",
+      "abbbbba",
+      "abbbbba",
+      "abbcbba",
+      "abbbbba",
+      "abbbbba"
+     ],
+     "key": {
+      "a": "wood:0",
+      "b": "wood:1",
+      "c": "gold"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "base",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      1.2
+     ],
+     "half": [
+      27,
+      14,
+      1.2
+     ],
+     "mat": "wall_s"
+    },
+    {
+     "shape": "box",
+     "at": [
+      0,
+      -17,
+      0.8
+     ],
+     "half": [
+      12,
+      3.5,
+      0.8
+     ],
+     "mat": "wall_s"
+    }
+   ]
+  },
+  {
+   "name": "roof",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "roof",
+     "at": [
+      0,
+      0,
+      22
+     ],
+     "half": [
+      27.4,
+      14.4
+     ],
+     "h": 10,
+     "mat": "plum_t"
+    }
+   ]
+  },
+  {
+   "name": "portico",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "cylinder",
+     "at": [
+      -9,
+      -16,
+      8
+     ],
+     "r": 1.1,
+     "h": 7,
+     "mat": "plaster"
+    },
+    {
+     "shape": "cylinder",
+     "at": [
+      -3,
+      -16,
+      8
+     ],
+     "r": 1.1,
+     "h": 7,
+     "mat": "plaster"
+    },
+    {
+     "shape": "cylinder",
+     "at": [
+      3,
+      -16,
+      8
+     ],
+     "r": 1.1,
+     "h": 7,
+     "mat": "plaster"
+    },
+    {
+     "shape": "cylinder",
+     "at": [
+      9,
+      -16,
+      8
+     ],
+     "r": 1.1,
+     "h": 7,
+     "mat": "plaster"
+    },
+    {
+     "shape": "box",
+     "at": [
+      0,
+      -16,
+      15.6
+     ],
+     "half": [
+      11,
+      2.6,
+      0.9
+     ],
+     "mat": "wall_s"
+    },
+    {
+     "shape": "roof",
+     "at": [
+      0,
+      -16,
+      16.5
+     ],
+     "half": [
+      11.5,
+      3.2
+     ],
+     "h": 4.5,
+     "mat": "roof_t",
+     "gable": true
+    }
+   ]
+  },
+  {
+   "name": "tower",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      5,
+      22
+     ],
+     "half": [
+      6,
+      6,
+      22
+     ],
+     "mat": "plaster"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -1.3,
+      36
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      ".aa.",
+      "abba",
+      "abba",
+      ".aa."
+     ],
+     "key": {
+      "a": "gold:1",
+      "b": "plaster:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      6.3,
+      5,
+      36
+     ],
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "rows": [
+      "aa",
+      "aa"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "tower_roof",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "roof",
+     "at": [
+      0,
+      5,
+      44
+     ],
+     "half": [
+      6.8,
+      6.8
+     ],
+     "h": 8,
+     "mat": "roof_t"
+    }
+   ]
+  },
+  {
+   "name": "flag",
+   "parent": "root",
+   "at": [
+    0,
+    5,
+    52
+   ],
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      2
+     ],
+     "half": [
+      0.4,
+      0.4,
+      2
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "box",
+     "at": [
+      2,
+      0,
+      3.4
+     ],
+     "half": [
+      1.8,
+      0.3,
+      1.0
+     ],
+     "mat": "banner"
+    }
+   ]
+  },
+  {
+   "name": "banners",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -19,
+      -13.6,
+      14
+     ],
+     "half": [
+      1.8,
+      0.4,
+      4
+     ],
+     "mat": "banner"
+    },
+    {
+     "shape": "box",
+     "at": [
+      19,
+      -13.6,
+      14
+     ],
+     "half": [
+      1.8,
+      0.4,
+      4
+     ],
+     "mat": "banner"
+    }
+   ]
+  }
+ ],
+ "size": {
+  "height": 84
+ }
+}

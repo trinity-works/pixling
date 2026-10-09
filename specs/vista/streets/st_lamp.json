@@ -1,0 +1,170 @@
+{
+ "name": "st_lamp",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Street lamp: dark post, warm lantern.",
+ "frame": [
+  10,
+  20
+ ],
+ "anchor": [
+  5,
+  16
+ ],
+ "view": {
+  "yaw": {
+   "S": 0
+  }
+ },
+ "materials": {
+  "roof_t": {
+   "ramp": "roof",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "plum_t": {
+   "ramp": "roof_plum",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "wall_s": {
+   "ramp": "stone",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.62,
+    0.86
+   ],
+   "detail": {
+    "kind": "stone",
+    "scale": 1.4,
+    "amount": 0.5
+   }
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {}
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "post",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      5
+     ],
+     "half": [
+      0.45,
+      0.45,
+      5
+     ],
+     "mat": "dark"
+    },
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      0.6
+     ],
+     "half": [
+      1,
+      1,
+      0.6
+     ],
+     "mat": "stone"
+    }
+   ]
+  },
+  {
+   "name": "lantern",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      11
+     ],
+     "half": [
+      1,
+      1,
+      1.2
+     ],
+     "mat": "glass"
+    },
+    {
+     "shape": "roof",
+     "at": [
+      0,
+      0,
+      12.2
+     ],
+     "half": [
+      1.4,
+      1.4
+     ],
+     "h": 1,
+     "mat": "dark"
+    }
+   ]
+  }
+ ]
+}

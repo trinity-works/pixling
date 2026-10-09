@@ -1,0 +1,146 @@
+{
+ "name": "house_7",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Aerial town house 9x8x6, 1 floor(s), roof hip roof.",
+ "frame": [
+  30,
+  34
+ ],
+ "anchor": [
+  15,
+  26
+ ],
+ "view": {
+  "yaw": {
+   "S": -24
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {}
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "walls",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      3.0
+     ],
+     "half": [
+      4.5,
+      4.0,
+      3.0
+     ],
+     "mat": "plaster"
+    },
+    {
+     "shape": "stamp_row",
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "at": [
+      0,
+      0,
+      1
+     ],
+     "count": 1,
+     "rows": [
+      "a",
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp_row",
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "at": [
+      0,
+      0,
+      2.7
+     ],
+     "count": 3,
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp_row",
+     "normal": [
+      1,
+      0,
+      0
+     ],
+     "at": [
+      0,
+      0,
+      2.7
+     ],
+     "count": 3,
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "window"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "roof",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "roof",
+     "at": [
+      0,
+      0,
+      6
+     ],
+     "half": [
+      5.2,
+      4.7
+     ],
+     "h": 4.96,
+     "mat": "roof",
+     "gable": false
+    }
+   ]
+  }
+ ]
+}

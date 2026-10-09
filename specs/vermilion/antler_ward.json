@@ -1,0 +1,579 @@
+{
+ "name": "antler_ward",
+ "style": "vermilion",
+ "rig": "humanoid",
+ "concept": "Little forest ward: a huge round black head with pale ring eyes, a bone-fur ruff, a red coat marked with a black triangle, stick legs. Defining feature: branching twig antlers.",
+ "frame": [
+  64,
+  64
+ ],
+ "anchor": [
+  32,
+  56
+ ],
+ "shadow": {
+  "w": 11,
+  "h": 3
+ },
+ "smear": {
+  "color": "#dc4a2c",
+  "edge": "#7e2419",
+  "radius": 14,
+  "width": 6,
+  "height": 14
+ },
+ "anim": {
+  "props": [
+   "antlerL",
+   "antlerR"
+  ],
+  "prop_swing": 5,
+  "idle_bob": 1,
+  "attack_lunge": 3
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "hips",
+   "parent": "root",
+   "at": [
+    0,
+    0,
+    9
+   ],
+   "parts": []
+  },
+  {
+   "name": "legL",
+   "parent": "hips",
+   "at": [
+    -2,
+    0,
+    0
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "b": [
+      0,
+      0,
+      -8.4
+     ],
+     "r1": 1.2,
+     "r2": 1.2,
+     "mat": "ink_flat"
+    },
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      -3.5
+     ],
+     "half": [
+      1.3,
+      1.3,
+      0.6
+     ],
+     "mat": "bone_mark"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -0.8,
+      -8.6
+     ],
+     "r": [
+      1.4,
+      2.0,
+      0.8
+     ],
+     "mat": "ink_flat"
+    }
+   ]
+  },
+  {
+   "name": "legR",
+   "parent": "hips",
+   "at": [
+    2,
+    0,
+    0
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "b": [
+      0,
+      0,
+      -8.4
+     ],
+     "r1": 1.2,
+     "r2": 1.2,
+     "mat": "ink_flat"
+    },
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      -3.5
+     ],
+     "half": [
+      1.3,
+      1.3,
+      0.6
+     ],
+     "mat": "bone_mark"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -0.8,
+      -8.6
+     ],
+     "r": [
+      1.4,
+      2.0,
+      0.8
+     ],
+     "mat": "ink_flat"
+    }
+   ]
+  },
+  {
+   "name": "torso",
+   "parent": "hips",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parts": [
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      0,
+      -1.2
+     ],
+     "r": 6.4,
+     "r_top": 4.4,
+     "h": 9,
+     "round": 0.4,
+     "mat": "red"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      0,
+      -1.3
+     ],
+     "r": 6.5,
+     "r_top": 6.1,
+     "h": 1.3,
+     "round": 0.3,
+     "mat": "ink"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -6.2,
+      3.2
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "min_facing": 0.35,
+     "rows": [
+      "kkkkk",
+      ".kkk.",
+      "..k.."
+     ],
+     "key": {
+      "k": "ink:0"
+     }
+    }
+   ]
+  },
+  {
+   "name": "ruff",
+   "parent": "torso",
+   "at": [
+    0,
+    0,
+    7.2
+   ],
+   "seam": true,
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "r": [
+      7.2,
+      6.4,
+      3.0
+     ],
+     "mat": "fur"
+    }
+   ]
+  },
+  {
+   "name": "head",
+   "parent": "torso",
+   "at": [
+    0,
+    0,
+    9
+   ],
+   "parts": [
+    {
+     "shape": "sphere",
+     "at": [
+      0,
+      0,
+      6.8
+     ],
+     "r": 7.4,
+     "mat": "ink"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -2.8,
+      -7.2,
+      6.4
+     ],
+     "normal": [
+      -0.4,
+      -1,
+      0.05
+     ],
+     "min_facing": 0.12,
+     "clamp": 2,
+     "rows": [
+      ".ww.",
+      "wkkw",
+      "wkkw",
+      ".ww."
+     ],
+     "key": {
+      "w": "eye",
+      "k": "pupil"
+     }
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      2.8,
+      -7.2,
+      6.4
+     ],
+     "normal": [
+      0.4,
+      -1,
+      0.05
+     ],
+     "min_facing": 0.12,
+     "clamp": 2,
+     "rows": [
+      ".ww.",
+      "wkkw",
+      "wkkw",
+      ".ww."
+     ],
+     "key": {
+      "w": "eye",
+      "k": "pupil"
+     }
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -7.4,
+      10.4
+     ],
+     "normal": [
+      0,
+      -1,
+      0.3
+     ],
+     "min_facing": 0.3,
+     "rows": [
+      "r.r",
+      ".r."
+     ],
+     "key": {
+      "r": "red_mark"
+     }
+    }
+   ]
+  },
+  {
+   "name": "antlerL",
+   "parent": "head",
+   "at": [
+    -4.6,
+    0,
+    12
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "b": [
+      -2.5,
+      0,
+      7
+     ],
+     "r1": 1.2,
+     "r2": 0.9,
+     "mat": "ink_flat"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      -1.2,
+      0,
+      3.6
+     ],
+     "b": [
+      -5.6,
+      0,
+      5.8
+     ],
+     "r1": 0.9,
+     "r2": 0.8,
+     "mat": "ink_flat"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      -2.4,
+      0,
+      6.6
+     ],
+     "b": [
+      -1.0,
+      0,
+      9.4
+     ],
+     "r1": 0.8,
+     "r2": 0.8,
+     "mat": "ink_flat"
+    }
+   ]
+  },
+  {
+   "name": "antlerR",
+   "parent": "head",
+   "at": [
+    4.6,
+    0,
+    12
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "b": [
+      2.5,
+      0,
+      7
+     ],
+     "r1": 1.2,
+     "r2": 0.9,
+     "mat": "ink_flat"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      1.2,
+      0,
+      3.6
+     ],
+     "b": [
+      5.6,
+      0,
+      5.8
+     ],
+     "r1": 0.9,
+     "r2": 0.8,
+     "mat": "ink_flat"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      2.4,
+      0,
+      6.6
+     ],
+     "b": [
+      1.0,
+      0,
+      9.4
+     ],
+     "r1": 0.8,
+     "r2": 0.8,
+     "mat": "ink_flat"
+    }
+   ]
+  },
+  {
+   "name": "armL",
+   "parent": "torso",
+   "at": [
+    -5,
+    0,
+    6
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "b": [
+      -0.6,
+      0,
+      -5
+     ],
+     "r1": 1.4,
+     "r2": 1.2,
+     "mat": "red"
+    },
+    {
+     "shape": "sphere",
+     "at": [
+      -0.7,
+      0,
+      -5.8
+     ],
+     "r": 1.3,
+     "mat": "ink_flat"
+    }
+   ]
+  },
+  {
+   "name": "armR",
+   "parent": "torso",
+   "at": [
+    5,
+    0,
+    6
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "b": [
+      0.6,
+      0,
+      -5
+     ],
+     "r1": 1.4,
+     "r2": 1.2,
+     "mat": "red"
+    },
+    {
+     "shape": "sphere",
+     "at": [
+      0.7,
+      0,
+      -5.8
+     ],
+     "r": 1.3,
+     "mat": "ink_flat"
+    }
+   ]
+  },
+  {
+   "name": "weapon",
+   "parent": "armR",
+   "at": [
+    0.7,
+    0,
+    -5.8
+   ],
+   "rot": [
+    0,
+    24,
+    0
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      -5
+     ],
+     "b": [
+      0,
+      0,
+      13
+     ],
+     "r1": 0.9,
+     "r2": 0.9,
+     "mat": "ink_flat"
+    },
+    {
+     "shape": "sphere",
+     "at": [
+      0,
+      0,
+      14.4
+     ],
+     "r": 2.0,
+     "mat": "bone"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -2.1,
+      14.4
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "min_facing": 0.2,
+     "rows": [
+      "k.k"
+     ],
+     "key": {
+      "k": "ink:0"
+     }
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      12
+     ],
+     "b": [
+      1.2,
+      0,
+      8
+     ],
+     "r1": 0.9,
+     "r2": 0.8,
+     "mat": "red_mark"
+    }
+   ]
+  }
+ ],
+ "clips": [
+  "idle",
+  "walk",
+  "run",
+  "attack",
+  "hit",
+  "death"
+ ]
+}

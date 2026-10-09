@@ -1,0 +1,338 @@
+{
+ "name": "w_bandit_camp",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Enemy spot: bandit camp, a stake palisade round two dark tents, a red flag and a campfire.",
+ "frame": [
+  32,
+  28
+ ],
+ "anchor": [
+  16,
+  20
+ ],
+ "view": {
+  "yaw": {
+   "S": -15
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {},
+     "hide": [
+      "g1"
+     ],
+     "hold": 6
+    },
+    {
+     "pose": {},
+     "hide": [
+      "g0"
+     ],
+     "hold": 4
+    },
+    {
+     "pose": {},
+     "hide": [
+      "g1"
+     ],
+     "hold": 6
+    },
+    {
+     "pose": {},
+     "hide": [
+      "g0"
+     ],
+     "hold": 4
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "palisade",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -9.396926207859085,
+      -2.4202014332566866,
+      1.8
+     ],
+     "half": [
+      0.7,
+      0.7,
+      1.8
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "box",
+     "at": [
+      -7.273736415730486,
+      -5.862416378687337,
+      1.8
+     ],
+     "half": [
+      0.7,
+      0.7,
+      1.8
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "box",
+     "at": [
+      -3.9607976603915684,
+      -8.18216106880274,
+      1.8
+     ],
+     "half": [
+      0.7,
+      0.7,
+      1.8
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "box",
+     "at": [
+      -1.8369701987210296e-15,
+      -9.0,
+      1.8
+     ],
+     "half": [
+      0.7,
+      0.7,
+      1.8
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "box",
+     "at": [
+      3.960797660391565,
+      -8.182161068802742,
+      1.8
+     ],
+     "half": [
+      0.7,
+      0.7,
+      1.8
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "box",
+     "at": [
+      7.27373641573049,
+      -5.862416378687334,
+      1.8
+     ],
+     "half": [
+      0.7,
+      0.7,
+      1.8
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "box",
+     "at": [
+      9.396926207859085,
+      -2.420201433256686,
+      1.8
+     ],
+     "half": [
+      0.7,
+      0.7,
+      1.8
+     ],
+     "mat": "wood"
+    }
+   ]
+  },
+  {
+   "name": "t1",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "roof",
+     "at": [
+      -4,
+      2,
+      0
+     ],
+     "half": [
+      3.6,
+      4.2
+     ],
+     "h": 5.6,
+     "mat": "roof_plum",
+     "gable": true
+    }
+   ]
+  },
+  {
+   "name": "t2",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "roof",
+     "at": [
+      4.5,
+      3,
+      0
+     ],
+     "half": [
+      3.2,
+      3.8
+     ],
+     "h": 5.0,
+     "mat": "banner",
+     "gable": true
+    }
+   ]
+  },
+  {
+   "name": "flag",
+   "parent": "root",
+   "at": [
+    7.5,
+    -3,
+    0
+   ],
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      4
+     ],
+     "half": [
+      0.35,
+      0.35,
+      4
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "box",
+     "at": [
+      1.4,
+      0,
+      7
+     ],
+     "half": [
+      1.2,
+      0.3,
+      0.8
+     ],
+     "mat": "banner"
+    }
+   ]
+  },
+  {
+   "name": "g0",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      -4,
+      0.6
+     ],
+     "half": [
+      0.8,
+      0.8,
+      0.6
+     ],
+     "mat": "torch"
+    }
+   ]
+  },
+  {
+   "name": "g1",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      -4,
+      0.9
+     ],
+     "half": [
+      0.8,
+      0.8,
+      1.0
+     ],
+     "mat": "torch"
+    }
+   ]
+  }
+ ],
+ "materials": {
+  "rock_d": {
+   "ramp": "rock",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.85
+   ],
+   "detail": {
+    "kind": "stone",
+    "scale": 1.6,
+    "amount": 0.5
+   }
+  },
+  "snow": {
+   "ramp": "plaster",
+   "shades": [
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.5,
+    0.8
+   ],
+   "sky": 0.3
+  },
+  "spire": {
+   "ramp": "ink",
+   "shades": [
+    0,
+    1,
+    2
+   ],
+   "thresholds": [
+    0.45,
+    0.8
+   ]
+  }
+ }
+}

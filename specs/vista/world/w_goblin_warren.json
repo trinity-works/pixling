@@ -1,0 +1,412 @@
+{
+ "name": "w_goblin_warren",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Enemy spot: goblin warren, three hide dome huts behind sharpened stakes and a skull totem with glowing eyes.",
+ "frame": [
+  32,
+  26
+ ],
+ "anchor": [
+  16,
+  19
+ ],
+ "view": {
+  "yaw": {
+   "S": -15
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {},
+     "hide": [
+      "g1"
+     ],
+     "hold": 6
+    },
+    {
+     "pose": {},
+     "hide": [
+      "g0"
+     ],
+     "hold": 4
+    },
+    {
+     "pose": {},
+     "hide": [
+      "g1"
+     ],
+     "hold": 6
+    },
+    {
+     "pose": {},
+     "hide": [
+      "g0"
+     ],
+     "hold": 4
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "huts",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      -4.5,
+      2,
+      0.4
+     ],
+     "r": [
+      4.0,
+      3.6,
+      3.6
+     ],
+     "mat": "leaf"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      4,
+      3,
+      0.4
+     ],
+     "r": [
+      3.6,
+      3.24,
+      3.24
+     ],
+     "mat": "leaf"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -1.5,
+      0.4
+     ],
+     "r": [
+      3.0,
+      2.7,
+      2.7
+     ],
+     "mat": "leaf"
+    },
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      -6
+     ],
+     "half": [
+      14,
+      14,
+      6
+     ],
+     "mat": "leaf",
+     "subtract": true
+    }
+   ]
+  },
+  {
+   "name": "doors",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -4.6,
+      1.2
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a",
+      "a"
+     ],
+     "key": {
+      "a": "dark:0"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -4.5,
+      -1.8,
+      1.4
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a",
+      "a"
+     ],
+     "key": {
+      "a": "dark:0"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      4,
+      -0.5,
+      1.4
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "dark:0"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "stakes",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "cone",
+     "at": [
+      -7,
+      -6.5,
+      0
+     ],
+     "r": 0.7,
+     "h": 3.2,
+     "mat": "wood",
+     "flat": true,
+     "r_top": 0.1
+    },
+    {
+     "shape": "cone",
+     "at": [
+      -4.5,
+      -6.5,
+      0
+     ],
+     "r": 0.7,
+     "h": 3.2,
+     "mat": "wood",
+     "flat": true,
+     "r_top": 0.1
+    },
+    {
+     "shape": "cone",
+     "at": [
+      -2,
+      -6.5,
+      0
+     ],
+     "r": 0.7,
+     "h": 3.2,
+     "mat": "wood",
+     "flat": true,
+     "r_top": 0.1
+    },
+    {
+     "shape": "cone",
+     "at": [
+      2,
+      -6.5,
+      0
+     ],
+     "r": 0.7,
+     "h": 3.2,
+     "mat": "wood",
+     "flat": true,
+     "r_top": 0.1
+    },
+    {
+     "shape": "cone",
+     "at": [
+      4.5,
+      -6.5,
+      0
+     ],
+     "r": 0.7,
+     "h": 3.2,
+     "mat": "wood",
+     "flat": true,
+     "r_top": 0.1
+    },
+    {
+     "shape": "cone",
+     "at": [
+      7,
+      -6.5,
+      0
+     ],
+     "r": 0.7,
+     "h": 3.2,
+     "mat": "wood",
+     "flat": true,
+     "r_top": 0.1
+    }
+   ]
+  },
+  {
+   "name": "totem",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      8,
+      0,
+      2.6
+     ],
+     "half": [
+      0.5,
+      0.5,
+      2.6
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "sphere",
+     "at": [
+      8,
+      0,
+      5.6
+     ],
+     "r": 1.2,
+     "mat": "plaster"
+    }
+   ]
+  },
+  {
+   "name": "g0",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "stamp",
+     "at": [
+      8,
+      -1.2,
+      5.8
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a.a"
+     ],
+     "key": {
+      "a": "torch:2"
+     },
+     "min_facing": 0.05,
+     "overhang": true
+    }
+   ]
+  },
+  {
+   "name": "g1",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "stamp",
+     "at": [
+      8,
+      -1.2,
+      5.8
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a.a"
+     ],
+     "key": {
+      "a": "torch:0"
+     },
+     "min_facing": 0.05,
+     "overhang": true
+    }
+   ]
+  }
+ ],
+ "materials": {
+  "rock_d": {
+   "ramp": "rock",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.85
+   ],
+   "detail": {
+    "kind": "stone",
+    "scale": 1.6,
+    "amount": 0.5
+   }
+  },
+  "snow": {
+   "ramp": "plaster",
+   "shades": [
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.5,
+    0.8
+   ],
+   "sky": 0.3
+  },
+  "spire": {
+   "ramp": "ink",
+   "shades": [
+    0,
+    1,
+    2
+   ],
+   "thresholds": [
+    0.45,
+    0.8
+   ]
+  }
+ }
+}

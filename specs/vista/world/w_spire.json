@@ -1,0 +1,350 @@
+{
+ "name": "w_spire",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Raid: Blackspire, a tall black tower with a broken crown and glowing arcane windows.",
+ "frame": [
+  28,
+  64
+ ],
+ "anchor": [
+  14,
+  56
+ ],
+ "view": {
+  "yaw": {
+   "S": 0
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {},
+     "hide": [
+      "g1"
+     ],
+     "hold": 6
+    },
+    {
+     "pose": {},
+     "hide": [
+      "g0"
+     ],
+     "hold": 4
+    },
+    {
+     "pose": {},
+     "hide": [
+      "g1"
+     ],
+     "hold": 6
+    },
+    {
+     "pose": {},
+     "hide": [
+      "g0"
+     ],
+     "hold": 4
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "base",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": 7,
+     "h": 6,
+     "mat": "rock_d",
+     "flat": true,
+     "r_top": 5
+    }
+   ]
+  },
+  {
+   "name": "tower",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      0,
+      5
+     ],
+     "r": 4.6,
+     "h": 30,
+     "mat": "spire",
+     "flat": true,
+     "r_top": 3.2
+    },
+    {
+     "shape": "box",
+     "at": [
+      2,
+      -2,
+      36
+     ],
+     "half": [
+      3,
+      3,
+      3
+     ],
+     "mat": "spire",
+     "subtract": true
+    }
+   ]
+  },
+  {
+   "name": "horns",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "cone",
+     "at": [
+      -2.6,
+      0,
+      33
+     ],
+     "r": 1.2,
+     "h": 6,
+     "mat": "spire",
+     "flat": true,
+     "r_top": 0.2
+    },
+    {
+     "shape": "cone",
+     "at": [
+      2.6,
+      0,
+      33
+     ],
+     "r": 1.2,
+     "h": 6,
+     "mat": "spire",
+     "flat": true,
+     "r_top": 0.2
+    }
+   ]
+  },
+  {
+   "name": "g0",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -4.6,
+      12
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "arcane:1"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -4.6,
+      20
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "arcane:1"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -4.6,
+      28
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "arcane:1"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  },
+  {
+   "name": "g1",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -4.6,
+      12
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "arcane:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -4.6,
+      20
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "arcane:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -4.6,
+      28
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "arcane:3"
+     },
+     "min_facing": 0.05
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -1.6,
+      -4,
+      24
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "rows": [
+      "a"
+     ],
+     "key": {
+      "a": "arcane:2"
+     },
+     "min_facing": 0.05
+    }
+   ]
+  }
+ ],
+ "materials": {
+  "rock_d": {
+   "ramp": "rock",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.85
+   ],
+   "detail": {
+    "kind": "stone",
+    "scale": 1.6,
+    "amount": 0.5
+   }
+  },
+  "snow": {
+   "ramp": "plaster",
+   "shades": [
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.5,
+    0.8
+   ],
+   "sky": 0.3
+  },
+  "spire": {
+   "ramp": "ink",
+   "shades": [
+    0,
+    1,
+    2
+   ],
+   "thresholds": [
+    0.45,
+    0.8
+   ]
+  }
+ }
+}

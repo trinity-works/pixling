@@ -1,0 +1,159 @@
+{
+ "name": "st_barrels",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Two barrels and a crate.",
+ "frame": [
+  16,
+  16
+ ],
+ "anchor": [
+  8,
+  12
+ ],
+ "view": {
+  "yaw": {
+   "S": -24
+  }
+ },
+ "materials": {
+  "roof_t": {
+   "ramp": "roof",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "plum_t": {
+   "ramp": "roof_plum",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.6,
+    0.86
+   ],
+   "sky": 0.25,
+   "detail": {
+    "kind": "plate",
+    "scale": 1.0,
+    "amount": 0.5
+   }
+  },
+  "wall_s": {
+   "ramp": "stone",
+   "shades": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "thresholds": [
+    0.35,
+    0.62,
+    0.86
+   ],
+   "detail": {
+    "kind": "stone",
+    "scale": 1.4,
+    "amount": 0.5
+   }
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {}
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "b1",
+   "parent": "root",
+   "parts": [
+    {
+     "shape": "cylinder",
+     "at": [
+      -2,
+      0,
+      2
+     ],
+     "r": 1.7,
+     "h": 2,
+     "mat": "wood",
+     "round": 0.5
+    }
+   ]
+  },
+  {
+   "name": "b2",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "cylinder",
+     "at": [
+      1.6,
+      -1.4,
+      1.9
+     ],
+     "r": 1.6,
+     "h": 1.9,
+     "mat": "wood",
+     "round": 0.5
+    }
+   ]
+  },
+  {
+   "name": "c",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      1.4,
+      2,
+      1.5
+     ],
+     "half": [
+      1.5,
+      1.5,
+      1.5
+     ],
+     "mat": "sand"
+    }
+   ]
+  }
+ ]
+}

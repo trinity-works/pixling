@@ -1,0 +1,148 @@
+{
+ "name": "market",
+ "style": "vista",
+ "rig": "prop",
+ "directions": [
+  "S"
+ ],
+ "concept": "Row of three market stalls with red, gold and teal awnings.",
+ "frame": [
+  32,
+  20
+ ],
+ "anchor": [
+  16,
+  14
+ ],
+ "view": {
+  "yaw": {
+   "S": -24
+  }
+ },
+ "clips": [
+  "idle"
+ ],
+ "custom_clips": {
+  "idle": {
+   "loop": true,
+   "frames": [
+    {
+     "pose": {}
+    }
+   ]
+  }
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "s0",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      -6,
+      0,
+      1.6
+     ],
+     "half": [
+      2.2,
+      1.6,
+      1.6
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "roof",
+     "at": [
+      -6,
+      0,
+      3.2
+     ],
+     "half": [
+      2.8,
+      2.4
+     ],
+     "h": 2.2,
+     "mat": "banner",
+     "gable": true
+    }
+   ]
+  },
+  {
+   "name": "s1",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0,
+      1.6
+     ],
+     "half": [
+      2.2,
+      1.6,
+      1.6
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "roof",
+     "at": [
+      0,
+      0,
+      3.2
+     ],
+     "half": [
+      2.8,
+      2.4
+     ],
+     "h": 2.2,
+     "mat": "gold",
+     "gable": true
+    }
+   ]
+  },
+  {
+   "name": "s2",
+   "parent": "root",
+   "seam": true,
+   "parts": [
+    {
+     "shape": "box",
+     "at": [
+      6,
+      0,
+      1.6
+     ],
+     "half": [
+      2.2,
+      1.6,
+      1.6
+     ],
+     "mat": "wood"
+    },
+    {
+     "shape": "roof",
+     "at": [
+      6,
+      0,
+      3.2
+     ],
+     "half": [
+      2.8,
+      2.4
+     ],
+     "h": 2.2,
+     "mat": "sea",
+     "gable": true
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,472 @@
+{
+ "name": "fox",
+ "style": "sunmeadow",
+ "rig": "quadruped",
+ "concept": "Red fox, big bushy white-tipped tail curled to one side (defining feature), big head with white cheeks, dark socks, tall ears.",
+ "frame": [
+  52,
+  40
+ ],
+ "anchor": [
+  26,
+  31
+ ],
+ "shadow": {
+  "w": 13,
+  "h": 3
+ },
+ "anim": {
+  "stride_px": 10,
+  "leap_px": 9
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "body",
+   "parent": "root",
+   "at": [
+    0,
+    0,
+    7
+   ],
+   "blend": 1.4,
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "r": [
+      3.9,
+      6.0,
+      3.4
+     ],
+     "mat": "fur_orange"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -3.0,
+      -0.8
+     ],
+     "r": [
+      3.0,
+      3.4,
+      2.6
+     ],
+     "mat": "fur_white"
+    }
+   ]
+  },
+  {
+   "name": "head",
+   "parent": "body",
+   "at": [
+    0,
+    -5.6,
+    3.0
+   ],
+   "blend": 1.0,
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -1.0,
+      1.2
+     ],
+     "r": [
+      4.3,
+      3.6,
+      3.5
+     ],
+     "mat": "fur_orange"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      -2.6,
+      -2.2,
+      0.0
+     ],
+     "r": [
+      2.0,
+      1.8,
+      1.7
+     ],
+     "mat": "fur_white"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      2.6,
+      -2.2,
+      0.0
+     ],
+     "r": [
+      2.0,
+      1.8,
+      1.7
+     ],
+     "mat": "fur_white"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -4.2,
+      0.3
+     ],
+     "r": [
+      1.7,
+      2.6,
+      1.5
+     ],
+     "mat": "fur_orange"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -4.4,
+      -0.6
+     ],
+     "r": [
+      1.4,
+      2.2,
+      0.9
+     ],
+     "mat": "fur_white"
+    },
+    {
+     "shape": "sphere",
+     "at": [
+      0,
+      -6.6,
+      0.6
+     ],
+     "r": 0.9,
+     "mat": "nose"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -1.8,
+      -4.0,
+      2.2
+     ],
+     "normal": [
+      -0.6,
+      -1,
+      0.2
+     ],
+     "rows": [
+      "ba",
+      "aa"
+     ],
+     "key": {
+      "a": "pupil",
+      "b": "eye_white"
+     }
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      1.8,
+      -4.0,
+      2.2
+     ],
+     "normal": [
+      0.6,
+      -1,
+      0.2
+     ],
+     "rows": [
+      "ba",
+      "aa"
+     ],
+     "key": {
+      "a": "pupil",
+      "b": "eye_white"
+     }
+    }
+   ]
+  },
+  {
+   "name": "ears",
+   "parent": "head",
+   "at": [
+    0,
+    -0.2,
+    3.8
+   ],
+   "parts": [
+    {
+     "shape": "cone",
+     "at": [
+      -2.3,
+      0,
+      0
+     ],
+     "r": 1.9,
+     "h": 4.4,
+     "rot": [
+      0,
+      -12,
+      0
+     ],
+     "mat": "fur_orange"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      2.3,
+      0,
+      0
+     ],
+     "r": 1.9,
+     "h": 4.4,
+     "rot": [
+      0,
+      12,
+      0
+     ],
+     "mat": "fur_orange"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      -2.9,
+      0,
+      2.6
+     ],
+     "r": 1.2,
+     "h": 1.9,
+     "rot": [
+      0,
+      -12,
+      0
+     ],
+     "mat": "dark"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      2.9,
+      0,
+      2.6
+     ],
+     "r": 1.2,
+     "h": 1.9,
+     "rot": [
+      0,
+      12,
+      0
+     ],
+     "mat": "dark"
+    }
+   ]
+  },
+  {
+   "name": "jaw",
+   "parent": "head",
+   "at": [
+    0,
+    -2.8,
+    -0.8
+   ],
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -1.2,
+      -0.2
+     ],
+     "r": [
+      1.3,
+      1.8,
+      0.7
+     ],
+     "mat": "fur_white"
+    }
+   ]
+  },
+  {
+   "name": "tail",
+   "parent": "body",
+   "at": [
+    0.8,
+    5.2,
+    0.8
+   ],
+   "blend": 1.0,
+   "parts": [
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      0
+     ],
+     "b": [
+      3.0,
+      5.0,
+      2.6
+     ],
+     "r1": 1.8,
+     "r2": 3.2,
+     "mat": "fur_orange"
+    },
+    {
+     "shape": "sphere",
+     "at": [
+      4.0,
+      7.2,
+      3.4
+     ],
+     "r": 2.5,
+     "mat": "fur_white"
+    }
+   ]
+  },
+  {
+   "name": "legFL",
+   "parent": "body",
+   "at": [
+    -2.0,
+    -3.8,
+    -1.6
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "b": [
+      0,
+      0,
+      -4.6
+     ],
+     "r1": 1.4,
+     "r2": 1.2,
+     "mat": "dark"
+    }
+   ]
+  },
+  {
+   "name": "legFR",
+   "parent": "body",
+   "at": [
+    2.0,
+    -3.8,
+    -1.6
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "b": [
+      0,
+      0,
+      -4.6
+     ],
+     "r1": 1.4,
+     "r2": 1.2,
+     "mat": "dark"
+    }
+   ]
+  },
+  {
+   "name": "legHL",
+   "parent": "body",
+   "at": [
+    -2.2,
+    3.8,
+    -1.2
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "b": [
+      0,
+      0.4,
+      -3.0
+     ],
+     "r1": 1.9,
+     "r2": 1.4,
+     "mat": "fur_orange"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0.4,
+      -3.0
+     ],
+     "b": [
+      0,
+      0.3,
+      -5.0
+     ],
+     "r1": 1.3,
+     "r2": 1.2,
+     "mat": "dark"
+    }
+   ]
+  },
+  {
+   "name": "legHR",
+   "parent": "body",
+   "at": [
+    2.2,
+    3.8,
+    -1.2
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "b": [
+      0,
+      0.4,
+      -3.0
+     ],
+     "r1": 1.9,
+     "r2": 1.4,
+     "mat": "fur_orange"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0.4,
+      -3.0
+     ],
+     "b": [
+      0,
+      0.3,
+      -5.0
+     ],
+     "r1": 1.3,
+     "r2": 1.2,
+     "mat": "dark"
+    }
+   ]
+  }
+ ],
+ "clips": [
+  "idle",
+  "walk",
+  "run",
+  "attack",
+  "hit",
+  "death"
+ ],
+ "view": {
+  "yaw": {
+   "S": 12,
+   "N": 12
+  },
+  "widen": {
+   "S": 1.1,
+   "N": 1.1
+  }
+ }
+}

@@ -1,0 +1,722 @@
+{
+ "name": "shrike_crier",
+ "style": "vermilion",
+ "rig": "humanoid",
+ "concept": "Shrike crier: a strutting black-headed bird with a red chest of shard feathers, a spiky crest and a fan of dagger tail feathers. Defining feature: a huge gaping bone beak with a red throat.",
+ "frame": [
+  64,
+  64
+ ],
+ "anchor": [
+  32,
+  56
+ ],
+ "shadow": {
+  "w": 12,
+  "h": 3
+ },
+ "smear": {
+  "color": "#dc4a2c",
+  "edge": "#7e2419",
+  "radius": 12,
+  "width": 5,
+  "height": 14,
+  "forward": 2
+ },
+ "anim": {
+  "props": [
+   "crest",
+   "tail"
+  ],
+  "prop_swing": 7,
+  "idle_bob": 1,
+  "attack_lunge": 5
+ },
+ "bones": [
+  {
+   "name": "root"
+  },
+  {
+   "name": "hips",
+   "parent": "root",
+   "at": [
+    0,
+    0,
+    8
+   ],
+   "parts": []
+  },
+  {
+   "name": "legL",
+   "parent": "hips",
+   "at": [
+    -2.2,
+    0.4,
+    0
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      0
+     ],
+     "b": [
+      0,
+      0.8,
+      -7.6
+     ],
+     "r1": 1.2,
+     "r2": 1.1,
+     "mat": "ink_flat"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0.8,
+      -7.8
+     ],
+     "b": [
+      -0.9,
+      -2.2,
+      -8.2
+     ],
+     "r1": 0.9,
+     "r2": 0.8,
+     "mat": "ink_flat"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0.8,
+      -7.8
+     ],
+     "b": [
+      0.9,
+      -2.0,
+      -8.2
+     ],
+     "r1": 0.9,
+     "r2": 0.8,
+     "mat": "ink_flat"
+    },
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0.4,
+      -3.2
+     ],
+     "half": [
+      1.3,
+      1.3,
+      0.5
+     ],
+     "mat": "red_mark"
+    }
+   ]
+  },
+  {
+   "name": "legR",
+   "parent": "hips",
+   "at": [
+    2.2,
+    0.4,
+    0
+   ],
+   "parts": [
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0,
+      0
+     ],
+     "b": [
+      0,
+      0.8,
+      -7.6
+     ],
+     "r1": 1.2,
+     "r2": 1.1,
+     "mat": "ink_flat"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0.8,
+      -7.8
+     ],
+     "b": [
+      0.9,
+      -2.2,
+      -8.2
+     ],
+     "r1": 0.9,
+     "r2": 0.8,
+     "mat": "ink_flat"
+    },
+    {
+     "shape": "capsule",
+     "a": [
+      0,
+      0.8,
+      -7.8
+     ],
+     "b": [
+      -0.9,
+      -2.0,
+      -8.2
+     ],
+     "r1": 0.9,
+     "r2": 0.8,
+     "mat": "ink_flat"
+    },
+    {
+     "shape": "box",
+     "at": [
+      0,
+      0.4,
+      -3.2
+     ],
+     "half": [
+      1.3,
+      1.3,
+      0.5
+     ],
+     "mat": "red_mark"
+    }
+   ]
+  },
+  {
+   "name": "torso",
+   "parent": "hips",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      0.8,
+      5.0
+     ],
+     "r": [
+      4.6,
+      4.8,
+      5.4
+     ],
+     "mat": "ink",
+     "rot": [
+      -12,
+      0,
+      0
+     ]
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -1.8,
+      4.2
+     ],
+     "r": [
+      3.8,
+      3.2,
+      4.4
+     ],
+     "mat": "red",
+     "rot": [
+      -12,
+      0,
+      0
+     ],
+     "blend": 0.0
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -5.4,
+      3.2
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "min_facing": 0.35,
+     "rows": [
+      "k...k",
+      ".k.k.",
+      "..k.."
+     ],
+     "key": {
+      "k": "ink:0"
+     }
+    }
+   ]
+  },
+  {
+   "name": "tail",
+   "parent": "torso",
+   "at": [
+    0,
+    4.8,
+    3.0
+   ],
+   "parts": [
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": 1.8,
+     "h": 8.0,
+     "rot": [
+      -120,
+      0,
+      0
+     ],
+     "mat": "ink"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      -2.4,
+      0,
+      0.4
+     ],
+     "r": 1.5,
+     "h": 6.6,
+     "rot": [
+      -110,
+      -25,
+      0
+     ],
+     "mat": "red"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      2.4,
+      0,
+      0.4
+     ],
+     "r": 1.5,
+     "h": 6.6,
+     "rot": [
+      -110,
+      25,
+      0
+     ],
+     "mat": "red"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      0,
+      1.2
+     ],
+     "r": 1.2,
+     "h": 6.0,
+     "rot": [
+      -95,
+      0,
+      0
+     ],
+     "mat": "red_dark"
+    }
+   ]
+  },
+  {
+   "name": "armL",
+   "parent": "torso",
+   "at": [
+    -3.9600000000000004,
+    0.6,
+    7.0
+   ],
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      -0.8,
+      1.2,
+      -3.4
+     ],
+     "r": [
+      1.4,
+      3.0,
+      3.8
+     ],
+     "mat": "red",
+     "rot": [
+      -18,
+      0,
+      0
+     ]
+    },
+    {
+     "shape": "cone",
+     "at": [
+      -0.9,
+      2.8,
+      -6.6
+     ],
+     "r": 1.4,
+     "h": 3.4,
+     "rot": [
+      160,
+      0,
+      0
+     ],
+     "mat": "ink"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      -0.9,
+      0.6,
+      -6.8
+     ],
+     "r": 1.3,
+     "h": 3.0,
+     "rot": [
+      180,
+      0,
+      0
+     ],
+     "mat": "red_dark"
+    }
+   ]
+  },
+  {
+   "name": "armR",
+   "parent": "torso",
+   "at": [
+    3.9600000000000004,
+    0.6,
+    7.0
+   ],
+   "parts": [
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0.8,
+      1.2,
+      -3.4
+     ],
+     "r": [
+      1.4,
+      3.0,
+      3.8
+     ],
+     "mat": "red",
+     "rot": [
+      -18,
+      0,
+      0
+     ]
+    },
+    {
+     "shape": "cone",
+     "at": [
+      0.9,
+      2.8,
+      -6.6
+     ],
+     "r": 1.4,
+     "h": 3.4,
+     "rot": [
+      160,
+      0,
+      0
+     ],
+     "mat": "ink"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      0.9,
+      0.6,
+      -6.8
+     ],
+     "r": 1.3,
+     "h": 3.0,
+     "rot": [
+      180,
+      0,
+      0
+     ],
+     "mat": "red_dark"
+    }
+   ]
+  },
+  {
+   "name": "head",
+   "parent": "torso",
+   "at": [
+    0,
+    -1.0,
+    10.4
+   ],
+   "parts": [
+    {
+     "shape": "sphere",
+     "at": [
+      0,
+      0,
+      3.6
+     ],
+     "r": 5.8,
+     "mat": "ink"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      -3.4,
+      -4.2,
+      4.6
+     ],
+     "normal": [
+      -0.7,
+      -1,
+      0.1
+     ],
+     "min_facing": 0.1,
+     "clamp": 2,
+     "rows": [
+      ".rr.",
+      "rwkr",
+      "rkkr",
+      ".rr."
+     ],
+     "key": {
+      "r": "red_mark",
+      "w": "eye",
+      "k": "pupil"
+     }
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      3.4,
+      -4.2,
+      4.6
+     ],
+     "normal": [
+      0.7,
+      -1,
+      0.1
+     ],
+     "min_facing": 0.1,
+     "clamp": 2,
+     "rows": [
+      ".rr.",
+      "rkwr",
+      "rkkr",
+      ".rr."
+     ],
+     "key": {
+      "r": "red_mark",
+      "w": "eye",
+      "k": "pupil"
+     }
+    }
+   ]
+  },
+  {
+   "name": "beak",
+   "parent": "head",
+   "at": [
+    0,
+    -4.2,
+    3.0
+   ],
+   "parts": [
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      0,
+      1.2
+     ],
+     "r": 2.7,
+     "h": 12.0,
+     "rot": [
+      84,
+      0,
+      0
+     ],
+     "mat": "bone"
+    },
+    {
+     "shape": "ellipsoid",
+     "at": [
+      0,
+      -3.8,
+      -1.4
+     ],
+     "r": [
+      2.0,
+      3.8,
+      2.0
+     ],
+     "mat": "red_mark"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      0,
+      -2.0
+     ],
+     "r": 2.1,
+     "h": 9.0,
+     "rot": [
+      134,
+      0,
+      0
+     ],
+     "mat": "bone"
+    },
+    {
+     "shape": "stamp",
+     "at": [
+      0,
+      -6.0,
+      -1.6
+     ],
+     "normal": [
+      0,
+      -1,
+      0
+     ],
+     "min_facing": 0.3,
+     "rows": [
+      "b.b"
+     ],
+     "key": {
+      "b": "bone_mark"
+     }
+    }
+   ]
+  },
+  {
+   "name": "crest",
+   "parent": "head",
+   "at": [
+    0,
+    1.0,
+    8.0
+   ],
+   "parts": [
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "r": 1.8,
+     "h": 5.6,
+     "rot": [
+      -25,
+      0,
+      0
+     ],
+     "mat": "ink"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      1.6,
+      -0.8
+     ],
+     "r": 1.6,
+     "h": 5.2,
+     "rot": [
+      -55,
+      0,
+      0
+     ],
+     "mat": "ink"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      0,
+      2.8,
+      -2.4
+     ],
+     "r": 1.4,
+     "h": 4.4,
+     "rot": [
+      -80,
+      0,
+      0
+     ],
+     "mat": "ink"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      -1.6,
+      -0.4,
+      -0.6
+     ],
+     "r": 1.2,
+     "h": 3.8,
+     "rot": [
+      -10,
+      -30,
+      0
+     ],
+     "mat": "ink"
+    },
+    {
+     "shape": "cone",
+     "at": [
+      1.6,
+      -0.4,
+      -0.6
+     ],
+     "r": 1.2,
+     "h": 3.8,
+     "rot": [
+      -10,
+      30,
+      0
+     ],
+     "mat": "ink"
+    }
+   ]
+  }
+ ],
+ "clips": [
+  "idle",
+  "walk",
+  "run",
+  "attack",
+  "hit",
+  "death"
+ ],
+ "view": {
+  "yaw": {
+   "S": 34,
+   "N": 34
+  }
+ }
+}
