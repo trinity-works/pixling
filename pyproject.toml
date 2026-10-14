@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pixling"
-version = "0.3.0"
+version = "0.3.1"
 description = "The pixel artist for your coding agent: pipelines, styles and taste for making game sprites with code"
 readme = "README.md"
 license = {text = "MIT"}
@@ -82,7 +82,7 @@ exclude = ["reel/chars/[!_]*", "**/__pycache__", "**/.DS_Store"]
 ".claude/skills/pixling/SKILL.md" = "pp/data/.claude/skills/pixling/SKILL.md"
 
 [tool.hatch.build.targets.sdist]
-include = ["pp", "reel", "painted", "fp", "arena", "styles", "specs", "docs/brand", "docs/ENVIRONMENTS.md", "docs/STYLES.md", "docs/ARTIST.md", "docs/WORKFLOW.md",
+include = ["pp", "reel", "painted", "fp", "arena", "strike", "styles", "specs", "docs/brand", "docs/ENVIRONMENTS.md", "docs/STYLES.md", "docs/ARTIST.md", "docs/WORKFLOW.md",
            "docs/PIPELINES.md", "tools/tactics", "tools/flat", "tools/vista/aerial.py", "tools/vista/build.py", "tools/vista/layout_hub.py", "tools/vista/layout_streets.py", "tools/vista/layout_town.py", "tools/vista/layout_vale.py", "tools/vista/slib.py", "tools/vista/streets.py", "tools/vista/vlib.py", "tools/vista/world.py", "tools/make_styles.py", "research/styles/*.md",
            "research/motion/NOTES.md", "reel/chars/_template", ".claude/skills/pixling", "README.md", "pyproject.toml"]
 exclude = ["reel/chars/[!_]*", "**/__pycache__", "**/.DS_Store"]

@@ -31,6 +31,7 @@ jobs:
           /tmp/v/bin/pixling new fox smoke_fox
           /tmp/v/bin/pixling build specs/smoke_fox.json --clips idle --dirs S
           test -f out/smoke_fox/smoke_fox_idle.png
+          /tmp/v/bin/pixling strike sample s && test -f s/warrior_attack.png
       - uses: actions/upload-artifact@v4
         with:
           name: dist
