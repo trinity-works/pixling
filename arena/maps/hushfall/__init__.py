@@ -1,4 +1,4 @@
-"""Hushfall Crossing: a ledge in the winter forest above a sea of dusk cloud, laid out like GW1's Underworld (two camps,
+"""Hushfall Crossing: a ledge in the winter forest above a sea of dusk cloud, laid out as a two-camp arena (two camps,
 a ruin terrace with the Stones, a bridge to an overlook, a corridor under it). Camera 40 degrees.
 
     place.py    the place in metres (plan, terrain, ruin, layout with zones, the scenery's bands, the cloud layers)

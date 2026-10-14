@@ -93,9 +93,9 @@ weapons and paints white VFX. Worth testing next, in order:
 - Spell takes on black at 768P are plenty (downscaled to 384 px). Fireball Rain and Necromancer Signet both
   worked first try.
 
-## Thornbloom Witch-Knight, GW2/LoL painterly direction (2026-10-01)
-- Designs: GPT Image 2.5 with NO style refs (refs pull back to chibi): "Guild Wars 2 concept art / League of
-  Legends champion, heroic ~5 heads, painterly brushwork, ONE dominant hue (60/30/10), oversized signature weapon".
+## Thornbloom Witch-Knight, painterly heroic direction (2026-10-01)
+- Designs: GPT Image 2.5 with NO style refs (refs pull back to chibi): "painterly heroic fantasy concept art,
+  heroic ~5 heads, painterly brushwork, ONE dominant hue (60/30/10), oversized signature weapon".
   Concepts: Drowned Bellringer (bell flail), Thornbloom (thorn greatsword, picked), Sandglass Juggernaut.
 - All takes H3 768P (80 CU). Idle and walk work on H3 (first H3 idle/walk): subtle loop, real steps.
 - Backdrop drift was much worse here: 7 of 23 takes, and 4 of 5 N (back view) attacks. Drifted takes CANNOT be

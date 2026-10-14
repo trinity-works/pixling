@@ -1,4 +1,4 @@
-"""Hushfall Crossing: a ledge in the winter forest above a sea of dusk cloud, laid out in metres like GW1's Underworld.
+"""Hushfall Crossing: a ledge in the winter forest above a sea of dusk cloud, laid out in metres as a two-camp arena.
 
 Axes: u runs left -> right across the screen (the line between the two camps), v runs into the picture, z is up. The
 world's square grid (x, y) is u, v turned 45 degrees: x = (u + v) / sqrt 2, y = (v - u) / sqrt 2, and every built thing
@@ -9,7 +9,7 @@ The camera is orthographic, looking along +v and down by EL; a point (u, v, z) l
 and its depth (larger = further) is v * cos EL - z * sin EL. Blender, the painter, the runtime and the exported level
 all use this. EL is 40 degrees (chosen from a 30 / 35 / 40 / 45 test; ARENA_EL overrides it for such tests).
 
-The layout (after The Underworld, Heroes' Ascent): two camps (west and east) at ground level; a raised ruin terrace in
+The layout: two camps (west and east) at ground level; a raised ruin terrace in
 the middle holding the Stones, with a ramp up from each side; a timber bridge from the terrace to an overlook at the
 far edge (a dead end of high ground over the centre); a corridor at ground level under the bridge joining the two
 camp areas. The front is the ledge's lip, falling into the cloud sea. Routes: high (ramp, terrace, ramp), low (the

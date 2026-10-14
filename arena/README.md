@@ -9,7 +9,7 @@ the zone budgets and the hues reserved for units.
 
 | map | what | camera |
 |---|---|---|
-| **Hushfall Crossing** (`--map hushfall`, the default) | a winter ledge over a sea of dusk cloud, GW1's Underworld layout: two camps, a ruin terrace with the Stones, a bridge to an overlook, a corridor under it | 40 degrees |
+| **Hushfall Crossing** (`--map hushfall`, the default) | a winter ledge over a sea of dusk cloud: two camps, a ruin terrace with the Stones, a bridge to an overlook, a corridor under it | 40 degrees |
 | **Emberleaf Hollow** (`--map emberleaf`) | a kill map (team annihilation) in a clearing of red-crowned trees and dark pines on a forested plateau; past its back edge a valley of canopy, a river, far hills | 68 degrees, 51.2 px/m |
 
 <img src="../docs/img/arena_overview.jpg" alt="Hushfall Crossing: the whole map" width="640">
@@ -86,7 +86,7 @@ the old code does against itself.
 # Hushfall Crossing (`--map hushfall`)
 
 A battle map in the Hushfall dusk, for your own units. It is the winter forest of fp's *First Snow*, made into a map.
-The layout follows GW1's first Heroes' Ascent map, The Underworld:
+The layout, a classic two-camp arena with a contested centre:
 - a ledge above a sea of dusk cloud, ringed by spruce forest, with two palisaded camps (west and east);
 - a raised ruin terrace in the middle holding the Stones, with a ramp up to it from each side;
 - a timber bridge from the terrace to an overlook at the far edge, a dead end of high ground over the centre;
