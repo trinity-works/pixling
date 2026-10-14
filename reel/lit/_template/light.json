@@ -1,0 +1,12 @@
+{
+ "name": "NAME",
+ "concept": "how the image and takes were made (free text: prompts, models, take letters)",
+ "key": [255, 0, 255],
+ "height": 300,
+ "out": "../../../out/reel/lit/NAME",
+ "png": false,
+ "clips": {
+  "walk": {"dir": "walk", "loop": "auto"},
+  "idle": {"dir": "idle", "reverse": false}
+ }
+}

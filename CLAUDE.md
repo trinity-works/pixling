@@ -17,6 +17,8 @@
 - `reel/` is a second engine: sprites cut from AI video (Scenario MCP). Read reel/README.md; skill: .claude/skills/reel-sprites.
 - `painted/` is the third engine, the non-pixel format: Blender renders painterly sprites from a style + layout
   (`pixling painted kit|compose|game`). Read painted/README.md. It doesn't import pp's renderer; keep pixel and painted apart.
+- `fp/` is the fourth engine: a walkable first-person pixel world (Python kit + layout -> WebGL runtime; `pixling fp`).
+  Read fp/README.md. Judge it with `pixling fp cards|walk|film` (Playwright screenshots of the real runtime).
 
 ## Several sessions share this repo
 - Stage only files you changed (`git add <paths>`, never `git add -A`); never delete or revert another session's files.

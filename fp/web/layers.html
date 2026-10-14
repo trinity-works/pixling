@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>First Snow, painted</title>
+<style>
+  /* one painted view, scaled by a whole number to cover the screen; the only chrome is a name plate, a hint and a few buttons */
+  @font-face { font-family: "Geist Pixel"; src: url("fonts/GeistPixel-Square.woff2") format("woff2"); font-display: swap; }
+  :root { --night: #1c2440; --snow: #90afa3; --rose: #c4908c; --veil: rgba(28, 36, 64, .62);
+          --pixel: "Geist Pixel", ui-monospace, Menlo, monospace; color-scheme: dark; }
+  html, body { height: 100%; }
+  body { margin: 0; background: var(--night); color: var(--snow); overflow: hidden; font-family: var(--pixel);
+         display: grid; place-items: center; }
+  /* the canvas covers the screen (a pixel or two may spill past an edge), centred: no bars on any side */
+  #stage { display: block; position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%);
+           image-rendering: pixelated; touch-action: none; outline: none; }
+  .plate { position: fixed; left: 16px; top: calc(14px + env(safe-area-inset-top, 0px)); pointer-events: none;
+           font-size: clamp(18px, 2.6vw, 26px); letter-spacing: .06em; text-shadow: 0 2px 0 var(--night); }
+  .plate small { display: block; font-size: 12px; letter-spacing: .14em; color: var(--rose); text-transform: uppercase; margin-top: 4px; }
+  .hint { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%);
+          background: var(--veil); padding: 8px 14px; font-size: 13px; white-space: nowrap; max-width: calc(100% - 32px);
+          overflow: hidden; text-overflow: ellipsis; pointer-events: none; transition: opacity 1.4s ease; }
+  .hint.gone { opacity: 0; }
+  .buttons { position: fixed; right: 16px; top: calc(14px + env(safe-area-inset-top, 0px)); display: flex; gap: 8px; }
+  .buttons button { font: 12px var(--pixel); letter-spacing: .06em; color: var(--snow); background: var(--veil);
+                    border: 1px solid rgba(144, 175, 163, .35); padding: 8px 12px; cursor: pointer; }
+  .buttons a.fp { font: 12px var(--pixel); letter-spacing: .06em; color: var(--snow); background: var(--veil);
+                  border: 1px solid rgba(144, 175, 163, .35); padding: 8px 12px; text-decoration: none; }
+  .buttons button:hover, .buttons a.fp:hover { border-color: var(--snow); }
+  .buttons button:focus-visible { outline: 2px solid var(--snow); outline-offset: 2px; }
+  /* the touch stick: a ring at bottom left; touching anywhere on the left side moves it under the thumb */
+  .stick { position: fixed; left: calc(24px + env(safe-area-inset-left, 0px)); bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+           width: 128px; height: 128px; border-radius: 50%; border: 2px solid rgba(144, 175, 163, .55);
+           background: rgba(28, 36, 64, .38); touch-action: none; user-select: none; -webkit-user-select: none; z-index: 2; }
+  .stick[hidden] { display: none; }
+  .stick .knob { position: absolute; left: 50%; top: 50%; width: 52px; height: 52px; margin: -26px 0 0 -26px; border-radius: 50%;
+                 background: rgba(144, 175, 163, .7); border: 2px solid var(--snow); box-shadow: 0 2px 0 var(--night); pointer-events: none; }
+  .stick.active { border-color: var(--snow); }
+  .stick.active .knob { background: var(--snow); }
+  .loading { position: fixed; inset: 0; display: grid; place-items: center; font-size: 18px; letter-spacing: .1em; }
+  .loading[hidden] { display: none; }
+  body.shot .plate, body.shot .hint, body.shot .buttons, body.shot .stick { display: none; }
+  @media (max-width: 520px) { .plate small { display: none; } .stick { width: 112px; height: 112px; } }
+  @media (prefers-reduced-motion: reduce) { .hint { transition: none; } }
+</style>
+</head>
+<body>
+<canvas id="stage" tabindex="0" aria-label="A small figure with a pink scarf in a wide snowy valley at dusk, a stair climbing to a parked car. Arrow keys or WASD walk her anywhere (up is into the picture); click a spot to walk there; on touch screens a stick under the left thumb walks, a tap walks to the spot."></canvas>
+<div class="plate">First Snow<small>hushfall · painted</small></div>
+<div class="hint" id="hint">Arrows or WASD to walk · click a spot to walk there · R walks on</div>
+<div class="buttons"><a class="fp" href="../walk.html">First person</a><button id="auto" type="button" hidden>Walk on</button><button id="look" type="button" hidden title="Switch the look: painted or pixel (L)">Look: painted</button><button id="sound" type="button" aria-pressed="false">Sound: off</button></div>
+<div class="stick" id="stick" hidden aria-hidden="true"><div class="knob" id="knob"></div></div>
+<div class="loading" id="loading">falling snow…</div>
+<script>if (new URLSearchParams(location.search).has('shot')) document.body.classList.add('shot');</script>
+<script type="importmap">{"imports": {"fp-audio": "./audio.js"}}</script>
+<script type="module" src="layers.js"></script>
+</body>
+</html>

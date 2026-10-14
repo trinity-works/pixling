@@ -1,0 +1,33 @@
+{
+ "name": "fox",
+ "concept": "GPT Image 2.5 Sunburst gouache prompt in ref/prompt.txt, start frames via `reel light start` (start.png at the left for the idle, start_center.png --left 0.42 for the walk). Takes: H3 768P 16:9, firstFrameImage only. Idle: takes/h3_idle.json (loop 0..108: frame 110 matches 0). Walk: walking IN PLACE (takes/h3_walk_place.json), 32-frame stride 53..84 (84 matches 52), speed from the planted foot; 3 earlier walk-across takes all cut to a new framing at frames 12-20 and drifted the backdrop to black/cyan. The in-place take bobs the whole body ~16 px (feet included): walk uses \"ground\": \"lowest\" (smoothed lowest foot). Known: a ~11 px foot slip at walk frame 22->23 (filmed 75->76).",
+ "key": [
+  255,
+  0,
+  255
+ ],
+ "height": 300,
+ "out": "../../../out/reel/lit/fox",
+ "png": false,
+ "clips": {
+  "walk": {
+   "dir": "walk",
+   "loop": [
+    53,
+    84
+   ],
+   "match": 52,
+   "speed": "foot",
+   "keys_every": 2,
+   "ground": "lowest"
+  },
+  "idle": {
+   "dir": "idle",
+   "keys_every": 24,
+   "loop": [
+    0,
+    108
+   ]
+  }
+ }
+}

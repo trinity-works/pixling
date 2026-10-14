@@ -11,7 +11,7 @@ read how they and the styles were made and take what helps into the user's own p
 
 ## Pick a pipeline
 - `pixling pipelines`: spec (sprites), iso (exact-iso scenes), map (living maps), fx, video (image -> video ->
-  frames), painted (Blender), style (a new style from scratch). `pixling pipelines NAME` gives the steps, the code
+  frames), painted (Blender), fp (a walkable pixel world: a painted layered scene, or first person), arena (painted battle maps with a game level), style (a new style from scratch). `pixling pipelines NAME` gives the steps, the code
   and what we learned.
 - `pixling styles NAME --how`: how a launch style (vista, tactics, flat) was made: hand, kit, code, lab notes.
   `pixling code tactics.kit` prints a kit module and its path, so you can read it whole or copy it.
@@ -67,6 +67,8 @@ them standing in the real scene (`--on SCREENSHOT_1x.png`), and never restyle th
 - `pixling scenario run M '{...model inputs...}' --out file.png` waits for the job and downloads the outputs.
   File inputs are asset ids: `pixling scenario upload FILE`.
 - Video for sprites: `pixling guide reel-workflow`. Use MiniMax H3 only.
+- Painted side-view sprites that react to 2D lights (colour + normal maps per frame, any clips, web + Godot players):
+  `pixling guide reel-lighting`; `pixling reel light new|start|frames|loop|patina|build|check|demo|export`.
 
 ## Painted format (not pixel art)
 When the user wants a painterly look instead of pixels: `pixling guide painted`. Needs Blender (`pixling painted doctor`).
@@ -74,6 +76,26 @@ When the user wants a painterly look instead of pixels: `pixling guide painted`.
 out/painted/<layout>/kit; `compose` lays the scene out from them; `game` packs a walkable web scene. Look at
 `scene/kit_sheet.png` and `scene/scene.png` before showing anything. New assets are builders in painted/bpy/assets.py,
 new colours are ramps in painted/styles/*.json, places are painted/layouts/*.json. Never mix pixel and painted sprites in one scene.
+
+## Walkable pixel worlds (fp)
+When the user wants to walk through a pixel scene: `pixling guide fp`. What opens is the painted view: a locked
+composed camera, the place in layers built in Blender from painted dab/puff cards and stepped into its ramps at the
+screen's own size, painterly masses with crisp art-pixel accents (the place in fp/place.py, painted by
+fp/paint3d.py + fp/hd2d.py + fp/blender/; the layer PNGs are committed in fp/art/, `FP_BPY=... pixling fp paint`
+re-renders them) and a small walker drawn by fp/web/layers.js; its Look button (or `?look=pixel`) compares the art-grid look; `pixling fp layers` shoots stills of it. The first-person walk (walk.html) is the 3D lab;
+its assets are Python builders in fp/kit/
+(low-poly meshes whose vertices name a ramp, a snow catch and AO; thin things are 1 px Lines), places are
+fp/layouts/*.py, colours are ramps in fp/styles/*.json. `pixling fp layers`, `cards` and `walk` screenshot the real
+runtime: look at the sheets before showing anything; `pixling fp film` captures motion. Play: `pixling fp serve`;
+to hand it over as one file, `pixling fp bundle` (one html with every asset inlined that opens from disk).
+
+## Painted battle maps (arena)
+When the user needs a map to fight on (tactics, arena, MOBA): `pixling guide arena`. Two maps ship with their art
+committed (`pixling arena maps`: hushfall, emberleaf). `pixling arena bundle --map NAME` builds the viewer as one html
+(look at it, or `pixling arena shots` for stills); `pixling arena export` writes level.json (collision, nav per unit
+radius, LOS, spawns, zones), and `pixling arena check` proves it fair and walkable. Units go in the hue bands the map
+keeps free (`zones.unit_hues`). A new map is a module in arena/maps/NAME/ (`pixling guide arena`, "Making a new biome
+map"); repainting needs Blender (`ARENA_BPY=... pixling arena paint`), tuning ramps does not (`repaint`).
 
 ## Reading the engine
 `pixling code` lists the modules and `pixling code forge` shows one module's functions with their docstrings. Read the

@@ -199,9 +199,19 @@ p{margin:0}
 .tile .via{position:absolute;top:14px;left:14px;z-index:2;font:400 11px/1 var(--pixel);letter-spacing:.08em;text-transform:uppercase;background:rgba(14,19,22,.72);backdrop-filter:blur(6px);color:var(--fog);padding:7px 9px;border-radius:7px}
 .b-hours{grid-column:span 7;grid-row:span 2}.b-dirs{grid-column:span 5}.b-states{grid-column:span 5}
 .b-video{grid-column:span 6}.b-painted{grid-column:span 6}
-.b-fx{grid-column:span 6}.b-style{grid-column:span 6}
-@media (max-width:980px){.b-hours,.b-dirs,.b-states,.b-video,.b-painted,.b-fx,.b-style{grid-column:span 6;grid-row:auto}.b-hours{grid-column:1/-1}}
-@media (max-width:640px){.b-hours,.b-dirs,.b-states,.b-video,.b-painted,.b-fx,.b-style{grid-column:1/-1}}
+.b-arena{grid-column:1/-1}
+.b-fx{grid-column:span 4}.b-walk{grid-column:span 4}.b-style{grid-column:span 4}
+@media (max-width:980px){.b-hours,.b-dirs,.b-states,.b-video,.b-painted,.b-fx,.b-walk,.b-style{grid-column:span 6;grid-row:auto}.b-hours,.b-arena,.b-style{grid-column:1/-1}}
+@media (max-width:640px){.b-hours,.b-dirs,.b-states,.b-video,.b-painted,.b-fx,.b-walk,.b-style{grid-column:1/-1}}
+.arenaart{aspect-ratio:16/9;min-height:0 !important;background:#1d2a24;flex:none !important}
+.arenaart img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .45s}
+.arenaart img.on{opacity:1}
+.arenamaps{position:absolute;top:14px;right:14px;z-index:2;display:flex;gap:6px}
+.arenamaps button{font:400 11px/1 var(--pixel);letter-spacing:.06em;text-transform:uppercase;padding:8px 10px;border-radius:8px;border:0;background:rgba(14,19,22,.66);backdrop-filter:blur(6px);color:var(--dim);cursor:pointer}
+.arenamaps button[aria-pressed="true"]{background:var(--fog);color:var(--bg)}
+.arenabar{max-width:520px;margin:0 auto}
+@media (max-width:640px){.arenaart{aspect-ratio:1/1}.tile .arenamaps{top:auto;bottom:58px;left:16px;right:16px}.arenamaps button{flex:1}}
+.walkart{background:url(a/fp_first_snow.webp) 38% 60%/auto 150% no-repeat #8aa1a0}
 .hourart{position:absolute;inset:0;background-repeat:no-repeat;background-size:800px auto;background-position:50% 72%;image-rendering:pixelated;transition:none}
 .hourbar{position:absolute;left:16px;right:16px;bottom:16px;display:flex;gap:6px;z-index:2}
 .hourbar button{flex:1;font:400 11px/1 var(--pixel);letter-spacing:.06em;text-transform:uppercase;padding:9px 0;border-radius:8px;border:0;background:rgba(14,19,22,.66);backdrop-filter:blur(6px);color:var(--dim);cursor:pointer}
@@ -446,7 +456,7 @@ footer .col{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-cont
           <span class="n">02 · choose</span>
           <h3>It picks a pipeline and a look</h3>
           <p>Before it draws, your agent reads two things: the pipeline that fits the job, with the lessons we learned the hard way, and the style's making-of, with its hand, its kit and its lab notes.</p>
-          <div class="tagrow"><span class="tag">spec → sprites</span><span class="tag">kit → iso scene</span><span class="tag">living maps</span><span class="tag">effects</span><span class="tag">AI video → frames</span><span class="tag">Blender → painterly</span><span class="tag">new style</span></div>
+          <div class="tagrow"><span class="tag">spec → sprites</span><span class="tag">kit → iso scene</span><span class="tag">living maps</span><span class="tag">effects</span><span class="tag">AI video → frames</span><span class="tag">voxels → board units</span><span class="tag">Blender → painterly</span><span class="tag">painted battle maps</span><span class="tag">walkable worlds</span><span class="tag">new style</span></div>
         </div>
         <div class="step" data-s="2">
           <span class="n">03 · build</span>
@@ -473,7 +483,7 @@ footer .col{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-cont
   <section class="sec col" id="makes">
     <div class="head reveal">
       <h2>A pipeline for every kind of game art</h2>
-      <p class="lede">Sprites, living maps, effects, motion from AI video and painterly scenes. Each one comes with the know-how, ready for your agent to run.</p>
+      <p class="lede">Sprites, living maps, effects, motion from AI video, painterly scenes and battle maps you can play on. Each one comes with the know-how, ready for your agent to run.</p>
     </div>
     <div class="bento">
       <article class="tile b-hours reveal">
@@ -502,10 +512,22 @@ footer .col{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-cont
         <div class="art" style="background:url(a/pl_painted.webp) 50% 50%/cover no-repeat #4f8a3c"></div>
         <div class="txt"><h3>Not only pixels</h3><p>Painterly scenes rendered in Blender, with swaying trees and paddling ducks.</p></div>
       </article>
+      <article class="tile b-arena reveal">
+        <span class="via">Blender · painted battle maps</span>
+        <div class="art arenaart" id="arenaart" role="img" aria-label="A painted battle map and its game level">
+          <div class="arenamaps" id="arenamaps"></div>
+          <div class="hourbar arenabar" id="arenabar"></div></div>
+        <div class="txt"><h3>Battle maps that are also levels</h3><p>Rendered in Blender as light, material and depth, then painted into a locked palette, with swaying trees and drifting clouds. Collision, nav for every unit size, line of sight and spawns come with it, checked fair for both sides.</p></div>
+      </article>
       <article class="tile b-fx reveal">
         <span class="via">effects</span>
         <div class="art fxart" id="fx"></div>
         <div class="txt"><h3>Effects that land</h3><p>Slashes, bursts and lightning in your style's colours. Tap one.</p></div>
+      </article>
+      <article class="tile b-walk reveal">
+        <span class="via">painted · walkable</span>
+        <div class="art walkart" role="img" aria-label="First Snow: a painted winter hill with a small walker"></div>
+        <div class="txt"><h3>A place to walk through</h3><p>A painted world in layers with crisp pixel actors. Walk anywhere in it; one html file.</p></div>
       </article>
       <article class="tile b-style reveal">
         <span class="via">new styles</span>
@@ -711,6 +733,14 @@ const HRS = [['day', 'h0'], ['golden', 'h1.2'], ['sunset', 'h2.2'], ['dusk', 'h3
 HRS.forEach(([, h]) => { new Image().src = `a/hub_${h}.png` });
 let hour = 0;
 const setHour = i => { hour = i; $('hourart').style.backgroundImage = `url(a/hub_${HRS[i][1]}.png)`; [...$('hourbar').children].forEach((b, j) => b.setAttribute('aria-pressed', j === i)) };
+const ARENA = [['emberleaf', 'Emberleaf Hollow'], ['hushfall', 'Hushfall Crossing']], AVIEW = [['map', 'map'], ['nav', 'walkable'], ['paths', 'routes']];
+let amap = 0, aview = 0;
+ARENA.forEach(([k, n]) => AVIEW.forEach(([v]) => { const im = new Image(); im.src = `a/ar_${k}_${v}.webp`; im.alt = `${n}: ${v}`; im.loading = 'lazy'; im.dataset.k = k + v; $('arenaart').prepend(im) }));
+const setArena = () => { [...$('arenaart').querySelectorAll('img')].forEach(im => im.classList.toggle('on', im.dataset.k === ARENA[amap][0] + AVIEW[aview][0]));
+  [...$('arenamaps').children].forEach((b, j) => b.setAttribute('aria-pressed', j === amap)); [...$('arenabar').children].forEach((b, j) => b.setAttribute('aria-pressed', j === aview)) };
+ARENA.forEach(([, n], i) => { const b = document.createElement('button'); b.textContent = n; b.onclick = () => { amap = i; setArena() }; $('arenamaps').append(b) });
+AVIEW.forEach(([, n], i) => { const b = document.createElement('button'); b.textContent = n; b.onclick = () => { aview = i; setArena() }; $('arenabar').append(b) });
+setArena();
 HRS.forEach(([n], i) => { const b = document.createElement('button'); b.textContent = n; b.onclick = () => setHour(i); $('hourbar').append(b) });
 setHour(0);
 

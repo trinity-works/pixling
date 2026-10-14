@@ -21,6 +21,8 @@ from .paths import CHECKOUT, DATA as ROOT, REPO
 
 PKG_DIRS = {"pp": Path(__file__).resolve().parent, "reel": Path(__file__).resolve().parent.parent / "reel",
             "painted": Path(__file__).resolve().parent.parent / "painted",
+            "fp": Path(__file__).resolve().parent.parent / "fp",
+            "arena": Path(__file__).resolve().parent.parent / "arena",
             # the style kits: worked examples an agent can read and copy (shipped in the wheel under pp/data/tools)
             "tactics": ROOT / "tools" / "tactics", "flat": ROOT / "tools" / "flat", "vista": ROOT / "tools" / "vista"}
 
@@ -41,6 +43,10 @@ STYLE_HOW = {
     "flat": {"section": "Flat Minimal", "build": "pixling world flat [--only SCENE]",
              "code": ["tools/flat/kit.py", "tools/flat/scenes.py", "tools/flat/build.py", "pp/iso.py"],
              "notes": ["proto-flat", "proto-frost", "style-dna", "taste-layer"]},
+    "hushfall": {"section": "Hushfall", "build": "pixling fp layers | serve  (painted view: painterly world, pixel actors; she walks anywhere in it with WASD/arrows, a click or the touch stick, the view following; the Look button or ?look=pixel compares the art-grid look; FP_BPY=... pixling fp paint re-renders its layers in Blender; pixling fp bundle packs it into one html that opens from disk; walk | cards for first person; pixling guide fp)",
+                 "code": ["fp/place.py", "fp/paint3d.py", "fp/hd2d.py", "fp/draw2d.py", "fp/blender/first_snow.py", "fp/blender/walker.py", "fp/web/layers.js", "fp/kit/pine.py", "fp/kit/car.py", "fp/kit/pole.py", "fp/kit/fence.py", "fp/kit/grass.py",
+                          "fp/layouts/first_snow.py", "fp/web/fp.js", "fp/mesh.py", "fp/bundle.py"],
+                 "notes": ["fp", "taste-layer"]},
 }
 BIOMES = {"tactics_autumn": "tactics", "flat_dunes": "flat"}
 WORLDS = {"tactics": "tools/tactics/build.py", "flat": "tools/flat/build.py"}
@@ -65,8 +71,12 @@ GUIDES = {
     "proto-marsh": ("research/styles/proto_marsh.md", "Marsh (parked): painterly clusters"),
     "reel": ("reel/README.md", "video -> sprites engine: layout, char.json, commands"),
     "reel-workflow": ("reel/WORKFLOW.md", "the reel loop step by step: designs, takes, cut, demo"),
+    "reel-lighting": ("reel/LIGHTING.md", "lit side-view sprites: painted frames + steady normal maps for 2D lights"),
     "reel-notes": ("research/reel/NOTES.md", "video model survey and reel research"),
     "painted": ("painted/README.md", "the painterly format: technique, commands, style/layout files, sprite contract"),
+    "fp": ("fp/README.md", "pixel worlds you walk: the painted layered view, first person, commands, the Hushfall hand"),
+    "arena": ("arena/README.md", "painted battle maps for your units: the engine, a module per map, level.json, viewer"),
+    "arena-style": ("arena/STYLE.md", "the rules every arena map keeps: light, shading, zones, camera family, unit hues"),
     "brand": ("docs/brand/README.md", "pixling name, mascot, logo files, fonts, colours"),
     "scenario": ("research/reel/SCENARIO_SKILL.md", "Scenario API/MCP conventions (parameter shapes, models)"),
 }
@@ -76,7 +86,7 @@ pixling — art know-how and tools for your coding agent (the Pixel Perfect forg
 Pipelines, styles and taste for making game sprites with code: run them, read how they were made, take what helps.
 
 Know-how (start here)
-  pixling pipelines [NAME]              spec, blocks, iso, map, fx, video, painted, style: what each makes, steps, code, lessons
+  pixling pipelines [NAME]              spec, blocks, iso, map, fx, video, painted, fp, arena, style: what each, steps, code, lessons
   pixling styles [NAME] [--how]         styles and their ramps; --how: the hand, the kit, the code, the lab notes
   pixling guide [TOPIC] [SECTION]       the docs and research notes; --grep WORD searches them all
   pixling code [MODULE]                 engine and kit modules, with docstrings (`pixling code tactics.kit`)
@@ -112,11 +122,26 @@ Pipeline: image -> video -> frames (Scenario + reel; `pixling pipelines video`)
   pixling scenario cost|run MODEL PARAMS [--out F]   estimate / generate + download
   pixling scenario upload FILE | download ASSET --out F
   pixling reel split|contact|key|gambit|page|demo|fx ...   key, cut and export the takes
+  pixling reel light new|start|frames|loop|patina|build|check|demo|export   lit side view: colour + normal sheets,
+                                        web + Godot players (`pixling guide reel-lighting`)
 
 Pipeline: Blender -> painterly frames (not pixel; `pixling pipelines painted`)
   pixling painted kit [assets] [--style --layout]  shadow layers, sway loops, 8 headings
   pixling painted compose | game [--pixel out/X]   a scene from the sprites | a walkable web scene
   pixling painted assets | styles | layouts | doctor | hilltop
+
+Pipeline: kit + layout -> a walkable first-person pixel world (WebGL; `pixling pipelines fp`)
+  pixling fp build | serve                       out/fp/<layout>: index.html + world.json/bin; play it over http
+  pixling fp bundle [--out FILE]                 the painted view as ONE html that opens from disk (file://)
+  pixling fp walk [--t 0,6,12] | cards [MESH]    screenshots along the auto-walk | assets alone on snow (look at them)
+  pixling fp shot "t=9&look=20,-5" | assets | styles | layouts
+
+Pipeline: Blender data passes -> painted battle maps with a game level (`pixling pipelines arena`)
+  pixling arena maps                             the maps (hushfall: Hushfall Crossing, emberleaf: Emberleaf Hollow)
+  pixling arena bundle [--map NAME]              the map viewer as ONE html (sway, drifting clouds, overlays)
+  pixling arena export | check [--quick]         level.json for your units (collision, nav, LOS, zones) | validate it
+  pixling arena lint | zones | palette | scale | family   zone budgets measured | looking aids
+  pixling arena paint | repaint                  re-render in Blender (ARENA_BPY=...) | re-step the last render
 
 Setup
   pixling doctor                        dependencies, ffmpeg, Blender, Scenario sign-in; `pixling --version`
@@ -288,10 +313,15 @@ def cmd_styles(a):
             rows.append({"style": f.stem, "format": "painted", "camera": "blender", "launch": False, "biome_of": None,
                          "about": d.get("about", ""), "ramps": len(d.get("ramps", {})),
                          "layouts": len(list((PKG_DIRS["painted"] / "layouts").glob("*.json")))})
+        for f in sorted((PKG_DIRS["fp"] / "styles").glob("*.json")):   # first-person pixel 3D styles (WebGL)
+            d = json.loads(f.read_text())
+            rows.append({"style": f.stem, "format": "fp", "camera": "1st-p", "launch": False, "biome_of": None,
+                         "about": d.get("about", ""), "ramps": len(d.get("ramps", {})),
+                         "layouts": len([x for x in (PKG_DIRS["fp"] / "layouts").glob("*.py") if not x.stem.startswith("_")])})
         rows.sort(key=lambda r: (not r["launch"], r["format"] != "pixel", r["style"]))
 
         def line(r):
-            what = ("%2d ramps, %2d layouts" % (r["ramps"], r["layouts"]) if r["format"] == "painted" else
+            what = ("%2d ramps, %2d layouts" % (r["ramps"], r["layouts"]) if r["format"] in ("painted", "fp") else
                     "%2d ramps, kit-built  " % r["ramps"] if r["camera"] == "iso" else
                     "%2d materials, %2d specs" % (r["materials"], r["specs"]))
             tag = "launch " if r["launch"] else "       "
@@ -301,6 +331,15 @@ def cmd_styles(a):
         return 0
     if a.how:
         return _style_how(a)
+    fpst = PKG_DIRS["fp"] / "styles" / f"{a.name}.json"
+    if fpst.exists():
+        d = json.loads(fpst.read_text())
+        out = {"style": a.name, "format": "fp", "about": d.get("about", ""), "camera": d.get("camera"), "sun": d.get("sun"),
+               "ramps": {k: [h for _, h in v] for k, v in d.get("ramps", {}).items()}}
+        _emit(out, a.json, "%s (first-person pixel 3D): %s\n" % (a.name, out["about"]) + "\n".join(
+            "  %-12s %s" % (k, " ".join(v)) for k, v in out["ramps"].items()) +
+            "\n\nhow it was made: pixling styles %s --how ; the engine: pixling guide fp" % a.name)
+        return 0
     painted = PKG_DIRS["painted"] / "styles" / f"{a.name}.json"
     if painted.exists():
         d = json.loads(painted.read_text())
@@ -429,6 +468,13 @@ def cmd_doctor(a):
     except ImportError:
         bl = None
     checks.append(("blender (painted only)", bool(bl), bl or "install Blender 4.2+ or set PIXLING_BLENDER"))
+    node = shutil.which("node")
+    try:
+        import skimage
+        checks.append(("scikit-image (reel light only)", True, skimage.__version__))
+    except ImportError:
+        checks.append(("scikit-image (reel light only)", False, "pip install 'pixling[reel]'"))
+    checks.append(("node + playwright (fp/arena shots only)", bool(node), node or "install Node 18+ and `npm i -g playwright`"))
     md = auth.mode()
     st = auth.load()
     who = {"api-key": "SCENARIO_API_KEY", "oauth": "team %s, project %s" % (st.get("team_id", "?"), st.get("project_id", "?")),
@@ -445,7 +491,7 @@ AGENTS_BLOCK = """\
 <!-- pixling -->
 ## Game art (pixling)
 Game art comes from `pixling` (the Pixel Perfect forge): pipelines, styles and taste for making sprites with code.
-Never hand-paint pixels. Start with `pixling pipelines` (spec, iso, map, fx, video, painted, style) and pick one;
+Never hand-paint pixels. Start with `pixling pipelines` (spec, blocks, iso, map, fx, video, painted, fp, arena, style) and pick one;
 `pixling styles NAME --how` shows how a style was made, with its code and notes, to reuse or build on.
 Spec loop: copy an example from `pixling specs` -> `pixling build` -> `pixling review` (look at the image) -> fix ->
 `pixling scene` -> `pixling lint`. AI image/video: `pixling scenario` (the user signs in once with
@@ -702,6 +748,14 @@ def main(argv=None) -> int:
         sys.path.insert(0, str(REPO))
         from painted.__main__ import main as painted_main
         return painted_main(rest) or 0
+    if head == "fp":
+        sys.path.insert(0, str(REPO))
+        from fp.__main__ import main as fp_main
+        return fp_main(rest) or 0
+    if head == "arena":
+        sys.path.insert(0, str(REPO))
+        from arena.__main__ import main as arena_main
+        return arena_main(rest) or 0
     a = _parser().parse_args(argv)
     run = {"guide": cmd_guide, "pipelines": cmd_pipelines, "code": cmd_code, "styles": cmd_styles, "specs": cmd_specs, "new": cmd_new, "doctor": cmd_doctor,
            "agent": cmd_agent, "scenario": cmd_scenario}.get(a.cmd)

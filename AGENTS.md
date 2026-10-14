@@ -12,7 +12,8 @@ Claude Code reads CLAUDE.md, which has the same rules plus notes on running seve
   `pixling agent install DIR`).
 - Tests: `python3 -m unittest discover -s tests`.
 - Formats: pixel art is `pp` (`pixling build`), video sprites are `reel` (`pixling reel`), painterly non-pixel sprites and
-  scenes are `painted` (`pixling painted`, Blender 4.2+; `pixling guide painted`). Keep one format per scene.
+  scenes are `painted` (`pixling painted`, Blender 4.2+; `pixling guide painted`), walkable first-person pixel worlds are
+  `fp` (`pixling fp`, WebGL; `pixling guide fp`). Keep one format per scene.
 
 - Art styles (Vista, Crisp Tactics, Flat Minimal), how a new one is made and the shared taste layer: docs/STYLES.md.
 - What pixling offers outside agents, pipeline by pipeline (steps, code, lessons): docs/PIPELINES.md (`pixling pipelines`).

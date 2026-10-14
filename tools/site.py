@@ -1,7 +1,7 @@
 """Build the landing page's art into site/a/ from the engine (the page itself is site/index.html, hand-written).
 
   python3 tools/site.py            # renders states, light, the house steps and the iso styles; copies maps, fx from out/
-  python3 tools/site.py pipelines  # one step only (mascot, sheets, states, house_steps, worlds, iso_styles, pipelines, layers)
+  python3 tools/site.py pipelines  # one step only (mascot, sheets, states, house_steps, worlds, iso_styles, pipelines, layers, arena)
 
 Renders go to a temp dir; only the final images land in site/a/. Maps, fx and props are read from out/, so build
 those first if they are missing (the error names the command). Everything on the page is a real pixling output.
@@ -165,6 +165,31 @@ def layers():
     shutil.copy(f"{lay}/base.png", os.path.join(A, "r_base.png"))
 
 
+def arena():
+    """The battle-map tile: each arena map through its real viewer (file://, no HUD), bare and with level overlays.
+    Needs node + playwright (the same as `pixling arena shots`); the maps' art is committed, so no Blender."""
+    for key in ("emberleaf", "hushfall"):
+        page = f"{TMP}/arena_{key}/arena.html"
+        r = subprocess.run([sys.executable, "-m", "arena", "bundle", "--map", key, "--out", page], cwd=ROOT,
+                           capture_output=True, text=True)
+        if r.returncode:
+            sys.exit(f"arena bundle failed:\n{r.stderr[-800:]}")
+        shots = [(name, f"{TMP}/arena_{key}/{name}.png", q) for name, q in (
+            ("map", "pause=1&t=6&zoom=fit&hud=0"),
+            ("nav", "pause=1&t=6&zoom=fit&hud=0&overlay=nav&snow=0"),
+            ("paths", "pause=1&t=6&zoom=fit&hud=0&overlay=paths&snow=0"))]
+        job = dict(page=os.path.abspath(page), size=[1920, 1080], shots=[dict(query=q, out=o) for _, o, q in shots])
+        r = subprocess.run(["node", os.path.join(ROOT, "arena", "shots.mjs"), json.dumps(job)], capture_output=True, text=True)
+        if r.returncode or "ERRORS" in r.stdout:
+            sys.exit(f"arena shots failed (needs node + playwright):\n{r.stdout[-400:]}{r.stderr[-800:]}")
+        for name, out, _ in shots:
+            im = Image.open(out).convert("RGB")
+            im.resize((1280, 720), Image.LANCZOS).save(os.path.join(A, f"ar_{key}_{name}.webp"), quality=86)
+    # the walkable painted view (fp): the first still of its README sheet (pixling fp layers)
+    im = Image.open(os.path.join(ROOT, "docs", "img", "hushfall_first_snow.png")).convert("RGB")
+    im.crop((0, 0, im.width // 2 - 1, im.height // 2 - 1)).save(os.path.join(A, "fp_first_snow.webp"), quality=88)
+
+
 def mascot():
     """The hand-placed mascot's idle GIF, keyed to a transparent 1x sheet."""
     im = Image.open(os.path.join(ROOT, "docs", "brand", "pixling-mark-idle.gif"))
@@ -184,7 +209,7 @@ def mascot():
 
 if __name__ == "__main__":
     os.makedirs(A, exist_ok=True)
-    every = (mascot, sheets, states, house_steps, worlds, iso_styles, pipelines, layers)
+    every = (mascot, sheets, states, house_steps, worlds, iso_styles, pipelines, layers, arena)
     for step in [f for f in every if f.__name__ in sys.argv[1:]] or every:
         print(step.__name__)
         step()

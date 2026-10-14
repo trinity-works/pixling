@@ -16,6 +16,8 @@ steps, the code that does it and what we learned the hard way.
 | fx | VFX sheets in a style's ramp | `pp.vfx` | Python |
 | video | sprites cut from AI video: image -> video -> keyed frames | `reel` + Scenario | ffmpeg, Scenario sign-in |
 | painted | painterly (non-pixel) sprites and scenes rendered in Blender | `painted` | Blender 4.2+ |
+| fp | a walkable pixel world: a painted scene in layers with a small walker (opens), or first person in WebGL | `fp` | Python; Node + Playwright for shots |
+| arena | painted battle maps for your own units, with a complete game level (collision, nav, LOS, zones) | `arena` | Python; Blender 4.2+ to repaint |
 | style | a new art style from scratch | all of them | a person who owns the look |
 
 ## spec
@@ -40,6 +42,8 @@ reduced by coverage and majority vote. Each bone is a cached rigid layer placed 
 that only moves keeps identical pixels (no swimming). Pixels are (material, light level) until the very end; the
 colours come only from the style's ramps. Banded light, coloured outlines (no black), inner lines where a nearer
 part overlaps, contact shadows, despeckle. Motion uses one 75 ms frame and holds by repetition.
+Opt-in `"hand": true` adds the pixel artist's decisions on top (big-form light, deep shadows, clean clusters,
+placed highlights, lost-and-found lines, quiet zones) plus relative-shade motifs (`pixling guide artist "The hand pass"`).
 
 **Code:** `pp/forge.py` (render), `pp/sdf.py` (shapes), `pp/motion.py` (clips), `pp/shade.py` (styles, light bands); `pixling code forge`.
 **Read:** `pixling guide workflow "The pipeline"`, `pixling guide artist "Spec format"`, `pixling guide artist "Motion"`.
@@ -49,6 +53,8 @@ part overlaps, contact shadows, despeckle. Motion uses one 75 ms frame and holds
 - Don't transcribe a concept sheet detail by detail; small sprites need a few big readable shapes, not chibi.
 - If the engine can't do something, ask for the feature. Don't fake it with forty micro-parts.
 - 8 frames at 75 ms reads as running; walks want 16 frames and folded knees.
+- Lit-per-primitive shading reads as vector art at pixel size (the Retro Diffusion founder's critique, 2026-10).
+  Detail isn't more features: light the big form first, commit to a shadow mass, place marks by meaning.
 
 ## blocks
 A few voxel layers + the scene's ramps -> small iso board pieces: clips in 4 rotated facings, cast shadows, events.
@@ -196,6 +202,17 @@ palette lock and re-outline.
 - Keys and holds read better than smooth in-betweens. Never use optical-flow interpolation.
 - Never chroma-key effects; turn brightness into alpha and add them back with `lighter`.
 
+**Lit side view** (`pixling guide reel-lighting`): image -> walk take across a locked 16:9 frame -> keyed frames
+-> PATINA colour + normal maps -> standard 2D lights (Godot, Unity). The lighting is standard; the work is making
+the maps steady. Raw per-frame AI normals flicker: take the colour from the video and average the normals along
+the motion over neighbouring frames. Find the loop by pose matching, never blend frames, and advance the walk by
+distance. Compared with image-to-3D (Tripo), the brushwork survives and no rig is needed, but you get one side
+view and a new take per animation.
+Any character and any clips (a travelling walk leads, an idle is the rest pose it stops into, other clips play
+once): `pixling reel light new NAME` -> `start` -> `frames` -> `loop` -> `patina` (prints the CU, `--yes` spends) -> `build`
+-> `check` -> `demo`; `export SHEET DIR --engine web|godot` copies the sheet (`pixling.lit-sprite` v1: colour +
+normal atlases + json) and a drop-in player (reel/light_runtime: litsprite.js, lit_sprite.gd) into a game.
+
 ## painted
 Style + layout -> Blender renders painterly sprites, a composed scene and a walkable web scene.
 
@@ -227,6 +244,140 @@ The ground stores distance fields per vertex and the shader picks designed flat 
 - New assets are builders, new colours are ramps, places are layouts; the shader stays shared.
 - From the anime-tree tutorial: value (dark pockets) and a crown-wide gradient make a tree read; self-shadowed crowns
   turn into one flat dark block. Pines are the exception: their tiers need to shade each other.
+
+## fp
+A place you walk through in the browser, in two views. **The painted view opens:** one composed third-person camera,
+the place painted in layers (sky, ridges, trees, hill) about 2.5 screens wide: built in Blender from painted cards,
+pixelized back into clean clusters and committed, and a canvas runtime that draws only what moves (a small walker
+who goes anywhere on the snow, her footprints, snow, breath) while the view follows her. **The first-person walk** (`walk.html`)
+is a Python kit + layout in WebGL, palette-locked pixel art with real shadows. Hushfall (`styles/hushfall.json`) is its
+first style, First Snow its first place.
+
+**Pick it for** a scene that should feel like a place you are in: a title screen, a story beat, a walk to a goal. The
+painted view when it must look crafted (the camera only pans across one fixed render, so every cluster is placed);
+first person when you must turn and look round. Not for sprites (use spec) or 2D maps (use map or iso).
+
+**Steps**
+```
+pixling fp layers --t 1,12,22,34          # the painted view: stills along the walk -> layers_sheet.png (~10 s)
+pixling fp layers --t 6,14 look=pixel     # the same stills on the art grid, to compare (nofx=1: no snow)
+FP_BPY=/path/python-with-bpy pixling fp paint   # re-render the painted layers into fp/art/<layout> (~4 min, cached)
+pixling fp assets                         # the kit: one builder per asset family (fp/kit/*.py)
+pixling fp cards car:0 pine:3             # each asset alone on snow, from a few angles: look at cards_sheet.png
+pixling fp walk --t 0,8,16,26,40          # screenshots along the auto-walk: look at walk_sheet.png
+pixling fp shot "t=40&pause=1&look=30,-5" # any view; debug=shadow shows the sun and shadow terms
+pixling fp build ; pixling fp serve       # play it: http://127.0.0.1:8770
+pixling fp bundle                         # the painted view as ONE html that opens from disk: out/fp/first_snow/first_snow.html
+```
+**How the painted view works.** `fp/place.py` is the place in metres and the one camera that sees it (a long lens
+pulled well back, a near-field lens that draws the ground at the bottom bigger): terrain, flagstones, rope fence,
+pillows, spruces, poles and wires, the car's spot and the walk route, all from one seeded stream (the wider world past
+the composed core draws after it, so the core never moves), and where she can walk (`walk_grid`, `walk_blocks`). `fp/paint3d.py`
+exports it to Blender (`fp/blender/first_snow.py`), which builds it with the painted engine's technique: spruces as
+tiers of alpha dab cards with sphere normals under snow shelves of puff cards, cumulus as puff cards lit as one mass,
+a snow terrain with calm blurred normals and real cast shadows (thin posts and poles cast none), 3D flagstones. It
+renders data, not colour (R lit value, G material id, B depth), once per layer; Python steps each material into its
+Hushfall ramp (tune in seconds, no re-render). What opens (`fp/hd2d.py`) keeps the render at the screen's own size
+(2x for 720p, a 3x render for 1080p, 1:1 on screen), stepped per render pixel with a few cleanups (a gouache stroke
+on the snow field, the cumulus's own dabs), and lays the hand-placed things back on top as crisp art pixels: posts,
+poles, the hand-drawn car, the ropes and wires refitted as cubics, the lamp's light (`fp/draw2d.py`). The art-grid
+version (2x2 block mode, cluster cleanup) is `?look=pixel` and the runtime's colour and depth lookups. The walker is a
+Blender-lit sprite sheet the same way (`fp/blender/walker.py`: eight headings, she turns and the light stays). Everything
+is committed in `fp/art/first_snow/`, so `fp build` needs no Blender. `web/layers.js` (canvas 2D) opens on the sky,
+tilts down once, then follows her sideways with a dead zone, every layer at a whole column of its own (parallax); it
+mirrors `place.proj` from `scene.json`, walks her on the `walk.bin` grid (height, surface, room, lamp) round the
+posts, ropes, spruces and the car, and draws the walker, her prints, breath, exhaust and snow (three depths of
+hand-made flake stamps that always fall) on the art grid. The
+built `layers/` folder is static with relative paths (list in `fp/README.md`); `fp bundle` (`fp/bundle.py`) packs it
+into one html that opens from file:// or a sandboxed frame (every load goes through the runtime's `asset()` and a
+table of data: URIs; audio through the page's import map; the font in the CSS). Lesson: painterly masses plus crisp
+art-pixel actors reads as crafted; pixelizing the masses reads as a filter, and every cleanup that merges the render's
+dabs costs the painterly read.
+
+**How the first-person walk works.** An asset is a `Mesh` whose vertices name a material (a ramp), a snow catch and baked AO, plus 1 px
+`Lines` for ropes, wires and grass. The layout builds the terrain heightfield, the stair, the placements and the walk
+route; `build` packs it into `world.json` + `world.bin`. The runtime (three.js, vendored) shades the world into a
+cubemap from a probe snapped to a 1 m grid and draws every texel as a square in the world (texel splatting), so art
+pixels stay on the surfaces while you move. It draws the sky in direction
+space with sky-pinned dither, the world at ~216 px tall with `v = ambient + sky + sun * terminator * shadow` picking a
+ramp band, snow on up-facing faces, a pink rim on edges turned to the sun, headlight spill with a dithered fringe and
+stepped fog; then 1 px lines, snow and bokeh particles and the breath; then the palette snap. The walker auto-walks the
+route until any input takes over; head motion is a breathing rise when idle and a small dip, sway and roll per step.
+
+**Code:** painted view: `fp/place.py`, `fp/paint3d.py`, `fp/hd2d.py`, `fp/draw2d.py`, `fp/blender/`,
+`fp/web/layers.js`; first person: `fp/web/fp.js` (runtime), `fp/mesh.py` (shapes), `fp/kit/` (assets),
+`fp/layouts/first_snow.py` (its place); both: `fp/build.py`, `fp/shot.py`; one file: `fp/bundle.py`. **Read:** `pixling guide fp`, `pixling styles hushfall --how`.
+
+**Learned**
+- Shadows only read when the sun rakes across the ground: a sun behind the hill leaves the whole slope one tone.
+- Blender to pixel: render ids and lit values, never colours, then ramp, mode-downsample and clean in Python; dabs must
+  land at 3-4+ art px. Thin things (posts, poles) cast no shadow: their long stripes across the snow read as noise.
+  What speckled: colour renders snapped to the palette, cards smaller than ~3 px, real self-shadow inside a tree (one
+  silhouette), and cleaning every pixel at once (a checker just swaps). What made it clean: per-clump sphere normals
+  so a clump shades as one mass, a constant ramp per material, red-black cluster cleanup, 2 px minimum snow bands,
+  and the thin things (posts, ropes, poles, the car) drawn as pixel sprites over the render, not rendered.
+- Snow banks that rise high on the sun side shade the whole hollow; keep side terrain low or the sun higher.
+- Bokeh and breath can't be blended translucency: the palette snap swallows it. Solid cores with a dithered rim read.
+- Thin things as 1 px lines, never as thin tubes: tubes break up and shimmer at 216 px.
+- A pixel filter on a 3D frame makes the pixels crawl across every surface as the camera moves. Snapping the camera
+  only fixes orthographic views. Texel splatting (shade into a grid-snapped cubemap, draw each texel as a square in
+  the world) keeps the art pixels on the surfaces through turns, head bob and walking.
+- Stable is not enough: a 216 px 3D frame through a pixel filter still reads as a "3D pixel filter dithering mess"
+  (blocky texels up close, toon bands, snow noise, shimmering wires). A painted, locked frame with few big value
+  masses, detail only where the eye lands, and a small figure in a big world is what feels like a place.
+- In the painted view, every dithered or per-pixel effect read as noise: white plus-shaped flakes read as glitter,
+  holes inside the sun's pink read as camouflage, fanned grass reads as 'W' glyphs. Solid masses, tufts that lean
+  together; snow as lobed clumps with a pale core and a teal rim on the shade side (round discs read as bubbles, a
+  fringe of single edge pixels as burrs), falling at least a pixel a frame. Light is a low lobe taken by every layer alike; a glow on one layer shows that layer's edge.
+
+## arena
+Painted battle maps for your own units: a painterly map with moving layers and a complete, checked game level beside
+it. One shared engine (`arena/*.py`) and one module per map (`arena/maps/NAME/`: place, palette, biome, level hooks,
+Blender builders, the committed art). Two maps ship: **Hushfall Crossing** (a winter ledge over a sea of dusk cloud,
+two camps, a ruin terrace, a bridge over a corridor; 40 degrees) and **Emberleaf Hollow** (a kill map in a clearing of
+red-crowned trees on a forested plateau; 68 degrees, 51.2 px/m).
+
+**Pick it for** a tactics, MOBA or arena game that needs a map to fight on, not just a picture: the level comes with
+collision shapes, a nav grid with clearance per unit radius, line of sight and gameplay zones, and a check that the
+two sides are fair. Not for open worlds (use map) or scenes you walk through (use fp).
+
+**Steps**
+```
+pixling arena maps                         # the maps and whether their art is painted
+pixling arena bundle --map emberleaf       # the viewer as ONE html: out/arena/emberleaf/arena.html (no Blender needed)
+pixling arena export --map emberleaf       # level.json for your units: walk grid, colliders, nav, LOS, spawns, routes
+pixling arena check                        # reachability, fairness, spawn safety, stuck tests, colliders on the art
+pixling arena lint ; pixling arena zones   # the zone budgets measured on the art; zone map, grey and squint to look at
+pixling arena family                       # every map side by side at the same scale: one style family?
+ARENA_BPY=/path/python-with-bpy pixling arena paint --map NAME   # re-render in Blender (~2 min at 1 sample)
+pixling arena repaint --map NAME           # re-step the last render while tuning ramps (seconds, no Blender)
+```
+**How it works.** `place.py` is the map in metres: an orthographic camera from a fixed family (40 or 68 degrees, the
+same sun, about 60 m across), the walkable as signed distances, the terrain, and `layout()` with every thing's kind and
+**depth zone** (focus, playfield, frame, backdrop, vista, sky). Blender (`arena/blender/arena.py` plus the map's
+builders) renders data, not colour: lit value, material id, depth and zone id. The painter (`paint.py`) steps each
+material through hand-picked ramps under the zone's budget (`zones.py`: value window, saturation, haze, strokes and
+cleanups), so the back is quiet by value and haze while it keeps its strokes. `layers.py` bakes the tree sway as held
+tile frames (only the changed 32 px runs are stored) and the clouds as wrap-around drifting strips. `level.py` builds
+`level.json` v4 from the same place data; `game.py` (Python) and `web/level.js` (browser and node) answer the same
+queries (`find_path`, `los`, `move`) with the same code, checked against each other. The viewer (`web/arena.js`,
+canvas 2D, no libraries) draws the layers with parallax in whole pixels plus the ambience (snow, fires, leaves,
+glints) and overlays for sizing yours: grid, zones, scale people, colliders, nav, LOS, paths, a test agent.
+
+**Code:** `arena/place.py` (the active map), `arena/paint.py`, `arena/zones.py`, `arena/layers.py`, `arena/level.py`,
+`arena/game.py`, `arena/check.py`, `arena/web/`, `arena/blender/arena.py`, `arena/maps/`. **Read:** `pixling guide arena`
+(the viewer, using the map in your game, making a new map step by step), `pixling guide arena-style` (the shared rules).
+
+**Learned**
+- A battle map is an information hierarchy: units and effects loudest, then the objectives, then a calm light
+  playfield, a darker frame, a hazed back. Budget each depth zone (`lint`) instead of judging pixels one by one.
+- Keep hue bands free for the units (at least two, 20+ degrees wide; gold is free on every map so far) and let the
+  sun own the pinks. A playfield in two low-chroma tones lets units of any strong hue pop.
+- An orthographic camera does not shrink distance: the back is a stage set placed by screen height, its ridges sunk
+  and built smaller the further back, with a window kept open over the play.
+- Render ids and lit values in Blender and paint in Python; tuning a ramp then takes seconds, not a re-render.
+- Mirror whatever changes how people move, and the noise of the outline and terrain too, so the routes are exactly
+  fair; `check` measures it. Every collider must sit on its painted prop.
 
 ## style
 How we make an art style: refs -> DNA -> hand -> kit -> calibration brief -> review card -> walk it -> vote.

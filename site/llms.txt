@@ -2,7 +2,7 @@
 
 > Art know-how and tools for your coding agent. A CLI (Python 3.9+) that packages pipelines, styles and taste for
 > making game sprites with code: JSON spec -> pixel sprites, Python kits -> exact-iso scenes, living maps, VFX,
-> AI image -> video -> keyed sprite frames, Blender -> painterly sprites. Every style ships with how it was made
+> AI image -> video -> keyed sprite frames, Blender -> painterly sprites, a walkable pixel world (a painted scene in layers, or first person in WebGL). Every style ships with how it was made
 > (hand, kit code, lab notes). Run a pipeline as it is, or read how it was made and take what helps.
 > Status: v0.1, experimental.
 
@@ -12,15 +12,15 @@ Commands as JSON: ./agents.json
 ## Install
 uv tool install pixling          # or: pipx install pixling | npx pixling
                                  # from source: git clone https://github.com/trinity-works/pixling && cd pixling && pip install -e .
-pixling doctor                   # numpy, Pillow, scipy; ffmpeg (video), Blender (painted), Scenario sign-in
+pixling doctor                   # numpy, Pillow, scipy; ffmpeg (video), Blender (painted), Node (fp/arena shots), scikit-image (reel light), Scenario sign-in
 pixling agent install .          # run in the user's repo: adds the pixling skill and an AGENTS.md block
 
 ## Know-how first
 pixling                          # the command map
-pixling pipelines                # spec, blocks, iso, map, fx, video, painted, style: what each makes
+pixling pipelines                # spec, blocks, iso, map, fx, video, painted, fp, arena, style: what each makes
 pixling pipelines NAME           # when to pick it, the steps, the code, what we learned
 pixling styles                   # launch styles: vista, tactics (Crisp Tactics), flat (Flat Minimal)
-                                 # also: sunmeadow, duskborne, vermilion (SDF sprites), painted_cards (painted)
+                                 # also: sunmeadow, duskborne, vermilion (SDF sprites), painted_cards (painted), hushfall (fp)
 pixling styles NAME --how        # how a style was made: hand, kit code, lab notes, build command
 pixling code [MODULE]            # engine and kit modules with docstrings and paths; pixling code tactics.kit
 pixling guide [TOPIC] [SECTION]  # docs and research notes; pixling guide --grep WORD searches them all
@@ -42,6 +42,10 @@ video    design -> 5-facing start sheet -> MiniMax H3 takes (first = last frame)
          pixling reel gambit char.json ; pixling reel page NAME ; pixling reel fx SPEC (spells on black)
 painted  style + layout -> Blender painterly sprites (shadow layers, sway loops, 8 headings) -> scene, web scene
          pixling painted doctor ; pixling painted kit ; pixling painted compose ; pixling painted game
+fp       a place you walk: a painted view in layers (Blender cards, painterly with pixel actors; locked camera, a small walker; opens) or first person (WebGL kit)
+         pixling fp layers ; pixling fp cards [MESH] ; pixling fp walk (open the sheets and look) ; pixling fp serve ; pixling fp bundle (one html, opens from disk)
+arena    painted battle maps for your units: Blender data passes stepped into ramps per depth zone, sway and drifting clouds, a checked level.json (collision, nav, LOS, zones)
+         pixling arena maps ; pixling arena bundle --map emberleaf ; pixling arena export ; pixling arena check
 style    a new style: refs -> DNA sheet -> hand modes -> own kit -> calibration brief -> review card -> walk -> vote
          pixling pipelines style ; pixling guide style-search ; pixling guide style-dna
 

@@ -46,6 +46,8 @@ pixling                          # every command; each takes -h, the ones agents
 | **fx** | VFX sheets posterised to a style's palette |
 | **video** | sprites cut from AI video into 8-direction sheets (via [Scenario](https://scenario.com), optional) |
 | **painted** | painterly, non-pixel sprites and scenes rendered in Blender |
+| **fp** | a walkable pixel world: a painted scene in layers with a small walker, or first person in WebGL |
+| **arena** | painted battle maps for your units, with a checked game level: collision, nav, line of sight, zones |
 | **style** | a new art style from scratch: refs, hand, kit, review |
 
 `pixling pipelines NAME` shows each one's steps, code and lessons. Output is engine-ready: sheets, GIFs, JSON metadata,

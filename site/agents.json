@@ -1,6 +1,6 @@
 {
   "name": "pixling",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "status": "experimental",
   "summary": "Art know-how and tools for coding agents: pipelines, styles (with how they were made) and taste for making game sprites with code.",
   "source": "https://github.com/trinity-works/pixling",
@@ -93,6 +93,26 @@
         "entry": "pixling painted kit; pixling painted compose"
       },
       {
+        "name": "fp",
+        "makes": "a walkable pixel world: a painted scene in layers (Blender painted cards at screen resolution with crisp pixel actors; pixel and flat looks one button away) with a small walker (opens), or first person in WebGL",
+        "engine": "fp (canvas 2D painted layers; WebGL, three.js for first person)",
+        "needs": [
+          "Node + Playwright (screenshots only)",
+          "Blender or a python with bpy (re-painting the layers only)"
+        ],
+        "entry": "pixling fp layers; pixling fp serve; pixling fp bundle"
+      },
+      {
+        "name": "arena",
+        "makes": "painted battle maps for your own units with a complete, checked game level (collision, nav, LOS, zones); two maps ship: Hushfall Crossing and Emberleaf Hollow",
+        "engine": "arena (Blender data passes, Python painter, canvas 2D viewer)",
+        "needs": [
+          "Blender or a python with bpy (re-painting only)",
+          "Node + Playwright (shots only)"
+        ],
+        "entry": "pixling arena maps; pixling arena bundle; pixling arena export; pixling arena check"
+      },
+      {
         "name": "style",
         "makes": "a new art style: refs -> DNA -> hand -> kit -> brief -> review card -> walk -> vote",
         "engine": "all",
@@ -110,7 +130,8 @@
       "sunmeadow",
       "duskborne",
       "vermilion",
-      "painted_cards"
+      "painted_cards",
+      "hushfall"
     ],
     "iso_build": {
       "tactics": "pixling world tactics [--only SCENE]",
@@ -262,6 +283,14 @@
     {
       "cmd": "pixling painted kit|compose|game|doctor",
       "does": "painterly non-pixel pipeline via Blender (experimental)"
+    },
+    {
+      "cmd": "pixling fp build|serve|layers|walk|cards|shot|film",
+      "does": "pixel worlds you walk: a painted layered view with a small walker (opens), and a first-person WebGL walk; screenshots and films through the real runtime"
+    },
+    {
+      "cmd": "pixling arena maps|bundle|export|check|lint|zones|palette|scale|family|shots|perf|paint|repaint",
+      "does": "painted battle maps: the viewer as one html, level.json for your units, fairness and walkability checks, zone-budget lint; --map NAME"
     },
     {
       "cmd": "pixling reel split|contact|key|gambit|page|demo|fx",

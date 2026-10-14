@@ -101,6 +101,35 @@ python3 -m reel demo <names> --fx fireball_rain,necro_signet   # -> out/reel/_de
 ```
 Publish the page with its `f/` files as an artifact and send the user the link. Copying sprites into another game is the user's call.
 
+## Lit side view (painted, left/right)
+The other pipeline: one painted character, any clips (walk, idle, attacks), colour + normal sheets that any 2D light
+shades, and drop-in players for web and Godot. The why, models and costs are in [LIGHTING.md](LIGHTING.md); the spec
+and sheet format are in the README ("Lit side view").
+1. `python3 -m reel light new <name>` -> `reel/lit/<name>/` (light.json, clip dirs, takes/). Paint the character on
+   #FF00FF (GPT Image 2.5, no magenta/pink on it) as `ref/design.png`, show the user before video credits go, then
+   `python3 -m reel light start reel/lit/<name>/ref/design.png reel/lit/<name>/ref/start.png` (the golem's framing:
+   figure at the left of a 1920x1080 key frame, 44% of its height) and `pixling scenario upload` it.
+2. Takes, MiniMax H3 only, `firstFrameImage` ONLY (first = last drifted the backdrop on 2 of 2 takes), 16:9, locked
+   camera. Every clip (walk, idle, attack, ...) is its own take from the same design, so design, framing and light
+   match. Check every take's backdrop on every frame.
+   - Walk: walk IN PLACE ("like walking on a treadmill ... does NOT travel across the frame") from a centred start
+     frame (`light start ... --left 0.42`), then `"speed": "foot"` and `"ground": "lowest"` in light.json. 1 of 1
+     clean on the fox. Walking across the frame works too (golem 1 of 1) but cut and drifted on 0 of 3 fox takes.
+     After two failures, stop and ask before buying more.
+3. `python3 -m reel light frames reel/lit/<name>/takes/walk_a.mp4 reel/lit/<name>/walk` (every filmed frame for a
+   walk; `--every 2` for the rest, adding the in-betweens of fast moments), then `python3 -m reel light loop
+   reel/lit/<name>/walk` and pin the walk's `"loop"` and `"match"` in light.json (or leave `"loop": "auto"`). An idle
+   filmed from the start frame alone doesn't end on its first pose: `light loop <dir> --min 40` finds where it does
+   (fox: 110 matches 0), and `"loop": [0, 108]` plays up to the frame before the match.
+4. `python3 -m reel light patina reel/lit/<name>/light.json` lists the frames that need maps and the cost (every
+   frame of the walk, or every 2nd with `"keys_every": 2` (the fox: 16 maps, steady); keys every 20 filmed frames
+   elsewhere; ~9 CU each). State it against the budget, then rerun
+   with `--yes`.
+5. `python3 -m reel light build reel/lit/<name>/light.json`, then `light check` on the sheet json, then `light demo`
+   and look at every clip animated at game size under a moving light before calling it done. Publish the demo
+   folder as an artifact for the user.
+6. Into a game: `python3 -m reel light export <sheet.json> <game dir> --engine web|godot`.
+
 ## Spells
 Generate the effect on pure black with first = last frame = `reel/fx/black_1024.png`, so it appears from and
 vanishes into nothing (H3 768P 5 s). Ask for the high 60° camera, say where the target spot is, and ask for a wide

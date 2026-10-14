@@ -17,6 +17,8 @@ viewer/
 research/toon/
 # reel: big facing sheets stay local (the committed ref/start_<facing>.png are cut from them)
 reel/chars/*/ref/sheet*.png
+# reel lit side view: clip stills and PATINA maps stay local (light.json + ref/ are committed)
+reel/lit/*/*/f[0-9]*.png
 
 # local reference media
 references/
@@ -26,3 +28,5 @@ build/
 
 # private/: secrets never get committed (keep them in a password manager)
 private/secrets/
+# private/films: film inputs (renders, audio, fonts, game atlas) stay local
+private/films/*/assets/

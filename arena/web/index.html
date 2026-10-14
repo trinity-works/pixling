@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}}</title>
+<style>
+  :root { --ink: #141a30; --ink2: #1c2440; --fur: #a8b4ac; --crown: #e4b6a4; --mist: #8b93a4; --line: #30365a; }
+  html, body { margin: 0; height: 100%; background: var(--ink); overflow: hidden; }
+  body { font: 12px/1.35 ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; color: var(--fur);
+         user-select: none; -webkit-user-select: none; }
+  canvas#view { display: block; image-rendering: pixelated; cursor: grab; touch-action: none; }
+  canvas#view:active { cursor: grabbing; }
+  .top { position: fixed; left: 12px; top: 10px; right: 12px; display: flex; gap: 8px; align-items: flex-start;
+         flex-wrap: wrap; pointer-events: none; }
+  .title { background: rgba(20, 26, 48, .78); padding: 6px 12px 7px; border-radius: 3px; }
+  .title h1 { margin: 0; font-size: 13px; letter-spacing: .28em; text-transform: uppercase; color: var(--crown); font-weight: normal; }
+  .title small { color: var(--mist); font-size: 11px; }
+  .tools { display: flex; gap: 6px; flex-wrap: wrap; pointer-events: auto; margin-left: auto; }
+  button { font: inherit; color: var(--fur); background: rgba(20, 26, 48, .86); border: 1px solid var(--line);
+           border-radius: 3px; padding: 6px 10px; cursor: pointer; }
+  button:hover { border-color: var(--crown); color: var(--crown); }
+  button.on { border-color: var(--crown); color: var(--ink); background: var(--crown); }
+  button u { text-decoration: none; border-bottom: 1px solid currentColor; }
+  .foot { position: fixed; left: 12px; right: 12px; bottom: 10px; display: flex; flex-direction: column; gap: 6px;
+          align-items: flex-start; pointer-events: none; }
+  .foot > div { background: rgba(20, 26, 48, .8); padding: 5px 9px; border-radius: 3px; max-width: 100%; box-sizing: border-box; }
+  #legend { display: none; }
+  #legend i { display: inline-block; width: 10px; height: 10px; margin: 0 4px 0 8px; vertical-align: -1px; }
+  #legend div + div { margin-top: 3px; }
+  #read { color: var(--fur); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hint { color: var(--mist); }
+  body.nohud .top, body.nohud .foot { display: none; }
+  @media (max-width: 720px) { .hint { display: none; } .tools { margin-left: 0; } }
+</style>
+</head>
+<body>
+<canvas id="view"></canvas>
+<div class="top">
+  <div class="title"><h1>{{TITLE}}</h1><small>{{SUBTITLE}}</small></div>
+  <div class="tools">
+    <button id="b-grid" title="G"><u>G</u>rid</button>
+    <button id="b-zones" title="Z"><u>Z</u>ones</button>
+    <button id="b-scale" title="M">Scale (<u>m</u>)</button>
+    <button id="b-colliders" title="K: collision shapes per level">Colliders (<u>k</u>)</button>
+    <button id="b-lv" title="V: which level's colliders">level all</button>
+    <button id="b-nav" title="N: the nav grid, clearance and links">Nav (<u>n</u>)</button>
+    <button id="b-r" title="R: agent radius for nav, paths and the agent">r 0.5</button>
+    <button id="b-los" title="L: line of sight from the cursor">LOS (<u>l</u>)</button>
+    <button id="b-paths" title="P: A* from both spawns to the objectives and the cursor">Paths (<u>p</u>)</button>
+    <button id="b-agent" title="U: a test agent; click to send it">Agent (<u>u</u>)</button>
+    <button id="b-snow" title="F: the falling particles">{{PARTICLES}} (<u>f</u>)</button>
+    <button id="b-zoom" title="X">1x</button>
+    <button id="b-data" title="the walk grid, levels, spawns, objectives as JSON">level.json</button>
+  </div>
+</div>
+<div class="foot">
+  <div id="legend"></div>
+  <div id="read">move over the map</div>
+  <div class="hint">drag or WASD to pan &middot; X or the wheel to zoom (1x, 2x, fit) &middot; G grid &middot; Z zones &middot; M scale, click to stand a person &middot; K colliders, V level &middot; N nav, R radius &middot; L sight &middot; P paths &middot; U agent, click to send &middot; Space pauses</div>
+</div>
+<!--ARENA_DATA-->
+<script>/*ARENA_JS*/</script>
+</body>
+</html>

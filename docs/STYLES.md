@@ -21,6 +21,7 @@ work across several biomes (forest, coast, snow, desert...): **one style, many b
 | **Vista** (flagship) | painted aerial map (`pp.map`) over SDF props | muted painterly masses, cream walls, terracotta roofs, teal sea, tiny figures | Highgate, Vale world map | `python3 tools/vista/build.py` |
 | **Crisp Tactics** | exact 2:1 iso (`pp/iso.py`) | three flat face tones, soft selout line with corner AA, cube canopies, slab stone with masonry, one orange accent | valley, autumn; harbour | `pixling world tactics` |
 | **Flat Minimal** | exact 2:1 iso (`pp/iso.py`) | two world hues + a warm window accent, flat faces, no line, flat long shadows, chunky pixels | forest island, dunes | `pixling world flat` |
+| **Hushfall** (fp) | a wide third-person painting in layers she walks anywhere in, the view following (`fp/`); first person as a lab | muted teal snow, slate-violet stone, navy spruce, salmon cumulus, the sun's hot pink, a mint headlamp glow; Blender painted cards pixelized to clean clusters, no dither | winter dusk (First Snow) | `pixling fp layers` |
 
 Walk around all of them: `python3 tools/explorer/build.py` writes `out/explorer.html` (run the two style builds first).
 
@@ -135,3 +136,64 @@ A = guidance for the agent.
 The painted aerial map: `pp.map` painters for terrain, sea and forest canopy, SDF props from `tools/vista` kits, the
 meaning layer, building states and hour lighting. Its rules and commands are in [ENVIRONMENTS.md](ENVIRONMENTS.md).
 Next: seasons (summer, autumn, and winter from the Frost prototype) as biomes of the same hand.
+
+## Hushfall
+
+The first style of the `fp` engine. Made from one reference (a pixel-art winter dusk: a stair through deep snow up
+to a parked car, pink sunset, bokeh snow; mood only, it never ships), so palette and mood follow it closely.
+
+- **The painted view (what opens).** One composed camera that opens with a slow tilt and then only pans, following
+  her across a world about 2.5 screens wide (the composed stair in the middle, climbing to an old estate parked on a
+  plough-cleared road along the crest, the road a calm band with ruts and rounded plough ridges that leaves behind the
+  tree band at both ends; spruce stands, a buried fence and a field fence out on the wings, the wires running on); the
+  place is
+  four layers (sky, far, trees, hill), built in Blender with the painted engine's technique (`fp/paint3d.py`,
+  `fp/blender/first_snow.py`). What opens is painterly with pixel accents: the render stepped into its ramps at the
+  screen's own size (soft dab masses, flat toon bands, no pixel grid), with the walker, snow, breath, posts, poles,
+  the car and the wires as crisp art pixels over it. The Look button switches to the art-grid pixel version.
+  Spruces are tiers of alpha dab cards whose clumps
+  shade as one sphere, snow shelves of puff cards on top, buried cards darker, a gradient along the sun. The cumulus
+  is puff cards in clumps, lit per pixel as soft spheres by the low sun behind it: lit salmon crowns, the face a
+  step over the sage, violet bellies over a flat base, the sun's hot pink only on its top-right crown edge. Each
+  material's lit value steps into its own ramp (no colour is rendered); 2x2 blocks take their most common colour and
+  clusters are cleaned, so no speckle. Big calm value masses: one teal snow field with long raking shadows, one dark
+  spruce band, one warm sky with a far hill and mist between. Thin things (posts, ropes, poles, wires) and the hero
+  car are pixel sprites over the render; the walker is a Blender-lit sprite sheet in eight headings (her face shows
+  when she turns to us), leaving prints a tone darker in the snow. Snow falls in three depths of hand-made stamps:
+  specks far off, small clusters, and near broken clumps (a pale core, a ragged teal edge, a crystal or two come
+  loose) that tumble. The first-person bullets below are the lab.
+
+- **Hand.** Low-poly, flat-shaded facets in metres; light value `ambient + sky + sun * terminator * shadow` picks a
+  band of each material's ramp (4-6 tones), so facets read as painted planes. One sun, low on the left (az -78°,
+  12° up), with a real shadow map: long hard shadows rake across the snow and agree with every asset. Snow settles on
+  any face that points up enough (world-pinned noise). Faces turned to the sun and seen edge-on take a pink rim that
+  fades with distance; wires toward the sun catch it too. No outlines. Thin things are 1 px lines. Every pixel is
+  snapped to the palette (OKLab nearest). The art pixels live on the surfaces (texel splatting from a probe on
+  a 1 m grid), about 0.22° each, so they stay put while you turn, bob and walk instead of crawling.
+- **Palette.** Teal snow (`#64848c` dominant), slate-violet shade, navy spruce, an indigo-plum car, a sage and rose
+  sky with salmon undersides. The hot pink `#fc5084` belongs to the setting sun (ridge line, sky clusters, rims) and
+  the tail lights; the headlights own a mint glow.
+- **Layers in their own hand.** The sky is painted (sky.py): cumulus built from round puffs with scalloped lit tops
+  and rose bellies, dithered soft, drawn as its own layer. Snow is fluffy and calm: open fields lit nearly flat (one
+  teal mass broken only by shadows) and rounded `drift` pillows with a soft top highlight along the stair, on posts
+  and on the car.
+- **Dither** only where declared: the clouds' soft bands and specks, the lamp spill fringes, the breath and exhaust rims.
+- **Kit** (`fp/kit/`): spruce built from stacked bough rings with snow shelves and drooping teeth (10-15 rings,
+  per-instance value jitter), young spruce, dry grass tufts (lines), a lofted 70s estate car with a snowed-under
+  roof load, headlights and tail lights that spill their own ramps, an idling exhaust; timber telephone poles square
+  to their wires; round-capped rope bollards; a laid stone stair (light tops, dark noses, blue risers, seams).
+- **Atmosphere.** Falling snow and a near shell of bokeh flakes, breath that leaves at walking speed so you walk into
+  it, a gentle head bob (a dip per footfall, sway per stride, under a degree of roll), wind and snow-crunch audio.
+- **Made by** a two-track artist workflow (nature: spruce, grass, snow, sky; made: car, poles, bollards, stair), each
+  built by a senior artist, critiqued and improved by a senior reviewer, polished, signed off, then one art
+  direction pass over the whole walk.
+- **Build:** `pixling fp layers` (painted view stills), `FP_BPY=... pixling fp paint` (re-render the layers in
+  Blender; they are committed), `pixling fp walk` (first-person screenshots), `pixling fp cards`
+  (assets), `pixling fp serve` (play; opens the painted view).
+- **Weak spots (painted view):** the frame is mid grey-teal at thumbnail size (the raw render's dark forest against
+  a luminous sky is not back yet); the near spruces read a little as broccoli (no lit shelf fringe); the shadows in
+  the bottom-left and the lower-right pillows end in fish and beak shapes; the car's wheel arches and tail-light glow
+  are not hand-clean at 1080p; no hand-placed focal accents yet.
+- **Weak spots (first person):** near spruce (under ~15 m) show big flat diamonds in the bough fringe; looking back from the crest the
+  second sky ridge is a plain band; one place (First Snow) so far.
+

@@ -1,12 +1,14 @@
 ---
 name: reel-sprites
-description: Make game sprite animations from AI video. Generate start frames and image-to-video takes with Scenario (pixling scenario), then key, cut and export them with the reel engine (python3 -m reel) into 8-direction sprite sheets (and a playable demo). Use when asked to animate a character from video, add a reel character, reroll takes, or fix reel attack/walk timing.
+description: Make game sprite animations from AI video. Generate start frames and image-to-video takes with Scenario (pixling scenario), then key, cut and export them with the reel engine (python3 -m reel) into 8-direction sprite sheets (and a playable demo). Use when asked to animate a character from video, add a reel character, reroll takes, fix reel attack/walk timing, or make a painted side-view character lit by 2D lights (normal-mapped sheets for web or Godot).
 ---
 
 # reel: video -> sprites
 
 Read `reel/WORKFLOW.md` (the step-by-step loop, prompts, spells) and `reel/README.md` (layout, detectors,
-commands, char.json format) first.
+commands, char.json format) first. For a side-view character lit by 2D lights (painted frames + normal maps), read
+`reel/LIGHTING.md` and WORKFLOW "Lit side view" instead: `python3 -m reel light new <name>`, then `start`, `frames`, `loop`,
+`patina` (dry run first: state the CU), `build`, `check`, `demo`, `export --engine web|godot`.
 `research/reel/NOTES.md` has the model list and the research, and `research/reel/SCENARIO_SKILL.md` has the
 Scenario API/MCP conventions. Scenario calls go through `pixling scenario` (`pixling scenario status` first; if signed out,
 ask the user to run `! pixling scenario login`). If the host has the Scenario MCP connected, its tools work the same way.

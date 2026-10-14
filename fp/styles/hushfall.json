@@ -1,0 +1,159 @@
+{
+  "name": "hushfall",
+  "about": "First-person pixel 3D at dusk in deep snow: muted teal snow, slate-violet shade, salmon and sage sky, one hot-pink accent owned by the setting sun (rims, ridge line, tail lights). Banded toon light, hard long shadows, no outlines, dither only in the sky, the headlight spill and the breath.",
+  "pixel": {"height": 216, "min_scale": 2},
+  "texel": {
+    "size": 400,
+    "mobile_size": 320,
+    "capture": 1.28,
+    "cell": 1.6,
+    "fade": 0.22,
+    "note": "texel splatting: splat texels per cube face (one art pixel ~0.22 deg), capture oversampling, probe grid in metres (across, up), the probe swap in seconds",
+    "cell_y": 1.2
+  },
+  "camera": {"fov": 50, "eye": 1.62, "near": 0.04, "far": 1200},
+  "sun": {
+    "azimuth": -48,
+    "elevation": 18,
+    "note": "azimuth in degrees from -z (straight ahead at the start) toward +x; the sun sits low on the left, behind the ridge glow"
+  },
+  "light": {
+    "ambient": 0.3,
+    "sky": 0.16,
+    "sun": 0.5,
+    "terminator": [-0.05, 0.3],
+    "ao": 0.55,
+    "shadow_bias": 0.0015,
+    "rim": {"strength": 1.0, "power": 4.0, "threshold": 0.5, "ramp": "rim"}
+  },
+  "ramps": {
+    "snow": [[0.0, "#3c4e6c"], [0.25, "#4b5a7c"], [0.4, "#5a7286"], [0.7, "#64848c"], [0.985, "#76929a"]],
+    "stone": [[0.0, "#1c2440"], [0.22, "#30365a"], [0.27, "#415684"], [0.4, "#30365a"], [0.45, "#41516c"], [0.62, "#4c5878"]],
+    "wood": [[0.0, "#1c2440"], [0.27, "#283850"], [0.32, "#30365a"], [0.36, "#41516c"], [0.8, "#4c5878"], [0.92, "#5b6a80"]],
+    "pine": [[0.0, "#283350"], [0.3, "#344260"], [0.5, "#43506e"], [0.88, "#56647e"]],
+    "bark": [[0.0, "#1c1830"], [0.3, "#283050"], [0.6, "#3c4060"]],
+    "car": [[0.0, "#1c1830"], [0.3, "#2a2a4c"], [0.36, "#34345c"], [0.58, "#4d3a5a"], [0.9, "#5c4a6c"]],
+    "chrome": [[0.0, "#283050"], [0.4, "#4c5878"], [0.92, "#887e80"]],
+    "glass": [
+      [0.0, "#1c2440"],
+      [0.3, "#283850"],
+      [0.33, "#3c4864"],
+      [0.37, "#8a9488"],
+      [0.45, "#3c4864"],
+      [0.62, "#4c5878"],
+      [0.84, "#8a9488"]
+    ],
+    "tyre": [[0.0, "#141a30"], [0.5, "#1c2440"], [0.85, "#283050"]],
+    "canvas": [[0.0, "#1c2440"], [0.3, "#283050"], [0.36, "#30365a"], [0.42, "#3c4864"], [0.76, "#4c5878"], [0.95, "#8c7c88"]],
+    "rope": [[0.0, "#41516c"], [0.5, "#615d71"]],
+    "wire": [[0.0, "#2e3956"], [0.6, "#3c4864"]],
+    "grass": [[0.0, "#30365a"], [0.45, "#415684"], [0.75, "#887888"]],
+    "grass_dry": [[0.0, "#3c4965"], [0.45, "#4e5b79"], [0.75, "#5b6a80"]],
+    "metal": [[0.0, "#1c2440"], [0.3, "#30365a"], [0.36, "#415684"], [0.6, "#4c5878"], [0.8, "#607088"]],
+    "taillight": [[0.0, "#fc5084"]],
+    "tailcore": [[0.0, "#f0b4c0"]],
+    "headlamp": [[0.0, "#e8f0d0"]],
+    "rim": [[0.0, "#a18d90"], [0.5, "#c0928f"], [0.85, "#fc5084"]],
+    "glow": [[0.0, "#587a80"], [0.35, "#80b098"], [0.7, "#a8c8a0"], [0.92, "#d8e4c0"]],
+    "far": [[0.0, "#303058"], [0.4, "#3c4864"], [0.75, "#4c5878"]],
+    "seam": [[0.0, "#30365a"], [0.6, "#3c4e6c"]],
+    "tailglow": [[0.0, "#8e7e8c"], [0.3, "#bc7c88"], [0.7, "#fc5084"]],
+    "drift": [[0.0, "#4b5a7c"], [0.36, "#5a7286"], [0.5, "#64848c"], [0.86, "#76929a"], [0.97, "#90afa3"]]
+  },
+  "emissive": ["taillight", "tailcore", "headlamp"],
+  "snow": {"ramp": "snow", "up": 0.62, "noise": 0.22, "noise_scale": 0.22, "flatten": 0.8},
+  "fog": {"near": 20, "far": 220, "steps": 4, "max": 0.6, "color": "#6b828f", "color_far": "#6a7f95"},
+  "sky": {
+    "px_deg": 0.225,
+    "el_min": -12,
+    "el_max": 78,
+    "seed": 5,
+    "drift": 0.0,
+    "stops": [[-0.2, "#4c5878"], [0.0, "#c0928f"], [0.025, "#a18d90"], [0.06, "#95938f"], [0.11, "#89978a"]],
+    "cumulus": {
+      "layers": [
+        {
+          "count": 34,
+          "el": [18, 40],
+          "width": [5, 14],
+          "height": [1.6, 3.6],
+          "sun_bias": 0.3,
+          "tones": ["#a08c90", "#98848c", "#98848c", "#8c7c8c"]
+        },
+        {
+          "count": 70,
+          "el": [7, 21],
+          "width": [10, 28],
+          "height": [3.0, 6.5],
+          "sun_bias": 0.5,
+          "tones": ["#c4908c", "#a48888", "#a09090", "#9c9090"]
+        },
+        {
+          "count": 80,
+          "el": [-1, 8],
+          "width": [14, 36],
+          "height": [3.0, 7.0],
+          "sun_bias": 0.6,
+          "warm": 0.15,
+          "tones": ["#c4908c", "#c4908c", "#a48888", "#a09090"]
+        }
+      ]
+    },
+    "accent": {
+      "color": "#fc5084",
+      "azimuth": -5,
+      "elevation_deg": 31,
+      "spread_deg": 13,
+      "rise_deg": 5,
+      "clumps": 5,
+      "width": [4, 9],
+      "height": [2.0, 3.6],
+      "tones": ["#fc5084", "#fc5084", "#e46088", "#e46088"],
+      "specks": 220,
+      "speck_spread": 14
+    },
+    "ridges": [
+      {"color": "#6b828f", "height": 0.085, "rough": 0.075, "freq": 2.0, "seed": 3, "rim": "#fc5084"},
+      {"color": "#5b6a80", "height": 0.05, "rough": 0.04, "freq": 3.6, "seed": 7, "rim": "#c0928f"}
+    ]
+  },
+  "particles": {
+    "snow": {
+      "count": 6000,
+      "radius": 26,
+      "fall": 0.55,
+      "drift": 0.35,
+      "size": 0.065,
+      "color": "#a8b4ac",
+      "alpha": 1.0,
+      "color2": "#64848c"
+    },
+    "bokeh": {"count": 320, "near": 0.35, "far": 3.2, "size": 0.026, "max_px": 13, "color": "#a8b4ac", "alpha": 1.0},
+    "breath": {"color": "#90afa3", "every_idle": 3.8, "every_walk": 2.6, "life": 1.9, "alpha": 0.74},
+    "exhaust": {"color": "#8e7e8c", "alpha": 0.6, "every": 0.32, "life": 3.0}
+  },
+  "bob": {
+    "idle": {"height": 0.01, "pitch": 0.35, "period": 3.8},
+    "walk": {"height": 0.022, "sway": 0.014, "roll": 0.35, "pitch": 0.25, "step_hz": 1.75},
+    "speed": 1.15,
+    "run": 1.0
+  },
+  "palette_extra": [
+    "#6a7f95",
+    "#a8b4ac",
+    "#b3c5bc",
+    "#182840",
+    "#e46088",
+    "#a08c90",
+    "#98848c",
+    "#8c7c8c",
+    "#c4908c",
+    "#a48888",
+    "#a09090",
+    "#9c9090",
+    "#5a7286"
+  ],
+  "outline": {"enabled": false, "depth": 0.08},
+  "line_value": 0.55,
+  "tone_jitter": {"pine": 0.06}
+}
