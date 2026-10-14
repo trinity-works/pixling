@@ -17,7 +17,7 @@ pixling agent install .          # run in the user's repo: adds the pixling skil
 
 ## Know-how first
 pixling                          # the command map
-pixling pipelines                # spec, blocks, iso, map, fx, video, painted, fp, arena, style: what each makes
+pixling pipelines                # spec, blocks, iso, map, fx, video, strike, painted, fp, arena, style: what each makes
 pixling pipelines NAME           # when to pick it, the steps, the code, what we learned
 pixling styles                   # launch styles: vista, tactics (Crisp Tactics), flat (Flat Minimal)
                                  # also: sunmeadow, duskborne, vermilion (SDF sprites), painted_cards (painted), hushfall (fp)
@@ -40,6 +40,10 @@ video    design -> 5-facing start sheet -> MiniMax H3 takes (first = last frame)
          pixling scenario login (the USER runs it; opens a browser) ; pixling reel split SHEET
          pixling scenario cost|run model_minimax-h3 @take.json --out takes/X.mp4 ; pixling reel contact TAKE
          pixling reel gambit char.json ; pixling reel page NAME ; pixling reel fx SPEC (spells on black)
+strike   melee hits that land where the art paints them: weapon (grip -> tip), feet and hurtbox per frame of any sheet
+         pixling strike sample ; pixling strike pose SHEET.png --cell C --pivot X,Y --rows se,.. --hit N (or NAME.json --clip attack)
+         pixling strike reach ATTACK.pose.json IDLE.pose.json --scale K --ppm P --yscale Y --stop M (exit 1 if outside) ; --json
+         pixel art: pixling build SPEC --maps parts (weapon, arm, legs, body colours), then strike pose the manifest
 painted  style + layout -> Blender painterly sprites (shadow layers, sway loops, 8 headings) -> scene, web scene
          pixling painted doctor ; pixling painted kit ; pixling painted compose ; pixling painted game
 fp       a place you walk: a painted view in layers (Blender cards, painterly with pixel actors; locked camera, a small walker; opens) or first person (WebGL kit)

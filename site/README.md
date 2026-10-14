@@ -2,7 +2,7 @@
 
 The page is visual-first and dark: a hero wall of real worlds drifting in whole pixels, the pipeline told on a
 sticky stage (ask, choose, build, look, ship), a bento of live tiles (hours, 8 directions, states, AI video, painted, battle maps (map, walkable, routes),
-fx, a walkable world, collision, new styles), the styles with their making-of, the gallery and a three-step install. Every image is a
+melee hits that land on their frame, fx, a walkable world, collision, new styles), the styles with their making-of, the gallery and a three-step install. Every image is a
 real pixling output from `a/`; no terminal output on the page.
 
 A static page: `index.html` (hand-written, no build step), `a/` (art, all real pixling outputs), `fonts/`, and two
@@ -14,4 +14,5 @@ files for coding agents: `llms.txt` (the guide as plain text) and `agents.json` 
 - Fonts: Geist, Geist Mono and Geist Pixel Square (headings and labels), all OFL, self-hosted in fonts/ and preloaded with font-display:block so reloads don't flash; the logo is the brand lockup SVG (Jersey 15, OFL, drawn into it).
 - Keep `llms.txt` and `agents.json` in step with `pixling` when commands change, and the pipeline cards in step with
   docs/PIPELINES.md. The video and painted cards use `python3 tools/site.py pipelines` (needs the local H3 take in
-  reel/fx/takes and a built out/painted/hollow_brook); the battle-map card, `python3 tools/site.py arena` (node + playwright).
+  reel/fx/takes and a built out/painted/hollow_brook); the battle-map card, `python3 tools/site.py arena` (node + playwright); the melee card and the README image,
+  `python3 tools/site.py strike` (the committed sample, no credits).

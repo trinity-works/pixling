@@ -1,7 +1,7 @@
 """Build the landing page's art into site/a/ from the engine (the page itself is site/index.html, hand-written).
 
   python3 tools/site.py            # renders states, light, the house steps and the iso styles; copies maps, fx from out/
-  python3 tools/site.py pipelines  # one step only (mascot, sheets, states, house_steps, worlds, iso_styles, pipelines, layers, arena)
+  python3 tools/site.py pipelines  # one step only (mascot, sheets, states, house_steps, worlds, iso_styles, pipelines, layers, arena, strike)
 
 Renders go to a temp dir; only the final images land in site/a/. Maps, fx and props are read from out/, so build
 those first if they are missing (the error names the command). Everything on the page is a real pixling output.
@@ -190,6 +190,47 @@ def arena():
     im.crop((0, 0, im.width // 2 - 1, im.height // 2 - 1)).save(os.path.join(A, "fp_first_snow.webp"), quality=88)
 
 
+def strike():
+    """The melee tile and the README image: `pixling strike` on its committed painted sample (no pose model, so it
+    rebuilds the same everywhere). The attack's frames with the measured blade (grip -> tip), tip and feet, the contact
+    frame boxed in gold. The page states the reach band beside it (`strike reach` on the same sample)."""
+    from PIL import ImageDraw
+    sample, cell = os.path.join(ROOT, "strike", "sample"), ["--cell", "256", "--pivot", "128,189.5", "--rows", "se", "--no-model", "--json"]
+    def run(*args):
+        r = subprocess.run([sys.executable, "-m", "strike", *args], cwd=ROOT, capture_output=True, text=True)
+        if r.returncode not in (0, 1):
+            sys.exit(f"strike {' '.join(args)} failed:\n{r.stderr[-800:]}")
+        return json.loads(r.stdout)
+    att = run("pose", f"{sample}/warrior_attack.png", *cell, "--hit", "3", "--out", f"{TMP}/attack")
+    run("pose", f"{sample}/warrior_idle.png", *cell, "--out", f"{TMP}/idle")
+    stop = 2.3
+    band = run("reach", att["json"], f"{TMP}/idle.pose.json", "--scale", "1.17", "--ppm", "40", "--yscale", "0.74",
+               "--stop", str(stop), "--json")["facings"]["se"]["band"]
+    pose = json.load(open(att["json"]))
+    sheet = Image.open(f"{sample}/warrior_attack.png").convert("RGBA")
+    x0, y0, w, h, k = 28, 44, 200, 168, 2                  # the crop of a 256 px cell that holds the swing; 2x
+    pv = (128 - x0, 189.5 - y0)
+    W, H = 8 * w * k, h * k
+    img = Image.new("RGBA", (W, H), (22, 31, 35, 255))      # --card
+    d = ImageDraw.Draw(img)
+    for i, kp in enumerate(pose["pose"]["se"]):
+        c = sheet.crop((i * 256 + x0, y0, i * 256 + x0 + w, y0 + h)).resize((w * k, h * k), Image.LANCZOS)
+        img.alpha_composite(c, (i * w * k, 0))
+        P = lambda v: (i * w * k + (pv[0] + v[0]) * k, (pv[1] + v[1]) * k)
+        if i == pose["hit_frame"]:
+            d.rounded_rectangle((i * w * k + 6, 6, (i + 1) * w * k - 6, h * k - 6), 18, outline=(226, 192, 90), width=4)
+        for f in kp["feet"] or []:
+            x, y = P(f)
+            d.ellipse((x - 8, y - 8, x + 8, y + 8), outline=(134, 176, 156), width=4)
+        if kp["tip"] and kp["grip"]:
+            d.line([P(kp["grip"]), P(kp["tip"])], fill=(226, 192, 90), width=6)
+            x, y = P(kp["tip"])
+            d.ellipse((x - 10, y - 10, x + 10, y + 10), fill=(228, 141, 124))
+    img.convert("RGB").save(os.path.join(A, "sk_strike.webp"), quality=88)
+    img.convert("RGB").resize((W // 2, H // 2), Image.LANCZOS).save(os.path.join(ROOT, "docs", "img", "strike_anatomy.png"))
+    print(f"  reach {band} m, stop {stop} m")
+
+
 def mascot():
     """The hand-placed mascot's idle GIF, keyed to a transparent 1x sheet."""
     im = Image.open(os.path.join(ROOT, "docs", "brand", "pixling-mark-idle.gif"))
@@ -209,7 +250,7 @@ def mascot():
 
 if __name__ == "__main__":
     os.makedirs(A, exist_ok=True)
-    every = (mascot, sheets, states, house_steps, worlds, iso_styles, pipelines, layers, arena)
+    every = (mascot, sheets, states, house_steps, worlds, iso_styles, pipelines, layers, arena, strike)
     for step in [f for f in every if f.__name__ in sys.argv[1:]] or every:
         print(step.__name__)
         step()

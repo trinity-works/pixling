@@ -151,6 +151,9 @@ the feet forward `death_slide` px, default 0.4 x body height, so the body lies i
   (RGB = world normal * 0.5 + 0.5; x right, y away, z up) and `_height.png` (grey = px above the feet x
   `height_scale`) beside each sheet, same layout, alpha only on the model's pixels. For real-time lighting in a game
   (2D-HD): light the finished sprite, keep the added light in a few steps so it stays pixel art.
+  `parts` (`--maps parts`) writes `_parts.png`: one flat colour per body part (weapon = the `smear_hides` bones, arm,
+  legL, legR, body; the legend is the build json's `"parts"`), so a game or `pixling strike` knows which pixels are
+  the sword and which the legs.
 
 ## Motion (family feel)
 Each style has a `motion` block, so a family moves as one. A spec's `anim` overrides any key.

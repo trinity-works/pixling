@@ -9,7 +9,8 @@ Claude Code reads CLAUDE.md, which has the same rules plus notes on running seve
 - `pixling` lists every command. `pixling guide` lists the docs; `pixling code` lists the engine modules; `pixling styles` and
   `pixling specs` show the curated styles and the example specs.
 - How to make art: `.claude/skills/pixling/SKILL.md` (the same skill is installed into other projects by
-  `pixling agent install DIR`).
+  `pixling agent install DIR`). Melee hits that land on their frame: `.claude/skills/strike-anatomy/SKILL.md`
+  (`pixling guide strike`).
 - Tests: `python3 -m unittest discover -s tests`.
 - Formats: pixel art is `pp` (`pixling build`), video sprites are `reel` (`pixling reel`), painterly non-pixel sprites and
   scenes are `painted` (`pixling painted`, Blender 4.2+; `pixling guide painted`), walkable first-person pixel worlds are

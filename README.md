@@ -50,6 +50,7 @@ pixling                          # every command; each takes -h, the ones agents
 | **map** | living maps: building states, hour-of-day lighting, a meaning layer, engine layers |
 | **fx** | VFX sheets posterised to a style's palette |
 | **video** | sprites cut from AI video into 8-direction sheets (via [Scenario](https://scenario.com), optional), or lit side-view sprites with normal maps for 2D lights (web and Godot players) |
+| **strike** | melee hits that land where the art paints them: weapon, feet and hurtbox measured in every frame of any sprite sheet, and the melee range the art supports |
 | **painted** | painterly, non-pixel sprites and scenes rendered in Blender |
 | **fp** | a walkable pixel world: a painted scene in layers with a small walker, or first person in WebGL |
 | **arena** | painted battle maps for your units, with a checked game level: collision, nav, line of sight, zones |
@@ -86,6 +87,23 @@ The battle maps ship with a full game level: collision shapes, a nav grid per un
 zones, and `pixling arena check` proves both sides fair. The viewer (one html) shows the map's sway and drifting
 clouds and overlays for sizing your units: colliders, nav, sight, paths, a test agent.
 
+## Melee hits that land on their frame
+`pixling strike` measures where the weapon, the feet and the body are in every frame of a sprite sheet, from the
+alpha alone: no hand-drawn hitboxes. Then the art sets the rules. `pixling strike reach` gives the distances where
+the contact frame's blade crosses a defender, so your melee spacing goes inside that band, and the guide shows how to
+drive attack frames from your sim's ticks and the walk cycle from distance walked.
+
+<img src="docs/img/strike_anatomy.png" alt="A painted warrior's sword swing frame by frame, with the measured blade, tip and feet; the contact frame is boxed" width="800">
+
+```bash
+pixling strike sample                      # an example warrior to try it on, and the commands that measure it
+pixling strike pose attack.png --cell 512 --pivot 256,379 --rows se,sw,ne,nw --hit 3   # or NAME.json --clip attack
+pixling strike reach attack.pose.json idle.pose.json --scale 0.585 --ppm 40 --yscale 0.74 --stop 2.3   # exit 1 if outside
+```
+Any sheet and any engine. The default reads the silhouette, which suits painted and AI-video sprites; pixel art builds
+a parts map from its rig (`pixling build SPEC --maps parts`: weapon, arms, legs, body) and strike reads that instead.
+`pixling guide strike` has the formulas, the end-to-end tests to add and the limits.
+
 ## Docs
 - [docs/PIPELINES.md](docs/PIPELINES.md): every pipeline, step by step
 - [docs/ARTIST.md](docs/ARTIST.md): the spec format and design rules
@@ -95,6 +113,7 @@ clouds and overlays for sizing your units: colliders, nav, sight, paths, a test 
 - [fp/README.md](fp/README.md): walkable painted worlds and the first-person walk
 - [painted/README.md](painted/README.md): the painterly format
 - [reel/README.md](reel/README.md) and [reel/LIGHTING.md](reel/LIGHTING.md): sprites and lit sprites from AI video
+- [strike/README.md](strike/README.md): melee hits that land on their frame
 
 The same docs are built into the CLI: `pixling guide`.
 

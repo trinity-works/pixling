@@ -27,7 +27,7 @@ def engine_main(argv=None) -> int:
     b.add_argument("--out")
     b.add_argument("--dirs")
     b.add_argument("--clips")
-    b.add_argument("--maps", help="2D-HD maps to export beside the sheets: normal,height")
+    b.add_argument("--maps", help="maps to export beside the sheets: normal,height (2D-HD), parts (weapon, arm, legs, body)")
     r = sub.add_parser("review", help="zoomed grid of clips x directions from a build dir")
     r.add_argument("build_dir")
     r.add_argument("--clips")

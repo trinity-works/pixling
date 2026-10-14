@@ -1,6 +1,6 @@
 {
   "name": "pixling",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "status": "experimental",
   "summary": "Art know-how and tools for coding agents: pipelines, styles (with how they were made) and taste for making game sprites with code.",
   "source": "https://github.com/trinity-works/pixling",
@@ -82,6 +82,15 @@
           "pixling scenario login"
         ],
         "entry": "pixling reel gambit char.json"
+      },
+      {
+        "name": "strike",
+        "makes": "melee hits that land where the art paints them: weapon, feet and hurtbox per frame of any sprite sheet; the melee range the art supports",
+        "engine": "strike",
+        "optional": [
+          "rtmlib + onnxruntime (RTMPose ankles)"
+        ],
+        "entry": "pixling strike pose SHEET --cell C --pivot X,Y --rows se,.. --hit N; pixling strike reach ATTACK.pose.json IDLE.pose.json --scale K --ppm P --stop M"
       },
       {
         "name": "painted",
@@ -295,6 +304,20 @@
     {
       "cmd": "pixling reel split|contact|key|gambit|page|demo|fx",
       "does": "video pipeline: start frames, take checks, chroma key, cut to sheets, review page, demo, additive spell sheets"
+    },
+    {
+      "cmd": "pixling strike pose SHEET.png --cell C --pivot X,Y --rows R [--hit N] [--walk] [--parts MAP.png] | NAME.json --clip CLIP",
+      "does": "weapon grip/tip, feet and hurtbox per frame -> SHEET.pose.json + review PNG",
+      "json": true
+    },
+    {
+      "cmd": "pixling strike reach ATTACK.pose.json IDLE.pose.json --scale K --ppm P [--yscale Y] [--stop M]",
+      "does": "ground distances (m) where the contact blade crosses a defender's hurtbox; exit 1 when --stop is outside",
+      "json": true
+    },
+    {
+      "cmd": "pixling strike sample [DIR]",
+      "does": "copy an example warrior (attack, idle, walk) and print the commands that measure it"
     }
   ],
   "outputs": {
@@ -303,7 +326,9 @@
     "gif": "previews per clip",
     "layers": "base loop, occluders, movers, fog, places",
     "meaning": "meaning.png (R material, G collision, B water depth px), depth.png, objects.png, meaning.json",
-    "light": "light.json grades per hour level"
+    "light": "light.json grades per hour level",
+    "pose": "SHEET.pose.json (pixling.strike-pose/1): pose.<facing>[frame] {tip, grip, feet}, hurtbox {x,y,w,h}, stride_px; points in cell px from the pivot",
+    "parts": "NAME_CLIP_parts.png (pixling build --maps parts): one flat colour per part, weapon 255,64,64; arm 64,200,64; legL 64,96,255; legR 64,200,255; body 200,200,200"
   },
   "rules": [
     "Never paint pixels; drive a pipeline with code.",

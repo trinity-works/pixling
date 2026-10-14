@@ -213,6 +213,50 @@ once): `pixling reel light new NAME` -> `start` -> `frames` -> `loop` -> `patina
 -> `check` -> `demo`; `export SHEET DIR --engine web|godot` copies the sheet (`pixling.lit-sprite` v1: colour +
 normal atlases + json) and a drop-in player (reel/light_runtime: litsprite.js, lit_sprite.gd) into a game.
 
+## strike
+Melee hits that land where the sprite art paints them: weapon, feet and hurtbox measured per frame, melee range from the art.
+
+The output is a `.pose.json` per sheet (grip, tip and feet per frame; the hurtbox; the walk stride), a review image,
+and a reach band per facing that the game's melee spacing must fall inside. Any sheet, any engine.
+
+**Pick it for** painted or AI-video sprites in a game with melee: hits that land short, past the target or a frame
+late; feet that slide; spacing set by guesswork. Pairs with `video`, but any sprite sheet works.
+
+**Steps**
+```
+# 1 measure; then look at <sheet>.pose.png (blade yellow, tip red, feet green)
+pixling strike pose attack.png --cell 512 --pivot 256,379 --rows se,sw,ne,nw --hit 3
+pixling strike pose idle.png   --cell 512 --pivot 256,379 --rows se,sw,ne,nw
+pixling strike pose walk.png   --cell 512 --pivot 256,379 --rows se,sw,ne,nw --walk
+pixling strike pose out/NAME/NAME.json --clip attack        # or a pixling sprite manifest: cell, anchor, hit frame
+# pixel art: build with the rig's parts map, then strike reads the weapon, legs and body from it
+pixling build SPEC --maps parts && pixling strike pose out/NAME/NAME.json --clip attack
+# 2 the art sets the range: the ground distances (m) where the contact blade crosses a defender's hurtbox
+pixling strike reach attack.pose.json idle.pose.json --scale 0.585 --ppm 40 --yscale 0.74 --stop 2.3   # exit 1 if outside
+# 3 in the game: the attack frame is a function of the sim's action ticks, the walk frame of distance walked
+# 4 end-to-end tests: contact frame on the resolve tick, blade in the hurtbox, stop distance inside the band
+```
+Try it first: `pixling strike sample` copies an example warrior and prints the four commands that measure it.
+
+**How it works.** The weapon is the longest thin part of the silhouette: an opening removes everything thinner than
+4 % of body height, and the longest removed part is the weapon. Its end nearer the body is the grip, the far end the
+tip. Feet are the two lowest leg clusters, or RTMPose ankles when `rtmlib` is installed. The reach check slides a
+same-size defender's hurtbox along each facing through the game camera's ground projection.
+
+**Code:** `strike/` (`pixling code strike.measure`). **Read:** `pixling guide strike` (the frame and walk formulas,
+the tests to add, the limits).
+
+**Learned**
+- Size the melee range from the art, then the view never slides the attacker to fake a hit. Keep any lean ≤ 16 px.
+- Contact is one frame. Damage, number, flash and hit stop fire from the sim's contact tick, never from the animation.
+- Advance the walk by distance (one cycle = two measured strides). AI video walks often moonwalk, so don't trust a
+  take's root motion.
+- When a map draws fighters smaller, scale melee range, walk speed and projectile speed by the same size factor, or
+  the fight reads too fast.
+- The silhouette needs larger art (painted or video, body ≥ ~100 px). Small pixel art is hard to read from its
+  outline: its sword is as wide as its arm. Use a parts map there (`--maps parts`, or paint one); a smear frame's
+  tip is its front end along the facing. A thick weapon has no thin part: raise `--thin` or use a parts map.
+
 ## painted
 Style + layout -> Blender renders painterly sprites, a composed scene and a walkable web scene.
 

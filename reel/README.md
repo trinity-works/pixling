@@ -12,6 +12,7 @@ and nothing ships into a game yet. **[WORKFLOW.md](WORKFLOW.md)** walks through 
 |---|---|
 | [WORKFLOW.md](WORKFLOW.md) | the loop: design, start sheet, H3 takes, checks, cut, review; prompts; spells |
 | [LIGHTING.md](LIGHTING.md) | lit side-view sprites: painted frames + steady normal maps that react to 2D lights |
+| [../strike/README.md](../strike/README.md) | melee hits that land where the art paints them (`pixling strike`): measure the exported sheets |
 | this README | layout, pipeline, detectors, commands, `char.json` reference |
 | [research/reel/NOTES.md](../research/reel/NOTES.md) | research log: what shippers do, model survey, per-character findings |
 | [research/reel/SCENARIO_SKILL.md](../research/reel/SCENARIO_SKILL.md) | Scenario MCP/API conventions |

@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pixling"
-version = "0.2.0"
+version = "0.3.0"
 description = "The pixel artist for your coding agent: pipelines, styles and taste for making game sprites with code"
 readme = "README.md"
 license = {text = "MIT"}
@@ -21,6 +21,7 @@ classifiers = [
 
 [project.optional-dependencies]
 reel = ["scikit-image>=0.21"]   # pixling reel light (optical flow for the steady normal maps)
+strike = ["rtmlib>=0.0.15", "onnxruntime>=1.19"]   # pixling strike: RTMPose ankles for the feet (else the silhouette)
 
 [project.scripts]
 pixling = "pp.cli:main"
@@ -30,7 +31,7 @@ Homepage = "https://pixling.dev"
 Repository = "https://github.com/trinity-works/pixling"
 
 [tool.hatch.build.targets.wheel]
-packages = ["pp", "reel", "painted", "fp", "arena"]
+packages = ["pp", "reel", "painted", "fp", "arena", "strike"]
 exclude = ["reel/chars/[!_]*", "**/__pycache__", "**/.DS_Store"]
 
 # The data pixling reads at runtime, copied into pp/data/ in the wheel (pp/paths.py finds it there when installed;
@@ -49,6 +50,7 @@ exclude = ["reel/chars/[!_]*", "**/__pycache__", "**/.DS_Store"]
 "docs/brand/pixling-sprite.png" = "pp/data/docs/brand/pixling-sprite.png"
 "reel/README.md" = "pp/data/reel/README.md"
 "reel/WORKFLOW.md" = "pp/data/reel/WORKFLOW.md"
+"strike/README.md" = "pp/data/strike/README.md"
 "painted/README.md" = "pp/data/painted/README.md"
 "fp/README.md" = "pp/data/fp/README.md"
 "arena/README.md" = "pp/data/arena/README.md"

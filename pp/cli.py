@@ -23,6 +23,7 @@ PKG_DIRS = {"pp": Path(__file__).resolve().parent, "reel": Path(__file__).resolv
             "painted": Path(__file__).resolve().parent.parent / "painted",
             "fp": Path(__file__).resolve().parent.parent / "fp",
             "arena": Path(__file__).resolve().parent.parent / "arena",
+            "strike": Path(__file__).resolve().parent.parent / "strike",
             # the style kits: worked examples an agent can read and copy (shipped in the wheel under pp/data/tools)
             "tactics": ROOT / "tools" / "tactics", "flat": ROOT / "tools" / "flat", "vista": ROOT / "tools" / "vista"}
 
@@ -72,6 +73,7 @@ GUIDES = {
     "reel": ("reel/README.md", "video -> sprites engine: layout, char.json, commands"),
     "reel-workflow": ("reel/WORKFLOW.md", "the reel loop step by step: designs, takes, cut, demo"),
     "reel-lighting": ("reel/LIGHTING.md", "lit side-view sprites: painted frames + steady normal maps for 2D lights"),
+    "strike": ("strike/README.md", "melee hits that land on their frame: weapon, feet, hurtbox per frame; reach; tests"),
     "reel-notes": ("research/reel/NOTES.md", "video model survey and reel research"),
     "painted": ("painted/README.md", "the painterly format: technique, commands, style/layout files, sprite contract"),
     "fp": ("fp/README.md", "pixel worlds you walk: the painted layered view, first person, commands, the Hushfall hand"),
@@ -86,7 +88,7 @@ pixling — art know-how and tools for your coding agent (the Pixel Perfect forg
 Pipelines, styles and taste for making game sprites with code: run them, read how they were made, take what helps.
 
 Know-how (start here)
-  pixling pipelines [NAME]              spec, blocks, iso, map, fx, video, painted, fp, arena, style: what each, steps, code, lessons
+  pixling pipelines [NAME]              spec, blocks, iso, map, fx, video, strike, painted, fp, arena, style: what each, steps, code, lessons
   pixling styles [NAME] [--how]         styles and their ramps; --how: the hand, the kit, the code, the lab notes
   pixling guide [TOPIC] [SECTION]       the docs and research notes; --grep WORD searches them all
   pixling code [MODULE]                 engine and kit modules, with docstrings (`pixling code tactics.kit`)
@@ -124,6 +126,10 @@ Pipeline: image -> video -> frames (Scenario + reel; `pixling pipelines video`)
   pixling reel split|contact|key|gambit|page|demo|fx ...   key, cut and export the takes
   pixling reel light new|start|frames|loop|patina|build|check|demo|export   lit side view: colour + normal sheets,
                                         web + Godot players (`pixling guide reel-lighting`)
+
+Pipeline: melee hits that land where the art paints them (any sprite sheet; `pixling pipelines strike`)
+  pixling strike pose SHEET.json --clip attack | SHEET.png --cell C --pivot X,Y --rows se,..   weapon, feet, hurtbox
+  pixling strike reach ATTACK.pose.json IDLE.pose.json --scale K --ppm P [--stop M]   melee range from the art
 
 Pipeline: Blender -> painterly frames (not pixel; `pixling pipelines painted`)
   pixling painted kit [assets] [--style --layout]  shadow layers, sway loops, 8 headings
@@ -475,6 +481,9 @@ def cmd_doctor(a):
     except ImportError:
         checks.append(("scikit-image (reel light only)", False, "pip install 'pixling[reel]'"))
     checks.append(("node + playwright (fp/arena shots only)", bool(node), node or "install Node 18+ and `npm i -g playwright`"))
+    import importlib.util
+    pose = all(importlib.util.find_spec(m) for m in ("rtmlib", "onnxruntime"))
+    checks.append(("rtmlib (strike feet, optional)", pose, "RTMPose ankles" if pose else "pip install 'pixling[strike]'"))
     md = auth.mode()
     st = auth.load()
     who = {"api-key": "SCENARIO_API_KEY", "oauth": "team %s, project %s" % (st.get("team_id", "?"), st.get("project_id", "?")),
@@ -491,7 +500,7 @@ AGENTS_BLOCK = """\
 <!-- pixling -->
 ## Game art (pixling)
 Game art comes from `pixling` (the Pixel Perfect forge): pipelines, styles and taste for making sprites with code.
-Never hand-paint pixels. Start with `pixling pipelines` (spec, blocks, iso, map, fx, video, painted, fp, arena, style) and pick one;
+Never hand-paint pixels. Start with `pixling pipelines` (spec, blocks, iso, map, fx, video, strike, painted, fp, arena, style) and pick one;
 `pixling styles NAME --how` shows how a style was made, with its code and notes, to reuse or build on.
 Spec loop: copy an example from `pixling specs` -> `pixling build` -> `pixling review` (look at the image) -> fix ->
 `pixling scene` -> `pixling lint`. AI image/video: `pixling scenario` (the user signs in once with
@@ -756,6 +765,10 @@ def main(argv=None) -> int:
         sys.path.insert(0, str(REPO))
         from arena.__main__ import main as arena_main
         return arena_main(rest) or 0
+    if head == "strike":
+        sys.path.insert(0, str(REPO))
+        from strike.__main__ import main as strike_main
+        return strike_main(rest) or 0
     a = _parser().parse_args(argv)
     run = {"guide": cmd_guide, "pipelines": cmd_pipelines, "code": cmd_code, "styles": cmd_styles, "specs": cmd_specs, "new": cmd_new, "doctor": cmd_doctor,
            "agent": cmd_agent, "scenario": cmd_scenario}.get(a.cmd)

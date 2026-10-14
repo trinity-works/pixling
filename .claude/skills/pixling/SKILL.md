@@ -1,6 +1,6 @@
 ---
 name: pixling
-description: Make game art with code using pixling (the Pixel Perfect forge), a catalogue of pipelines, styles and taste notes. Pipelines: JSON spec -> 8-direction pixel sprites; exact-iso scenes from Python kits; living maps with states, hour light and a meaning layer; VFX sheets; AI image -> video -> keyed sprite frames (Scenario + reel); Blender -> painterly sprites. Each style ships with how it was made (hand, kit code, lab notes), so you can reuse it or build a new one. Use when asked for sprites, characters, creatures, trees, buildings, spell effects, a town or world map, an iso scene, a new art style, an itch.io pack, or AI image/video generation through Scenario.
+description: Make game art with code using pixling (the Pixel Perfect forge), a catalogue of pipelines, styles and taste notes. Pipelines: JSON spec -> 8-direction pixel sprites; exact-iso scenes from Python kits; living maps with states, hour light and a meaning layer; VFX sheets; AI image -> video -> keyed sprite frames (Scenario + reel); Blender -> painterly sprites; melee hits measured from the art (weapon tip, feet and hurtbox per frame, melee range, contact on the hit tick). Each style ships with how it was made (hand, kit code, lab notes), so you can reuse it or build a new one. Use when asked for sprites, melee hitboxes or attack timing that must match the art, characters, creatures, trees, buildings, spell effects, a town or world map, an iso scene, a new art style, an itch.io pack, or AI image/video generation through Scenario.
 ---
 
 # Pixel Perfect (`pixling`)
@@ -11,7 +11,7 @@ read how they and the styles were made and take what helps into the user's own p
 
 ## Pick a pipeline
 - `pixling pipelines`: spec (sprites), iso (exact-iso scenes), map (living maps), fx, video (image -> video ->
-  frames), painted (Blender), fp (a walkable pixel world: a painted layered scene, or first person), arena (painted battle maps with a game level), style (a new style from scratch). `pixling pipelines NAME` gives the steps, the code
+  frames), strike (melee hits that land where the art paints them), painted (Blender), fp (a walkable pixel world: a painted layered scene, or first person), arena (painted battle maps with a game level), style (a new style from scratch). `pixling pipelines NAME` gives the steps, the code
   and what we learned.
 - `pixling styles NAME --how`: how a launch style (vista, tactics, flat) was made: hand, kit, code, lab notes.
   `pixling code tactics.kit` prints a kit module and its path, so you can read it whole or copy it.
@@ -96,6 +96,19 @@ committed (`pixling arena maps`: hushfall, emberleaf). `pixling arena bundle --m
 radius, LOS, spawns, zones), and `pixling arena check` proves it fair and walkable. Units go in the hue bands the map
 keeps free (`zones.unit_hues`). A new map is a module in arena/maps/NAME/ (`pixling guide arena`, "Making a new biome
 map"); repainting needs Blender (`ARENA_BPY=... pixling arena paint`), tuning ramps does not (`repaint`).
+
+## Melee hits that land on their frame (strike)
+For a game with melee: measure the art, then let it set the rules. The default reads the silhouette, which needs
+larger art (painted or AI-video sprites, body ≥ ~100 px). Small pixel art is hard to read from its outline: build it
+with `--maps parts` (one colour per part from the rig) and strike reads the parts instead.
+- `pixling strike pose SHEET.png --cell C --pivot X,Y --rows se,sw,.. --hit N` (or `pixling strike pose
+  out/NAME/NAME.json --clip attack` for a pixling sprite): grip, tip and feet per frame, the hurtbox, the walk stride
+  (`--walk`). Look at the `.pose.png` it writes before trusting the numbers.
+- `pixling strike reach ATTACK.pose.json IDLE.pose.json --scale K --ppm P --yscale Y --stop M`: the distances where
+  the contact blade crosses a defender. Put the game's melee stop distance inside that band (exit 1 if not).
+- In the game: the attack frame from the sim's action ticks (contact frame on the release tick), the walk frame from
+  distance walked, every hit effect from the sim's contact event. `pixling guide strike` has the formulas, the tests
+  to add and a sample to try first. Use `--json` when you parse the output.
 
 ## Reading the engine
 `pixling code` lists the modules and `pixling code forge` shows one module's functions with their docstrings. Read the

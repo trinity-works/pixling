@@ -625,11 +625,26 @@ class Forge:
         return rgba
 
     HEIGHT_SCALE = 4   # height maps store px above the feet x 4 (quarter-pixel steps, up to 63.75 px)
+    # parts maps: one flat colour per body part, from the bone under each pixel (pixling strike reads them)
+    PARTS = {"weapon": (255, 64, 64), "arm": (64, 200, 64), "legL": (64, 96, 255), "legR": (64, 200, 255),
+             "body": (200, 200, 200)}
+
+    def part_of(self, bone: str) -> str:
+        """weapon (the spec's smear_hides bones, default sword/weapon), arm (arm*, fore*), legL/legR (leg*, by the
+        side letter), or body."""
+        if bone in self.spec.get("anim", {}).get("smear_hides", ["sword", "weapon"]):
+            return "weapon"
+        if bone.startswith(("arm", "fore")):
+            return "arm"
+        if bone.startswith("leg"):
+            return "legL" if "L" in bone[3:] else "legR"
+        return "body"
 
     def _maps(self, which: List[str]) -> Dict[str, np.ndarray]:
         """2D-HD maps of the last rendered frame, from the G-buffer: normal (RGB = world normal * 0.5 + 0.5,
-        x right, y away from the viewer, z up) and height (grey = px above the feet x HEIGHT_SCALE). Alpha = 255
-        on the model's own pixels (not the ground shadow or in-sprite fx)."""
+        x right, y away from the viewer, z up), height (grey = px above the feet x HEIGHT_SCALE) and parts (one
+        PARTS colour per pixel by its bone). Alpha = 255 on the model's own pixels (not the ground shadow or
+        in-sprite fx)."""
         buf = self._buf
         on = buf.mat >= 0
         out = {}
@@ -645,6 +660,13 @@ class Forge:
             h[..., 0] = h[..., 1] = h[..., 2] = np.where(on, v, 0)
             h[..., 3] = np.where(on, 255, 0)
             out["height"] = h
+        if "parts" in which:
+            p = np.zeros(buf.mat.shape + (4,), np.uint8)
+            for i, name in enumerate(self.model.order):
+                sel = on & (buf.bone == i)
+                if sel.any():
+                    p[sel] = (*self.PARTS[self.part_of(name)], 255)
+            out["parts"] = p
         return out
 
     def attach_spec(self, want=None) -> Dict[str, Tuple[str, object]]:
@@ -753,6 +775,8 @@ class Forge:
                     fn = f"{self.spec['name']}_{clip.name}_{m}.png"
                     save_png(pack_sheet(map_rows[m]), out / fn)
                     meta["clips"][clip.name]["maps"][m] = fn
+                if "parts" in maps:
+                    meta["parts"] = {k: list(v) for k, v in self.PARTS.items()}
             contact_rows.append((clip.name, sheet))
         (out / f"{self.spec['name']}.json").write_text(json.dumps(meta, indent=1))
         # contact sheet (all clips stacked) on the style background

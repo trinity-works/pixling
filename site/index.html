@@ -199,7 +199,7 @@ p{margin:0}
 .tile .via{position:absolute;top:14px;left:14px;z-index:2;font:400 11px/1 var(--pixel);letter-spacing:.08em;text-transform:uppercase;background:rgba(14,19,22,.72);backdrop-filter:blur(6px);color:var(--fog);padding:7px 9px;border-radius:7px}
 .b-hours{grid-column:span 7;grid-row:span 2}.b-dirs{grid-column:span 5}.b-states{grid-column:span 5}
 .b-video{grid-column:span 6}.b-painted{grid-column:span 6}
-.b-arena{grid-column:1/-1}
+.b-arena{grid-column:1/-1}.b-strike{grid-column:1/-1}
 .b-fx{grid-column:span 4}.b-walk{grid-column:span 4}.b-style{grid-column:span 4}
 @media (max-width:980px){.b-hours,.b-dirs,.b-states,.b-video,.b-painted,.b-fx,.b-walk,.b-style{grid-column:span 6;grid-row:auto}.b-hours,.b-arena,.b-style{grid-column:1/-1}}
 @media (max-width:640px){.b-hours,.b-dirs,.b-states,.b-video,.b-painted,.b-fx,.b-walk,.b-style{grid-column:1/-1}}
@@ -211,6 +211,12 @@ p{margin:0}
 .arenamaps button[aria-pressed="true"]{background:var(--fog);color:var(--bg)}
 .arenabar{max-width:520px;margin:0 auto}
 @media (max-width:640px){.arenaart{aspect-ratio:1/1}.tile .arenamaps{top:auto;bottom:58px;left:16px;right:16px}.arenamaps button{flex:1}}
+.strikeart{background:var(--card);min-height:0 !important;display:block !important;padding:46px 0 18px}
+.strikestrip{overflow-x:auto;padding:0 16px;scrollbar-width:none}
+.strikestrip img{display:block;width:100%;min-width:760px;height:auto}
+.strikeread{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px;padding:0 16px}
+.strikeread span{font:400 11px/1 var(--pixel);letter-spacing:.06em;text-transform:uppercase;background:rgba(14,19,22,.72);color:var(--dim);padding:8px 10px;border-radius:8px}
+.strikeread b{color:var(--gold);font-weight:400}
 .walkart{background:url(a/fp_first_snow.webp) 38% 60%/auto 150% no-repeat #8aa1a0}
 .hourart{position:absolute;inset:0;background-repeat:no-repeat;background-size:800px auto;background-position:50% 72%;image-rendering:pixelated;transition:none}
 .hourbar{position:absolute;left:16px;right:16px;bottom:16px;display:flex;gap:6px;z-index:2}
@@ -483,7 +489,7 @@ footer .col{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-cont
   <section class="sec col" id="makes">
     <div class="head reveal">
       <h2>A pipeline for every kind of game art</h2>
-      <p class="lede">Sprites, living maps, effects, motion from AI video, painterly scenes and battle maps you can play on. Each one comes with the know-how, ready for your agent to run.</p>
+      <p class="lede">Sprites, living maps, effects, motion from AI video, painterly scenes, battle maps you can play on and melee hits that land on their frame. Each one comes with the know-how, ready for your agent to run.</p>
     </div>
     <div class="bento">
       <article class="tile b-hours reveal">
@@ -518,6 +524,13 @@ footer .col{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-cont
           <div class="arenamaps" id="arenamaps"></div>
           <div class="hourbar arenabar" id="arenabar"></div></div>
         <div class="txt"><h3>Battle maps that are also levels</h3><p>Rendered in Blender as light, material and depth, then painted into a locked palette, with swaying trees and drifting clouds. Collision, nav for every unit size, line of sight and spawns come with it, checked fair for both sides.</p></div>
+      </article>
+      <article class="tile b-strike reveal">
+        <span class="via">any sprite sheet · melee</span>
+        <div class="art strikeart" role="img" aria-label="A painted warrior's sword swing, frame by frame, with the measured blade, tip and feet; the contact frame is boxed in gold">
+          <div class="strikestrip"><img src="a/sk_strike.webp" alt="" width="3200" height="336"></div>
+          <div class="strikeread"><span>blade reaches <b>0.15–2.8 m</b></span><span>stop at <b>2.3 m</b> · inside</span></div></div>
+        <div class="txt"><h3>Hits that land on their frame</h3><p>Measure the blade, the feet and the body in every frame of your sprite sheet. The art sets the melee range, so the blade meets the body on the tick the hit resolves. Any sheet, any engine.</p></div>
       </article>
       <article class="tile b-fx reveal">
         <span class="via">effects</span>
